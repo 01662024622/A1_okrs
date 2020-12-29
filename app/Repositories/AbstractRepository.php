@@ -25,7 +25,7 @@ abstract class AbstractRepository implements RepositoryInterface
     public function create(Request $data,array $arr)
     {
         $auth = Auth::id();
-        try {
+//        try {
             if ($data->has("id")) {
                 $update=$data->only($this->model->getUpdate());
                 $update['modify_by']=$auth;
@@ -36,14 +36,14 @@ abstract class AbstractRepository implements RepositoryInterface
             $create=$data->only($this->model->getStore());
             $create['create_by']=$auth;
             return $this->model->create(array_merge($create,$arr));
-        } catch (Exception $e) {
-            return response()
-                ->json([
-                    'code' => 502,
-                    'message' => 'Dữ liệu không hợp lệ!',
-                    'detail' => $e
-                ], 502);
-        }
+//        } catch (Exception $e) {
+//            return response()
+//                ->json([
+//                    'code' => 502,
+//                    'message' => 'Dữ liệu không hợp lệ!',
+//                    'detail' => $e
+//                ], 502);
+//        }
     }
 
     public function update(Request $data,int $id)

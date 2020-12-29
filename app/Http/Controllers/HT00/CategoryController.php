@@ -32,7 +32,6 @@ class CategoryController extends ResouceController
             }
         }
         $category = parent::storeRequest($request, $data);
-
         if ($request->has('users')) {
             $users = $request->users;
             foreach ($users as $user) {
