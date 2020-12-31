@@ -9,6 +9,7 @@ use App\Services\HT00\CategoryService;
 use Illuminate\Http\Request;
 use App\Models\HT00\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 
@@ -32,6 +33,7 @@ class CategoryController extends ResouceController
             }
         }
         $category = parent::storeRequest($request, $data);
+
         if ($request->has('users')) {
             $users = $request->users;
             foreach ($users as $user) {
@@ -79,6 +81,28 @@ class CategoryController extends ResouceController
     {
         $products = Category::where('slug', $slug)->first();
         return $products;
+    }
+    public function tests(){
+        $categoriesId= DB::select('SELECT id FROM ht00_categories ct WHERE role < 2 AND id NOT IN(
+                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=2 AND us.user_id=93 UNION
+                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=2 and ap.apartment_id=24 AND ap.category_id NOT IN(
+                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=1 and us.user_id=93))
+                UNION
+                SELECT id FROM ht00_categories WHERE role = 2 AND id IN(
+                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=1 AND us.user_id=93 UNION
+                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=1 and ap.apartment_id=24 AND ap.category_id NOT IN(
+                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=2 and us.user_id=93))');
+        $array=[];
+        foreach ($categoriesId as $id){
+            array_push($array,$id->id);
+        }
+        $categories= Category::where('type','>',0)->whereIn('id',$array)->orderBy('sort')->get(['id','title', 'parent_id', 'status', 'slug', 'type', 'url','sort','role']);
+
+        return Category::where('parent_id',$categories[0]->id)->whereIn('id',$array)->orderBy('sort')->get();
+        foreach ($categories as $category){
+
+        }
+        return $categories;
     }
 
 }
