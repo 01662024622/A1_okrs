@@ -120,7 +120,7 @@ function searchApartment() {
 }
 
 $("#apartment_select").on('click', function () {
-    if ($("#multiple_staff_select").val() != "") {
+    if ($("#multiple_apartment_select").val() != "") {
         var apartment_table = '';
         $("#multiple_apartment_select").val().forEach(function (element, index) {
             apartments.push(parseInt(element));
@@ -450,7 +450,7 @@ $("#save").on('click', function () {
         },
     });
 });
-
+var remove=[];
 $('#save_change').on('click',function (){
     $('#load_page').show();
     var formData = new FormData();
@@ -462,6 +462,9 @@ $('#save_change').on('click',function (){
             formData.append('categories[]', ind + '_' + $(ele).data('value'));
         })
     })
+    if (remove.length>0){
+        remove.forEach(elment=>formData.append('removes[]',elment))
+    }
     $.ajax({
         url: "/api/status/categories/sort",
         type: "POST",
@@ -478,4 +481,9 @@ $('#save_change').on('click',function (){
             toastr.error(thrownError);
         },
     });
+})
+$('#remove').on('click',function(){
+        remove.push($('#eid').val());
+        $("#myModal").modal('toggle');
+        $('#category_'+$('#eid').val()).hide();
 })

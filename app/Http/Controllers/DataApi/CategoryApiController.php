@@ -58,6 +58,12 @@ class CategoryApiController extends Controller
                 $data['modify_by'] = Auth::id();
                 Category::find($arr[1])->update($data);
             }
+            if ($request->has('removes')) {
+                $removes=$request->removes;
+                foreach ($removes as $remove){
+                    Category::find($remove)->update(array('status'=>1));
+                }
+            }
             return true;
         }
         return response()

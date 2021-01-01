@@ -19,7 +19,7 @@ class Category extends Model
     protected $table = "ht00_categories";
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id', 'id');
+        return $this->hasMany(Category::class, 'parent_id', 'id')->where('status',0);
     }
     public function mapping($array=[])
     {

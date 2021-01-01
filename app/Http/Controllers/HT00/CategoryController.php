@@ -82,27 +82,59 @@ class CategoryController extends ResouceController
         $products = Category::where('slug', $slug)->first();
         return $products;
     }
-    public function tests(){
-        $categoriesId= DB::select('SELECT id FROM ht00_categories ct WHERE role < 2 AND id NOT IN(
-                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=2 AND us.user_id=93 UNION
-                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=2 and ap.apartment_id=24 AND ap.category_id NOT IN(
-                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=1 and us.user_id=93))
+
+    public function tests()
+    {
+        $user = Auth::user();
+        $categoriesId = DB::select('SELECT id FROM ht00_categories ct WHERE role < 2 AND id NOT IN(
+                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=2 AND us.user_id=' . $user->id . ' UNION
+                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=2 and ap.apartment_id=' . $user->apartment_id . ' AND ap.category_id NOT IN(
+                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=1 and us.user_id=' . $user->id . '))
                 UNION
                 SELECT id FROM ht00_categories WHERE role = 2 AND id IN(
-                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=1 AND us.user_id=93 UNION
-                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=1 and ap.apartment_id=24 AND ap.category_id NOT IN(
-                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=2 and us.user_id=93))');
-        $array=[];
-        foreach ($categoriesId as $id){
-            array_push($array,$id->id);
+                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=1 AND us.user_id=' . $user->id . ' UNION
+                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=1 and ap.apartment_id=' . $user->apartment_id . ' AND ap.category_id NOT IN(
+                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=2 and us.user_id=' . $user->id . '))');
+        $array = [];
+        foreach ($categoriesId as $id) {
+            array_push($array, $id->id);
         }
-        $categories= Category::where('type','>',0)->whereIn('id',$array)->orderBy('sort')->get(['id','title', 'parent_id', 'status', 'slug', 'type', 'url','sort','role']);
-
-        return Category::where('parent_id',$categories[0]->id)->whereIn('id',$array)->orderBy('sort')->get();
-        foreach ($categories as $category){
-
+        $categories = Category::where('status', 0)->where('type', '>', 0)->whereIn('id', $array)->orderBy('sort')
+            ->get(['id', 'title', 'slug', 'type', 'sort']);
+        $nav = '';
+        foreach ($categories as $category) {
+            $sub = Category::where('status', 0)->where('parent_id', $category->id)->whereIn('id', $array)->orderBy('sort')
+                ->get(['id', 'title', 'parent_id', 'slug', 'url', 'sort']);
+            if (count($sub) > 0) {
+                if ($category->type == 1) {
+                    $nav = $nav . '<hr class="sidebar-divider">
+            <li class="nav-item" id="' . $category->slug . '">
+                <a class="nav-link" aria-expanded="true" href="#" data-toggle="collapse" data-target="#collapsePages' . $category->slug . '"
+                   aria-controls="collapsePages' . $category->slug . '">
+                    ' . $category->title . '
+                </a>
+                <div id="collapsePages' . $category->slug . '" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">';
+                    foreach ($sub as $element) {
+                        $nav = $nav . '<a id="' . $element->slug . '" class="collapse-item"  href="' . $element->url . '">
+                                <span>' . $element->title . '</span>
+                            </a>';
+                    }
+                    $nav = $nav . '</div>
+                </div>
+            </li>';
+                } else {
+                    $nav = $nav . '<hr class="sidebar-divider">';
+                    foreach ($sub as $element) {
+                        $nav = $nav . '<li class="nav-item" id="' . $element->slug . '">
+            <a class="nav-link" href="' . $element->url . '">
+                <span>' . $element->title . '</span></a>
+        </li>';
+                    }
+                }
+            }
         }
-        return $categories;
+        return $nav;
     }
 
 }

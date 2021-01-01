@@ -189,7 +189,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" id="save">Lưu</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" id="remove">Xóa</button>
                 </div>
 
             </div>

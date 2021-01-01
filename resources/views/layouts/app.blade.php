@@ -38,6 +38,7 @@
             {{ strtoupper(Auth::user()->role) }}
         </a>
         <!-- Divider -->
+        {!! $nav !!}
         <hr class="sidebar-divider my-0">
         <li @if($active=="dashboard") class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" href="/home">
