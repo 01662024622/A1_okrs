@@ -23,13 +23,10 @@ class User extends Authenticatable implements MustVerifyEmail
          'birth_day', 'authentication', 'password','status','create_by','modify_by'
     ];
     protected $fillable_store = [
-        'name', 'avata','position', 'apartment_id', 'location', 'skype', 'email_htauto', 'phone', 'role',
-        'birth_day', 'password','status'
+        'name','avata', 'position', 'apartment_id', 'location', 'skype', 'email_htauto', 'phone_htauto', 'phone'
     ];
     protected $fillable_update = [
-        'name', 'avata','position', 'apartment_id', 'location', 'skype', 'email_htauto', 'email', 'phone', 'role',
-        'birth_day', 'password','status'
-    ];
+        'name', 'avata','position', 'apartment_id', 'location', 'skype', 'email_htauto', 'phone'];
 
     /**
      * The attributes that should be hidden for arrays.

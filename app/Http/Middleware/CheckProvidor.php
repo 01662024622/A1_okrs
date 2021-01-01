@@ -18,12 +18,12 @@ class CheckProvidor
     public function handle($request, Closure $next)
     {
         if (Auth::guard()->check()) {
-            if(Auth::user()->role == 'admin' ||  Auth::user()->role == 'providor')
+            if(Auth::user()->role >= 200)
             {
                 return $next($request);
-                
+
             }
-            
+
         }
          // logout the user
         Auth::logout();

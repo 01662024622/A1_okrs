@@ -43,18 +43,18 @@ class UserEditController extends Controller
 
     public function changePassword(ChangePasswordRequest $request)
     {
-        $data = $request->only(['old_passowrd', 'new_passowrd', 'ver_passowrd']);
-        if (Auth::user()->getAuthPassword() == Hash::make($data['old_password'])) {
+        $data = $request->only(['old_password', 'new_password', 'ver_password']);
+        if (Hash::check($data['old_password'],Auth::user()->getAuthPassword())) {
             User::find(Auth::id())->update(['password' => Hash::make($request->new_password)]);
             return response()->json([
-                'code' => 500,
+                'code' => 200,
                 'message' => 'Thàng công!'
-            ], 500);
+            ], 200);
         }
         return response()
             ->json([
                 'code' => 400,
-                'message' => $request->old_password
+                'message' => $data['old_password']
             ], 400);
     }
 

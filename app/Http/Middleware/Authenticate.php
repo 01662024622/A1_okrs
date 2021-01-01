@@ -24,7 +24,7 @@ class Authenticate extends Middleware
         public function handle($request, Closure $next, ...$guards)
     {
         if (Auth::check()) {
-            if(Auth::user()->role == 'blocker'||Auth::user()->status==1)
+            if(Auth::user()->role == 0||Auth::user()->status==1)
             {
                 // logout the user
                 Auth::logout();

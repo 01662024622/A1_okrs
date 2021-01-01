@@ -19,7 +19,7 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            if(Auth::user()->role == 'manager')
+            if(Auth::user()->role >= 100)
             {
                 return $next($request);
 

@@ -31,21 +31,21 @@
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Mật khẩu cũ</h4></label>
-                                    <input type="password" class="form-control" name="old_passowrd" id="old-passowrd"
+                                    <input type="password" class="form-control" name="old_password" id="old-password"
                                            placeholder="Mật khẩu cũ...">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Mật khẩu mới</h4></label>
-                                    <input type="password" class="form-control" name="new_passowrd" id="new-passowrd"
+                                    <input type="password" class="form-control" name="new_password" id="new-password"
                                            placeholder="Mật khẩu mới...">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>Nhập lại mât khẩu mới</h4></label>
-                                    <input type="password" class="form-control" name="ver_passowrd" id="ver-passowrd"
+                                    <input type="password" class="form-control" name="ver_password" id="ver-password"
                                            placeholder="Nhập lại mật khẩu...">
                                 </div>
                             </div>

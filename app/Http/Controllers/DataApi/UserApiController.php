@@ -15,7 +15,7 @@ use Yajra\Datatables\Datatables;
 class UserApiController extends Controller
 {
 
-    private $arrRole = ['manage', 'user', 'blocker'];
+    private $arrRole = array(0 => 'Khóa', 50 =>'Nhân viên', 100 => 'Quản lý');
 
     function __construct()
     {
@@ -24,27 +24,23 @@ class UserApiController extends Controller
 
     public function anyData(Request $request)
     {
-        $data = User::select('ht20_users.*')->where('status', 0);
-        $data = $data->where('role', '<>', 'admin')->get();
-
+        $data = User::where('status', 0)->where('role', '<', 200)->orderBy('created_at','DESC')->get();
         // $products->user;
         return Datatables::of($data)
             ->addColumn('action', function ($dt) {
                 return '
-			<button type="button" class="btn btn-xs btn-primary" onclick="getAuthen(`http://crm.htauto.vn/report/user/' . $dt['authentication'] . '`)" href="#add-modal"><i class="fa fa-eye" aria-hidden="true"></i></button>
-			<button type="button" class="btn btn-xs btn-warning"data-toggle="modal" onclick="getInfo(' . $dt['id'] . ')" href="#add-modal"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
-			<button type="button" class="btn btn-xs btn-danger" onclick="alDelete(' . $dt['id'] . ')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-			';
-
+			<button type="button" class="btn btn-table btn-xs btn-primary" onclick="getAuthen(`http://crm.htauto.vn/report/user/' . $dt['authentication'] . '`)" href="#add-modal"><i class="fa fa-eye" aria-hidden="true"></i></button>
+			<button type="button" class="btn btn-table btn-xs btn-warning"data-toggle="modal" onclick="getInfo(' . $dt['id'] . ')" href="#add-modal"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
+			<button type="button" class="btn btn-table btn-xs btn-danger" onclick="alDelete(' . $dt['id'] . ')"><i class="fa fa-trash" aria-hidden="true"></i></button>';
             })
             ->editColumn('role', function ($dt) {
-                $html = '<select class="form-control" id="role_' . $dt['id'] . '" onchange="changeStatus(' . $dt['id'] . ')">';
-                foreach ($this->arrRole as $role) {
-                    if ($dt['role'] == $role) {
-                        $html .= '<option value="' . $role . '" selected>' . $role . '</option>';
+                $html = '<select class="form-control form-control-table" id="role_' . $dt['id'] . '" onchange="changeStatus(' . $dt['id'] . ')">';
+                foreach ($this->arrRole as $key => $role) {
+                    if ($dt['role'] == $key) {
+                        $html .= '<option value="' . $key . '" selected>' . $role . '</option>';
                     } else {
 
-                        $html .= '<option value="' . $role . '">' . $role . '</option>';
+                        $html .= '<option value="' . $key . '">' . $role . '</option>';
                     }
                 }
 

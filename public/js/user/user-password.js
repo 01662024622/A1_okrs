@@ -8,30 +8,30 @@ $("#change-password").submit(function (e) {
     e.preventDefault();
 }).validate({
     rules: {
-        old_passowrd: {
+        old_password: {
             required: true,
             minlength: 8
         },
-        new_passowrd: {
+        new_password: {
             required: true,
             minlength: 8
         },
-        ver_passowrd: {
+        ver_password: {
             required: true,
             minlength: 8,
-            equalTo: "#new-passowrd"
+            equalTo: "#new-password"
         }
     },
     messages: {
-        new_passowrd: {
-            required: "Hãy nhập mật khẩu",
-            minlength: "Ít nhất 8 kí tự"
-        },
-        new_passowrd: {
+        old_password: {
             required: "Hãy nhập mật khẩu cũ",
             minlength: "Ít nhất 8 kí tự"
         },
-        ver_passowrd: {
+        new_password: {
+            required: "Hãy nhập mật khẩu cũ",
+            minlength: "Ít nhất 8 kí tự"
+        },
+        ver_password: {
             required: "Hãy nhập mật khẩu",
             minlength: "Ít nhất 8 kí tự",
             equalTo: "Nhập lại mật khẩu không chính xác"

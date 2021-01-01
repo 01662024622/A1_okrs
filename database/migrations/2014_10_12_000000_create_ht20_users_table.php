@@ -30,7 +30,7 @@ class CreateHT20UsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('authentication')->unique();
-            $table->string('role')->default('blocker');
+            $table->integer('role')->default(50);
             $table->integer('status')->default(0);
             $table->bigInteger('create_by')->default(0);
             $table->bigInteger('modify_by')->nullable();

@@ -5,7 +5,7 @@
   });
 $(document).ready(function() {
 
-    
+
     var readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -13,11 +13,11 @@ $(document).ready(function() {
             reader.onload = function (e) {
                 $('.avatar').attr('src', e.target.result);
             }
-    
+
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
+
 
     $(".file-upload").on('change', function(){
         readURL(this);
@@ -50,7 +50,7 @@ $("#update-profile").submit(function (e) {
     },
     submitHandler: function (form) {
         var formData = new FormData(form);
-
+        formData.append('avata', $('#avata').files[0]);
         $.ajax({
             url: form.action,
             type: form.method,

@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
     {
 
         if (Auth::guard($guard)->check()) {
-            if (Auth::user()->role == 'blocker') {
+            if (Auth::user()->role == 0) {
                 // logout the user
                 Auth::logout();
 

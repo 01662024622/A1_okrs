@@ -78,11 +78,12 @@ $("#add-form").submit(function (e) {
 
     },
     submitHandler: function (form) {
+
+        $('#load_page').show()
         var formData = new FormData(form);
         if ($('#eid').val() == '') {
             formData.delete('id');
         }
-
         $.ajax({
             url: form.action,
             type: form.method,
@@ -99,8 +100,9 @@ $("#add-form").submit(function (e) {
                         toastr.success('Cập nhật thành công!');
                     }
                 }, 1000);
-                $("#add-modal").modal('toggle');
                 dataTable.ajax.reload(null, false);
+                $("#add-modal").modal('toggle');
+                $('#load_page').hide()
             }, error: function (xhr, ajaxOptions, thrownError) {
                 toastr.error(thrownError);
             },
@@ -111,8 +113,9 @@ $("#add-form").submit(function (e) {
 
 // get data for form update
 function getInfo(id) {
-    console.log(id);
     // $('#editPost').modal('show');
+
+    $('#load_page').show()
     $.ajax({
         type: "GET",
         url: "/users/" + id,
@@ -126,6 +129,7 @@ function getInfo(id) {
             $('#phone').val(response.phone);
             $('#birth_day').val(response.birth_day);
             $('#eid').val(response.id);
+            $('#load_page').hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -152,6 +156,7 @@ function alDelete(id) {
         },
         function (isConfirm) {
             if (isConfirm) {
+                $('#load_page').show()
                 $.ajax({
                     type: "delete",
                     url: "users/" + id,
@@ -160,6 +165,7 @@ function alDelete(id) {
                             toastr.success('Thành công!');
                             $('#data-' + id).remove();
                         }
+                        $('#load_page').hide()
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         toastr.error(thrownError);
@@ -191,6 +197,7 @@ function changeStatus(id) {
             // closeOnConfirm: false,
         },
         function (isConfirm) {
+            $('#load_page').show()
             if (isConfirm) {
                 $.ajax({
                     type: "post",
@@ -202,6 +209,7 @@ function changeStatus(id) {
                     success: function (res) {
                         if (!res.error) {
                             toastr.success('Thay đổi thành công!');
+                            $('#load_page').hide()
                         }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {

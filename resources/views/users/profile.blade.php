@@ -19,7 +19,7 @@
             <div class="text-center">
                 <img src="{{ Auth::user()->avata }}" class="avatar img-circle img-thumbnail" alt="avatar">
                 <h6>Cập nhật ảnh địa diện...</h6>
-                <input type="file" class="text-center center-block file-upload" accept="image/png, image/jpeg, image/jpg">
+                <input type="file" id="avata" class="text-center center-block file-upload" accept="image/png, image/jpeg, image/jpg">
             </div>
             <br>
 
@@ -78,7 +78,7 @@
                                 <label for="first_name"><h4>Ngày sinh</h4></label>
                                 <input type="text" class="form-control" name="birth_day" id="birth_day" data-date-format="dd/mm/yyyy"
                                 placeholder="Nhập ngày sinh của bạn..." value="{{ \Carbon\Carbon::parse(Auth::user()->birth_day)->format('d/m/Y')}}">
-                                
+
                             </div>
                         </div>
 

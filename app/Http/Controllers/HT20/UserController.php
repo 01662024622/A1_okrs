@@ -22,31 +22,18 @@ class UserController extends ResouceController
 
     public function store(StoreUser $request)
     {
-        if ($request->has("id")) {
-            $data = $request->only(['id', 'name', 'position', 'apartment_id', 'location', 'skype', 'email_htauto', 'phone_htauto', 'phone',
-                'birth_day']);
-        } else {
-            $data = $request->only(['name', 'position', 'apartment_id', 'location', 'skype', 'email_htauto', 'phone_htauto', 'phone',
-                'birth_day']);
+        $data['tagname'] = (string)$this->getTagName($request->name);
+        if (!$request->has("id")) {
+            $count = User::where('tagname', 'LIKE', $data['tagname'] . '%')->count();
+            if ($count > 0) {
+                $data['tagname'] .= (string)$count;
+            }
         }
-        $data['birth_day'] = Carbon::createFromFormat('d/m/Y', $data['birth_day'])->format('Y/m/d');
-        $tagname = (string)$this->getTagName($data['name']);
+        $data['email'] = $data['tagname'] . '@htauto.com.vn';
         if (!array_key_exists("id", $data)) {
-            $count = User::where('tagname', 'LIKE', $tagname . '%')->count();
-        } else {
-            $count = User::where('tagname', 'LIKE', $tagname . '%')->where("id", $data["id"])->count();
-        }
-
-        if ($count > 0) {
-            $tagname .= (string)$count;
-        }
-        $data['tagname'] = $tagname;
-        $data['email'] = $tagname . '@htauto.com.vn';
-        if (!array_key_exists("id", $data)) {
-            $data['authentication'] = md5($tagname);
+            $data['authentication'] = md5($data['tagname']);
             $data['password'] = Hash::make("Htauto@123");
         }
-
         return parent::storeRequest($request, $data);
     }
 

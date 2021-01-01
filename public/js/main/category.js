@@ -16,6 +16,7 @@ $(function () {
     });
 
 });
+var page=$('#load_page')
 var users = [];
 var user_add = [];
 var user_update = [];
@@ -31,7 +32,7 @@ $('#staff_find_text').on('keyup', function (event) {
 
 function searchStaff() {
     if ($('#staff_find_text').val() == '') return
-    $('#load_page').show()
+    page.show()
     var userQuery = '';
     if (users.length > 0) {
         userQuery = '?users[]=' + users.join('&users[]=');
@@ -47,7 +48,7 @@ function searchStaff() {
             }
             $('#multiple_staff_select').html(html);
 
-            $('#load_page').hide()
+            page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -95,7 +96,7 @@ var apartments = [];
 
 function searchApartment() {
     if ($('#apartment_find_text').val() == '') return
-    $('#load_page').show()
+    page.show()
     var apartmentQuery = '';
     if (apartments.length > 0) {
         apartmentQuery = '?apartments[]=' + apartments.join('&apartments[]=');
@@ -111,7 +112,7 @@ function searchApartment() {
             }
             $('#multiple_apartment_select').html(html);
 
-            $('#load_page').hide()
+            page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -153,7 +154,7 @@ function getInfo(id) {
     user_add = []
     user_update = []
     apartment_find = []
-    $('#load_page').show()
+    page.show()
     $.ajax({
         type: "GET",
         url: "/categories/" + id,
@@ -172,7 +173,7 @@ function getInfo(id) {
             $('#role').val(response.role);
             $('#eid').val(response.id);
             $('#parent_id').val(response.parent_id);
-            $('#load_page').hide()
+            page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -183,7 +184,7 @@ function getInfo(id) {
 $('#apartment_toggle').on('click', function () {
     if ($('#eid').val() == '') return
     if (apartments.length > 0) return
-    $('#load_page').show()
+    page.show()
     $.ajax({
         type: "GET",
         url: "/api/v1/apartments/category/role/" + $('#eid').val(),
@@ -221,7 +222,7 @@ $('#apartment_toggle').on('click', function () {
 
             $('#apartment_role_table').html(apartment_table);
 
-            $('#load_page').hide()
+            page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -232,7 +233,7 @@ $('#apartment_toggle').on('click', function () {
 $('#staff_toggle').on('click', function () {
     if ($('#eid').val() == '') return
     if (users.length > 0) return
-    $('#load_page').show()
+    page.show()
     $.ajax({
         type: "GET",
         url: "/api/v1/users/category/role/" + $('#eid').val(),
@@ -269,7 +270,7 @@ $('#staff_toggle').on('click', function () {
             }
             $('#staff_role_table').html(users_table);
 
-            $('#load_page').hide()
+            page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -344,7 +345,7 @@ $("#save").on('click', function () {
         toastr.error('Tiêu đề không được phép rỗng!');
         return;
     }
-    $('#load_page').show();
+    page.show();
     var formData = new FormData();
     if ($('#eid').val() != '') {
         formData.append('id', $('#eid').val());
@@ -444,7 +445,7 @@ $("#save").on('click', function () {
                 }
                 $('#category_'+response['id']).find('p.header:first').text(response['title'])
             }
-            $('#load_page').hide();
+            page.hide();
         }, error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
         },
@@ -452,7 +453,7 @@ $("#save").on('click', function () {
 });
 var remove=[];
 $('#save_change').on('click',function (){
-    $('#load_page').show();
+    page.show();
     var formData = new FormData();
     $('#sortable').children('li').each(function (index, element) {
         if ($(element).data('value')==undefined) return ;
@@ -476,7 +477,7 @@ $('#save_change').on('click',function (){
         success: function (response) {
             console.log(response)
             toastr.success('Cập nhật thành công!');
-            $('#load_page').hide();
+            page.hide();
         }, error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
         },

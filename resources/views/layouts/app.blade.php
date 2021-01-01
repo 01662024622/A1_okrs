@@ -23,9 +23,6 @@
 
 </head>
 <body id="page-top">
-<div id="load_page">
-    <div class="loader"></div>
-</div>
 <!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
@@ -35,7 +32,13 @@
             {{-- <div class="sidebar-brand-icon rotate-n-15">
               <i class="fas fa-laugh-wink"></i>
             </div> --}}
-            {{ strtoupper(Auth::user()->role) }}
+            @if (Auth::user()->role==50)
+                NHÂN VIÊN
+            @elseif(Auth::user()->role==100)
+                QUẢN LÝ
+            @else ADMIN
+            @endif
+
         </a>
         <!-- Divider -->
         {!! $nav !!}
@@ -445,6 +448,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="load_page">
+    <div class="loader"></div>
 </div>
 <!-- Bootstrap core JavaScript-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

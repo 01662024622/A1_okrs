@@ -28,7 +28,7 @@
     cursor: pointer;
     *cursor: hand;
     color: #333 !important;
-    border: 1px solid transparent;
+    border: 1px soli    d transparent;
     border-radius: 2px;
   }
   .img-fluid-full{
@@ -70,3 +70,16 @@
       display: none;
   }
 
+table{
+    font-size: 0.8em;
+}
+.form-control-table{
+    font-size: 1em;
+}
+.btn-table{
+    font-size: 1em;
+}
+.file-upload{
+    overflow: revert;
+    max-width: 100%;
+}
