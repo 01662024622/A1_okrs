@@ -63,6 +63,7 @@ Route::get('/review/feedback/customer/manager/report', 'HT10\ReviewViewControlle
 
 
 Route::resource('categories', 'HT00\CategoryController');
+Route::resource('posts', 'HT00\PostController');
 
 Route::get('/tests', 'HT00\CategoryController@tests');
 // Route::get('/profile', 'CustomerController@profile');

@@ -33,9 +33,9 @@ class UserEditController extends Controller
     {
         $data = $request->only(['skype', 'email_htauto', 'phone', 'birth_day']);
         if ($request->hasFile('avata')) {
-            $name = time() . "-" . Auth::id() . "-" . $request->image_2->getClientOriginalExtension();
-            $request->avata->storeAs('/', $name, 'public');
-            $data['avata'] = $name;
+            $name = time() . "-" . Auth::id() . "." . $request->avata->getClientOriginalExtension();
+            $request->avata->move(public_path('storage'), $name);
+            $data['avata'] = '/public/storage/' . $name;
         }
         $data['birth_day'] = Carbon::createFromFormat('d/m/Y', $data['birth_day'])->format('Y/m/d');
         return User::find(Auth::id())->update($data);

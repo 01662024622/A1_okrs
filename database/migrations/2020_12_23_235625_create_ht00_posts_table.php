@@ -15,9 +15,8 @@ class CreateHt00PostsTable extends Migration
     {
         Schema::create('ht00_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('slug');
-            $table->string('url')->nullable();
             $table->string('content')->nullable();
             $table->string('embed');
             $table->integer('role')->default(0);

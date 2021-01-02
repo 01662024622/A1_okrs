@@ -50,7 +50,7 @@ $("#update-profile").submit(function (e) {
     },
     submitHandler: function (form) {
         var formData = new FormData(form);
-        formData.append('avata', $('#avata').files[0]);
+        formData.append('avata', $('#avata').get(0).files[0]);
         $.ajax({
             url: form.action,
             type: form.method,
@@ -73,3 +73,8 @@ $("#update-profile").submit(function (e) {
         });
     }
 });
+  $('.demo').croppie({
+      url: '/public/storage/1609556207-93.png',
+  });
+
+  $('.my-image').croppie();
