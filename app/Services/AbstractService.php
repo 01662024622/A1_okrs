@@ -29,7 +29,7 @@ abstract class AbstractService implements ServiceInterface
     }
 
     public function delete($id){
-        $this->repository->delete($id);
+        return $this->repository->delete($id);
     }
 
     public function show($id){

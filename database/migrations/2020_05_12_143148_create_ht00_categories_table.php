@@ -20,6 +20,8 @@ class CreateHT00CategoriesTable extends Migration
             $table->bigInteger('parent_id')->default(0);
             $table->integer('type')->default(0);
             $table->string('url')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('header')->nullable();
             $table->integer('role')->default(0);
             $table->integer('sort')->default(999);
             $table->integer('status')->default(0);

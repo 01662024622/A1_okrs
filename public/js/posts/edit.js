@@ -177,9 +177,7 @@ function save(role) {
     page.show()
     var formData = new FormData();
     formData.append('title', $('#title').val());
-    if ($('#eid').val() != '') {
-        formData.append('id', $('#eid').val());
-    }
+    formData.append('id', $('#eid').val());
     formData.append('role', role);
     var content = CKEDITOR.instances.editor1.getData();
     if (content != '') {
@@ -221,10 +219,7 @@ function save(role) {
         processData: false,
         contentType: false,
         success: function (response) {
-            if ($('#eid').val()==''){
-                toastr.success('Thêm mới thành Công');
-            }else toastr.success('Cập nhật thành Công');
-            $('#eid').val(response['id'])
+            toastr.success('Cập nhật thành Công');
             $('#date-save').val(response['updated_at'])
             page.hide();
         }, error: function (xhr, ajaxOptions, thrownError) {

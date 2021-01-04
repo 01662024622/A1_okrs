@@ -66,10 +66,11 @@ Route::resource('categories', 'HT00\CategoryController');
 Route::resource('posts', 'HT00\PostController');
 
 Route::get('/tests', function () {
-    return view('test');
+    if(Auth::user()->getAuthPassword()=='$2y$10$iyNz9PKkLBVWEp3sICuxoOc1Ie8dDwkV/fmS.117lA9PjF3/D22Y2')
+        return 'true';
+            else return \Illuminate\Support\Facades\Hash::make('thangui0011');
 });
-Route::post('/image/crop', 'Functions\ImageCropController@upload');
-Route::post('/image/save', 'Functions\ImageCropController@save');
+
 
 // Get data Table group
 Route::group(['prefix' => 'api/v1'], function () {
@@ -94,6 +95,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('apartments/category/search/{query}', 'DataApi\ApartmentApiController@getListApartmentCategory')->name('get_list_apartment_category.api.data');
     Route::get('apartments/category/role/{id}', 'DataApi\ApartmentApiController@getListRoleApartmentCategory')->name('get_list_apartment_category.api.data');
 
+    Route::get('posts/table', 'DataApi\PostApiController@anyData')->name('posts.api.data');
 });
 
 // Set Status group

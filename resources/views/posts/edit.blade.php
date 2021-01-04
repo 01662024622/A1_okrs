@@ -5,15 +5,15 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-lg-12"><h3>Thêm bài viết mới</h3></div>
+        <div class="col-lg-12"><h3>Cập nhật bài viết</h3></div>
         <br>
         <br>
         <div class="col-lg-8 col-xl-9">
             <div class="item">
-                <input type="text" class="form-control input-custom" id="title" placeholder="Nhập tiêu đề...">
+                <input type="text" class="form-control input-custom" id="title" value="{{$post->title}}" placeholder="Nhập tiêu đề...">
             </div>
             <div class="item">
-                <textarea class="ckeditor" name="editor1"></textarea>
+                <textarea class="ckeditor" name="editor1"> {!! $post->content !!}</textarea>
             </div>
             <div class="item">
                 <div class="header-item">
@@ -70,6 +70,18 @@
                                                 <th>Phòng ban</th>
                                                 <th>Quyền hạn</th>
                                             </tr>
+                                            @foreach($post->apartments as $apartment)
+                                                <tr>
+                                                    <td>{{$apartment->name}}</td>
+                                                    <td>
+                                                        <select class="role-select" name="role" id="apartment_role_{{$apartment->id}}">
+                                                            <option value="0" @if ($apartment->role==0) selected @endif>mặc định</option>
+                                                            <option value="1" style="font-weight: 700; color: #3ED317" @if ($apartment->role==1) selected @endif>Cho phép</option>
+                                                            <option value="2" style="font-weight: 700; color: #AA0000" @if ($apartment->role==2) selected @endif>Chặn</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </table>
                                     </div>
                                 </div>
@@ -95,6 +107,19 @@
                                                 <th>Nhân viên</th>
                                                 <th>Quyền hạn</th>
                                             </tr>
+                                            @foreach($post->users as $user)
+                                                <tr>
+                                                    <td>{{$user->name}}</td>
+                                                    <td>
+                                                        <select class="role-select" name="role" id="user_role_{{$user->id}}">
+                                                            <option value="0" @if ($user->role==0) selected @endif>mặc định</option>
+                                                            <option value="1" style="font-weight: 700; color: #3ED317" @if ($user->role==1) selected @endif>Cho phép</option>
+                                                            <option value="2" style="font-weight: 700; color: #AA0000" @if ($user->role==2) selected @endif>Chặn</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
                                         </table>
                                     </div>
                                 </div>
@@ -104,7 +129,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-xl-3">
+        <div class="col-lg-8 col-xl-3">
             <div class="item">
                 <div class="header-item">
                     <p>Đăng</p>
@@ -115,9 +140,9 @@
                             <span>Hiển thị:</span>
                             <span>
                                 <select id="role" name="role">
-                                    <option value="0">Công khai</option>
-                                    <option value="2">Khóa chọn</option>
-                                    <option value="3">Tạm lưu</option>
+                                    <option value="0" @if ($post->role==0) selected @endif>Công khai</option>
+                                    <option value="2" @if ($post->role==2) selected @endif>Khóa chọn</option>
+                                    <option value="3" @if ($post->role==3) selected @endif>Tạm lưu</option>
                                 </select>
                             </span>
                         </div>
@@ -126,7 +151,7 @@
                         </div>
                         <div class="col-12">
                             <br>
-                            Ngày đăng: <span id="date-save"></span>
+                            Ngày đăng: <span id="date-save">{{$post->updated_at}}</span>
                         </div>
                     </div>
                 </div>
@@ -159,7 +184,10 @@
                     <p>Ảnh đại diện</p>
                 </div>
                 <div class="header-item">
-                    <div id="avata" class="text-center"></div>
+                    <div id="avata" class="text-center">
+                        @if ($post->avata!='')
+                            <img id="upload-data-avata" src="{{$post->avata}}" alt="avata" style="width:100%;height:auto">
+                    @endif</div>
                     <div class="text-center">
                         <h6>Cập nhật ảnh địa diện...</h6>
                         <input type="file" id="upload-image" class="text-center center-block file-upload"
@@ -173,7 +201,7 @@
     <br>
     <br>
     <br>
-    <input type="hidden" id="eid">
+    <input type="hidden" id="eid" value="{{$post->id}}">
 
 
 
@@ -220,7 +248,17 @@
         var users = [];
         var apartments = [];
         var categories=[];
+        @foreach($post->categories as $category)
+            categories.push({{$category->id}})
+        $('#category-{{$category->id}}').prop('checked', true);
+        @endforeach
+        @foreach($post->apartments as $apartment)
+        apartments.push({{$apartment->id}})
+        @endforeach
+        @foreach($post->users as $user)
+        users.push({{$user->id}})
+        @endforeach
     </script>
-    <script src="{{ asset('js/posts/add.js') }}"></script>
+    <script src="{{ asset('js/posts/edit.js') }}"></script>
 
 @endsection
