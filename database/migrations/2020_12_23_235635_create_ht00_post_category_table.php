@@ -15,6 +15,11 @@ class CreateHt00PostCategoryTable extends Migration
     {
         Schema::create('ht00_post_category', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('category_id');
+            $table->bigInteger('post_id');
+            $table->bigInteger('status');
+            $table->bigInteger('create_by')->default(0);
+            $table->bigInteger('modify_by')->nullable();
             $table->timestamps();
         });
     }

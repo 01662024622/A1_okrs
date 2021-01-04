@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('css')
+    <link rel="Stylesheet" type="text/css" href="/css/image/croppie.css"/>
     <link href="/css/posts/add.css" rel="stylesheet"/>
 @endsection
 @section('content')
@@ -142,7 +143,7 @@
                             <li id="popular-category-135" class="popular-category">
                                 <label class="selectit">
                                     @foreach($categories as $category)
-                                        <input class="check-input" id="category-{{$category->id}}" type="checkbox" value="{{$category->id}}">{{$category->title}}
+                                        <input class="check-input" id="category-{{$category->id}}" type="checkbox" value="{{$category->id}}">	&nbsp; 	&nbsp;{{$category->title}}
                                         <br>
                                     @endforeach
                                 </label>
@@ -157,10 +158,10 @@
                     <p>Ảnh đại diện</p>
                 </div>
                 <div class="header-item">
+                    <div id="avata" class="text-center"></div>
                     <div class="text-center">
-                        <img src="" class="avatar img-circle img-thumbnail" alt="avatar" style="display: none">
                         <h6>Cập nhật ảnh địa diện...</h6>
-                        <input type="file" id="avata" class="text-center center-block file-upload"
+                        <input type="file" id="upload-image" class="text-center center-block file-upload"
                                accept="image/png, image/jpeg, image/jpg">
                     </div>
                 </div>
@@ -171,11 +172,41 @@
     <br>
     <br>
     <br>
+    <input type="hidden" id="eid">
+
+
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Căn chỉnh ảnh đại diên</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div id="image-preview"></div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="crop_image" type="button" class="btn btn-info">Lưu</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
+
+    <script src="/js/image/croppie.js"></script>
     <script src="{{ asset('js/posts/ckeditor.js') }}"></script>
-    <script src="{{ asset('js/posts/add.js') }}"></script>
     <script>
         CKEDITOR.editorConfig = function (config) {
             // config.language = 'es';
@@ -185,5 +216,10 @@
             config.height = '800px';
         };
 
+        var users = [];
+        var apartments = [];
+        var categories=[];
     </script>
+    <script src="{{ asset('js/posts/add.js') }}"></script>
+
 @endsection

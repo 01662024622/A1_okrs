@@ -1,257 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>jQuery UI Sortable - Display as grid</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <style>
-        #sortable {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
+    <title>Croppie - a simple javascript image cropper - Foliotek</title>
 
-        #sortable > li {
-            margin: 15px;
-            padding: 1px;
-            float: left;
-            width: 16%;
-            height: 300px;
-            font-size: 4em;
-            text-align: center;
-            overflow-y: auto;
-        }
+    <meta name="description" content="Croppie is an easy to use javascript image cropper.">
 
-        #sortable_sub {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-        #sortable_sub > li {
-            margin: 0 3px 3px 3px;
-            padding: 0.4em;
-            padding-left: 1.5em;
-            font-size: 14px;
-            min-height: 20px
-        }
-
-        #sortable_sub > li > span {
-            position: absolute;
-            margin-left: 1.3em;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#sortable").sortable({
-                placeholder: "ui-state-highlight"
-            });
-            $("#sortable").disableSelection();
-            $("#sortable_sub").sortable({
-                placeholder: "ui-state-highlight",
-                start: function (e, ui) {
-                    ui.placeholder.height(ui.item.height());
-                },
-            });
-            $("#sortable_sub").disableSelection();
-            $(".portlet-toggle").on("click", function () {
-                var icon = $(this);
-                icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
-                icon.closest(".portlet").find(".portlet-content").toggle();
-            });
-        });
-    </script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:title" content="Croppie - a javascript image cropper">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="Stylesheet" type="text/css" href="/css/image/croppie.css"/>
 </head>
 <body>
-
-<ul id="sortable">
-    <li class="ui-state-default">
-        <div class="portlet-header ui-widget-header ui-corner-all">Shopping <span
-                class='ui-icon ui-icon-grip-dotted-vertical'></span>
+<div class="container">
+    <h2>Stacked form</h2>
+    <form action="/action_page.php">
+        <div class="form-group">
+            <div id="image-preview"></div>
         </div>
-        <ul id="sortable_sub">
-            <li class="ui-state-default">1 <br><br><br>x</li>
-            <li class="ui-state-default">2</li>
-            <li class="ui-state-default">3</li>
-            <li class="ui-state-default">4</li>
-            <li class="ui-state-default">5</li>
-            <li class="ui-state-default">6</li>
-            <li class="ui-state-default">7</li>
-            <li class="ui-state-default">8</li>
-            <li class="ui-state-default">9</li>
-            <li class="ui-state-default">10</li>
-            <li class="ui-state-default">11</li>
-            <li class="ui-state-default">12</li>
-        </ul>
-    </li>
-    <li class="ui-state-default">2</li>
-    <li class="ui-state-default">3</li>
-    <li class="ui-state-default">4</li>
-    <li class="ui-state-default">5</li>
-    <li class="ui-state-default">6</li>
-    <li class="ui-state-default">7</li>
-    <li class="ui-state-default">8</li>
-    <li class="ui-state-default">9</li>
-    <li class="ui-state-default">10</li>
-    <li class="ui-state-default">11</li>
-    <li class="ui-state-default">12</li>
-</ul>
-
-
+        <div class="form-group">
+            <input type="file" name="upload-image" id="upload-image">
+        </div>
+        <button id="crop_image" class="btn btn-primary">Submit</button>
+        <div id="crop-image-div"></div>
+    </form>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/image/croppie.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var image= $('#image-preview').croppie({
+        enableExif: true,
+        viewport:{
+            width:200,
+            height:200,
+            type:'circle'
+        },
+        boundary:{
+            width: 300,
+            height: 300
+        }
+    });
+    $('#upload-image').change(function () {
+        var reader = new FileReader();
+        reader.onload=function (even){
+            image.croppie('bind',{
+                url:even.target.result
+            }).then(function () {
+                console.log('bind complier')
+            });
+        }
+        reader.readAsDataURL(this.files[0])
+    });
+    $('#crop_image').click(function (e){
+        e.preventDefault()
+        // page.show();
+        image.croppie('result',{
+            type: 'canvas',
+            size:'viewport'
+        }).then(function (response) {
+            console.log(response)
+        })
+    })
+</script>
 </body>
 </html>
-
-
-{{--    <!doctype html>--}}
-{{--<html lang="en">--}}
-{{--<head>--}}
-{{--    <meta charset="utf-8">--}}
-{{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
-{{--    <title>jQuery UI Sortable - Portlets</title>--}}
-{{--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--}}
-{{--    <style>--}}
-{{--        body {--}}
-{{--            min-width: 520px;--}}
-{{--        }--}}
-
-
-{{--        .portlet {--}}
-{{--            margin: 0 1em 1em 0;--}}
-{{--            padding: 0.3em;--}}
-{{--            width: 25%;--}}
-{{--        }--}}
-
-{{--        .portlet-header {--}}
-{{--            padding: 0.2em 0.3em;--}}
-{{--            margin-bottom: 0.5em;--}}
-{{--            position: relative;--}}
-{{--        }--}}
-
-{{--        .portlet-toggle {--}}
-{{--            position: absolute;--}}
-{{--            top: 50%;--}}
-{{--            right: 0;--}}
-{{--            margin-top: -8px;--}}
-{{--        }--}}
-
-{{--        .portlet-content {--}}
-{{--            padding: 0.4em;--}}
-{{--        }--}}
-
-{{--        .portlet-placeholder {--}}
-{{--            border: 1px dotted black;--}}
-{{--            margin: 0 1em 1em 0;--}}
-{{--            height: 50px;--}}
-{{--        }--}}
-
-{{--        #sortable_sub {--}}
-{{--            list-style-type: none;--}}
-{{--            margin: 0;--}}
-{{--            padding: 0;--}}
-{{--            width: 100%;--}}
-{{--        }--}}
-
-{{--        #sortable_sub > li {--}}
-{{--            margin: 0 3px 3px 3px;--}}
-{{--            padding: 0.4em;--}}
-{{--            padding-left: 1.5em;--}}
-{{--            font-size: 14px;--}}
-{{--            min-height: 20px--}}
-{{--        }--}}
-
-{{--        #sortable_sub > li > span {--}}
-{{--            position: absolute;--}}
-{{--            margin-left: 1.3em;--}}
-{{--        }--}}
-{{--    </style>--}}
-{{--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
-{{--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
-{{--    <script>--}}
-{{--        $(function () {--}}
-{{--            $(".column").sortable({--}}
-{{--                scrollSensitivity: true,--}}
-{{--                connectWith: ".column",--}}
-{{--                handle: ".portlet-header",--}}
-{{--                cancel: ".portlet-toggle",--}}
-{{--                placeholder: "portlet-placeholder ui-corner-all"--}}
-{{--            });--}}
-
-
-{{--            $(".portlet-toggle").on("click", function () {--}}
-{{--                var icon = $(this);--}}
-{{--                icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");--}}
-{{--                icon.closest(".portlet").find(".portlet-content").toggle();--}}
-{{--            });--}}
-
-{{--            $("#sortable_sub").sortable({--}}
-{{--                connectWith: ".column",--}}
-{{--                start: function(e, ui){--}}
-{{--                    ui.placeholder.height(ui.item.height());--}}
-{{--                },--}}
-{{--                placeholder: "ui-state-highlight",--}}
-{{--            });--}}
-{{--            $("#sortable_sub").disableSelection();--}}
-
-{{--        });--}}
-{{--    </script>--}}
-{{--</head>--}}
-{{--<body>--}}
-{{--<div class="column">--}}
-
-{{--    <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">--}}
-{{--        <div class="portlet-header ui-widget-header ui-corner-all">Feeds <span--}}
-{{--                class='ui-icon ui-icon-minusthick portlet-toggle'></span></div>--}}
-{{--        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>--}}
-{{--    </div>--}}
-
-{{--    <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">--}}
-{{--        <div class="portlet-header ui-widget-header ui-corner-all">News <span--}}
-{{--                class='ui-icon ui-icon-minusthick portlet-toggle'></span></div>--}}
-{{--        <div class="portlet-content">--}}
-{{--            Lorem ipsum dolor sit amet, consectetuer adipiscing elit--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-
-{{--    <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">--}}
-{{--        <div class="portlet-header ui-widget-header ui-corner-all">Shopping <span--}}
-{{--                class='ui-icon ui-icon-minusthick portlet-toggle'></span></div>--}}
-{{--        <div class="portlet-content">--}}
-{{--            <ul id="sortable_sub">--}}
-{{--                <li class="ui-state-default">1 <br><br><br>x</li>--}}
-{{--                <li class="ui-state-default">2</li>--}}
-{{--                <li class="ui-state-default">3</li>--}}
-{{--                <li class="ui-state-default">4</li>--}}
-{{--                <li class="ui-state-default">5</li>--}}
-{{--                <li class="ui-state-default">6</li>--}}
-{{--                <li class="ui-state-default">7</li>--}}
-{{--                <li class="ui-state-default">8</li>--}}
-{{--                <li class="ui-state-default">9</li>--}}
-{{--                <li class="ui-state-default">10</li>--}}
-{{--                <li class="ui-state-default">11</li>--}}
-{{--                <li class="ui-state-default">12</li>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-
-{{--    <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">--}}
-{{--        <div class="portlet-header ui-widget-header ui-corner-all">Links <span--}}
-{{--                class='ui-icon ui-icon-minusthick portlet-toggle'></span></div>--}}
-{{--        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>--}}
-{{--    </div>--}}
-
-{{--    <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">--}}
-{{--        <div class="portlet-header ui-widget-header ui-corner-all">Images <span--}}
-{{--                class='ui-icon ui-icon-minusthick portlet-toggle'></span></div>--}}
-{{--        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>--}}
-{{--    </div>--}}
-
-{{--</div>--}}
-{{--</body>--}}
-{{--</html>--}}

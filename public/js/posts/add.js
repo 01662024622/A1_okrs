@@ -1,29 +1,46 @@
-var readURL = function(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('.avatar').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
+var image = $('#image-preview').croppie({
+    enableExif: true,
+    viewport: {
+        width: 400,
+        height: 400,
+        type: 'square'
+    },
+    boundary: {
+        width: 500,
+        height: 500
     }
-}
-
-
-$(".file-upload").on('change', function(){
-    readURL(this);
 });
+$('#upload-image').change(function () {
+    var reader = new FileReader();
+    reader.onload = function (even) {
+        $('#myModal').modal('show');
+        image.croppie('bind', {
+            url: even.target.result
+        }).then(function () {
+            console.log('bind complier')
+        });
+    }
+    reader.readAsDataURL(this.files[0])
+});
+$('#crop_image').click(function (e) {
+    e.preventDefault()
+    // page.show();
+    image.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+    }).then(function (response) {
+        console.log(response)
+        $('#myModal').modal('hide');
+        $('#avata').html('<img id="upload-data-avata" src="' + response + '" alt="avata" style="width:100%;height:auto"> ')
+    })
+})
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
 
-var page=$('#load_page')
-var users = [];
-var user_add = [];
-var user_update = [];
+var page = $('#load_page')
 var user_find = [];
 $('#staff_find').on('click', function () {
     searchStaff();
@@ -35,7 +52,8 @@ $('#staff_find_text').on('keyup', function (event) {
 })
 
 function searchStaff() {
-    if ($('#staff_find_text').val() == '') return
+    var staff = $('#staff_find_text').val()
+    if (staff == '') staff = ''
     page.show()
     var userQuery = '';
     if (users.length > 0) {
@@ -43,7 +61,7 @@ function searchStaff() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/users/category/search/" + $('#staff_find_text').val() + userQuery,
+        url: "/api/v1/users/category/search/" + staff + userQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
@@ -65,7 +83,6 @@ $("#staff_select").on('click', function () {
         var staff_table = '';
         $("#multiple_staff_select").val().forEach(function (element, index) {
             users.push(parseInt(element));
-            user_add.push(parseInt(element));
             $("#staff_option_" + element).hide(0);
             staff_table = staff_table + `<tr>
                     <td>` + user_find[element]['name'] + `</td>
@@ -94,12 +111,11 @@ $('#apartment_find_text').on('keyup', function (event) {
     }
 })
 var apartment_find = [];
-var apartment_add = [];
-var apartment_update = [];
-var apartments = [];
 
 function searchApartment() {
-    if ($('#apartment_find_text').val() == '') return
+    var apartment = $('#apartment_find_text').val();
+    if (apartment == '') apartment = ' ';
+
     page.show()
     var apartmentQuery = '';
     if (apartments.length > 0) {
@@ -107,7 +123,7 @@ function searchApartment() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/apartments/category/search/" + $('#apartment_find_text').val() + apartmentQuery,
+        url: "/api/v1/apartments/category/search/" + apartment + apartmentQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
@@ -129,7 +145,6 @@ $("#apartment_select").on('click', function () {
         var apartment_table = '';
         $("#multiple_apartment_select").val().forEach(function (element, index) {
             apartments.push(parseInt(element));
-            apartment_add.push(parseInt(element));
             $("#staff_option_" + element).hide(0);
             apartment_table = apartment_table + `<tr>
                     <td>` + apartment_find[element]['name'] + `</td>
@@ -148,53 +163,51 @@ $("#apartment_select").on('click', function () {
     }
 })
 
+$('#save-posts').on('click', function () {
+    save($('#role').val())
+})
 
-
-
-$("#save").on('click', function () {
-    if ($('#title').val() == '') {
-        toastr.error('Tiêu đề không được phép rỗng!');
-        return;
-    }
-    page.show();
+function save(role) {
+    page.show()
     var formData = new FormData();
+    formData.append('title', $('#title').val());
     if ($('#eid').val() != '') {
         formData.append('id', $('#eid').val());
     }
-
-    formData.append('title', $('#title').val());
-    if ($('#url').val() != '') {
-        formData.append('url', $('#url').val());
+    formData.append('role', role);
+    var content = CKEDITOR.instances.editor1.getData();
+    if (content != '') {
+        formData.append('content', content);
     }
-    formData.append('parent_id', $('#parent_id').val());
-
-    formData.append('role', $('#role').val());
-    if ($('#parent_id').val() == 0) {
-        formData.append('type', $('input[name=type]:checked').val());
+    var embed = $('#embed').val();
+    if (embed != '') {
+        formData.append('embed', embed);
     }
-    if (user_add.length > 0) {
-        user_add.forEach(element => {
+    if ($('#upload-data-avata').get(0).files[0] != undefined) {
+        formData.append('avata', $('#upload-data-avata').get(0).files[0]);
+    }
+
+    if (users.length > 0) {
+        users.forEach(element => {
             formData.append('users[]', element + '_' + $("#user_role_" + element).val());
         })
     }
-    if (user_update.length > 0) {
-        user_update.forEach(element => {
-            formData.append('user_update[]', element + '_' + $("#user_role_update_" + element).val());
-        })
-    }
-    if (apartment_add.length > 0) {
-        apartment_add.forEach(element => {
+    if (apartments.length > 0) {
+        apartments.forEach(element => {
             formData.append('apartments[]', element + '_' + $("#apartment_role_" + element).val());
         })
     }
-    if (apartment_update.length > 0) {
-        apartment_update.forEach(element => {
-            formData.append('apartment_update[]', element + '_' + $("#apartment_role_update_" + element).val());
+    if (categories.length > 0) {
+        categories.forEach(element => {
+            var checked = '';
+            if ($("#category-" + element).is(':checked')) {
+                checked = '0';
+            } else checked = '1';
+            formData.append('categories[]', element + '_' + checked);
         })
     }
-    console.log(formData)
     $.ajax({
-        url: "/categories",
+        url: "/posts",
         type: "POST",
         data: formData,
         dataType: 'json',
@@ -202,72 +215,19 @@ $("#save").on('click', function () {
         processData: false,
         contentType: false,
         success: function (response) {
-            console.log(response)
-            setTimeout(function () {
-                if ($('#eid').val() == '') {
-                    toastr.success('Thêm mới thành công!');
-                } else {
-                    toastr.success('Cập nhật thành công!');
-                }
-            }, 1000);
-            $("#myModal").modal('toggle');
-            var type = '';
-            if (response['type'] == 2) type = 'style="background-color: #ccff99"';
-            if ($('#eid').val() == '' && $('#parent_id').val() == 0) {
-                var li = `<li class="ui-state-default" data-value="` + response['id'] + `">
-                <div class="main-header"` + type + `>
-                    <p class="main-title header" title="` + response['title'] + `">` + response['title'] + `</p>
-                    <button class='btn menu-icon' data-toggle="modal" data-target="#myModal" onclick="getInfo(` + response['id'] + `)">
-                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="main-content">
-                    <ul id="sortable_sub_` + response['id'] + `" class="sortable_sub">
-                         <li class="ui-state-default disable-sub-sort-item" id="add_button_category_{{$category->id}}">
-                                <div class="sub-header">
-                                    <button onclick="add_new_sub(`+response['id']+`)" data-toggle="modal" data-target="#myModal">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-
-            </li>`;
-                $('#add_button_category').before(li);
-            }
-            if ($('#eid').val() == '' && $('#parent_id').val() > 0) {
-                var li = `<li class="ui-state-default" data-value="`+response['id']+`">
-                                <div class="sub-header">
-                                    <p class="sub-title header" title="`+response['title']+`">`+response['title']+`</p>
-                                    <button class='btn menu-icon' data-toggle="modal" data-target="#myModal" onclick="getInfo(`+response['id']+`)">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>`;
-                $('#add_button_category_'+$('#parent_id').val()).before(li);
-            }
-            if ($('#eid').val() != ''){
-                if (response['type']==2){
-                    $('#category_'+response['id']).find('div.container-header:first').addClass('main-header-color')
-                }
-                if (response['type']==1){
-                    $('#category_'+response['id']).find('div.container-header:first').removeClass('main-header-color')
-                }
-                $('#category_'+response['id']).find('p.header:first').text(response['title'])
-            }
+            $('#eid').val(response['id'])
             page.hide();
         }, error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
         },
     });
-});
-$('#save-posts').on('click',function (){
-    save($('#role').val())
-})
-function save(role){
 
-    FormData formData= new FormData();
-    formData.append('title',$('#title').val());
-    formData.append('embed',$('#embed').val());
 }
+
+$(".check-input").change(function () {
+    if (this.checked) {
+        if (!categories.includes($(this).val())) {
+            categories.push($(this).val());
+        }
+    }
+});

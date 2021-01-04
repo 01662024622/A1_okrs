@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +14,7 @@ use \Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes(['register' => false,'request' => false, 'reset' => false]);
-
+Auth::routes(['register' => false, 'request' => false, 'reset' => false]);
 
 
 Route::get('/report/user/{auth}', 'HT10\CustomerController@intergration');
@@ -25,7 +25,7 @@ Route::get('/home', 'View\ViewAuthenticationController@home')->name('home');
 Route::get('/', 'View\ViewAuthenticationController@home')->name('home');
 
 Route::get('/get-link',
-    function (){
+    function () {
         return view("intergration.getlink");
     })->name('getlink');
 
@@ -61,24 +61,27 @@ Route::get('/review/feedback/customer/report', 'HT10\ReviewViewController@feedba
 Route::get('/review/feedback/customer/manager/report', 'HT10\ReviewViewController@feedbackCustomerManager');
 
 
-
 Route::resource('categories', 'HT00\CategoryController');
+
 Route::resource('posts', 'HT00\PostController');
 
-Route::get('/tests', 'HT00\CategoryController@tests');
-// Route::get('/profile', 'CustomerController@profile');
+Route::get('/tests', function () {
+    return view('test');
+});
+Route::post('/image/crop', 'Functions\ImageCropController@upload');
+Route::post('/image/save', 'Functions\ImageCropController@save');
 
 // Get data Table group
-Route::group(['prefix' => 'api/v1'], function() {
-	Route::get('category/table', 'DataApi\CategoryApiController@anyData')->name('category.api.data');
-	Route::get('users/table', 'DataApi\UserApiController@anyData')->name('users.api.data');
-	Route::get('apartments/table', 'DataApi\ApartmentApiController@anyData')->name('apartments.api.data');
-	Route::get('report/market/table', 'DataApi\ReportMarketController@anyData')->name('report_market.api.data');
-	Route::get('report/review/table', 'DataApi\ReportApiController@reviewData')->name('report_review.api.data');
-	Route::get('report/review/feedbackme/table', 'DataApi\ReportApiController@feedbackMeData')->name('report_feedbackme.api.data');
-	Route::get('report/review/feedback/apartment/table', 'DataApi\ReportApiController@feedbackApartmentData')->name('report_feedback_apartment.api.data');
-	Route::get('report/review/feedback/browser/table', 'DataApi\ReportApiController@feedbackBrowserData')->name('report_feedback_browser.api.data');
-	Route::get('report/review/feedback/warehouse/table', 'DataApi\ReportApiController@feedbackWarehouseData')->name('report_feedback_warehouse.api.data');
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::get('category/table', 'DataApi\CategoryApiController@anyData')->name('category.api.data');
+    Route::get('users/table', 'DataApi\UserApiController@anyData')->name('users.api.data');
+    Route::get('apartments/table', 'DataApi\ApartmentApiController@anyData')->name('apartments.api.data');
+    Route::get('report/market/table', 'DataApi\ReportMarketController@anyData')->name('report_market.api.data');
+    Route::get('report/review/table', 'DataApi\ReportApiController@reviewData')->name('report_review.api.data');
+    Route::get('report/review/feedbackme/table', 'DataApi\ReportApiController@feedbackMeData')->name('report_feedbackme.api.data');
+    Route::get('report/review/feedback/apartment/table', 'DataApi\ReportApiController@feedbackApartmentData')->name('report_feedback_apartment.api.data');
+    Route::get('report/review/feedback/browser/table', 'DataApi\ReportApiController@feedbackBrowserData')->name('report_feedback_browser.api.data');
+    Route::get('report/review/feedback/warehouse/table', 'DataApi\ReportApiController@feedbackWarehouseData')->name('report_feedback_warehouse.api.data');
     Route::get('report/review/feedback/warehouse/manager/table', 'DataApi\ReportApiController@feedbackWarehouseDataManager')->name('report_feedback_warehouse_manager.api.data');
     Route::get('report/review/feedback/public/relationship/table', 'DataApi\ReportApiController@feedbackPRData')->name('report_feedback_pr.api.data');
     Route::get('report/review/feedback/public/relationship/manager/table', 'DataApi\ReportApiController@feedbackPRDataManager')->name('report_feedback_pr_manager.api.data');
@@ -95,11 +98,11 @@ Route::group(['prefix' => 'api/v1'], function() {
 
 // Set Status group
 
-Route::group(['prefix' => 'api/status'], function() {
-	Route::get('categories/{id}', 'status\StatusController@categories')->name('categories.api.status');
-	Route::post('users/{id}', 'DataApi\UserApiController@status')->name('users.api.status');
-	Route::post('review/{id}', 'DataApi\ReportApiController@status')->name('review.api.status');
-	Route::post('categories/sort', 'DataApi\CategoryApiController@saveSort')->name('categories.api.sort');
+Route::group(['prefix' => 'api/status'], function () {
+    Route::get('categories/{id}', 'status\StatusController@categories')->name('categories.api.status');
+    Route::post('users/{id}', 'DataApi\UserApiController@status')->name('users.api.status');
+    Route::post('review/{id}', 'DataApi\ReportApiController@status')->name('review.api.status');
+    Route::post('categories/sort', 'DataApi\CategoryApiController@saveSort')->name('categories.api.sort');
 
 });
 
