@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,11 +29,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        view()->composer('*', function ($view)
-        {
-            if (Auth::check()){
-            $apartment_user = Apartment::select('id')->where('status',0)->where('user_id',Auth::id())->get()->pluck('id')->toArray();
-            $view->with('apartment_user', $apartment_user);
+        view()->composer('*', function ($view) {
+            if (Auth::check()) {
+                $apartment_user = Apartment::select('id')->where('status', 0)->where('user_id', Auth::id())->get()->pluck('id')->toArray();
+                $view->with('apartment_user', $apartment_user);
                 $user = Auth::user();
                 $categoriesId = DB::select('SELECT id FROM ht00_categories ct WHERE role < 2 AND id NOT IN(
                 SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=2 AND us.user_id=' . $user->id . ' UNION
@@ -47,25 +47,28 @@ class AppServiceProvider extends ServiceProvider
                 foreach ($categoriesId as $id) {
                     array_push($array, $id->id);
                 }
-                $categories = Category::where('status', 0)->where('type', '>', 0)->whereIn('id', $array)->orderBy('sort')
-                    ->get(['id', 'title', 'slug', 'type', 'sort']);
+                $categories = Category::where('status', 0)->where('type', '>=', 5)->whereIn('id', $array)->orderBy('sort')
+                    ->get(['id', 'title', 'slug', 'type', 'sort', 'icon', 'header']);
                 $nav = '';
                 foreach ($categories as $category) {
                     $sub = Category::where('status', 0)->where('parent_id', $category->id)->whereIn('id', $array)->orderBy('sort')
-                        ->get(['id', 'title', 'parent_id', 'slug', 'url', 'sort']);
+                        ->get(['id', 'title', 'parent_id', 'slug', 'url', 'sort', 'icon', 'header']);
                     if (count($sub) > 0) {
-                        if ($category->type == 1) {
+                        if ($category->type == 5) {
                             $nav = $nav . '<hr class="sidebar-divider">
             <li class="nav-item" id="' . $category->slug . '">
                 <a class="nav-link" aria-expanded="true" href="#" data-toggle="collapse" data-target="#collapsePages' . $category->slug . '"
                    aria-controls="collapsePages' . $category->slug . '">
-                    ' . $category->title . '
+                    <i class="' . $category->icon . '"> </i> <span> '. $category->title . '
                 </a>
                 <div id="collapsePages' . $category->slug . '" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">';
                             foreach ($sub as $element) {
+                                if (!$element->header == "") {
+                                    $nav = $nav . '<h6 class="collapse-header">' . $element->header . '</h6>';
+                                }
                                 $nav = $nav . '<a id="' . $element->slug . '" class="collapse-item"  href="' . $element->url . '">
-                                <span>' . $element->title . '</span>
+                                <i class="' . $element->icon . '"> </i> <span> ' . $element->title . '</span>
                             </a>';
                             }
                             $nav = $nav . '</div>
@@ -76,13 +79,14 @@ class AppServiceProvider extends ServiceProvider
                             foreach ($sub as $element) {
                                 $nav = $nav . '<li class="nav-item" id="' . $element->slug . '">
             <a class="nav-link" href="' . $element->url . '">
-                <span>' . $element->title . '</span></a>
+                <i class="' . $element->icon . '"> </i> <span> ' . $element->title . '</span></a>
         </li>';
                             }
                         }
                     }
                 }
                 $view->with('nav', $nav);
+                $view->with('navx', $categoriesId);
             }
         });
     }

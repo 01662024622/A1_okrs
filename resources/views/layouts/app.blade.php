@@ -40,73 +40,12 @@
             @endif
 
         </a>
+
         <!-- Divider -->
         {!! $nav !!}
-        <hr class="sidebar-divider my-0">
-        <li @if($active=="dashboard") class="nav-item active" @else class="nav-item" @endif>
-            <a class="nav-link" href="/home">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Tổng Hợp</span></a>
-        </li>
-    @if(Auth::user()->role!="user")
+{{--        {!! $navx !!}--}}
 
-        <!-- Nav Item - Dashboard -->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li @if ($group=='manager') class="nav-item active" @else class="nav-item" @endif>
-                <a @if ($group=='manager') class="nav-link" aria-expanded="true" @else class="nav-link collapsed"
-                   aria-expanded="false" @endif href="#" data-toggle="collapse" data-target="#collapsePages1"
-                   aria-controls="collapsePages1">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Quản Lý</span>
-                </a>
-                <div id="collapsePages1" @if ($group=='manager') class="collapse show" @else class="collapse"
-                     @endif aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        @if(Auth::user()->role=="manager")
-                            <a @if ($active=='users') class="collapse-item active" @else class="collapse-item"
-                               @endif  href="/users">
-                                <i class="fas fa-fw fa-users"></i>
-                                <span>Người Dùng</span>
-                            </a>
-                            <a @if ($active=='apartments') class="collapse-item active" @else class="collapse-item"
-                               @endif href="/apartments">
-                                <i class="fa fa-building"></i>
-                                <span>Phòng Ban</span>
-                            </a>
-{{--                            <a @if ($active=='report_market') class="collapse-item active" @else class="collapse-item"--}}
-{{--                               @endif href="/report/market">--}}
-{{--                                <i class="fa fa-book"></i>--}}
-{{--                                <span>Báo Cáo Thị Trường</span>--}}
-{{--                            </a>--}}
-                        @endif
-                    </div>
-                </div>
-            </li>
-            {{--        configuration--}}
-            <hr class="sidebar-divider">
-            <li @if ($group=='configuration') class="nav-item active" @else class="nav-item" @endif>
-                <a @if ($group=='configuration') class="nav-link" aria-expanded="true" @else class="nav-link collapsed"
-                   aria-expanded="false" @endif href="#" data-toggle="collapse" data-target="#collapsePages2"
-                   aria-controls="collapsePages2">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Cấu Hình</span>
-                </a>
-                <div id="collapsePages2" @if ($group=='configuration') class="collapse show" @else class="collapse"
-                     @endif aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        @if(Auth::user()->role=="manager")
-                            <a @if ($active=='category') class="collapse-item active" @else class="collapse-item"
-                               @endif  href="/categories">
-                                <i class="fas fa-fw fa-users"></i>
-                                <span>Danh mục</span>
-                            </a>
-                        @endif
-                    </div>
-                </div>
-            </li>
-        @endif
         <hr class="sidebar-divider">
         <li @if ($group=='reports') class="nav-item active" @else class="nav-item" @endif>
             <a @if ($group=='reports') class="nav-link" aria-expanded="true" @else class="nav-link collapsed"
@@ -229,148 +168,148 @@
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
-                                         alt="">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.
-                                    </div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60"
-                                         alt="">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how would
-                                        you like them sent to you?
-                                    </div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60"
-                                         alt="">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with the
-                                        progress so far, keep up the good work!
-                                    </div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told
-                                        me that people say this to all dogs, even if they aren't good...
-                                    </div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                        </div>
-                    </li>
-                    <div class="topbar-divider d-none d-sm-block"></div>
+{{--                    <li class="nav-item dropdown no-arrow d-sm-none">--}}
+{{--                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"--}}
+{{--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                            <i class="fas fa-search fa-fw"></i>--}}
+{{--                        </a>--}}
+{{--                        <!-- Dropdown - Messages -->--}}
+{{--                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"--}}
+{{--                             aria-labelledby="searchDropdown">--}}
+{{--                            <form class="form-inline mr-auto w-100 navbar-search">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input type="text" class="form-control bg-light border-0 small"--}}
+{{--                                           placeholder="Search for..." aria-label="Search"--}}
+{{--                                           aria-describedby="basic-addon2">--}}
+{{--                                    <div class="input-group-append">--}}
+{{--                                        <button class="btn btn-primary" type="button">--}}
+{{--                                            <i class="fas fa-search fa-sm"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <!-- Nav Item - Alerts -->--}}
+{{--                    <li class="nav-item dropdown no-arrow mx-1">--}}
+{{--                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"--}}
+{{--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                            <i class="fas fa-bell fa-fw"></i>--}}
+{{--                            <!-- Counter - Alerts -->--}}
+{{--                            <span class="badge badge-danger badge-counter">3+</span>--}}
+{{--                        </a>--}}
+{{--                        <!-- Dropdown - Alerts -->--}}
+{{--                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"--}}
+{{--                             aria-labelledby="alertsDropdown">--}}
+{{--                            <h6 class="dropdown-header">--}}
+{{--                                Alerts Center--}}
+{{--                            </h6>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="mr-3">--}}
+{{--                                    <div class="icon-circle bg-primary">--}}
+{{--                                        <i class="fas fa-file-alt text-white"></i>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--                                    <div class="small text-gray-500">December 12, 2019</div>--}}
+{{--                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="mr-3">--}}
+{{--                                    <div class="icon-circle bg-success">--}}
+{{--                                        <i class="fas fa-donate text-white"></i>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--                                    <div class="small text-gray-500">December 7, 2019</div>--}}
+{{--                                    $290.29 has been deposited into your account!--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="mr-3">--}}
+{{--                                    <div class="icon-circle bg-warning">--}}
+{{--                                        <i class="fas fa-exclamation-triangle text-white"></i>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--                                    <div class="small text-gray-500">December 2, 2019</div>--}}
+{{--                                    Spending Alert: We've noticed unusually high spending for your account.--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <!-- Nav Item - Messages -->--}}
+{{--                    <li class="nav-item dropdown no-arrow mx-1">--}}
+{{--                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"--}}
+{{--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                            <i class="fas fa-envelope fa-fw"></i>--}}
+{{--                            <!-- Counter - Messages -->--}}
+{{--                            <span class="badge badge-danger badge-counter">7</span>--}}
+{{--                        </a>--}}
+{{--                        <!-- Dropdown - Messages -->--}}
+{{--                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"--}}
+{{--                             aria-labelledby="messagesDropdown">--}}
+{{--                            <h6 class="dropdown-header">--}}
+{{--                                Message Center--}}
+{{--                            </h6>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="dropdown-list-image mr-3">--}}
+{{--                                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60"--}}
+{{--                                         alt="">--}}
+{{--                                    <div class="status-indicator bg-success"></div>--}}
+{{--                                </div>--}}
+{{--                                <div class="font-weight-bold">--}}
+{{--                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a--}}
+{{--                                        problem I've been having.--}}
+{{--                                    </div>--}}
+{{--                                    <div class="small text-gray-500">Emily Fowler · 58m</div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="dropdown-list-image mr-3">--}}
+{{--                                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60"--}}
+{{--                                         alt="">--}}
+{{--                                    <div class="status-indicator"></div>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--                                    <div class="text-truncate">I have the photos that you ordered last month, how would--}}
+{{--                                        you like them sent to you?--}}
+{{--                                    </div>--}}
+{{--                                    <div class="small text-gray-500">Jae Chun · 1d</div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="dropdown-list-image mr-3">--}}
+{{--                                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60"--}}
+{{--                                         alt="">--}}
+{{--                                    <div class="status-indicator bg-warning"></div>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--                                    <div class="text-truncate">Last month's report looks great, I am very happy with the--}}
+{{--                                        progress so far, keep up the good work!--}}
+{{--                                    </div>--}}
+{{--                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+{{--                                <div class="dropdown-list-image mr-3">--}}
+{{--                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"--}}
+{{--                                         alt="">--}}
+{{--                                    <div class="status-indicator bg-success"></div>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told--}}
+{{--                                        me that people say this to all dogs, even if they aren't good...--}}
+{{--                                    </div>--}}
+{{--                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <div class="topbar-divider d-none d-sm-block"></div>--}}
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -449,6 +388,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="load_page">
     <div class="loader"></div>

@@ -1,33 +1,55 @@
-  $.ajaxSetup({
+$.ajaxSetup({
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  });
-$(document).ready(function() {
-
-
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('.avatar').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
+});
+var file = undefined;
+var image = $('#image-preview').croppie({
+    enableExif: true,
+    viewport: {
+        width: 400,
+        height: 400,
+        type: 'circle'
+    },
+    boundary: {
+        width: 500,
+        height: 500
     }
-
-
-    $(".file-upload").on('change', function(){
-        readURL(this);
-    });
-
-$('#birth_day').datepicker({
-      weekStart: 1,
-      daysOfWeekHighlighted: "6,0",
-      autoclose: true,
-      todayHighlight: true,
+});
+$('#upload-image').change(function () {
+    var reader = new FileReader();
+    reader.onload = function (even) {
+        $('#myModal').modal('show');
+        image.croppie('bind', {
+            url: even.target.result
+        }).then(function () {
+            console.log('bind complier')
+        });
+    }
+    reader.readAsDataURL(this.files[0])
+});
+$('#crop_image').click(function (e) {
+    e.preventDefault()
+    // page.show();
+    image.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+    }).then(function (response) {
+        fetch(response)
+            .then(res => res.blob())
+            .then(blob => {
+                file = new File([blob], "avata.png", {type: "image/png"})
+            })
+        $('#myModal').modal('hide');
+        $('#avata').html('<img id="upload-data-avata" src="' + response + '" alt="avata" style="width:100%;height:auto"> ')
+    })
+})
+$(document).ready(function () {
+    $('#birth_day').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
     });
 });
 
@@ -44,13 +66,15 @@ $("#update-profile").submit(function (e) {
     messages: {
         phone: {
             required: "Hãy nhập họ và tên của bạn",
-            minlength: "Họ và tên ít nhất phải có 5 kí tự"
+            minlength: "Số điện thoại không đúng"
         },
 
     },
     submitHandler: function (form) {
         var formData = new FormData(form);
-        formData.append('avata', $('#avata').get(0).files[0]);
+        if (file != undefined) {
+            formData.append('avata', file);
+        }
         $.ajax({
             url: form.action,
             type: form.method,
@@ -60,21 +84,10 @@ $("#update-profile").submit(function (e) {
             processData: false,
             contentType: false,
             success: function (response) {
-                setTimeout(function () {
-                    if ($('#eid').val() == '') {
-                        toastr.success('Thêm mới thành công!');
-                    } else {
-                        toastr.success('Cập nhật thành công!');
-                    }
-                }, 1000);
+                toastr.success('Cập nhật thành công!');
             }, error: function (xhr, ajaxOptions, thrownError) {
                 toastr.error(thrownError);
             },
         });
     }
 });
-  $('.demo').croppie({
-      url: '/public/storage/1609556207-93.png',
-  });
-
-  $('.my-image').croppie();

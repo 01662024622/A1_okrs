@@ -23,7 +23,7 @@ class PostController extends ResouceController
         parent::__construct($service, array('active' => 'posts', 'group' => 'configuration'));
     }
     public function create(){
-        $categories = Category::where('status',0)->where('type',0)->get();
+        $categories = Category::where('status',0)->where('type',1)->get();
         return view('posts.add')->with(['categories'=>$categories]);
     }
     public function edit($id){

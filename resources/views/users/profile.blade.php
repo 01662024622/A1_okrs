@@ -3,6 +3,7 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css">
+<link rel="Stylesheet" type="text/css" href="/css/image/croppie.css"/>
 @endsection
 @section('content')
 
@@ -17,9 +18,15 @@
 
 
             <div class="text-center">
-                <img src="{{ Auth::user()->avata }}" class="avatar img-circle img-thumbnail" alt="avatar">
-                <h6>Cập nhật ảnh địa diện...</h6>
-                <input type="file" id="avata" class="text-center center-block file-upload" accept="image/png, image/jpeg, image/jpg">
+                <div id="avata" class="text-center">
+                    @if (Auth::user()->avata!='')
+                        <img id="upload-data-avata" src="{{Auth::user()->avata}}" alt="avata" style="width:100%;height:auto">
+                    @endif</div>
+                <div class="text-center">
+                    <h6>Cập nhật ảnh địa diện...</h6>
+                    <input type="file" id="upload-image" class="text-center center-block file-upload"
+                           accept="image/png, image/jpeg, image/jpg">
+                </div>
             </div>
             <br>
 
@@ -102,15 +109,39 @@
     </div><!--/col-9-->
 </div><!--/row-->
 
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Căn chỉnh ảnh đại diện</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="image-preview"></div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button id="crop_image" type="button" class="btn btn-info">Lưu</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 @endsection
 
 @section('js')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-<script src="{{ asset('js/user/user-profile.js') }}"></script>
+<script src="/js/image/croppie.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
 <script src="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.js"></script>
+<script src="{{ asset('js/user/user-profile.js') }}"></script>
 
 @endsection

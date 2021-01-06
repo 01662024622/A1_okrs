@@ -18,7 +18,7 @@ class CategoryServiceImpl extends AbstractService implements CategoryService
         parent::__construct($repository);
     }
     public function all(){
-        $categories= Category::where('status',0)->where('type','>',0)->orderBy('sort')->get();
+        $categories= Category::where('status',0)->where('type','>',4)->orderBy('sort')->get();
         foreach ($categories as $category){
             $category->children;
         }

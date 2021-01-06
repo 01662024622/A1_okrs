@@ -18,7 +18,7 @@ class CreateHt00PostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('content')->nullable();
-            $table->string('embed');
+            $table->string('embed',5000);
             $table->integer('role')->default(0);
             $table->integer('status')->default(0);
             $table->bigInteger('create_by')->default(0);

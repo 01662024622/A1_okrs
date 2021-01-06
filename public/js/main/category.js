@@ -162,13 +162,22 @@ function getInfo(id) {
             $('#title').val(response.title);
             $('#url').val(response.url);
             if (response.parent_id == 0) {
-                $("#radio_" + response.type).attr('checked', 'checked');
+                $("#radio_" + response.type).prop("checked", true);
                 $('#radio').show();
+                $('#sub-radio').hide();
                 $('#url_group').hide();
+                $('#header_group').hide();
                 $('#url').val('');
+                $('#icon').val(response.icon);
             } else {
+                $('#header_group').show();
                 $('#radio').hide();
+                $('#sub-radio').show();
                 $('#url_group').show();
+                $('#header').val(response.header);
+                $('#icon').val(response.icon);
+                $("#radio_" + response.type).prop("checked", true);
+
             }
             $('#role').val(response.role);
             $('#eid').val(response.id);
@@ -284,9 +293,14 @@ function add_new_sub(id) {
     $('#url').val('');
     $("#radio_1").attr('checked', 'checked');
     $('#radio').hide();
+    $('#sub-radio').show();
     $('#url_group').show();
+    $('#header_group').show();
+    $('#header').val('');
+    $('#icon').val('fa fa-align-left');
     $('#role').val(0);
     $('#parent_id').val(id);
+    $('#radio_5').prop("checked", true);
     apartments = [];
     apartment_add = [];
     apartment_update = [];
@@ -313,11 +327,17 @@ function add_new() {
     $('#eid').val('');
     $('#title').val('');
     $('#url').val('');
-    $("#radio_1").attr('checked', 'checked');
+    $('#header_group').hide();
+    $('#header').val('');
+    $('#icon').val('fa fa-align-left');
+    $('#role').val(0);
+    $("#radio_5").attr('checked', 'checked');
     $('#radio').show();
+    $('#sub-radio').hide();
     $('#url_group').hide();
     $('#role').val(0);
     $('#parent_id').val(0);
+    $('#radio_1').prop("checked", true);
     apartments = [];
     apartment_add = [];
     apartment_update = [];
@@ -352,15 +372,18 @@ $("#save").on('click', function () {
     }
 
     formData.append('title', $('#title').val());
+    formData.append('parent_id', $('#parent_id').val());
+    formData.append('icon', $('#icon').val());
+
     if ($('#url').val() != '') {
         formData.append('url', $('#url').val());
     }
-    formData.append('parent_id', $('#parent_id').val());
+    if ($('#header').val() != '') {
+        formData.append('header', $('#header').val());
+    }
 
     formData.append('role', $('#role').val());
-    if ($('#parent_id').val() == 0) {
-        formData.append('type', $('input[name=type]:checked').val());
-    }
+    formData.append('type', $('input[name=type]:checked').val());
     if (user_add.length > 0) {
         user_add.forEach(element => {
             formData.append('users[]', element + '_' + $("#user_role_" + element).val());
@@ -401,7 +424,7 @@ $("#save").on('click', function () {
             }, 1000);
             $("#myModal").modal('toggle');
             var type = '';
-            if (response['type'] == 2) type = 'style="background-color: #ccff99"';
+            if (response['type'] == 10) type = 'style="background-color: #ccff99"';
             if ($('#eid').val() == '' && $('#parent_id').val() == 0) {
                 var li = `<li class="ui-state-default" data-value="` + response['id'] + `">
                 <div class="main-header"` + type + `>
@@ -437,10 +460,10 @@ $("#save").on('click', function () {
                 $('#add_button_category_'+$('#parent_id').val()).before(li);
             }
             if ($('#eid').val() != ''){
-                if (response['type']==2){
+                if (response['type']==10){
                     $('#category_'+response['id']).find('div.container-header:first').addClass('main-header-color')
                 }
-                if (response['type']==1){
+                if (response['type']==5){
                     $('#category_'+response['id']).find('div.container-header:first').removeClass('main-header-color')
                 }
                 $('#category_'+response['id']).find('p.header:first').text(response['title'])
