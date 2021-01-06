@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\HT10;
 
+use App\Models\HT10\CustomerFeedback;
 use App\Models\HT20\B20Customer;
 use App\Http\Controllers\Base\ResouceController;
 use App\Services\HT10\CustomerFeedbackService;
@@ -16,8 +17,8 @@ class CustomerFeedbackController extends ResouceController
 
     public function store(Request $request)
     {
-        $data = $request->only(['customer_code', 'attitude', 'knowledge', 'time', 'cost', 'diversity', 'quality', 'note']);
-         parent::storeRequest($request,$data);
+        $data = $request->only(['name','phone','email', 'attitude', 'knowledge', 'time', 'cost', 'diversity', 'quality', 'note']);
+         CustomerFeedback::create($data);
        return view('feedback.success');
     }
 
@@ -34,20 +35,10 @@ class CustomerFeedbackController extends ResouceController
                 'message' => 'Mã khách hàng không hợp lệ!'
             ], 400);
     }
-    public function indexCode($code)
-    {
-        if ($code==""||is_null($code)){
-            return view("errors.404");
-        }
-        $customer = B20Customer::where("Code",$code)->first();
-        if (!($customer)){
-            return view("errors.404");
-        }
-        return view("feedback.customerFeedback",["code"=>$code,"name"=>$customer->Name]);
-    }
+
     public function index()
     {
-        return $this->indexCode("");
+        return view("feedback.customerFeedback");
     }
 
 }

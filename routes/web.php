@@ -44,7 +44,7 @@ Route::resource('/customer/feedback/report', 'HT10\CustomerFeedbackController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');
 Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 
-Route::get('/customer/feedback/link/{code}', 'HT10\CustomerFeedbackController@indexCode');
+//Route::get('/customer/feedback/full', 'HT10\CustomerFeedbackController@indexCode');
 //Route::get('/', 'HT10\ReportMarketController@index');
 Route::get('/review/feedback', 'HT10\ReviewViewController@feedbackMe');
 Route::get('/review/feedback/auth/{auth}', 'Authentication\FeedbackViewController@feedbackMeAuth');

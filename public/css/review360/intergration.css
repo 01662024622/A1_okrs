@@ -199,3 +199,6 @@ input[type=number] {
     max-width: 200px;
     height: auto;
 }
+.note{
+    color: red;
+}

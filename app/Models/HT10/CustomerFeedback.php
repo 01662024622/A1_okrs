@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerFeedback extends Model
 {
     protected $fillable = [
-        'customer_code', 'attitude', 'knowledge', 'time', 'cost', 'diversity', 'quality', 'note','create_by','modify_by'
+        'customer_code', 'attitude', 'knowledge', 'time', 'cost', 'diversity', 'quality', 'note','create_by','modify_by','name','phone','email'
     ];
     public $fillable_store = [
-        'customer_code', 'attitude', 'knowledge', 'time', 'cost', 'diversity', 'quality', 'note'
+        'name','phone','email', 'attitude', 'knowledge', 'time', 'cost', 'diversity', 'quality', 'note'
     ];
     public $fillable_update = [
 

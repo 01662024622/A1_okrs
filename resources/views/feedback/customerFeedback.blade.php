@@ -29,7 +29,7 @@
                 <div class="container-form">
                     <div class="card-details">
                 <p style="font-size: 1rem">
-                    <i>HTAUTO xin kính chào quý khách:</i><b style="font-size: 1.1rem"> {{$name}}</b>
+                    <i>HTAUTO xin kính chào quý khách</i>
                     <br><br>Nhằm cải thiện và nâng cao chất lượng dịch vụ, HTAUTO mong muốn được lắng nghe các ý kiến được phản hồi từ khách hàng.
                     <br><br>Kính mong quý khách phản hồi theo thông tin dưới đây.
                     <br><br><b>Xin trân trọng cảm ơn!</b>
@@ -39,13 +39,31 @@
                 </p>
                     </div>
                 </div>
+                <div class="container-form">
+                    <div class="card-details">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label  for="card-holder" class="form-label-header">Họ và tên<span class="note">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" maxlength="50" placeholder="Hãy nhập câu trả lời của bạn..."></input>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label  for="card-holder" class="form-label-header">Số điện thoại<span class="note">*</span></label>
+                                <input type="tel" class="form-control" id="phone" name="phone" maxlength="10" placeholder="Hãy nhập câu trả lời của bạn..." pattern="0[0-9]{9}" required></input>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label  for="card-holder" class="form-label-header">Email</label>
+                                <input type="email" class="form-control" id="email" maxlength="50" name="email" placeholder="Hãy nhập câu trả lời của bạn..."></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br><br>
                 <div class="container">
                     <div class="container-form">
                         <div class="card-details">
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    <label for="card-holder" class="form-label-header">Anh/ Chị đánh giá như thế nào về thái độ của Nhân viên sales HTAUTO?</label>
+                                    <label for="card-holder" class="form-label-header">Anh/ Chị đánh giá như thế nào về thái độ của Nhân viên tư vấn bán hàng HTAUTO?</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="attitude" value="Hài lòng" checked>
                                         <label class="form-check-label form-label" for="exampleRadios1">Hài lòng</label>
@@ -60,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12">
-                                    <label for="card-holder" class="form-label-header">Anh/ Chị đánh giá thế nào về kiến thức sản phẩm của nhân viên sales?</label>
+                                    <label for="card-holder" class="form-label-header">Anh/ Chị đánh giá thế nào về kiến thức sản phẩm của nhân viên tư vấn bán hàng?</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="knowledge" value="Hài lòng" checked>
                                         <label class="form-check-label form-label" for="exampleRadios1">Hài lòng</label>
@@ -117,7 +135,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12">
-                                    <label for="card-holder" class="form-label-header">Anh/ Chị đánh giá ntn về chất lượng sản phẩm của HTAUTO?</label>
+                                    <label for="card-holder" class="form-label-header">Anh/ Chị đánh giá như thế nào về chất lượng sản phẩm của HTAUTO?</label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="quality" value="Hài lòng" checked>
                                         <label class="form-check-label form-label" for="exampleRadios1">Hài lòng</label>
@@ -133,9 +151,8 @@
                                 </div>
                                 <div class="form-group col-sm-12">
                                   <label  for="card-holder" class="form-label-header">Ý kiến đóng góp thêm ( Nếu có)</label>
-                                  <input type="text" class="form-control" id="note" name="note"  placeholder="Hãy nhập câu trả lời của bạn...">
+                                    <textarea class="form-control" rows="4" id="note" name="note" placeholder="Hãy nhập câu trả lời của bạn..."></textarea>
                               </div>
-                              <input type="hidden" name="customer_code" value="{{$code}}">
                           </div>
                       </div>
                   </div>

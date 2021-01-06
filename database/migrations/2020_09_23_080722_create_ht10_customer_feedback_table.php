@@ -15,7 +15,7 @@ class CreateHT10CustomerFeedbackTable extends Migration
     {
         Schema::create('ht10_customer_feedback', function (Blueprint $table) {
             $table->id();
-            $table->string("customer_code");
+            $table->string("customer_code")->nullable();
             $table->integer("attitude")->nullable();
             $table->integer("knowledge")->nullable();
             $table->integer("time")->nullable();
