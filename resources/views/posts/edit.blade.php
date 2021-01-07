@@ -10,10 +10,8 @@
         <br>
         <div class="col-lg-8 col-xl-9">
             <div class="item">
-                <input type="text" class="form-control input-custom" id="title" value="{{$post->title}}" placeholder="Nhập tiêu đề...">
-            </div>
-            <div class="item">
-                <textarea class="ckeditor" name="editor1"> {!! $post->content !!}</textarea>
+                <input type="text" class="form-control input-custom" id="title" value="{{$post->title}}"
+                       placeholder="Nhập tiêu đề...">
             </div>
             <div class="item">
                 <div class="header-item">
@@ -32,6 +30,10 @@
                     </div>
                 </div>
             </div>
+            <div class="item">
+                <textarea class="ckeditor" name="editor1"> {!! $post->content !!}</textarea>
+            </div>
+
             <div class="item">
                 <div class="header-item">
                     <p>Phân quyền</p>
@@ -74,10 +76,17 @@
                                                 <tr>
                                                     <td>{{$apartment->name}}</td>
                                                     <td>
-                                                        <select class="role-select" name="role" id="apartment_role_{{$apartment->id}}">
-                                                            <option value="0" @if ($apartment->role==0) selected @endif>mặc định</option>
-                                                            <option value="1" style="font-weight: 700; color: #3ED317" @if ($apartment->role==1) selected @endif>Cho phép</option>
-                                                            <option value="2" style="font-weight: 700; color: #AA0000" @if ($apartment->role==2) selected @endif>Chặn</option>
+                                                        <select class="role-select" name="role"
+                                                                id="apartment_role_{{$apartment->id}}">
+                                                            <option value="0" @if ($apartment->role==0) selected @endif>
+                                                                mặc định
+                                                            </option>
+                                                            <option value="1" style="font-weight: 700; color: #3ED317"
+                                                                    @if ($apartment->role==1) selected @endif>Cho phép
+                                                            </option>
+                                                            <option value="2" style="font-weight: 700; color: #AA0000"
+                                                                    @if ($apartment->role==2) selected @endif>Chặn
+                                                            </option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -111,10 +120,17 @@
                                                 <tr>
                                                     <td>{{$user->name}}</td>
                                                     <td>
-                                                        <select class="role-select" name="role" id="user_role_{{$user->id}}">
-                                                            <option value="0" @if ($user->role==0) selected @endif>mặc định</option>
-                                                            <option value="1" style="font-weight: 700; color: #3ED317" @if ($user->role==1) selected @endif>Cho phép</option>
-                                                            <option value="2" style="font-weight: 700; color: #AA0000" @if ($user->role==2) selected @endif>Chặn</option>
+                                                        <select class="role-select" name="role"
+                                                                id="user_role_{{$user->id}}">
+                                                            <option value="0" @if ($user->role==0) selected @endif>mặc
+                                                                định
+                                                            </option>
+                                                            <option value="1" style="font-weight: 700; color: #3ED317"
+                                                                    @if ($user->role==1) selected @endif>Cho phép
+                                                            </option>
+                                                            <option value="2" style="font-weight: 700; color: #AA0000"
+                                                                    @if ($user->role==2) selected @endif>Chặn
+                                                            </option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -169,7 +185,8 @@
                             <li id="popular-category-135" class="popular-category">
                                 <label class="selectit">
                                     @foreach($categories as $category)
-                                        <input class="check-input" id="category-{{$category->id}}" type="checkbox" value="{{$category->id}}">	&nbsp; 	&nbsp;{{$category->title}}
+                                        <input class="check-input" id="category-{{$category->id}}" type="checkbox"
+                                               value="{{$category->id}}">    &nbsp;    &nbsp;{{$category->title}}
                                         <br>
                                     @endforeach
                                 </label>
@@ -186,8 +203,9 @@
                 <div class="header-item">
                     <div id="avata" class="text-center">
                         @if ($post->avata!='')
-                            <img id="upload-data-avata" src="{{$post->avata}}" alt="avata" style="width:100%;height:auto">
-                    @endif</div>
+                            <img id="upload-data-avata" src="{{$post->avata}}" alt="avata"
+                                 style="width:100%;height:auto">
+                        @endif</div>
                     <div class="text-center">
                         <h6>Cập nhật ảnh địa diện...</h6>
                         <input type="file" id="upload-image" class="text-center center-block file-upload"
@@ -247,9 +265,9 @@
 
         var users = [];
         var apartments = [];
-        var categories=[];
+        var categories = [];
         @foreach($post->categories as $category)
-            categories.push({{$category->id}})
+        categories.push({{$category->id}})
         $('#category-{{$category->id}}').prop('checked', true);
         @endforeach
         @foreach($post->apartments as $apartment)

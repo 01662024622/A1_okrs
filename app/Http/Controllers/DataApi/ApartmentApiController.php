@@ -15,7 +15,7 @@ class ApartmentApiController extends Controller
 {
     function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('auth');
     }
 
     public function anyData(Request $request)
@@ -39,6 +39,7 @@ class ApartmentApiController extends Controller
                     return $user->name;
                 } else return "";
             })
+            ->addIndexColumn()
             ->setRowId('data-{{$id}}')
             ->rawColumns(['action'])
             ->make(true);

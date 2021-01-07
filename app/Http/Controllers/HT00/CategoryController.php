@@ -51,8 +51,17 @@ class CategoryController extends ResouceController
             $data['slug'] = Str::slug((string)$request->title, '-') . time();
             $data['sort'] = (int)time();
             if (!$request->has("url")) {
-                if ($request->type<2){
+                if ($request->type<5){
                     $data['url'] = "/categories/" . $data['slug'].'/edit';
+                    $data['type']=1;
+                }
+
+            }
+        }else{
+            if (!$request->has("url")) {
+                if ($request->type<5){
+                    $category=Category::find($request->id);
+                    $data['url'] = "/categories/" . $category->slug.'/edit';
                     $data['type']=1;
                 }
 

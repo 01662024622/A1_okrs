@@ -300,7 +300,7 @@ function add_new_sub(id) {
     $('#icon').val('fa fa-align-left');
     $('#role').val(0);
     $('#parent_id').val(id);
-    $('#radio_5').prop("checked", true);
+    $('#radio_1').prop("checked", true);
     apartments = [];
     apartment_add = [];
     apartment_update = [];
@@ -337,7 +337,7 @@ function add_new() {
     $('#url_group').hide();
     $('#role').val(0);
     $('#parent_id').val(0);
-    $('#radio_1').prop("checked", true);
+    $('#radio_5').prop("checked", true);
     apartments = [];
     apartment_add = [];
     apartment_update = [];

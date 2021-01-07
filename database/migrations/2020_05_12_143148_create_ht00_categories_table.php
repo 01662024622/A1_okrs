@@ -15,7 +15,7 @@ class CreateHT00CategoriesTable extends Migration
     {
         Schema::create('ht00_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('slug');
             $table->bigInteger('parent_id')->default(0);
             $table->integer('type')->default(0);

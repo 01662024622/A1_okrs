@@ -18,7 +18,8 @@ Auth::routes(['register' => false, 'request' => false, 'reset' => false]);
 
 
 Route::get('/report/user/{auth}', 'HT10\CustomerController@intergration');
-Route::get('/review/user/{auth}', 'HT10\CustomerController@review360');
+Route::get('/review/user/{auth}', 'HT10\CustomerController@reviewauth');
+Route::get('/review/user/used', 'HT10\CustomerController@review');
 Route::get('/review/user/success/{auth}', 'HT10\CustomerController@success');
 
 Route::get('/home', 'View\ViewAuthenticationController@home')->name('home');
@@ -31,6 +32,7 @@ Route::get('/get-link',
 
 Route::resource('users', 'HT20\UserController');
 Route::resource('apartments', 'HT20\ApartmentController');
+Route::resource('groups', 'HT20\GroupController');
 
 Route::get('profile', 'HT20\UserEditController@profile');
 Route::get('change-password', 'HT20\UserEditController@password');
@@ -77,6 +79,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('category/table', 'DataApi\CategoryApiController@anyData')->name('category.api.data');
     Route::get('users/table', 'DataApi\UserApiController@anyData')->name('users.api.data');
     Route::get('apartments/table', 'DataApi\ApartmentApiController@anyData')->name('apartments.api.data');
+    Route::get('groups/table', 'DataApi\GroupApiController@anyData')->name('groups.api.data');
     Route::get('report/market/table', 'DataApi\ReportMarketController@anyData')->name('report_market.api.data');
     Route::get('report/review/table', 'DataApi\ReportApiController@reviewData')->name('report_review.api.data');
     Route::get('report/review/feedbackme/table', 'DataApi\ReportApiController@feedbackMeData')->name('report_feedbackme.api.data');

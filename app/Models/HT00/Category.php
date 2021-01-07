@@ -20,6 +20,6 @@ class Category extends Model
 
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id', 'id')->where('status', 0);
+        return $this->hasMany(Category::class, 'parent_id', 'id')->where('status', 0)->orderBy('sort');
     }
 }

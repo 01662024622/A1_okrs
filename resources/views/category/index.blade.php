@@ -86,6 +86,8 @@
                         <label class="form-label" for="exampleInputEmail1">Icon</label>
                         <br>
                         <select class="form-control" id="icon">
+                            <option value="fa fa-user-plus" selected>&#xf234; fa-user-plus</option>
+                            <option value="fa fa-user-times" >&#xf235; fa-user-times </option>
                             <option value="fa fa-align-left">&#xf036; fa-align-left</option>
                             <option value="fa fa-align-right">&#xf038; fa-align-right</option>
                             <option value="fa fa-amazon">&#xf270; fa-amazon</option>

@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\HT20;
 
 use App\Http\Controllers\Base\ResouceController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartment;
-use App\Services\HT20\ApartmentService;
 use App\Models\HT20\User;
+use App\Services\HT20\ApartmentService;
+use App\Services\HT20\GroupService;
+use App\Services\Impl\HT20\GroupServiceImpl;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class ApartmentController extends ResouceController
+class GroupController extends ResouceController
 {
-    function __construct(ApartmentService $apartment)
+    function __construct(GroupService $service)
     {
-        $this->middleware('auth');
-        parent::__construct($apartment, array('active' => 'apartments', 'group' => 'manager'));
-        View::share('users', User::where('status', 0)->where('role', '<>', 'admin')->get());
+        $this->middleware('admin');
+        parent::__construct($service, array('active' => 'groups'));
     }
 
     public function store(StoreApartment $request)

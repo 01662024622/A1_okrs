@@ -13,9 +13,6 @@
                 <input type="text" class="form-control input-custom" id="title" placeholder="Nhập tiêu đề...">
             </div>
             <div class="item">
-                <textarea class="ckeditor" name="editor1"></textarea>
-            </div>
-            <div class="item">
                 <div class="header-item">
                     <p>Nhúng nội dung</p>
                 </div>
@@ -32,6 +29,10 @@
                     </div>
                 </div>
             </div>
+            <div class="item">
+                <textarea class="ckeditor" name="editor1"></textarea>
+            </div>
+
             <div class="item">
                 <div class="header-item">
                     <p>Phân quyền</p>
@@ -144,7 +145,8 @@
                             <li id="popular-category-135" class="popular-category">
                                 <label class="selectit">
                                     @foreach($categories as $category)
-                                        <input class="check-input" id="category-{{$category->id}}" type="checkbox" value="{{$category->id}}">	&nbsp; 	&nbsp;{{$category->title}}
+                                        <input class="check-input" id="category-{{$category->id}}" type="checkbox"
+                                               value="{{$category->id}}">    &nbsp;    &nbsp;{{$category->title}}
                                         <br>
                                     @endforeach
                                 </label>
@@ -219,7 +221,7 @@
 
         var users = [];
         var apartments = [];
-        var categories=[];
+        var categories = [];
     </script>
     <script src="{{ asset('js/posts/add.js') }}"></script>
 

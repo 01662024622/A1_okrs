@@ -97,8 +97,6 @@ class ReportApiController extends Controller
 
     public function feedbackApartmentData()
     {
-        $apartment = Apartment::where('user_id', Auth::id())->where('status', 0)->get();
-        if (sizeof($apartment) < 1) return null;
         $date = Carbon::now()->subDay(2);
         $data = Review::select("ht10_reviews.*", "ht20_apartments.name as apartment", "ht20_users.name as user",
             DB::raw("(CASE WHEN `ht10_reviews`.user_status = 1 THEN 1 WHEN `ht10_reviews`.created_at < '" . $date . "' THEN 2 WHEN `ht10_reviews`.user_status = -1 THEN -1 ELSE 0 END) as role"))
@@ -146,9 +144,6 @@ class ReportApiController extends Controller
 
     public function feedbackBrowserData()
     {
-        if (Auth::user()->role != "manager") {
-            if (Auth::user()->role != "admin") return null;
-        }
         $data = Review::select("ht10_reviews.*", "ht20_apartments.name as apartment", "ht20_users.name as user")
             ->join('ht20_apartments', 'ht10_reviews.apartment_id', '=', 'ht20_apartments.id')
             ->leftJoin('ht20_users', 'ht20_users.id', '=', 'ht10_reviews.user_id')
@@ -222,8 +217,6 @@ class ReportApiController extends Controller
 
     public function feedbackWarehouseDataManager()
     {
-        $apartment_user = Apartment::select('id')->where('status', 0)->where('user_id', \Auth::id())->get()->pluck('id')->toArray();
-        if (!(in_array(20, $apartment_user, true) || Auth::user()->role != "user")) return null;
         $data = FeedbackWarehouse::select(DB::raw("ht10_feedback_warehouse.id,ht10_feedback_warehouse.amount,ht10_feedback_warehouse.code_product,ht10_feedback_warehouse.type,ht10_feedback_warehouse.created_at,GROUP_CONCAT(CONCAT('- ', ht10_improve_360.content) SEPARATOR '<br>') as content"))
             ->leftjoin('ht10_feedback_warehouse_improve', 'ht10_feedback_warehouse.id', '=', 'ht10_feedback_warehouse_improve.feedback_warehouse_id')
             ->leftjoin('ht10_improve_360', 'ht10_improve_360.id', '=', 'ht10_feedback_warehouse_improve.improve_360_id')

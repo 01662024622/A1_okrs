@@ -10,7 +10,7 @@ var dataTable = $('#users-table').DataTable({
     serverSide: true,
     ajax: {
         type: "GET",
-        url: "/api/v1/apartments/table",
+        url: "/api/v1/groups/table",
         error: function (xhr, ajaxOptions, thrownError) {
             if (xhr != null) {
                 if (xhr.responseJSON != null) {
@@ -26,8 +26,6 @@ var dataTable = $('#users-table').DataTable({
     columns: [
         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         {data: 'name', name: 'name'},
-        {data: 'code', name: 'code'},
-        {data: 'user_id', name: 'user_id'},
         {data: 'description', name: 'description'},
         {data: 'action', name: 'action'},
     ],
@@ -50,9 +48,78 @@ var dataTable = $('#users-table').DataTable({
     }
 
 });
+var page = $('#load_page')
+var user_find = [];
+var users = [];
+
+$('#staff_find').on('click', function () {
+    searchStaff();
+})
+$('#staff_find_text').on('keyup', function (event) {
+    if (event.key === "Enter") {
+        searchStaff()
+    }
+})
+
+function searchStaff() {
+    var staff = $('#staff_find_text').val()
+    if (staff == '') staff = ''
+    page.show()
+    var userQuery = '';
+    if (users.length > 0) {
+        userQuery = '?users[]=' + users.join('&users[]=');
+    }
+    $.ajax({
+        type: "GET",
+        url: "/api/v1/users/category/search/" + staff + userQuery,
+        success: function (response) {
+            var html = "";
+            for (var i = 0; i < response.length; i++) {
+                html = html + '<option value="' + response[i]['id'] + '" id="staff_option_' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                user_find[response[i]['id']] = response[i];
+            }
+            $('#multiple_staff_select').html(html);
+
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toastr.error(thrownError);
+        }
+    });
+}
+
+$("#staff_select").on('click', function () {
+    if ($("#multiple_staff_select").val() != "") {
+        var staff_table = '';
+        $("#multiple_staff_select").val().forEach(function (element, index) {
+            users.push(parseInt(element));
+            $("#staff_option_" + element).hide(0);
+            staff_table = staff_table + `<tr>
+                    <td>` + user_find[element]['name'] + `</td>
+                    <td>
+                        <select class="role-select" name="role" id="user_role_` + user_find[element]['id'] + `">
+                            <option value="0" selected>thêm</option>
+                            <option value="2" style="font-weight: 700; color: #AA0000" >Loại bỏ</option>
+                        </select>
+                    </td>
+                </tr>`;
+
+        });
+        $('#staff_role_table').append(staff_table);
+
+    }
+})
+
 //____________________________________________________________________________________________________
 
 //____________________________________________________________________________________________________
+
+$('form input').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
 $("#add-form").submit(function (e) {
     e.preventDefault();
 }).validate({
@@ -60,28 +127,19 @@ $("#add-form").submit(function (e) {
         name: {
             required: true,
             minlength: 5
-        },
-        code: {
-            required: true,
-            minlength: 2
         }
     },
     messages: {
         name: {
             required: "Hãy nhập tên phòng ban",
             minlength: "Tên phòng ban ít nhất phải có 5 kí tự"
-        },
-        code: {
-            required: "Hãy nhập mã phòng ban",
-            minlength: "Tên phòng ban ít nhất phải có 2 kí tự"
-        },
+        }
     },
     submitHandler: function (form) {
         var formData = new FormData(form);
         if ($('#eid').val() == '') {
             formData.delete('id');
         }
-
         $.ajax({
             url: form.action,
             type: form.method,
@@ -121,11 +179,9 @@ function getInfo(id) {
     // $('#editPost').modal('show');
     $.ajax({
         type: "GET",
-        url: "/apartments/" + id,
+        url: "/groups/" + id,
         success: function (response) {
             $('#name').val(response.name);
-            $('#code').val(response.code);
-            $('#user_id').val(response.user_id);
             $('#description').val(response.description);
             $('#eid').val(response.id);
         },
@@ -156,7 +212,7 @@ function alDelete(id) {
             if (isConfirm) {
                 $.ajax({
                     type: "delete",
-                    url: "/apartments/" + id,
+                    url: "/groups/" + id,
                     success: function (res) {
                         if (!res.error) {
                             toastr.success('Thành công!');
