@@ -16,7 +16,7 @@ class GroupApiController extends Controller
     public function anyData(Request $request)
     {
 
-        $data = Group::select('ht20_groups.*')->where('status', 0);
+        $data = Group::select('ht20_groups.*')->where('status', 0)->get();
 
         // $products->user;
         return DataTables::of($data)

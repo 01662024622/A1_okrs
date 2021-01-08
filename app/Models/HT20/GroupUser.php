@@ -9,5 +9,5 @@ class GroupUser extends Model
     protected $fillable = [
         'group_id', 'user_id', 'status', 'create_by', 'modify_by'
     ];
-    protected $table = "ht00_group_user";
+    protected $table = "ht20_group_user";
 }

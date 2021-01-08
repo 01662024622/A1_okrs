@@ -140,6 +140,9 @@ $("#add-form").submit(function (e) {
         if ($('#eid').val() == '') {
             formData.delete('id');
         }
+        users.forEach(element=>{
+            formData.append('users[]',element+'_'+$('#user_role_'+element).val())
+        })
         $.ajax({
             url: form.action,
             type: form.method,
@@ -184,6 +187,36 @@ function getInfo(id) {
             $('#name').val(response.name);
             $('#description').val(response.description);
             $('#eid').val(response.id);
+            var users_table = `<tr>
+                                                <th>Nhân viên</th>
+                                                <th>Quyền hạn</th>
+                                            </tr>`;
+            for (var i = 0; i < response.users.length; i++) {
+                users.push(response.users[i]['id'])
+                users_table = users_table + `<tr>
+                    <td>` + response.users[i]['name'] + `</td>
+                    <td>
+                        <select class="role-select" name="role" id="user_role_update_` + response.users[i]['ca_id'] + `">
+                            <option value="0" `
+
+                if (response.users[i]['role'] == 0) users_table = users_table + 'selected';
+
+                users_table = users_table + `>mặc định</option>
+                            <option value="1" style="font-weight: 700; color: #3ED317" `
+
+                if (response.users[i]['role'] == 1) users_table = users_table + 'selected';
+
+                users_table = users_table + `>cho phép</option>
+                            <option value="2" style="font-weight: 700; color: #AA0000" `
+
+                if (response.users[i]['role'] == 2) users_table = users_table + 'selected';
+
+                users_table = users_table + `>Chặn</option>
+                        </select>
+                    </td>
+                </tr>`;
+            }
+            $('#staff_role_table').html(users_table);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);
@@ -233,6 +266,12 @@ function alDelete(id) {
 function clearForm() {
     $('#add-form')[0].reset();
     $('#eid').val('');
+    var users_table = `<tr>
+                                                <th>Nhân viên</th>
+                                                <th>Quyền hạn</th>
+                                            </tr>`;
+    $('#staff_role_table').html(users_table);
+    users=[];
 }
 
 

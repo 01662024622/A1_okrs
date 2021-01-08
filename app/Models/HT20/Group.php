@@ -17,7 +17,8 @@ class Group extends Model
     ];
     public function users()
     {
-
+        return $this->hasManyThrough(User::class, GroupUser::class, 'group_id', 'id', 'id', 'user_id')
+            ->where('ht20_group_user.status',0);
     }
     protected $table = "ht20_groups";
 }

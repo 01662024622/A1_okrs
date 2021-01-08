@@ -35,7 +35,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Tên Nhoms*</label>
+                            <label for="name">Tên Nhóm*</label>
                             <input type="text" class="form-control" id="name" name="name"  placeholder="Nhập tên nhóm...">
                         </div>
                         <div class="form-group">
@@ -47,7 +47,7 @@
                                 <div class="col col-6">
                                     <input type="text" name="apartment_find" id="staff_find_text"
                                            style="width: 150px;" maxlength="30">
-                                    <button id="staff_find">Tìm kiếm</button>
+                                    <button id="staff_find" type="button">Tìm kiếm</button>
                                     <br>
                                     <p>Kết quả tìm kiếm:</p>
                                     <br>
@@ -55,7 +55,7 @@
                                             style="height:160px; width: 210px;">
 
                                     </select>
-                                    <button id="staff_select">Chọn</button>
+                                    <button id="staff_select" type="button">Chọn</button>
                                 </div>
                                 <div class="col col-6">
                                     <table style="width:100%" id="staff_role_table">
