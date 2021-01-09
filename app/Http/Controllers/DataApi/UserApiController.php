@@ -71,7 +71,9 @@ class UserApiController extends Controller
     }
     public function getListUserCategory(Request $request,$query){
         $listUser= (array)$request->input('users');
-
+        if ($query==""){
+            return User::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->get();
+        }
         return User::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->where('name','LIKE','%'.$query.'%')->get();
     }
     public function getListRoleUserCategory($id){

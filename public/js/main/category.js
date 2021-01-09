@@ -31,7 +31,6 @@ $('#staff_find_text').on('keyup', function (event) {
 })
 
 function searchStaff() {
-    if ($('#staff_find_text').val() == '') return
     page.show()
     var userQuery = '';
     if (users.length > 0) {
@@ -67,8 +66,7 @@ $("#staff_select").on('click', function () {
                     <td>` + user_find[element]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="user_role_` + user_find[element]['id'] + `">
-                            <option value="0" selected>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" >Cho phép</option>
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>Cho phép</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" >Chặn</option>
                         </select>
                     </td>
@@ -95,7 +93,6 @@ var apartment_update = [];
 var apartments = [];
 
 function searchApartment() {
-    if ($('#apartment_find_text').val() == '') return
     page.show()
     var apartmentQuery = '';
     if (apartments.length > 0) {
@@ -131,8 +128,7 @@ $("#apartment_select").on('click', function () {
                     <td>` + apartment_find[element]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="apartment_role_` + apartment_find[element]['id'] + `">
-                            <option value="0" selected>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" >Cho phép</option>
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>Cho phép</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" >Chặn</option>
                         </select>
                     </td>
@@ -209,14 +205,9 @@ $('#apartment_toggle').on('click', function () {
                     <td>` + response[i]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="apartment_role_update_` + response[i]['ca_id'] + `">
-                            <option value="0" `
+                            <option value="0" style="font-weight: 700; color: #3ED317" `
 
                 if (response[i]['role'] == 0) apartment_table = apartment_table + 'selected';
-
-                apartment_table = apartment_table + `>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" `
-
-                if (response[i]['role'] == 1) apartment_table = apartment_table + 'selected';
 
                 apartment_table = apartment_table + `>cho phép</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" `
@@ -258,14 +249,9 @@ $('#staff_toggle').on('click', function () {
                     <td>` + response[i]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="user_role_update_` + response[i]['ca_id'] + `">
-                            <option value="0" `
+                            <option value="0" style="font-weight: 700; color: #3ED317" `
 
                 if (response[i]['role'] == 0) users_table = users_table + 'selected';
-
-                users_table = users_table + `>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" `
-
-                if (response[i]['role'] == 1) users_table = users_table + 'selected';
 
                 users_table = users_table + `>cho phép</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" `

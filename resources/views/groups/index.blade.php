@@ -13,6 +13,7 @@
         <tr>
             <th>ID</th>
             <th>Tên nhóm</th>
+            <th>Người dùng</th>
             <th>Chú Thích</th>
             <th>Hành Động</th>
         </tr>

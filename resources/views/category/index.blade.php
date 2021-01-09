@@ -580,8 +580,7 @@
                                                 <td>Nhân Viên</td>
                                                 <td>
                                                     <select class="role-select" name="role" id="role">
-                                                        <option value="0">mặc định</option>
-                                                        <option value="1" style="font-weight: 700; color: #3ED317">cho
+                                                        <option value="0" style="font-weight: 700; color: #3ED317" selected>cho
                                                             phép
                                                         </option>
                                                         <option value="2" style="font-weight: 700; color: #AA0000">khóa

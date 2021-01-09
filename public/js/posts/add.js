@@ -59,7 +59,6 @@ $('#staff_find_text').on('keyup', function (event) {
 
 function searchStaff() {
     var staff = $('#staff_find_text').val()
-    if (staff == '') staff = ''
     page.show()
     var userQuery = '';
     if (users.length > 0) {
@@ -94,8 +93,7 @@ $("#staff_select").on('click', function () {
                     <td>` + user_find[element]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="user_role_` + user_find[element]['id'] + `">
-                            <option value="0" selected>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" >Cho phép</option>
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>Cho phép</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" >Chặn</option>
                         </select>
                     </td>
@@ -120,8 +118,6 @@ var apartment_find = [];
 
 function searchApartment() {
     var apartment = $('#apartment_find_text').val();
-    if (apartment == '') apartment = ' ';
-
     page.show()
     var apartmentQuery = '';
     if (apartments.length > 0) {
@@ -156,8 +152,7 @@ $("#apartment_select").on('click', function () {
                     <td>` + apartment_find[element]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="apartment_role_` + apartment_find[element]['id'] + `">
-                            <option value="0" selected>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" >Cho phép</option>
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>Cho phép</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" >Chặn</option>
                         </select>
                     </td>

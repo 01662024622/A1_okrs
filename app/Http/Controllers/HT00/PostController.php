@@ -80,12 +80,16 @@ class PostController extends ResouceController
         $postId = DB::select('SELECT id FROM ht00_posts ct WHERE role < 3 AND status=0 AND id NOT IN(
                 SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=2 AND us.user_id=' . $user->id . ' UNION
                 SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=2 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
-                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=1 and us.user_id=' . $user->id . '))
+                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=0 and us.user_id=' . $user->id . '))
                 UNION
                 SELECT id FROM ht00_posts WHERE role = 3 AND id IN(
-                SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=1 AND us.user_id=' . $user->id . ' UNION
-                SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=1 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
-                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=2 and us.user_id=' . $user->id . '))');
+                SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=0 AND us.user_id=' . $user->id . ' UNION
+                SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=0 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
+                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=2 and us.user_id=' . $user->id . '))
+                UNION
+                SELECT id FROM ht00_posts WHERE role = 2 AND id IN(
+                SELECT category_id FROM ht00_post_group pg JOIN ht20_group_user gu ON pg.group_id=gu.id JOIN ht20_users us ON us.id = gu.user_id WHERE us.id=' . $user->id . ' AND gu.`status`=0 and pg.role=0
+                )');
 
         $array = [];
         foreach ($postId as $id) {

@@ -25,7 +25,7 @@
                             Điền url ở đây nếu có...
                         </div>
                         <div class="col-9">
-                            <textarea id="embed" cols="5" rows="3"></textarea>
+                            <textarea id="embed" cols="5" rows="3">{{$post->embed}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -78,11 +78,8 @@
                                                     <td>
                                                         <select class="role-select" name="role"
                                                                 id="apartment_role_{{$apartment->id}}">
-                                                            <option value="0" @if ($apartment->role==0) selected @endif>
-                                                                mặc định
-                                                            </option>
-                                                            <option value="1" style="font-weight: 700; color: #3ED317"
-                                                                    @if ($apartment->role==1) selected @endif>Cho phép
+                                                            <option value="0" style="font-weight: 700; color: #3ED317"
+                                                                    @if ($apartment->role==0) selected @endif>Cho phép
                                                             </option>
                                                             <option value="2" style="font-weight: 700; color: #AA0000"
                                                                     @if ($apartment->role==2) selected @endif>Chặn
@@ -122,11 +119,8 @@
                                                     <td>
                                                         <select class="role-select" name="role"
                                                                 id="user_role_{{$user->id}}">
-                                                            <option value="0" @if ($user->role==0) selected @endif>mặc
-                                                                định
-                                                            </option>
-                                                            <option value="1" style="font-weight: 700; color: #3ED317"
-                                                                    @if ($user->role==1) selected @endif>Cho phép
+                                                            <option value="0" style="font-weight: 700; color: #3ED317"
+                                                                    @if ($user->role==0) selected @endif>Cho phép
                                                             </option>
                                                             <option value="2" style="font-weight: 700; color: #AA0000"
                                                                     @if ($user->role==2) selected @endif>Chặn

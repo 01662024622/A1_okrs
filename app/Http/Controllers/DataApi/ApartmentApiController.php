@@ -46,7 +46,9 @@ class ApartmentApiController extends Controller
     }
     public function getListApartmentCategory(Request $request,$query){
         $listUser= (array)$request->input('apartments');
-
+        if ($query==""){
+            return Apartment::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->get();
+        }
         return Apartment::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->where('name','LIKE','%'.$query.'%')->get();
     }
     public function getListRoleApartmentCategory($id){

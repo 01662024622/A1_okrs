@@ -34,15 +34,20 @@ class AppServiceProvider extends ServiceProvider
                 $apartment_user = Apartment::select('id')->where('status', 0)->where('user_id', Auth::id())->get()->pluck('id')->toArray();
                 $view->with('apartment_user', $apartment_user);
                 $user = Auth::user();
-                $categoriesId = DB::select('SELECT id FROM ht00_categories ct WHERE role < 2 AND id NOT IN(
+                $categoriesId = DB::select('SELECT id FROM ht00_categories ct WHERE role = 0 AND id NOT IN(
                 SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=2 AND us.user_id=' . $user->id . ' UNION
                 SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=2 and ap.apartment_id=' . $user->apartment_id . ' AND ap.category_id NOT IN(
-                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=1 and us.user_id=' . $user->id . '))
+                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=0 and us.user_id=' . $user->id . '))
                 UNION
                 SELECT id FROM ht00_categories WHERE role = 2 AND id IN(
-                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=1 AND us.user_id=' . $user->id . ' UNION
-                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=1 and ap.apartment_id=' . $user->apartment_id . ' AND ap.category_id NOT IN(
-                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=2 and us.user_id=' . $user->id . '))');
+                SELECT DISTINCT(category_id) as id FROM ht00_category_user us where us.role=0 AND us.user_id=' . $user->id . ' UNION
+                SELECT ap.category_id as id FROM ht00_category_apartment ap where ap.role=0 and ap.apartment_id=' . $user->apartment_id . ' AND ap.category_id NOT IN(
+                SELECT us.category_id as id FROM ht00_category_user us WHERE us.role=2 and us.user_id=' . $user->id . '))
+                UNION
+                SELECT id FROM ht00_categories WHERE role = 2 AND id IN(
+                SELECT category_id FROM ht00_category_group cg JOIN ht20_group_user gu ON cg.group_id=gu.id JOIN ht20_users us ON us.id = gu.user_id WHERE us.id=' . $user->id . ' AND gu.`status`=0 and cg.role=0
+                )
+                ');
                 $array = [];
                 foreach ($categoriesId as $id) {
                     array_push($array, $id->id);

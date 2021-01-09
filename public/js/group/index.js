@@ -26,6 +26,7 @@ var dataTable = $('#users-table').DataTable({
     columns: [
         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         {data: 'name', name: 'name'},
+        {data: 'users', name: 'users'},
         {data: 'description', name: 'description'},
         {data: 'action', name: 'action'},
     ],
@@ -63,7 +64,6 @@ $('#staff_find_text').on('keyup', function (event) {
 
 function searchStaff() {
     var staff = $('#staff_find_text').val()
-    if (staff == '') staff = ''
     page.show()
     var userQuery = '';
     if (users.length > 0) {
@@ -136,6 +136,7 @@ $("#add-form").submit(function (e) {
         }
     },
     submitHandler: function (form) {
+        page.show()
         var formData = new FormData(form);
         if ($('#eid').val() == '') {
             formData.delete('id');
@@ -161,6 +162,7 @@ $("#add-form").submit(function (e) {
                 }, 1000);
                 $("#add-modal").modal('toggle');
                 dataTable.ajax.reload(null, false);
+                page.hide()
             }, error: function (xhr, ajaxOptions, thrownError) {
                 if (xhr != null) {
                     if (xhr.responseJSON != null) {
@@ -178,12 +180,14 @@ $("#add-form").submit(function (e) {
 
 // get data for form update
 function getInfo(id) {
+    page.show()
     console.log(id);
     // $('#editPost').modal('show');
     $.ajax({
         type: "GET",
         url: "/groups/" + id,
         success: function (response) {
+            page.hide()
             $('#name').val(response.name);
             $('#description').val(response.description);
             $('#eid').val(response.id);
@@ -197,21 +201,16 @@ function getInfo(id) {
                     <td>` + response.users[i]['name'] + `</td>
                     <td>
                         <select class="role-select" name="role" id="user_role_update_` + response.users[i]['ca_id'] + `">
-                            <option value="0" `
+                            <option value="0" style="font-weight: 700; color: #3ED317" `
 
                 if (response.users[i]['role'] == 0) users_table = users_table + 'selected';
 
-                users_table = users_table + `>mặc định</option>
-                            <option value="1" style="font-weight: 700; color: #3ED317" `
-
-                if (response.users[i]['role'] == 1) users_table = users_table + 'selected';
-
-                users_table = users_table + `>cho phép</option>
+                users_table = users_table + `>thêm</option>
                             <option value="2" style="font-weight: 700; color: #AA0000" `
 
                 if (response.users[i]['role'] == 2) users_table = users_table + 'selected';
 
-                users_table = users_table + `>Chặn</option>
+                users_table = users_table + `>Loại bỏ</option>
                         </select>
                     </td>
                 </tr>`;
@@ -242,11 +241,13 @@ function alDelete(id) {
             // closeOnConfirm: false,
         },
         function (isConfirm) {
+            page.show()
             if (isConfirm) {
                 $.ajax({
                     type: "delete",
                     url: "/groups/" + id,
                     success: function (res) {
+                        page.hide()
                         if (!res.error) {
                             toastr.success('Thành công!');
                             $('#data-' + id).remove();

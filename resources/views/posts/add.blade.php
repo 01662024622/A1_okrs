@@ -117,7 +117,7 @@
                             <span>
                                 <select id="role" name="role">
                                     <option value="0">Công khai</option>
-                                    <option value="2">Khóa chọn</option>
+                                    <option value="2" selected>Khóa chọn</option>
                                     <option value="3">Tạm lưu</option>
                                 </select>
                             </span>
