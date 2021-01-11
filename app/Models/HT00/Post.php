@@ -3,6 +3,7 @@
 namespace App\Models\HT00;
 
 use App\Models\HT20\Apartment;
+use App\Models\HT20\Group;
 use App\Models\HT20\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,6 +38,11 @@ class Post extends Model
     {
         return $this->hasManyThrough(Apartment::class, PostApartment::class, 'post_id', 'id', 'id', 'apartment_id')
             ->select(['ht20_apartments.id','ht20_apartments.name','ht00_post_apartment.role']);
+    }
+    public function groups()
+    {
+        return $this->hasManyThrough(Group::class, PostGroup::class, 'post_id', 'id', 'id', 'group_id')->where('ht00_post_group.role',0)
+            ->select(['ht20_groups.id','ht20_groups.name']);
     }
 
 }

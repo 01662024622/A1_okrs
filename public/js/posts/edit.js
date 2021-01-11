@@ -66,11 +66,11 @@ function searchStaff() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/users/category/search/" + staff + userQuery,
+        url: "/api/v1/users/search/" + staff + userQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
-                html = html + '<option value="' + response[i]['id'] + '" id="staff_option_' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                html = html + '<option value="' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
                 user_find[response[i]['id']] = response[i];
             }
             $('#multiple_staff_select').html(html);
@@ -88,7 +88,7 @@ $("#staff_select").on('click', function () {
         var staff_table = '';
         $("#multiple_staff_select").val().forEach(function (element, index) {
             users.push(parseInt(element));
-            $("#staff_option_" + element).hide(0);
+            $("#multiple_staff_select option[value='"+element+"']").remove();
             staff_table = staff_table + `<tr>
                     <td>` + user_find[element]['name'] + `</td>
                     <td>
@@ -126,11 +126,11 @@ function searchApartment() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/apartments/category/search/" + apartment + apartmentQuery,
+        url: "/api/v1/apartments/search/" + apartment + apartmentQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
-                html = html + '<option value="' + response[i]['id'] + '" id="staff_option_' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                html = html + '<option value="' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
                 apartment_find[response[i]['id']] = response[i];
             }
             $('#multiple_apartment_select').html(html);
@@ -148,7 +148,8 @@ $("#apartment_select").on('click', function () {
         var apartment_table = '';
         $("#multiple_apartment_select").val().forEach(function (element, index) {
             apartments.push(parseInt(element));
-            $("#staff_option_" + element).hide(0);
+            // $("#staff_option_" + element).hide(0);
+            $("#multiple_apartment_select option[value='"+element+"']").remove();
             apartment_table = apartment_table + `<tr>
                     <td>` + apartment_find[element]['name'] + `</td>
                     <td>
@@ -164,6 +165,64 @@ $("#apartment_select").on('click', function () {
 
     }
 })
+
+var group_find = [];
+var groups = [];
+$('#group_find').on('click', function () {
+    searchGroup();
+})
+$('#group_find_text').on('keyup', function (event) {
+    if (event.key === "Enter") {
+        searchGroup()
+    }
+})
+
+function searchGroup() {
+    page.show()
+    var apartmentQuery = '';
+    if (groups.length > 0) {
+        apartmentQuery = '?groups[]=' + groups.join('&groups[]=');
+    }
+    $.ajax({
+        type: "GET",
+        url: "/api/v1/groups/search/" + $('#group_find_text').val() + apartmentQuery,
+        success: function (response) {
+            var html = "";
+            for (var i = 0; i < response.length; i++) {
+                html = html + '<option value="' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                group_find[response[i]['id']] = response[i];
+            }
+            $('#multiple_group_select').html(html);
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toastr.error(thrownError);
+        }
+    });
+}
+$("#group_select").on('click', function () {
+    if ($("#multiple_group_select").val() != "") {
+        var group_table = '';
+        $("#multiple_group_select").val().forEach(function (element, index) {
+            groups.push(parseInt(element));
+            $("#multiple_group_select option[value='"+element+"']").remove();
+            group_table = group_table + `<tr>
+                    <td>` + group_find[element]['name'] + `</td>
+                    <td>
+                        <select class="role-select" name="role" id="group_role_` + group_find[element]['id'] + `">
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>Cho phép</option>
+                            <option value="2" style="font-weight: 700; color: #AA0000" >Xóa</option>
+                        </select>
+                    </td>
+                </tr>`;
+
+        });
+        $('#group_role_table').append(group_table);
+
+    }
+})
+
+
 
 $('#save-posts').on('click', function () {
     save($('#role').val())
@@ -195,6 +254,11 @@ function save(role) {
     if (apartments.length > 0) {
         apartments.forEach(element => {
             formData.append('apartments[]', element + '_' + $("#apartment_role_" + element).val());
+        })
+    }
+    if (groups.length > 0) {
+        groups.forEach(element => {
+            formData.append('groups[]', element + '_' + $("#group_role_" + element).val());
         })
     }
     if (categories.length > 0) {

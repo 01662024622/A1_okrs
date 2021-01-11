@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HT00;
 
 use App\Http\Controllers\Base\ResouceController;
 use App\Models\HT00\CategoryApartment;
+use App\Models\HT00\CategoryGroup;
 use App\Models\HT00\CategoryUser;
 use App\Models\HT00\Post;
 use App\Services\HT00\CategoryService;
@@ -89,6 +90,16 @@ class CategoryController extends ResouceController
                 $new_apartment['category_id'] = (int)$category->id;
                 $new_apartment['create_by'] = Auth::id();
                 CategoryApartment::create($new_apartment);
+            }
+        }
+        if ($request->has('groups')) {
+            $groups = $request->groups;
+            foreach ($groups as $group) {
+                $arr = explode("_", $group);
+                CategoryGroup::updateOrCreate(
+                    ['category_id'=>$category->id,'group_id'=>$arr[0]],
+                    ['modify_by'=>Auth::id(),'role'=>$arr[1]]
+                );
             }
         }
         if ($request->has('user_update')) {

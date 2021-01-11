@@ -44,14 +44,14 @@ class ApartmentApiController extends Controller
             ->rawColumns(['action'])
             ->make(true);
     }
-    public function getListApartmentCategory(Request $request,$query){
+    public function getListApartment(Request $request,$query=null){
         $listUser= (array)$request->input('apartments');
-        if ($query==""){
+        if ($query==""||$query==null){
             return Apartment::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->get();
         }
         return Apartment::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->where('name','LIKE','%'.$query.'%')->get();
     }
-    public function getListRoleApartmentCategory($id){
+    public function getListRoleApartment($id){
 //        return $id;
         return CategoryApartment::join('ht20_apartments','ht20_apartments.id','=','ht00_category_apartment.apartment_id')
             ->where('category_id',$id)->get(['ht20_apartments.id','ht00_category_apartment.id as ca_id','ht20_apartments.name','ht00_category_apartment.role']);

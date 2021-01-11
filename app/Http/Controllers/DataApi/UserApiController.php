@@ -69,14 +69,14 @@ class UserApiController extends Controller
         $data = User::find($id)->update(array('role' => $request->role));
         return $data;
     }
-    public function getListUserCategory(Request $request,$query){
+    public function getListUser(Request $request,$query=null){
         $listUser= (array)$request->input('users');
-        if ($query==""){
+        if ($query==""||$query==null){
             return User::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->get();
         }
         return User::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->where('name','LIKE','%'.$query.'%')->get();
     }
-    public function getListRoleUserCategory($id){
+    public function getListRoleUser($id){
         return CategoryUser::join('ht20_users','ht20_users.id','=','ht00_category_user.user_id')
             ->where('category_id',$id)->get(['ht20_users.id','ht00_category_user.id as ca_id','ht20_users.name','ht00_category_user.role']);
     }

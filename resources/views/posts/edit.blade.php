@@ -46,6 +46,9 @@
                                     ban</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#group" id="group_toggle">Nhóm</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#staff" id="staff_toggle">Nhân viên</a>
                             </li>
                         </ul>
@@ -88,6 +91,48 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="group" class="container tab-pane fade"><br>
+                                <div class="row">
+                                    <div class="col col-6">
+                                        <input type="text" name="group_find_text" id="group_find_text"
+                                               style="width: 150px;" maxlength="30">
+                                        <button id="group_find">Tìm kiếm</button>
+                                        <br>
+                                        <br>
+                                        <p>Kết quả tìm kiếm:</p>
+                                        <select multiple="multiple" id="multiple_group_select"
+                                                style="height:160px; width: 210px;">
+
+                                        </select>
+
+                                        <button id="group_select">Chọn</button>
+                                    </div>
+                                    <div class="col col-6">
+                                        <table style="width:100%" id="group_role_table">
+                                            <tr>
+                                                <th>Nhóm</th>
+                                                <th>Quyền hạn</th>
+                                            @foreach($post->groups as $group)
+                                                <tr>
+                                                    <td>{{$group->name}}</td>
+                                                    <td>
+                                                        <select class="role-select" name="role"
+                                                                id="group_role_{{$group->id}}">
+                                                            <option value="0" style="font-weight: 700; color: #3ED317"
+                                                                    @if ($group->role==0) selected @endif>Cho phép
+                                                            </option>
+                                                            <option value="2" style="font-weight: 700; color: #AA0000">
+                                                                Xóa
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                </tr>
                                         </table>
                                     </div>
                                 </div>
@@ -260,16 +305,24 @@
         var users = [];
         var apartments = [];
         var categories = [];
-        @foreach($post->categories as $category)
-        categories.push({{$category->id}})
-        $('#category-{{$category->id}}').prop('checked', true);
-        @endforeach
-        @foreach($post->apartments as $apartment)
-        apartments.push({{$apartment->id}})
-        @endforeach
-        @foreach($post->users as $user)
-        users.push({{$user->id}})
-        @endforeach
+        var groups = [];
+
+
+        $(document).ready(function () {
+            @foreach($post->groups as $group)
+            groups.push({{$group->id}});
+            @endforeach
+            @foreach($post->categories as $category)
+            categories.push({{$category->id}})
+            $('#category-{{$category->id}}').prop('checked', true);
+            @endforeach
+            @foreach($post->apartments as $apartment)
+            apartments.push({{$apartment->id}})
+            @endforeach
+            @foreach($post->users as $user)
+            users.push({{$user->id}})
+            @endforeach
+        });
     </script>
     <script src="{{ asset('js/posts/edit.js') }}"></script>
 

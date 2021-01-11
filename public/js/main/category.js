@@ -38,11 +38,11 @@ function searchStaff() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/users/category/search/" + $('#staff_find_text').val() + userQuery,
+        url: "/api/v1/users/search/" + $('#staff_find_text').val() + userQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
-                html = html + '<option value="' + response[i]['id'] + '" id="staff_option_' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                html = html + '<option value="' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
                 user_find[response[i]['id']] = response[i];
             }
             $('#multiple_staff_select').html(html);
@@ -61,7 +61,7 @@ $("#staff_select").on('click', function () {
         $("#multiple_staff_select").val().forEach(function (element, index) {
             users.push(parseInt(element));
             user_add.push(parseInt(element));
-            $("#staff_option_" + element).hide(0);
+            $("#multiple_staff_select option[value='"+element+"']").remove();
             staff_table = staff_table + `<tr>
                     <td>` + user_find[element]['name'] + `</td>
                     <td>
@@ -100,11 +100,11 @@ function searchApartment() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/apartments/category/search/" + $('#apartment_find_text').val() + apartmentQuery,
+        url: "/api/v1/apartments/search/" + $('#apartment_find_text').val() + apartmentQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
-                html = html + '<option value="' + response[i]['id'] + '" id="staff_option_' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                html = html + '<option value="' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
                 apartment_find[response[i]['id']] = response[i];
             }
             $('#multiple_apartment_select').html(html);
@@ -123,7 +123,7 @@ $("#apartment_select").on('click', function () {
         $("#multiple_apartment_select").val().forEach(function (element, index) {
             apartments.push(parseInt(element));
             apartment_add.push(parseInt(element));
-            $("#staff_option_" + element).hide(0);
+            $("#multiple_apartment_select option[value='"+element+"']").remove();
             apartment_table = apartment_table + `<tr>
                     <td>` + apartment_find[element]['name'] + `</td>
                     <td>
@@ -147,6 +147,7 @@ function getInfo(id) {
     apartment_add = []
     apartment_update = []
     users = []
+    groups = []
     user_add = []
     user_update = []
     apartment_find = []
@@ -192,7 +193,7 @@ $('#apartment_toggle').on('click', function () {
     page.show()
     $.ajax({
         type: "GET",
-        url: "/api/v1/apartments/category/role/" + $('#eid').val(),
+        url: "/api/v1/apartments/role/" + $('#eid').val(),
         success: function (response) {
             var apartment_table = `<tr>
                                                 <th>Phòng ban</th>
@@ -236,7 +237,7 @@ $('#staff_toggle').on('click', function () {
     page.show()
     $.ajax({
         type: "GET",
-        url: "/api/v1/users/category/role/" + $('#eid').val(),
+        url: "/api/v1/users/role/" + $('#eid').val(),
         success: function (response) {
             var users_table = `<tr>
                                                 <th>Nhân viên</th>
@@ -272,6 +273,95 @@ $('#staff_toggle').on('click', function () {
         }
     });
 })
+var group_find = [];
+var groups = [];
+$('#group_find').on('click', function () {
+    searchGroup();
+})
+$('#group_find_text').on('keyup', function (event) {
+    if (event.key === "Enter") {
+        searchGroup()
+    }
+})
+
+function searchGroup() {
+    page.show()
+    var apartmentQuery = '';
+    if (groups.length > 0) {
+        apartmentQuery = '?groups[]=' + groups.join('&groups[]=');
+    }
+    $.ajax({
+        type: "GET",
+        url: "/api/v1/groups/search/" + $('#group_find_text').val() + apartmentQuery,
+        success: function (response) {
+            var html = "";
+            for (var i = 0; i < response.length; i++) {
+                html = html + '<option value="' + response[i]['id'] + '">' + response[i]['name'] + '</option>';
+                group_find[response[i]['id']] = response[i];
+            }
+            $('#multiple_group_select').html(html);
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toastr.error(thrownError);
+        }
+    });
+}
+$('#group_toggle').on('click', function () {
+    if ($('#eid').val() == '') return
+    if (groups.length > 0) return
+    page.show()
+    $.ajax({
+        type: "GET",
+        url: "/api/v1/groups/role/" + $('#eid').val(),
+        success: function (response) {
+            var group_table = `<tr>
+                                                <th>Nhóm</th>
+                                                <th>Quyền hạn</th>
+                                            </tr>`;
+            for (var i = 0; i < response.length; i++) {
+                groups.push(response[i]['id'])
+                group_table = group_table + `<tr>
+                    <td>` + response[i]['name'] + `</td>
+                    <td>
+                        <select class="role-select" name="role" id="group_role_` + response[i]['ca_id'] + `">
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>cho phép</option>
+                            <option value="2" style="font-weight: 700; color: #AA0000">Xóa</option>
+                        </select>
+                    </td>
+                </tr>`;
+            }
+            $('#group_role_table').html(group_table);
+
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toastr.error(thrownError);
+        }
+    });
+})
+$("#group_select").on('click', function () {
+    if ($("#multiple_group_select").val() != "") {
+        var group_table = '';
+        $("#multiple_group_select").val().forEach(function (element, index) {
+            groups.push(parseInt(element));
+            $("#multiple_group_select option[value='"+element+"']").remove();
+            group_table = group_table + `<tr>
+                    <td>` + group_find[element]['name'] + `</td>
+                    <td>
+                        <select class="role-select" name="role" id="group_role_` + group_find[element]['id'] + `">
+                            <option value="0" style="font-weight: 700; color: #3ED317" selected>Cho phép</option>
+                            <option value="2" style="font-weight: 700; color: #AA0000" >Xóa</option>
+                        </select>
+                    </td>
+                </tr>`;
+
+        });
+        $('#group_role_table').append(group_table);
+
+    }
+})
+
 
 function add_new_sub(id) {
     $('#eid').val('');
@@ -291,6 +381,7 @@ function add_new_sub(id) {
     apartment_add = [];
     apartment_update = [];
     users = [];
+    groups = [];
     user_add = [];
     user_update = [];
     var users_table = `<tr>
@@ -299,6 +390,12 @@ function add_new_sub(id) {
                                             </tr>`;
 
     $('#staff_role_table').html(users_table);
+    var group_table = `<tr>
+                                                <th>Nhóm</th>
+                                                <th>Quyền hạn</th>
+                                            </tr>`;
+
+    $('#group_role_table').html(group_table);
     var apartment_table = `<tr>
                                                 <th>Phòng ban</th>
                                                 <th>Quyền hạn</th>
@@ -328,6 +425,7 @@ function add_new() {
     apartment_add = [];
     apartment_update = [];
     users = [];
+    groups = [];
     user_add = [];
     user_update = [];
     var users_table = `<tr>
@@ -336,6 +434,12 @@ function add_new() {
                                             </tr>`;
 
     $('#staff_role_table').html(users_table);
+    var group_table = `<tr>
+                                                <th>Nhóm</th>
+                                                <th>Quyền hạn</th>
+                                            </tr>`;
+
+    $('#group_role_table').html(group_table);
     var apartment_table = `<tr>
                                                 <th>Phòng ban</th>
                                                 <th>Quyền hạn</th>
@@ -378,6 +482,11 @@ $("#save").on('click', function () {
     if (user_update.length > 0) {
         user_update.forEach(element => {
             formData.append('user_update[]', element + '_' + $("#user_role_update_" + element).val());
+        })
+    }
+    if (groups.length > 0) {
+        groups.forEach(element => {
+            formData.append('groups[]', element + '_' + $("#group_role_" + element).val());
         })
     }
     if (apartment_add.length > 0) {

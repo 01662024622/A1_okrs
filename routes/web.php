@@ -92,11 +92,14 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('report/review/feedback/customer/table', 'DataApi\ReportApiController@feedbackCustomerData')->name('report_feedback_customer.api.data');
     Route::get('report/review/feedback/customer/manager/table', 'DataApi\ReportApiController@feedbackCustomerDataManager')->name('report_feedback_customer_manager.api.data');
 //    HT00
-    Route::get('users/category/search/{query}', 'DataApi\UserApiController@getListUserCategory')->name('get_list_user_category.api.data');
-    Route::get('users/category/role/{id}', 'DataApi\UserApiController@getListRoleUserCategory')->name('get_list_role_user_category.api.data');
+    Route::get('users/search/{query?}', 'DataApi\UserApiController@getListUser')->name('get_list_user_category.api.data');
+    Route::get('users/role/{id}', 'DataApi\UserApiController@getListRoleUser')->name('get_list_role_user_category.api.data');
 
-    Route::get('apartments/category/search/{query}', 'DataApi\ApartmentApiController@getListApartmentCategory')->name('get_list_apartment_category.api.data');
-    Route::get('apartments/category/role/{id}', 'DataApi\ApartmentApiController@getListRoleApartmentCategory')->name('get_list_apartment_category.api.data');
+    Route::get('apartments/search/{query?}', 'DataApi\ApartmentApiController@getListApartment')->name('get_list_apartment_category.api.data');
+    Route::get('apartments/role/{id}', 'DataApi\ApartmentApiController@getListRoleApartment')->name('get_list_apartment_category.api.data');
+
+    Route::get('groups/search/{query?}', 'DataApi\GroupApiController@getListGroup')->name('get_list_apartment_category.api.data');
+    Route::get('groups/role/{id}', 'DataApi\GroupApiController@getListRoleGroup')->name('get_list_apartment_category.api.data');
 
     Route::get('posts/table', 'DataApi\PostApiController@anyData')->name('posts.api.data');
 });

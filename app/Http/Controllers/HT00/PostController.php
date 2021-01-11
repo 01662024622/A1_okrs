@@ -8,6 +8,7 @@ use App\Models\HT00\Category;
 use App\Models\HT00\Post;
 use App\Models\HT00\PostApartment;
 use App\Models\HT00\PostCategory;
+use App\Models\HT00\PostGroup;
 use App\Models\HT00\PostUser;
 use App\Services\HT00\PostService;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class PostController extends ResouceController
         $post->categories->makeHidden(['laravel_through_key']);
         $post->users->makeHidden(['laravel_through_key']);
         $post->apartments->makeHidden(['laravel_through_key']);
-
+        $post->groups->makeHidden(['laravel_through_key']);
         return view('posts.edit')->with(['categories'=>$categories,'post'=>$post]);
     }
     public function store(Request $request){
@@ -64,6 +65,15 @@ class PostController extends ResouceController
                 );
             }
         }
+        if ($request->has('groups')){
+            foreach ($request->groups as $group){
+                $arr = explode("_", $group);
+                PostGroup::updateOrCreate(
+                    ['post_id'=>$posts->id,'group_id'=>$arr[0]],
+                    ['modify_by'=>Auth::id(),'role'=>$arr[1]]
+                );
+            }
+        }
         if ($request->has('users')){
             foreach ($request->users as $user){
                 $arr = explode("_", $user);
@@ -85,16 +95,17 @@ class PostController extends ResouceController
                 SELECT id FROM ht00_posts WHERE role = 3 AND id IN(
                 SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=0 AND us.user_id=' . $user->id . ' UNION
                 SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=0 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
-                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=2 and us.user_id=' . $user->id . '))
-                UNION
-                SELECT id FROM ht00_posts WHERE role = 2 AND id IN(
-                SELECT category_id FROM ht00_post_group pg JOIN ht20_group_user gu ON pg.group_id=gu.id JOIN ht20_users us ON us.id = gu.user_id WHERE us.id=' . $user->id . ' AND gu.`status`=0 and pg.role=0
-                )');
+                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=2 and us.user_id=' . $user->id . '))');
 
+//        $postGroupId = DB::select('SELECT pg.post_id as id FROM ht00_post_group pg JOIN ht20_group_user gu ON pg.group_id=gu.group_id JOIN ht20_groups g ON pg.group_id=g.id WHERE pg.role=0 AND gu.`status`=0 AND g.`status`=0 AND gu.user_id=' . $user->id . ' AND pg.post_id NOT IN(
+//                        SELECT post_id FROM ht00_post_user pu WHERE pu.user_id=' . $user->id . ' AND pu.role=2)');
         $array = [];
         foreach ($postId as $id) {
             array_push($array, $id->id);
         }
+//        foreach ($postGroupId as $id) {
+//            array_push($array, $id->id);
+//        }
         $post=Post::where('slug',$slug)->first();
         if (in_array($post->id,$array)) {
             return view('posts.show',['post'=>$post]);

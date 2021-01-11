@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\DataApi;
 
 use App\Http\Controllers\Controller;
+use App\Models\HT00\CategoryGroup;
 use App\Models\HT20\Group;
+use App\Models\HT20\GroupUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -37,11 +39,16 @@ class GroupApiController extends Controller
             ->rawColumns(['action','users'])
             ->make(true);
     }
-    public function getListUserCategory(Request $request,$query){
-        $listUser= (array)$request->input('users');
-        if ($query==""){
-            return Group::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->get();
+    public function getListGroup(Request $request,$query=null){
+        $listGroup= (array)$request->input('apartments');
+        if ($query==""||$query==null){
+            return Group::select('name','id')->where('status',0)->whereNotIn('id',$listGroup)->get();
         }
-        return Group::select('name','id')->where('status',0)->whereNotIn('id',$listUser)->where('name','LIKE','%'.$query.'%')->get();
+        return Group::select('name','id')->where('status',0)->whereNotIn('id',$listGroup)->where('name','LIKE','%'.$query.'%')->get();
+    }
+    public function getListRoleGroup($id){
+//        return $id;
+        return CategoryGroup::join('ht20_groups','ht20_groups.id','=','ht00_category_group.group_id')
+            ->where('category_id',$id)->where('ht00_category_group.role',0)->get(['ht20_groups.id','ht20_groups.name','ht00_category_group.role']);
     }
 }

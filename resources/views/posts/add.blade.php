@@ -45,6 +45,9 @@
                                     ban</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#group" id="group_toggle">Nhóm</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#staff" id="staff_toggle">Nhân viên</a>
                             </li>
                         </ul>
@@ -69,6 +72,32 @@
                                         <table style="width:100%" id="apartment_role_table">
                                             <tr>
                                                 <th>Phòng ban</th>
+                                                <th>Quyền hạn</th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="group" class="container tab-pane fade"><br>
+                                <div class="row">
+                                    <div class="col col-6">
+                                        <input type="text" name="group_find_text" id="group_find_text"
+                                               style="width: 150px;" maxlength="30">
+                                        <button id="group_find">Tìm kiếm</button>
+                                        <br>
+                                        <br>
+                                        <p>Kết quả tìm kiếm:</p>
+                                        <select multiple="multiple" id="multiple_group_select"
+                                                style="height:160px; width: 210px;">
+
+                                        </select>
+
+                                        <button id="group_select">Chọn</button>
+                                    </div>
+                                    <div class="col col-6">
+                                        <table style="width:100%" id="group_role_table">
+                                            <tr>
+                                                <th>Nhóm</th>
                                                 <th>Quyền hạn</th>
                                             </tr>
                                         </table>
