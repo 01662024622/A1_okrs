@@ -188,6 +188,9 @@ function getInfo(id) {
 }
 
 $('#apartment_toggle').on('click', function () {
+    $('#multiple_staff_select').html('');
+    $('#multiple_apartment_select').html('');
+    $('#multiple_group_select').html('');
     if ($('#eid').val() == '') return
     if (apartments.length > 0) return
     page.show()
@@ -232,6 +235,9 @@ $('#apartment_toggle').on('click', function () {
 })
 
 $('#staff_toggle').on('click', function () {
+    $('#multiple_staff_select').html('');
+    $('#multiple_apartment_select').html('');
+    $('#multiple_group_select').html('');
     if ($('#eid').val() == '') return
     if (users.length > 0) return
     page.show()
@@ -308,6 +314,9 @@ function searchGroup() {
     });
 }
 $('#group_toggle').on('click', function () {
+    $('#multiple_staff_select').html('');
+    $('#multiple_apartment_select').html('');
+    $('#multiple_group_select').html('');
     if ($('#eid').val() == '') return
     if (groups.length > 0) return
     page.show()

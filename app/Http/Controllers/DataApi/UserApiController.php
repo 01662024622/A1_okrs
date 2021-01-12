@@ -16,10 +16,11 @@ class UserApiController extends Controller
 {
 
     private $arrRole = array(0 => 'Khóa', 50 =>'Nhân viên', 100 => 'Quản lý');
+    private $arrKeyRole = array(0 , 50 , 100);
 
     function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('auth');
     }
 
     public function anyData(Request $request)
@@ -59,7 +60,7 @@ class UserApiController extends Controller
 
     public function status(Request $request, $id)
     {
-        if (!in_array($request->role, $this->arrRole)) {
+        if (!in_array($request->role, $this->arrKeyRole)) {
             return response()
                 ->json([
                     'code' => 400,

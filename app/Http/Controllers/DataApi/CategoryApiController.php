@@ -14,7 +14,7 @@ class CategoryApiController extends Controller
 {
     function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('auth');
     }
 
     public function anyData(Request $request)

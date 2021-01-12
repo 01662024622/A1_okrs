@@ -97,15 +97,15 @@ class PostController extends ResouceController
                 SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=0 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
                 SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=2 and us.user_id=' . $user->id . '))');
 
-//        $postGroupId = DB::select('SELECT pg.post_id as id FROM ht00_post_group pg JOIN ht20_group_user gu ON pg.group_id=gu.group_id JOIN ht20_groups g ON pg.group_id=g.id WHERE pg.role=0 AND gu.`status`=0 AND g.`status`=0 AND gu.user_id=' . $user->id . ' AND pg.post_id NOT IN(
-//                        SELECT post_id FROM ht00_post_user pu WHERE pu.user_id=' . $user->id . ' AND pu.role=2)');
+        $postGroupId = DB::select('SELECT pg.post_id as id FROM ht00_post_group pg JOIN ht20_group_user gu ON pg.group_id=gu.group_id JOIN ht20_groups g ON pg.group_id=g.id WHERE pg.role=0 AND gu.`status`=0 AND g.`status`=0 AND gu.user_id=' . $user->id . ' AND pg.post_id NOT IN(
+                        SELECT post_id FROM ht00_post_user pu WHERE pu.user_id=' . $user->id . ' AND pu.role=2)');
         $array = [];
         foreach ($postId as $id) {
-            array_push($array, $id->id);
+            array_push($array, (int)$id->id);
         }
-//        foreach ($postGroupId as $id) {
-//            array_push($array, $id->id);
-//        }
+        foreach ($postGroupId as $id) {
+                array_push($array, (int)$id->id);
+        }
         $post=Post::where('slug',$slug)->first();
         if (in_array($post->id,$array)) {
             return view('posts.show',['post'=>$post]);

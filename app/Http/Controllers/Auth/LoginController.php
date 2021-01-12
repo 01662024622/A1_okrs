@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -19,7 +20,10 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+
+    use AuthenticatesUsers{
+        login as protected  loginByEmail;
+    }
 
     /**
      * Where to redirect users after login.
@@ -38,13 +42,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    //  public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->only('email', 'password');
+    public function login(Request $request)
+    {
+        if (!strpos($request->email, '@htauto.com.vn')){
+            $request->merge(['email'=>$request->email.'@htauto.com.vn']);
+            return $this->loginByEmail($request);
+        }else return $this->loginByEmail($request);
+    }
 
-    //     if (Auth::attempt($credentials)) {
-    //         // Authentication passed...
-    //         return redirect()->intended('dashboard');
-    //     }
-    // }
 }

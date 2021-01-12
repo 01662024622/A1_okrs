@@ -71,7 +71,7 @@ function searchStaff() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/users/category/search/" + staff + userQuery,
+        url: "/api/v1/users/search/" + staff + userQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {

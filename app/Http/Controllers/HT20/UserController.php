@@ -15,7 +15,7 @@ class UserController extends ResouceController
 {
     function __construct(UserService $userService)
     {
-        $this->middleware('admin');
+        $this->middleware('auth');
         parent::__construct($userService, array('active' => 'users', 'group' => 'manager'));
         View::share('apartments', Apartment::where('status', 0)->get());
     }
@@ -34,6 +34,7 @@ class UserController extends ResouceController
             $data['authentication'] = md5($data['tagname']);
             $data['password'] = Hash::make("Htauto@123");
         }
+        $data['birth_day'] = Carbon::createFromFormat('d/m/Y', $request->birth_day)->format('Y/m/d');
         return parent::storeRequest($request, $data);
     }
 
