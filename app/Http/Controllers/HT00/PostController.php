@@ -28,7 +28,7 @@ class PostController extends ResouceController
         return view('posts.add')->with(['categories'=>$categories]);
     }
     public function edit($id){
-        $categories = Category::where('status',0)->where('type',0)->get();
+        $categories = Category::where('status',0)->where('type',1)->get();
         $post = Post::find($id);
         $post->categories->makeHidden(['laravel_through_key']);
         $post->users->makeHidden(['laravel_through_key']);
@@ -47,6 +47,15 @@ class PostController extends ResouceController
             $data['avata'] = '/public/storage/' . $name;
         }
         $posts=parent::storeRequest($request,$data);
+        if ($request->has('users')){
+            foreach ($request->users as $user){
+                $arr = explode("_", $user);
+                PostUser::updateOrCreate(
+                    ['post_id'=>$posts->id,'user_id'=>$arr[0]],
+                    ['modify_by'=>Auth::id(),'role'=>$arr[1]]
+                );
+            }
+        }
         if ($request->has('categories')){
             foreach ($request->categories as $category){
                 $arr = explode("_", $category);

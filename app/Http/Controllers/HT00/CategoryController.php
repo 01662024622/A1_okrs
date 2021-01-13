@@ -25,25 +25,30 @@ class CategoryController extends ResouceController
     }
     public function edit($slug){
         $user=Auth::user();
-        $postId = DB::select('SELECT id FROM ht00_posts ct WHERE role < 3 AND status=0 AND id NOT IN(
+        $postId = DB::select('SELECT id FROM ht00_posts ct WHERE role =0 AND status=0 AND id NOT IN(
                 SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=2 AND us.user_id=' . $user->id . ' UNION
                 SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=2 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
-                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=1 and us.user_id=' . $user->id . '))
+                SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=0 and us.user_id=' . $user->id . '))
                 UNION
-                SELECT id FROM ht00_posts WHERE role = 3 AND id IN(
-                SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=1 AND us.user_id=' . $user->id . ' UNION
-                SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=1 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
+                SELECT id FROM ht00_posts WHERE role = 2 AND status=0 AND id IN(
+                SELECT DISTINCT(post_id) as id FROM ht00_post_user us where us.role=0 AND us.user_id=' . $user->id . ' UNION
+                SELECT ap.post_id as id FROM ht00_post_apartment ap where ap.role=0 and ap.apartment_id=' . $user->apartment_id . ' AND ap.post_id NOT IN(
                 SELECT us.post_id as id FROM ht00_post_user us WHERE us.role=2 and us.user_id=' . $user->id . '))');
 
         $array = [];
         foreach ($postId as $id) {
             array_push($array, $id->id);
         }
+        $postGroupId = DB::select('SELECT pg.post_id as id FROM ht00_post_group pg JOIN ht20_group_user gu ON pg.group_id=gu.group_id JOIN ht20_groups g ON pg.group_id=g.id WHERE pg.role=0 AND gu.`status`=0 AND g.`status`=0 AND gu.user_id=' . $user->id . ' AND pg.post_id NOT IN(
+                        SELECT post_id FROM ht00_category_user cu WHERE cu.user_id=' . $user->id . ' AND cu.role=2)');
+        foreach ($postGroupId as $id) {
+            array_push($array, (int)$id->id);
+        }
         $posts=Post::join('ht00_post_category', 'ht00_posts.id', '=', 'ht00_post_category.post_id')
             ->join('ht00_categories', 'ht00_categories.id', '=', 'ht00_post_category.category_id')
             ->where('ht00_categories.slug',$slug)
             ->whereIn('ht00_posts.id',$array)->get(['ht00_posts.slug','ht00_posts.title','ht00_posts.updated_at','ht00_posts.avata']);
-        return view('category.edit',['posts'=>$posts]);
+        return view('category.edit',['posts'=>$posts,'arr'=>$array]);
     }
     public function store(Request $request)
     {

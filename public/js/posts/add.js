@@ -66,7 +66,7 @@ function searchStaff() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/users/category/search/" + staff + userQuery,
+        url: "/api/v1/users/search/" + staff + userQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {
@@ -125,7 +125,7 @@ function searchApartment() {
     }
     $.ajax({
         type: "GET",
-        url: "/api/v1/apartments/category/search/" + apartment + apartmentQuery,
+        url: "/api/v1/apartments/search/" + apartment + apartmentQuery,
         success: function (response) {
             var html = "";
             for (var i = 0; i < response.length; i++) {

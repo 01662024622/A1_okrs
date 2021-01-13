@@ -22,7 +22,9 @@ class GroupApiController extends Controller
         $data = Group::select(DB::raw("ht20_groups.id,ht20_groups.name,ht20_groups.description,GROUP_CONCAT(CONCAT('- ', ht20_users.name) SEPARATOR '<br>') as users"))
             ->leftjoin('ht20_group_user', 'ht20_group_user.group_id', '=', 'ht20_groups.id')
             ->leftjoin('ht20_users', 'ht20_users.id', '=', 'ht20_group_user.user_id')
-            ->where('ht20_groups.status', 0)->get();
+            ->where('ht20_groups.status', 0)
+            ->groupBy('ht20_groups.id')
+            ->get();
 
         // $products->user;
         return DataTables::of($data)

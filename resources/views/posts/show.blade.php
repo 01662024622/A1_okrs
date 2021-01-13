@@ -25,7 +25,7 @@
 @endsection
 @section('js')
     <script type="text/javascript">
-        $( "div#full-screen :first-child" ).css({'width':'100%','height':'auto'})
+        $( "div#full-screen :first-child" ).css({'width':'100%','height':'100vh'})
         function openFullscreen(){
             var embed = $( "div#full-screen :first-child" )[0];
             var rFS = embed.mozRequestFullScreen || embed.webkitRequestFullscreen || embed.requestFullscreen;

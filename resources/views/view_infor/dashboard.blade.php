@@ -6,6 +6,9 @@
 
 @endsection
 @section('content')
+    <div class="container">
+
+
 
     <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -38,7 +41,7 @@
         </a>
 
     </div>
-
+    </div>
 
 @endsection
 
