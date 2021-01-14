@@ -32,7 +32,7 @@
 
                     <div class="products">
                         <h2 class="title">Đánh giá đã được gửi đi thành công</h2>
-                        <div class="item">Xin chân thành cảm ơn?</div>
+                        <div class="item">Xin chân thành cảm ơn!</div>
                         <br><br>
 {{--                        <div class="item">--}}
 {{--                            <span class="price"><a href="/review/user/{{$auth}}" class="btn btn-success" style="color: #fff">Có</a></span>--}}

@@ -10,14 +10,14 @@
     <title>HTAuto</title>
     <link rel="shortcut icon" href="/crop-logo.png">
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="{{asset('/public/css/vendor/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('/public/css/css.css')}}">
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" href="{{asset('/public/css/sweetalert.css')}}">
+    <link rel="stylesheet" href="{{asset('/public/css/toastr.css')}}">
     <link rel="stylesheet" type="text/css" href="/css/main/errors.css">
     @yield('css')
 
@@ -304,19 +304,19 @@
     <div class="loader"></div>
 </div>
 <!-- Bootstrap core JavaScript-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+<script src="{{asset('/public/js/vendor/jquery.min.js')}}"></script>
+<script src="{{asset('/public/js/vendor/popper.min.js')}}"
         integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="{{asset('/public/js/vendor/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 <script src="{{asset('/js/sb-admin-2.min.js')}}"></script>
 <script src="{{asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+<script src="{{asset('/vendor/jquery-easing/toastr.min.js')}}"></script>
+<script src="{{asset('/vendor/jquery-easing/sweetalert.js')}}"></script>
 @yield('js')
 </body>
 

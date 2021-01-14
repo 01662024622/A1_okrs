@@ -25,10 +25,6 @@ Route::get('/review/user/success/{auth}', 'HT10\CustomerController@success');
 Route::get('/home', 'View\ViewAuthenticationController@home')->name('home');
 Route::get('/', 'View\ViewAuthenticationController@home')->name('home');
 
-Route::get('/get-link',
-    function () {
-        return view("intergration.getlink");
-    })->name('getlink');
 
 Route::resource('users', 'HT20\UserController');
 Route::resource('apartments', 'HT20\ApartmentController');
@@ -49,7 +45,7 @@ Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 //Route::get('/customer/feedback/full', 'HT10\CustomerFeedbackController@indexCode');
 //Route::get('/', 'HT10\ReportMarketController@index');
 Route::get('/review/feedback', 'HT10\ReviewViewController@feedbackMe');
-Route::get('/review/feedback/auth/{auth}', 'Authentication\FeedbackViewController@feedbackMeAuth');
+Route::get('/review/feedback/{auth}', 'Authentication\FeedbackViewController@feedbackMeAuth');
 Route::get('/review/feedback/apartment', 'HT10\ReviewViewController@feedbackApartment');
 Route::get('/review/feedback/apartment/auth/{auth}', 'Authentication\FeedbackViewController@feedbackApartmentAuth');
 Route::get('/review/feedback/manager', 'HT10\ReviewViewController@feedbackManager');
