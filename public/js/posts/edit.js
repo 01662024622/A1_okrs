@@ -46,7 +46,6 @@ $.ajaxSetup({
     }
 });
 
-var page = $('#load_page')
 var user_find = [];
 $('#staff_find').on('click', function () {
     searchStaff();

@@ -315,8 +315,11 @@
 <script src="{{asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('/vendor/jquery-easing/toastr.min.js')}}"></script>
-<script src="{{asset('/vendor/jquery-easing/sweetalert.js')}}"></script>
+<script src="{{asset('js/vendor/toastr.min.js')}}"></script>
+<script src="{{asset('js/vendor/sweetalert.js')}}"></script>
+<script>
+    var page = $('#load_page');
+</script>
 @yield('js')
 </body>
 

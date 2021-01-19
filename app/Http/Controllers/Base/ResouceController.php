@@ -10,15 +10,14 @@ class ResouceController extends Controller
 {
 	protected $service;
 	protected $table;
-	function __construct(ServiceInterface $service,array $arr) {
+	protected $blade;
+	function __construct(ServiceInterface $service,array $arr,$blade='.index') {
 		$this->service = $service;
-		foreach($arr as $key => $val) {
-			View::share($key,$val);
-		}
+		$this->blade = $blade;
 		$this->table=$arr['active'];
 	}
     protected function index(){
-		return view($this->table.'.index');
+		return view($this->table.$this->blade);
 	}
 
     protected function show($id){

@@ -16,7 +16,6 @@ $(function () {
     });
 
 });
-var page=$('#load_page')
 var users = [];
 var user_add = [];
 var user_update = [];

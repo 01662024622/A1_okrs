@@ -182,9 +182,11 @@ return [
         App\Providers\HT00ServiceProvider::class,
         App\Providers\HT10ServiceProvider::class,
         App\Providers\HT20ServiceProvider::class,
+        App\Providers\HT30ServiceProvider::class,
         App\Providers\HT00RepositoryProvider::class,
         App\Providers\HT10RepositoryProvider::class,
-        App\Providers\HT20RepositoryProvider::class
+        App\Providers\HT20RepositoryProvider::class,
+        App\Providers\HT30RepositoryProvider::class
 
 
     ],

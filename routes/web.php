@@ -39,6 +39,8 @@ Route::post('user-profile', 'HT20\UserEditController@updateProfile');
 Route::resource('/review/report', 'HT10\ReviewController');
 Route::resource('/feedback/report', 'HT10\FeedbackController');
 Route::resource('/customer/feedback/report', 'HT10\CustomerFeedbackController');
+Route::resource('/objects', 'HT30\ObjectController');
+Route::resource('/okrs', 'HT30\KeyController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');
 Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 
@@ -98,6 +100,8 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('groups/role/{id}', 'DataApi\GroupApiController@getListRoleGroup')->name('get_list_apartment_category.api.data');
 
     Route::get('posts/table', 'DataApi\PostApiController@anyData')->name('posts.api.data');
+    Route::get('objects/table', 'DataApi\ObjectApiController@anyData')->name('objects.api.data');
+    Route::get('keys/table', 'DataApi\KeyApiController@anyData')->name('keys.api.data');
 });
 
 // Set Status group
