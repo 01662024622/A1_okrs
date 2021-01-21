@@ -1,0 +1,89 @@
+.content-header .sidebar-toggle {
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 11px 15px;
+    font-family: fontAwesome;
+    color: #333;
+    border-right: 1px solid #d2d6de;
+    margin-right: 15px;
+}
+.content-header .sidebar-toggle:before {
+    content: "\f0c9";
+}
+.content-header {
+    padding: 0;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    z-index:1000;
+}
+.content-wrapper {
+    background: #f2f2f2;
+    position: relative;
+    /*font-size: 13px;*/
+    overflow: hidden;
+}
+.content-header > h1 {
+    padding: 10px 15px;
+    font-size: 20px;
+}
+.content-header > .breadcrumb {
+    /*top: 2px;
+    padding: 3px 5px; HuuTV*/
+    top: 0px;
+}
+.content-header > .breadcrumb > .btn-group {
+    vertical-align: top;
+}
+.content-header > h1 {
+    padding: 10px 15px;
+    font-size: 20px;
+}
+.ui-datepicker-calendar {
+    display: none;
+}
+.month.disabled{
+    background: black!important;
+}
+.content-header>.breadcrumb {
+    float: right;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    border-radius: 2px;
+}
+.content-header {
+    position: relative;
+    padding: 15px 15px 0 15px;
+}
+.input-group .input-group-addon {
+    border-radius: 0;
+    border-color: #d2d6de;
+    background-color: #fff;
+}
+.input-group-addon {
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.input-group-addon, .input-group-btn {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.addon-right{
+
+    margin-right: 0px;
+}

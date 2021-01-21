@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Repositories\HT30\KeyRepository;
 use App\Repositories\HT30\ObjectRepository;
+use App\Repositories\HT30\ObjectUserRepository;
 use App\Repositories\HT30\ResultRepository;
 use App\Repositories\Impl\HT30\KeyRepositoryImpl;
 use App\Repositories\Impl\HT30\ObjectRepositoryImpl;
+use App\Repositories\Impl\HT30\ObjectUserRepositoryImpl;
 use App\Repositories\Impl\HT30\ResultRepositoryImpl;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +32,10 @@ class HT30RepositoryProvider extends ServiceProvider
         $this->app->singleton(
             ResultRepository::class,
             ResultRepositoryImpl::class
+        );
+        $this->app->singleton(
+            ObjectUserRepository::class,
+            ObjectUserRepositoryImpl::class
         );
     }
 

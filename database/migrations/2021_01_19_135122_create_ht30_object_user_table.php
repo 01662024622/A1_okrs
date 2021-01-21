@@ -20,6 +20,7 @@ class CreateHt30ObjectUserTable extends Migration
             $table->bigInteger('object_id');
             $table->integer('percent');
             $table->string('month_year');
+            $table->integer('status')->default(0);
             $table->integer('create_by')->default(0);
             $table->integer('modify_by')->nullable();
             $table->timestamps();

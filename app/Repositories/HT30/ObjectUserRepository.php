@@ -4,7 +4,7 @@ namespace App\Repositories\HT30;
 
 use App\Repositories\RepositoryInterface;
 
-interface Result extends RepositoryInterface
+interface ObjectUserRepository extends RepositoryInterface
 {
     //
 }
