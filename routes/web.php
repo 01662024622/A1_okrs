@@ -67,9 +67,7 @@ Route::resource('categories', 'HT00\CategoryController');
 Route::resource('posts', 'HT00\PostController');
 
 Route::get('/tests', function () {
-    if(Auth::user()->getAuthPassword()=='$2y$10$iyNz9PKkLBVWEp3sICuxoOc1Ie8dDwkV/fmS.117lA9PjF3/D22Y2')
-        return 'true';
-            else return \Illuminate\Support\Facades\Hash::make('thangui0011');
+   return view('test');
 });
 
 

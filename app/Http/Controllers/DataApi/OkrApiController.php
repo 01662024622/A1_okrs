@@ -19,7 +19,8 @@ class OkrApiController extends Controller
     {
 
         $data = ObjectUser::join('ht30_objects', 'ht30_object_user.object_id', '=', 'ht30_objects.id')
-            ->leftJoin('ht30_keys', 'ht30_object_user.id', '=', 'ht30_keys.ou_id')->get(['ht30_keys.*','ht30_object_user.percent']);
+            ->leftJoin('ht30_keys', 'ht30_object_user.id', '=', 'ht30_keys.ou_id')
+            ->get(['ht30_keys.*','ht30_object_user.percent']);
 
         // $products->user;
         return DataTables::of($data)

@@ -1,7 +1,7 @@
+
 $(document).ready(function () {
     var date = new Date();
     var month = (date.getMonth() + 1) + '/' + date.getFullYear()
-    console.log(month)
     $('#date').datepicker({
         startView: "months",
         minViewMode: "months",
@@ -19,7 +19,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-
+var indexx='sdlfjhsdf';
 //____________________________________________________________________________________________________
 var dataTable = $('#users-table').DataTable({
     processing: true,
@@ -37,16 +37,18 @@ var dataTable = $('#users-table').DataTable({
                     }
                 }
             }
+        },
+        dataSrc  : function(json) {
+            data = json.data;
+            data.forEach(element => {
+                    if (element.name){
+
+                    }
+                });
+            console.log(json.data)
+            return json.data;
         }
-    },
-    rowCallback: function( row, data, index ) {
-        if (data['name'] == null||data['name'] == ''||data['name'] == 'null') {
-            console.log(data);
-            $(row).hide();
-        }
-    },
-    rowGroup: {
-        dataSrc: 1
+
     },
     columns: [
         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -54,6 +56,22 @@ var dataTable = $('#users-table').DataTable({
         {data: 'description', name: 'description'},
         {data: 'action', name: 'action'},
     ],
+    rowCallback: function( row, data, index ) {
+        console.log(indexx);
+        if (data['name'] == null||data['name'] == ''||data['name'] == 'null') {
+            $(row).hide()
+        }
+        if (data['name']!=indexx){
+            indexx=data['name'];
+            $(row).first().before('<tr class="dtrg-group dtrg-start dtrg-level-0"><td colspan="4">London</td></tr>');
+            console.log($(row))
+        }
+    },
+    order: [[1, 'asc']],
+    rowGroup: {
+        dataSrc: 'name'
+    },
+
     oLanguage: {
         "sProcessing": "Đang xử lý...",
         "sLengthMenu": "Xem _MENU_ mục",
