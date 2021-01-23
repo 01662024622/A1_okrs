@@ -19,14 +19,16 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-var indexx='sdlfjhsdf';
+var idOb=0;
+var headers=[];
 //____________________________________________________________________________________________________
 var dataTable = $('#users-table').DataTable({
     processing: true,
     serverSide: true,
+    paging: false,
     ajax: {
         type: "GET",
-        url: "/api/v1/objects/table",
+        url: "/api/v1/okrs/table",
         error: function (xhr, ajaxOptions, thrownError) {
             if (xhr != null) {
                 if (xhr.responseJSON != null) {
@@ -45,7 +47,6 @@ var dataTable = $('#users-table').DataTable({
 
                     }
                 });
-            console.log(json.data)
             return json.data;
         }
 
@@ -54,22 +55,26 @@ var dataTable = $('#users-table').DataTable({
         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         {data: 'name', name: 'name'},
         {data: 'description', name: 'description'},
+        {data: 'percent', name: 'percent'},
+        {data: 'result', name: 'result'},
         {data: 'action', name: 'action'},
     ],
     rowCallback: function( row, data, index ) {
-        console.log(indexx);
-        if (data['name'] == null||data['name'] == ''||data['name'] == 'null') {
-            $(row).hide()
+        console.log(data);
+        if (data['id'] == null||data['id'] == ''||data['id'] == 'null') {
+            console.log('<tr class="dtrg-group dtrg-start dtrg-level-0"><td colspan="6">'+data['header']+'</td></tr>'+$(row).html())
+            $(row).html(('<td colspan="6">'+data["header"]+'</td>'))
         }
-        if (data['name']!=indexx){
-            indexx=data['name'];
-            $(row).first().before('<tr class="dtrg-group dtrg-start dtrg-level-0"><td colspan="4">London</td></tr>');
+        if (data['id_ob']!=idOb){
+            indexx=data['id_ob'];
+            headers[data['id']]=data['header']
             console.log($(row))
         }
     },
-    order: [[1, 'asc']],
-    rowGroup: {
-        dataSrc: 'name'
+    initComplete: function( settings, json ) {
+        console.log('<tr>'+headers[1]+'</tr>')
+        $('#data-1').before('<tr class="dtrg-group dtrg-start dtrg-level-0"><td colspan="6">'+headers[1]+'</td></tr>')
+
     },
 
     oLanguage: {

@@ -20,7 +20,7 @@ class OkrApiController extends Controller
 
         $data = ObjectUser::join('ht30_objects', 'ht30_object_user.object_id', '=', 'ht30_objects.id')
             ->leftJoin('ht30_keys', 'ht30_object_user.id', '=', 'ht30_keys.ou_id')
-            ->get(['ht30_keys.*','ht30_object_user.percent']);
+            ->get(['ht30_keys.*','ht30_object_user.percent as ob_percent','ht30_objects.name as object','ht30_object_user.id as id_ob']);
 
         // $products->user;
         return DataTables::of($data)
@@ -32,9 +32,15 @@ class OkrApiController extends Controller
 			<i class="fa fa-trash" aria-hidden="true"></i></button>
 			';
             })
+            ->addColumn('header', function ($dt) {
+                return '<button type="button" class="btn btn-xs btn-warning"data-toggle="modal"
+			onclick="getInfo(' . $dt['id'] . ')" href="#add-modal"><i class="fas fa-pencil-alt"
+			aria-hidden="true"></i></button>
+			';
+            })
             ->addIndexColumn()
             ->setRowId('data-{{$id}}')
-            ->rawColumns(['action'])
+            ->rawColumns(['action','header'])
             ->make(true);
     }
 }

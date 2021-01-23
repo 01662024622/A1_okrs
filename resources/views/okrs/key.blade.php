@@ -74,6 +74,8 @@
             <th>ID</th>
             <th>Tiêu đề</th>
             <th>Mô tả</th>
+            <th>Trọng số</th>
+            <th>Kết qủa</th>
             <th>Hành Động</th>
         </tr>
         </thead>
