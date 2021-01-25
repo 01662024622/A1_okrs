@@ -17,10 +17,15 @@ class OkrApiController extends Controller
 
     public function anyData(Request $request)
     {
-
         $data = ObjectUser::join('ht30_objects', 'ht30_object_user.object_id', '=', 'ht30_objects.id')
             ->leftJoin('ht30_keys', 'ht30_object_user.id', '=', 'ht30_keys.ou_id')
-            ->get(['ht30_keys.*','ht30_object_user.percent as ob_percent','ht30_objects.name as object','ht30_object_user.id as id_ob']);
+            ->where('ht30_object_user.status',0)
+            ->where(function ($query) {
+                $query->where('ht30_keys.status', 0)->orWhereNull('ht30_keys.status');
+            })
+            ->where('ht30_object_user.user_id',$request->user_id)
+            ->where('ht30_object_user.month_year',$request->month_year)
+            ->get([ 'ht30_keys.*','ht30_object_user.percent as ob_percent','ht30_objects.id as ob_id','ht30_objects.name as object', 'ht30_object_user.id as id_obu']);
 
         // $products->user;
         return DataTables::of($data)
@@ -33,14 +38,29 @@ class OkrApiController extends Controller
 			';
             })
             ->addColumn('header', function ($dt) {
-                return '<button type="button" class="btn btn-xs btn-warning"data-toggle="modal"
-			onclick="getInfo(' . $dt['id'] . ')" href="#add-modal"><i class="fas fa-pencil-alt"
-			aria-hidden="true"></i></button>
-			';
+                return '<div class="container-fluid">
+        <div id="ob-target-' . $dt['ob_id'] . '" class="float-left" style="    font-size: 16px;">
+            ' . $dt['ob_percent'] . '%---' . $dt['object'] .'
+        </div>
+        <div class="float-right">
+        <button type="button" class="btn btn-xs btn-info"data-toggle="modal" href="#add-modal" onclick="addKRs('.$dt['id_obu'].')">
+        <i class="fas fa-plus" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-xs btn-warning"data-toggle="modal"
+			onclick="getInfoOB(' . $dt['ob_id'] . ',' . $dt['ob_percent'] . ')">
+			<i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
+			<button type="button" class="btn btn-xs btn-danger" onclick="alDeleteOB(' . $dt['id_obu'] . ')">
+			<i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+    </div>';
+            })
+            ->editColumn('result', function($dt) {
+                if ($dt['result']){
+                    return $dt['result'];
+                }else return '_';
             })
             ->addIndexColumn()
             ->setRowId('data-{{$id}}')
-            ->rawColumns(['action','header'])
+            ->rawColumns(['action', 'header'])
             ->make(true);
     }
 }

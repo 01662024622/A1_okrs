@@ -87,3 +87,14 @@
 
     margin-right: 0px;
 }
+.button-none{
+    background: none;
+    border: none;
+    outline: none;
+}
+.button-none:focus{
+    outline:0 !important;
+}
+.hidden{
+    display: none;
+}
