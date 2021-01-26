@@ -1,5 +1,6 @@
 var date = new Date();
 var month = (date.getMonth() + 1) + '/' + date.getFullYear()
+var today = date.getDate()+'/'+month
 $('#date').datepicker({
     startView: "months",
     minViewMode: "months",
@@ -10,7 +11,13 @@ $('#date').datepicker({
 }).on('changeMonth', function (e) {
     $(e.currentTarget).data('datepicker').hide();
 });
+$('#date-result').datepicker({
+    format: "dd/mm/yyyy",
+    startDate: "01/10/2020",
+    endDate: new Date(),
+})
 $('#date').datepicker('setDate', month)
+$('#date-result').datepicker('setDate', today)
 
 $.ajaxSetup({
     headers: {
@@ -300,6 +307,30 @@ function getInfo(id) {
                 $('#minus-container').show()
             }
             $('#eid-krs').val(response.id);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toastr.error(thrownError);
+        }
+    });
+}// get data for form update
+function checkResult(id) {
+    page.show()
+    // $('#editPost').modal('show');
+    $.ajax({
+        type: "GET",
+        url: "/keys/" + id,
+        success: function (response) {
+            page.hide()
+            $('#result-key').val(response.result)
+            $('.btn.btn-sm.btn-info.collapsed').removeClass('collapsed')
+            $('.form-group.collapse.show').removeClass('show')
+            if (response.type == 0) {
+                $('#result-key').prop( "disabled", false );
+                $('#result-key').prop( "disabled", false );
+            } else {
+                $('#result-key').prop( "disabled", true );
+            }
+            $('#id-krs').val(response.id);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             toastr.error(thrownError);

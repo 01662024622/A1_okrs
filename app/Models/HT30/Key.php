@@ -15,5 +15,9 @@ class Key extends Model
     protected $fillable_update = [
         'ou_id', 'name', 'description', 'type', 'result','percent','minus'
     ];
+    public function results()
+    {
+        return $this->hasMany('App\Models\HT30\Result');
+    }
     protected $table = "ht30_keys";
 }

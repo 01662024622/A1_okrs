@@ -12,9 +12,6 @@
         <div class="content-header header-height">
             <h1 class="ng-binding">Bảng OKRs</h1>
             <div class="breadcrumb">
-                <button type="button" ng-click="getDataLetters(0)" class="btn btn-default btn-sm"><i
-                        class="fa fa-refresh"></i> Tải lại
-                </button>
                 <div style="width: 430px;" class="btn-group search-date divFilterDate">
                     <div class="input-group" id="reportrange">
                         <div class="input-group-addon addon-right"><i class="fa fa-user"></i></div>
@@ -80,7 +77,7 @@
                 <th>ID</th>
                 <th>Tiêu đề</th>
                 <th>Hệ số KRs</th>
-                <th>Kết qủa</th>
+                <th>Thực đạt</th>
                 <th>Hành Động</th>
             </tr>
             </thead>
@@ -115,12 +112,14 @@
                             <br>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" id="type_0" class="form-check-input" name="type" value="0" checked>Phần trăm đạt
+                                    <input type="radio" id="type_0" class="form-check-input" name="type" value="0"
+                                           checked>Phần trăm đạt
                                 </label>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" id="type_1" class="form-check-input" name="type" value="1">Trừ theo mỗi lỗi/sai
+                                    <input type="radio" id="type_1" class="form-check-input" name="type" value="1">Trừ
+                                    theo mỗi lỗi/sai
                                 </label>
                             </div>
                             <div class="form-group hidden" id="minus-container">
@@ -144,7 +143,61 @@
         </div>
     </div>
 
-<input type="hidden" id="ob-id-hide">
+    <div class="modal" id="check-modal">
+        <div class="modal-dialog" style="max-width: 700px;">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Đánh giá kết quả</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="btn-group ng-scope" ng-if="activeTab == ''">
+                        <button class="btn btn-sm btn-info" type="button" data-toggle="collapse"
+                                href="#collapseOne">Thêm
+                            mới
+                        </button>
+                    </div>
+                    <div id="collapseOne" class="collapse form-group" data-parent="#accordion">
+
+                        <form id="check-form-krs" action="{{asset('/keys/create')}}" method="GET">
+                            <label for="name">Ngày*</label>
+                            <input type="text" class="form-control" name="date" id="date-result">
+                            <label for="name">Mô tả*</label>
+                            <input type="text" class="form-control" id="result-kr" name="result"
+                                   placeholder="Nhập kết quả then chốt..." maxlength="150">
+                            <label for="name">Số lần*</label>
+                            <input type="text" class="form-control" id="number-kr" name="number"
+                                   placeholder="Nhập số lần vi phạm..." maxlength="2">
+                            <br>
+                            <button type="submit" class="btn btn-info">Thêm</button>
+                        </form>
+                    </div>
+
+                    <form id="check-form-krs" action="{{asset('/keys')}}" method="POST">
+                        <div class="form-group type-check-0">
+                            <label for="name">Thực đạt*</label>
+                            <input type="text" class="form-control" id="result-key" name="result"
+                                   placeholder="Nhập kết quả then chốt..." maxlength="3">
+                        </div>
+
+                        <input type="hidden" name="id" id="id-key">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="ob-id-hide">
 
 
 @endsection
