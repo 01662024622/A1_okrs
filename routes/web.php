@@ -42,6 +42,7 @@ Route::resource('/customer/feedback/report', 'HT10\CustomerFeedbackController');
 Route::resource('/objects', 'HT30\ObjectController');
 Route::resource('/keys', 'HT30\KeyController');
 Route::resource('/okrs', 'HT30\OKRController');
+Route::resource('/results', 'HT30\ResultController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');
 Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 
@@ -102,6 +103,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('objects/table', 'DataApi\ObjectApiController@anyData')->name('objects.api.data');
     Route::get('keys/table', 'DataApi\KeyApiController@anyData')->name('keys.api.data');
     Route::get('okrs/table', 'DataApi\OkrApiController@anyData')->name('okrs.api.data');
+    Route::get('okrs/user/table', 'DataApi\OkrApiController@anyDataUser')->name('okrs.api.data');
 });
 
 // Set Status group

@@ -98,3 +98,9 @@
 .hidden{
     display: none;
 }
+.total>td{
+    background-color: #1e7e34!important;
+    color: white;
+    font-weight: 900!important;
+    font-size: 20px;
+}

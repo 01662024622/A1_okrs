@@ -19,6 +19,7 @@ class CreateHt30ResultsTable extends Migration
             $table->string('date');
             $table->string('description');
             $table->integer('number')->default(1);
+            $table->integer('status')->default(0);
             $table->bigInteger('create_by')->default(0);
             $table->bigInteger('modify_by')->nullable();
             $table->timestamps();

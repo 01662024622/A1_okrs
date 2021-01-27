@@ -105,7 +105,7 @@
                         <div class="form-group">
                             <label for="name">Hệ số KRs(%)*</label>
                             <input type="text" class="form-control" id="percent-kr" name="percent"
-                                   placeholder="Nhậphệ số okrs..." maxlength="2">
+                                   placeholder="Nhậphệ số okrs..." maxlength="3">
                         </div>
                         <div class="form-group" id="sub-radio">
                             <label for="name">Cách tính*</label>
@@ -155,7 +155,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="btn-group ng-scope" ng-if="activeTab == ''">
+                    <div class="form-group type-check-0 add-key-button">
+                        <h5>Hệ số trừ cho mỗi lỗi vi phạm là:<b id="minus-text"></b></h5>
+                    </div>
+                    <div class="btn-group ng-scope add-key-button">
                         <button class="btn btn-sm btn-info" type="button" data-toggle="collapse"
                                 href="#collapseOne">Thêm
                             mới
@@ -163,7 +166,7 @@
                     </div>
                     <div id="collapseOne" class="collapse form-group" data-parent="#accordion">
 
-                        <form id="check-form-krs" action="{{asset('/keys/create')}}" method="GET">
+                        <form id="check-form-krs" action="{{asset('/results')}}" method="POST">
                             <label for="name">Ngày*</label>
                             <input type="text" class="form-control" name="date" id="date-result">
                             <label for="name">Mô tả*</label>
@@ -176,10 +179,23 @@
                             <button type="submit" class="btn btn-info">Thêm</button>
                         </form>
                     </div>
-
-                    <form id="check-form-krs" action="{{asset('/keys')}}" method="POST">
+                    <div class="container-fluid add-key-button" id="add-key-table">
+                        <br>
+                        <table class="table table-bordered" id="key-add-table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ngày</th>
+                                <th>Mô tả</th>
+                                <th>Số lần</th>
+                                <th>Hành Động</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <form id="check-result-krs" action="{{asset('/keys')}}" method="POST">
                         <div class="form-group type-check-0">
-                            <label for="name">Thực đạt*</label>
+                            <label for="name">Thực đạt(%)*</label>
                             <input type="text" class="form-control" id="result-key" name="result"
                                    placeholder="Nhập kết quả then chốt..." maxlength="3">
                         </div>

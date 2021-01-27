@@ -26,12 +26,9 @@ $.ajaxSetup({
 });
 var idOb = 0;
 var headers = [];
-var data = [];
-$('#user_id').on('change', function () {
-    dataTable.ajax.url("/api/v1/okrs/table?user_id=" + $('#user_id').val() + "&month_year=" + $('#date').val()).load(initDatatable);
-})
+var data=[];
 $('#date').on('change', function () {
-    dataTable.ajax.url("/api/v1/okrs/table?user_id=" + $('#user_id').val() + "&month_year=" + $('#date').val()).load(initDatatable);
+    dataTable.ajax.url("/api/v1/okrs/user/table?&month_year=" + $('#date').val()).load(initDatatable);
 })
 //____________________________________________________________________________________________________
 var dataTable = $('#users-table').DataTable({
@@ -40,10 +37,8 @@ var dataTable = $('#users-table').DataTable({
     paging: false,
     ajax: {
         type: "GET",
-        url: "/api/v1/okrs/table?user_id=" + $('#user_id').val() + "&month_year=" + $('#date').val(),
+        url: "/api/v1/okrs/user/table?&month_year=" + $('#date').val(),
         error: function (xhr, ajaxOptions, thrownError) {
-
-            page.hide()
             if (xhr != null) {
                 if (xhr.responseJSON != null) {
                     if (xhr.responseJSON.errors != null) {
@@ -57,7 +52,7 @@ var dataTable = $('#users-table').DataTable({
         dataSrc: function (json) {
             headers = [];
             idOb = 0;
-            data = json.data;
+            data=json.data;
             return json.data;
         }
 
@@ -108,15 +103,14 @@ function initDatatable(settings, json) {
         $('#data-' + index).before('<tr class="dtrg-group dtrg-start dtrg-level-0"><td colspan="6">' + value + '</td></tr>')
     })
     var result = 0;
-    data.forEach(element => {
-        if (element.result != '_') {
-            console.log((element.result * element.percent / 100))
-            result = result + (element.result * element.percent*element.ob_percent / 10000)
+    data.forEach(element=>{
+        if (element.result!='_'){
+            result=result+(element.result*element.percent*element.ob_percent/10000)
         }
     })
     $('#users-table>tbody').append('<tr class="dtrg-group total"><td colspan="6"><div class="container-fluid">\n' +
         '        <div id="ob-target-1" class="float-left" style="    font-size: 16px;">OKRs đạt được là:</div>\n' +
-        '        <div class="float-right">' + result + '%</div>\n' +
+        '        <div class="float-right">'+result+'%</div>\n' +
         '    </div></td></tr>')
 }
 
@@ -166,7 +160,6 @@ $("#edit_ob").submit(function (e) {
                 clearForm();
                 dataTable.ajax.reload(initDatatable);
             }, error: function (xhr, ajaxOptions, thrownError) {
-                page.hide()
                 if (xhr != null) {
                     if (xhr.responseJSON != null) {
                         if (xhr.responseJSON.message != null) {
@@ -224,7 +217,6 @@ $("#add-form").submit(function (e) {
                 clearForm();
                 dataTable.ajax.reload(initDatatable);
             }, error: function (xhr, ajaxOptions, thrownError) {
-                page.hide()
                 if (xhr != null) {
                     if (xhr.responseJSON != null) {
                         if (xhr.responseJSON.message != null) {
@@ -289,7 +281,6 @@ $("#add-form-krs").submit(function (e) {
                 clearForm();
                 dataTable.ajax.reload(initDatatable);
             }, error: function (xhr, ajaxOptions, thrownError) {
-                page.hide()
                 if (xhr != null) {
                     if (xhr.responseJSON != null) {
                         if (xhr.responseJSON.message != null) {
@@ -339,7 +330,6 @@ $("#check-form-krs").submit(function (e) {
                 checkResult($('#eid-krs').val())
                 dataTable.ajax.reload(initDatatable);
             }, error: function (xhr, ajaxOptions, thrownError) {
-                page.hide()
                 if (xhr != null) {
                     if (xhr.responseJSON != null) {
                         if (xhr.responseJSON.message != null) {
@@ -389,7 +379,6 @@ $("#check-result-krs").submit(function (e) {
                 checkResult($('#eid-krs').val())
                 dataTable.ajax.reload(initDatatable);
             }, error: function (xhr, ajaxOptions, thrownError) {
-                page.hide()
                 if (xhr != null) {
                     if (xhr.responseJSON != null) {
                         if (xhr.responseJSON.message != null) {
@@ -426,8 +415,6 @@ function getInfo(id) {
             $('#eid-krs').val(response.id);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-
-            page.hide()
             toastr.error(thrownError);
         }
     });
@@ -449,7 +436,7 @@ function checkResult(id) {
             } else {
                 $('#result-key').prop("disabled", true);
                 $('.add-key-button').show();
-                $('#minus-text').text(response.minus + '%');
+                $('#minus-text').text(response.minus+'%');
                 var html = '<thead><tr><th>ID</th><th>Ngày</th><th>Mô tả</th><th>Số lần</th><th>Hành Động</th></tr></thead>';
                 response.results.forEach(function (value, index) {
                     html = html + `<tr id="results-` + value['id'] + `" role="row" class="odd"><td class="sorting_1">` + (index + 1) + `</td><td>` + value['date'] + `</td><td>` + value['description'] + `</td><td>` + value['number'] + `</td><td>
@@ -462,7 +449,6 @@ function checkResult(id) {
             $('#eid-krs').val(response.id);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            page.hide()
             toastr.error(thrownError);
         }
     });
@@ -497,7 +483,6 @@ function alDelete(id) {
                         }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        page.hide()
                         toastr.error(thrownError);
                     }
                 });
@@ -531,7 +516,6 @@ function alDeleteResult(id) {
                         }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        page.hide()
                         toastr.error(thrownError);
                     }
                 });
@@ -564,7 +548,6 @@ function alDeleteOB(id) {
                         }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        page.hide()
                         toastr.error(thrownError);
                     }
                 });

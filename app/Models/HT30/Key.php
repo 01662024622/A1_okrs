@@ -17,7 +17,7 @@ class Key extends Model
     ];
     public function results()
     {
-        return $this->hasMany('App\Models\HT30\Result');
+        return $this->hasMany('App\Models\HT30\Result')->where('status',0);
     }
     protected $table = "ht30_keys";
 }

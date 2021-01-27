@@ -22,6 +22,10 @@ class KeyController extends ResouceController
     }
 
     public function store(Request $request){
-        return parent::storeRequest($request);
+        $data=[];
+        if ($request->type==1){
+            $data['result']=100;
+        }
+        return parent::storeRequest($request,$data);
     }
 }
