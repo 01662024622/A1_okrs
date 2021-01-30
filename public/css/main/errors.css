@@ -83,3 +83,15 @@ table{
     overflow: revert;
     max-width: 100%;
 }
+.add-header-nav{
+    position: fixed;
+    z-index: 9999999;
+    background: #fff!important;
+    width: calc(100vw - 6.5rem);
+}
+.ml-auto{
+    float: right;
+}
+  .dropdown-menu-right{
+      z-index: 9999999999;
+  }
