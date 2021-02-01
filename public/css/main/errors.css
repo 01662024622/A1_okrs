@@ -95,3 +95,11 @@ table{
   .dropdown-menu-right{
       z-index: 9999999999;
   }
+/*.dropdown-header>div{*/
+/*    padding: 5px;*/
+/*    margin: 0px;*/
+/*}*/
+.row{
+    display: flex!important;
+}
+
