@@ -1,12 +1,12 @@
 var date = new Date();
-var month = (date.getMonth() + 1) + '/' + date.getFullYear()
-var today = date.getDate() + '/' + month
+var today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+var year = date.getFullYear()
 $('#date').datepicker({
-    startView: "months",
-    minViewMode: "months",
+    startView: "years",
+    minViewMode: "years",
     maxViewMode: "years",
-    format: "mm/yyyy",
-    startDate: "10/2020",
+    format: "yyyy",
+    startDate: "2020",
     endDate: new Date(),
 }).on('changeMonth', function (e) {
     $(e.currentTarget).data('datepicker').hide();
@@ -16,7 +16,7 @@ $('#date-result').datepicker({
     startDate: "01/10/2020",
     endDate: new Date(),
 })
-$('#date').datepicker('setDate', month)
+$('#date').datepicker('setDate', year.toString())
 $('#date-result').datepicker('setDate', today)
 
 $.ajaxSetup({

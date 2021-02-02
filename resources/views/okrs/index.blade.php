@@ -5,9 +5,19 @@
     <div id="accordion">
         <div class="card">
             <div class="card-header">
-                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                    Thêm mới
+{{--                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo" >--}}
+{{--                    Thêm mới--}}
+{{--                </a>--}}
+                <a class="nav-link dropdown-toggle" href="#" id="addOkrs" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <!-- Counter - Messages -->
+                    <span class="badge badge-danger badge-counter">7</span>
                 </a>
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="addOkrs" style="max-height: calc(100vh - 6rem);overflow: auto;">
+                    xx
+                </div>
             </div>
             <div id="collapseTwo" class="collapse" data-parent="#accordion">
                 <div class="card-body">
@@ -74,9 +84,7 @@
                                       placeholder="Nhập mô tả..." maxlength="500"></textarea>
                         </div>
                         <input type="hidden" name="id" id="eid">
-
                     </div>
-
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Lưu</button>

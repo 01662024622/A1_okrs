@@ -27,9 +27,22 @@
 
                 <!-- ngIf: activeTab == '' -->
                 <div class="btn-group ng-scope" ng-if="activeTab == ''">
-                    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" href="#collapseTwo">Thêm
-                        mới
-                    </button>
+                    {{--                    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" href="#collapseTwo">Thêm--}}
+                    {{--                        mới--}}
+                    {{--                    </button>--}}
+                    <a class="nav-link dropdown-toggle" href="#" id="add-action" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Quản lý
+                        <!-- Counter - Messages -->
+                    </a>
+                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow sub_coll"
+                         aria-labelledby="add-action" style=" border-radius:0;overflow: auto;">
+
+                        <a class="nav" type="button" data-toggle="collapse" href="#collapseTwo">Mục tiêu
+                        </a>
+                        <a class="nav" type="button" data-toggle="collapse" href="#collapseTwo">KPI
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,22 +52,25 @@
         <div class="card">
             <div id="collapseTwo" class="collapse" data-parent="#accordion">
                 <div class="card-body">
-                    <form id="add-form" action="{{asset('/okrs')}}" method="POST">
+                    <form id="add-form" action="{{asset('/objects')}}" method="POST">
                         <!-- Modal body -->
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label for="name">Mục tiêu*</label>
-                                <select class="form-control" id="object_id" name="object_id">
-                                    <option value="0" disabled selected>-- Chọn --</option>
-                                    @foreach($objects as $object)
-                                        <option value="{{$object->id}}">{{$object->name}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="name">Tên mục tiêu*</label>
+                                <input type="text" class="form-control" name="name"
+                                       placeholder="Nhập tiêu đề OKRs..." maxlength="150">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label for="name">Hệ số(đv %)*</label>
-                                <input class="form-control" name="percent" id="percent" type="text"
+                                <label for="name">Mức độ quan trọng*</label>
+                                <select class="form-control" name="percent" id="percent" type="text"
                                        placeholder="Nhập mô tả..." maxlength="3">
+                                    <option disabled selected value> -- Chọn -- </option>
+                                    <option value="1">Bình thường</option>
+                                    <option value="1">Bình thường</option>
+                                    <option value="2">Khá quan trọng</option>
+                                    <option value="3">Quan trọng</option>
+                                    <option value="4">Rất quan trọng</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
