@@ -39,25 +39,7 @@
                 </p>
                     </div>
                 </div>
-                <div class="container-form">
-                    <div class="card-details">
-                        <div class="row">
-                            <div class="form-group col-sm-12">
-                                <label  for="card-holder" class="form-label-header">Họ và tên<span class="note">*</span></label>
-                                <input type="text" class="form-control" id="name" name="name" maxlength="50" placeholder="Hãy nhập câu trả lời của bạn..."></input>
-                            </div>
-                            <div class="form-group col-sm-12">
-                                <label  for="card-holder" class="form-label-header">Số điện thoại<span class="note">*</span></label>
-                                <input type="tel" class="form-control" id="phone" name="phone" maxlength="10" placeholder="Hãy nhập câu trả lời của bạn..." pattern="0[0-9]{9}" required></input>
-                            </div>
-                            <div class="form-group col-sm-12">
-                                <label  for="card-holder" class="form-label-header">Email</label>
-                                <input type="email" class="form-control" id="email" maxlength="50" name="email" placeholder="Hãy nhập câu trả lời của bạn..."></input>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br><br>
+                <br>
                 <div class="container">
                     <div class="container-form">
                         <div class="card-details">
@@ -156,6 +138,24 @@
                           </div>
                       </div>
                   </div>
+                    <div class="container-form">
+                        <div class="card-details">
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label  for="card-holder" class="form-label-header">Họ và tên<span class="note">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" maxlength="50" placeholder="Hãy nhập câu trả lời của bạn..."></input>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label  for="card-holder" class="form-label-header">Số điện thoại<span class="note">*</span></label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" maxlength="10" placeholder="Hãy nhập câu trả lời của bạn..." pattern="0[0-9]{9}" required></input>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label  for="card-holder" class="form-label-header">Email</label>
+                                    <input type="email" class="form-control" id="email" maxlength="50" name="email" placeholder="Hãy nhập câu trả lời của bạn..."></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                   <div class="container-form" style="border:none; box-shadow:none;background:none">
                     <button class="btn btn-primary" type="submit">Gửi</button>
                 </div>
