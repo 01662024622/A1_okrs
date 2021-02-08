@@ -1,63 +1,98 @@
 @extends('layouts.app')
 @section('css')
+    <link rel="stylesheet" href="{{asset('/css/okrs/index.css')}}">
 @endsection
 @section('content')
-    <div id="accordion">
-        <div class="card">
-            <div class="card-header">
-{{--                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo" >--}}
-{{--                    Thêm mới--}}
-{{--                </a>--}}
-                <a class="nav-link dropdown-toggle" href="#" id="addOkrs" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <!-- Counter - Messages -->
-                    <span class="badge badge-danger badge-counter">7</span>
-                </a>
-                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                     aria-labelledby="addOkrs" style="max-height: calc(100vh - 6rem);overflow: auto;">
-                    xx
+    <div class="row kpi-main-header">
+        <div class="col-4 box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> Tổng số KPI năm
+            </div>
+            <div class="kpi-body">
+                <div class="row kpi-year kpi-hover">
+                    <div class="col-3">
+                        <div class="number-kpi-year">40</div>
+                    </div>
+                    <div class="col-6">Năm 2020</div>
+                    <div class="col-3 text-right">90%</div>
+                </div>
+                <div class="row kpi-year kpi-hover">
+                    <div class="col-3">
+                        <div class="number-kpi-year">43</div>
+                    </div>
+                    <div class="col-6">Năm 2021</div>
+                    <div class="col-3 text-right">99%</div>
                 </div>
             </div>
-            <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                <div class="card-body">
-                    <form id="add-form" action="{{asset('/objects')}}" method="POST">
-                        <!-- Modal body -->
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="name">Tiêu đề*</label>
-                                <input type="text" class="form-control" name="name"
-                                       placeholder="Nhập tiêu đề OKRs..." maxlength="150">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="name">Mô tả*</label>
-                                <input class="form-control" name="description"
-                                       placeholder="Nhập mô tả..." maxlength="500">
-                            </div>
+        </div>
+        <div class="col-7 box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> KPI năm 2020
+            </div>
+
+            <div class="kpi-body">
+                <div class="row kpi-month">
+                    <div class="col-6 row kpi-hover kpi-moth-detail kpi-active-month">
+                        <div class="col-3">
+                            <div class="number-kpi-year">40</div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary">Thêm mới</button>
-                            </div>
+                        <div class="col-6">Tháng 1</div>
+                        <div class="col-3 text-right">96%</div>
+                    </div>
+                    <div class="col-6 row kpi-hover kpi-moth-detail">
+                        <div class="col-3">
+                            <div class="number-kpi-year">40</div>
                         </div>
-                    </form>
+                        <div class="col-6">Tháng 2</div>
+                        <div class="col-3 text-right">98%</div>
+                    </div>
+                    <div class="col-6 row kpi-hover kpi-moth-detail">
+                        <div class="col-3">
+                            <div class="number-kpi-year">40</div>
+                        </div>
+                        <div class="col-6">Tháng 3</div>
+                        <div class="col-3 text-right">97%</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <br>
 
+    <div class="row">
+        <div class="col box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> Phát triển hệ thống - Mức độ quan trọng: <b>Bình Thường</b>
+            </div>
+            <div class="kpi-body">
+
+                <div class="row kpi-detail kpi-header-title">
+                    <div class="col-6">
+                        KPI
+                    </div>
+                    <div class="col-3">Mức độ quan trọng</div>
+                    <div class="col-3 text-right">Mức độ hoàn thành</div>
+                </div>
+                <div class="row kpi-detail kpi-hover">
+                    <div class="col-6">
+                        Xây dựng form kpi
+                    </div>
+                    <div class="col-3">Khá quan trọng</div>
+                    <div class="col-3 text-right">90%</div>
+                </div>
+                <div class="row kpi-detail kpi-hover">
+                    <div class="col-6">
+                        Xây dựng form SMS
+                    </div>
+                    <div class="col-3">Rất quan trọng</div>
+                    <div class="col-3 text-right">99%</div>
+                </div>
+            </div>
+        </div>
 
     <br><br>
-    <table class="table table-bordered" id="users-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tiêu đề</th>
-            <th>Mô tả</th>
-            <th>Hành Động</th>
-        </tr>
-        </thead>
-    </table>
+
 
     <!-- The Modal -->
     <div class="modal" id="add-modal">
