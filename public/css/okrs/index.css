@@ -24,6 +24,9 @@
     line-height: 35px;
     padding: 20px;
 }
+.target-body{
+    padding: 20px 20px 0 20px;
+}
 .kpi-year{
     padding: 10px;
     border-bottom: 1px solid #e3e6f0;
@@ -41,4 +44,10 @@
 .kpi-moth-detail{
     padding-top: 5px;
     padding-bottom: 5px;
+}
+.text-bold{
+    font-weight: 500;
+}
+.kpi-detail{
+    border-bottom: 1px solid #2e383c;
 }

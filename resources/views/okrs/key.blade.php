@@ -4,6 +4,7 @@
           rel="stylesheet"/>
     <link rel="stylesheet" href="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css">
     <link rel="stylesheet" href="/public/css/okrs/key.css">
+    <link rel="stylesheet" href="/public/css/okrs/index.css">
     <link rel="stylesheet" href="{{asset('/vendor/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('/vendor/css/rowGroup.bootstrap4.min.css')}}">
 @endsection
@@ -47,6 +48,174 @@
             </div>
         </div>
     </div>
+    <div class="row kpi-main-header">
+        <div class="col-4 box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> Quản lý mục tiêu
+            </div>
+            <div class="target-body">
+                <div class="row kpi-year">
+                    <div class="row col-6">
+                        <div class="col-10">Phát triển hệ thống</div>
+                        <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
+                    </div>
+                    <div class="row col-6">
+                        <div class="col-10">Phát triển hệ thống</div>
+                        <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
+                    </div>
+                    <div class="row col-6">
+                        <div class="col-10">Phát triển hệ thống</div>
+                        <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <a href="#">Lưu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-7 box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> KPI năm 2020 -Trần Thanh Huyền
+            </div>
+
+            <div class="kpi-body">
+                <div class="row kpi-month">
+                    <div class="col-6 row kpi-hover kpi-moth-detail">
+                        <div class="col-3">
+                            <div class="number-kpi-year">40</div>
+                        </div>
+                        <div class="col-6">Tháng 1</div>
+                        <div class="col-3 text-right">96%</div>
+                    </div>
+                    <div class="col-6 row kpi-hover kpi-moth-detail">
+                        <div class="col-3">
+                            <div class="number-kpi-year">40</div>
+                        </div>
+                        <div class="col-6">Tháng 2</div>
+                        <div class="col-3 text-right">98%</div>
+                    </div>
+                    <div class="col-6 row kpi-hover kpi-moth-detail">
+                        <div class="col-3">
+                            <div class="number-kpi-year">40</div>
+                        </div>
+                        <div class="col-6">Tháng 3</div>
+                        <div class="col-3 text-right">97%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> Phát triển hệ thống - Mức độ quan trọng: <b>Bình Thường</b>
+            </div>
+            <div class="kpi-body">
+
+                <div class="row kpi-detail kpi-header-title">
+                    <div class="col-4 text-bold">
+                        KPI
+                    </div>
+                    <div class="col-2 text-bold">Mức độ quan trọng</div>
+                    <div class="col-1 text-bold">Loại</div>
+                    <div class="col-5 text-right text-bold row">
+                        <span class="col kpi-month">T1</span>
+                        <span class="col kpi-month">T2</span>
+                        <span class="col kpi-month">T3</span>
+                        <span class="col kpi-month">T4</span>
+                        <span class="col kpi-month">T5</span>
+                        <span class="col kpi-month">T6</span>
+                        <span class="col kpi-month">T7</span>
+                        <span class="col kpi-month">T8</span>
+                        <span class="col kpi-month">T9</span>
+                        <span class="col kpi-month">T10</span>
+                        <span class="col kpi-month">T11</span>
+                        <span class="col kpi-month">T12</span>
+                    </div>
+                </div>
+                <div class="row kpi-detail kpi-hover">
+                    <div class="col-4">
+                        Xây dựng form kpi
+                    </div>
+                    <div class="col-2">Khá quan trọng</div>
+                    <div class="col-1">% đạt</div>
+                    <div class="col-5 text-right row">
+                        <span class="col kpi-month">90</span>
+                        <span class="col kpi-month">100</span>
+                        <span class="col kpi-month">105</span>
+                        <span class="col kpi-month">20</span>
+                        <span class="col kpi-month">50</span>
+                        <span class="col kpi-month">70</span>
+                        <span class="col kpi-month">20</span>
+                        <span class="col kpi-month">60</span>
+                        <span class="col kpi-month">100</span>
+                        <span class="col kpi-month">110</span>
+                        <span class="col kpi-month">100</span>
+                        <span class="col kpi-month">100</span>
+                    </div>
+                </div>
+                <div class="row kpi-detail kpi-hover">
+                    <div class="col-4">
+                        Xây dựng form kpi
+                    </div>
+                    <div class="col-2">Khá quan trọng</div>
+                    <div class="col-1">% đạt</div>
+                    <div class="col-5 text-right row">
+                        <span class="col kpi-month">90</span>
+                        <span class="col kpi-month">100</span>
+                        <span class="col kpi-month">-</span>
+                        <span class="col kpi-month">20</span>
+                        <span class="col kpi-month">-</span>
+                        <span class="col kpi-month">-</span>
+                        <span class="col kpi-month">20</span>
+                        <span class="col kpi-month">60</span>
+                        <span class="col kpi-month">-</span>
+                        <span class="col kpi-month">-</span>
+                        <span class="col kpi-month">100</span>
+                        <span class="col kpi-month">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col box-kpi">
+            <div class="kpi-header">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> Phát triển hệ thống - Mức độ quan trọng: <b>Bình Thường</b>
+            </div>
+            <div class="kpi-body">
+
+                <div class="row kpi-detail kpi-header-title">
+                    <div class="col-7 text-bold">
+                        KPI
+                    </div>
+                    <div class="col-2 text-bold">Mức độ quan trọng</div>
+                    <div class="col-2 text-bold">Loại</div>
+                    <div class="col-1 text-right text-bold">Đạt</div>
+                </div>
+                <div class="row kpi-detail kpi-hover">
+                    <div class="col-7">
+                        Xây dựng form kpi
+                    </div>
+                    <div class="col-2">Khá quan trọng</div>
+                    <div class="col-2">% đạt</div>
+                    <div class="col-1 text-right">90%</div>
+                </div>
+                <div class="row kpi-detail kpi-hover">
+                    <div class="col-7">
+                        Xây dựng form SMS
+                    </div>
+                    <div class="col-2">Khá quan trọng</div>
+                    <div class="col-2">lỗi -10%</div>
+                    <div class="col-1 text-right">90%</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="accordion">
         <div class="card">
@@ -85,20 +254,7 @@
     </div>
 
 
-    <br><br>
-    <form action="/okrs" method="post" id="edit_ob">
-        <table class="table table-bordered" id="users-table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tiêu đề</th>
-                <th>Hệ số KRs</th>
-                <th>Thực đạt</th>
-                <th>Hành Động</th>
-            </tr>
-            </thead>
-        </table>
-    </form>
+
     <!-- The Modal -->
     <div class="modal" id="add-modal">
         <div class="modal-dialog" style="max-width: 700px;">

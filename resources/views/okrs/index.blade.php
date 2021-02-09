@@ -68,32 +68,68 @@
             <div class="kpi-body">
 
                 <div class="row kpi-detail kpi-header-title">
-                    <div class="col-6">
+                    <div class="col-7 text-bold">
                         KPI
                     </div>
-                    <div class="col-3">Mức độ quan trọng</div>
-                    <div class="col-3 text-right">Mức độ hoàn thành</div>
+                    <div class="col-2 text-bold">Mức độ quan trọng</div>
+                    <div class="col-2 text-bold">Loại</div>
+                    <div class="col-1 text-right text-bold">Đạt</div>
                 </div>
                 <div class="row kpi-detail kpi-hover">
-                    <div class="col-6">
+                    <div class="col-7">
                         Xây dựng form kpi
                     </div>
-                    <div class="col-3">Khá quan trọng</div>
-                    <div class="col-3 text-right">90%</div>
+                    <div class="col-2">Khá quan trọng</div>
+                    <div class="col-2">% đạt</div>
+                    <div class="col-1 text-right">90%</div>
                 </div>
                 <div class="row kpi-detail kpi-hover">
-                    <div class="col-6">
+                    <div class="col-7">
                         Xây dựng form SMS
                     </div>
-                    <div class="col-3">Rất quan trọng</div>
-                    <div class="col-3 text-right">99%</div>
+                    <div class="col-2">Khá quan trọng</div>
+                    <div class="col-2">lỗi -10%</div>
+                    <div class="col-1 text-right">90%</div>
                 </div>
             </div>
         </div>
-
+    </div>
     <br><br>
+        <div class="row">
+            <div class="col box-kpi">
+                <div class="kpi-header">
+                    <i class="fa fa-caret-right" aria-hidden="true"></i> Phát triển hệ thống - Mức độ quan trọng: <b>Bình Thường</b>
+                </div>
+                <div class="kpi-body">
 
+                    <div class="row kpi-detail kpi-header-title">
+                        <div class="col-7 text-bold">
+                            KPI
+                        </div>
+                        <div class="col-2 text-bold">Mức độ quan trọng</div>
+                        <div class="col-2 text-bold">Loại</div>
+                        <div class="col-1 text-right text-bold">Đạt</div>
+                    </div>
+                    <div class="row kpi-detail kpi-hover">
+                        <div class="col-7">
+                            Xây dựng form kpi
+                        </div>
+                        <div class="col-2">Khá quan trọng</div>
+                        <div class="col-2">% đạt</div>
+                        <div class="col-1 text-right">90%</div>
+                    </div>
+                    <div class="row kpi-detail kpi-hover">
+                        <div class="col-7">
+                            Xây dựng form SMS
+                        </div>
+                        <div class="col-2">Khá quan trọng</div>
+                        <div class="col-2">lỗi -10%</div>
+                        <div class="col-1 text-right">90%</div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
     <!-- The Modal -->
     <div class="modal" id="add-modal">
         <div class="modal-dialog" style="max-width: 700px;">
