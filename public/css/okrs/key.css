@@ -107,3 +107,18 @@
 .sub_coll>a{
     padding: 5px 0 0 10px;
 }
+.kpi-target{
+    padding: 10px;
+    border-bottom: 1px solid #e3e6f0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 200px;
+}
+.kpi-body{
+    font-size: 12px;
+}
+.title-kpi{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
