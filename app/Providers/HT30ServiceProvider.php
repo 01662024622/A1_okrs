@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
-use App\Services\HT30\KeyService;
-use App\Services\HT30\ObjectService;
-use App\Services\HT30\ObjectUserService;
+use App\Services\HT30\KpiResultService;
+use App\Services\HT30\KpiService;
 use App\Services\HT30\ResultService;
-use App\Services\Impl\HT30\KeyServiceImpl;
-use App\Services\Impl\HT30\ObjectServiceImpl;
-use App\Services\Impl\HT30\ObjectUserServiceImpl;
+use App\Services\HT30\TargetKpiService;
+use App\Services\HT30\TargetService;
+use App\Services\Impl\HT30\KpiResultServiceImpl;
+use App\Services\Impl\HT30\KpiServiceImpl;
 use App\Services\Impl\HT30\ResultServiceImpl;
+use App\Services\Impl\HT30\TargetKpiServiceImpl;
+use App\Services\Impl\HT30\TargetServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
 class HT30ServiceProvider extends ServiceProvider
@@ -22,20 +24,24 @@ class HT30ServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(
-            KeyService::class,
-            KeyServiceImpl::class
+            KpiService::class,
+            KpiServiceImpl::class
         );
         $this->app->singleton(
-            ObjectService::class,
-            ObjectServiceImpl::class
+            TargetService::class,
+            TargetServiceImpl::class
         );
         $this->app->singleton(
             ResultService::class,
             ResultServiceImpl::class
         );
         $this->app->singleton(
-            ObjectUserService::class,
-            ObjectUserServiceImpl::class
+            KpiResultService::class,
+            KpiResultServiceImpl::class
+        );
+        $this->app->singleton(
+            TargetKpiService::class,
+            TargetKpiServiceImpl::class
         );
     }
 

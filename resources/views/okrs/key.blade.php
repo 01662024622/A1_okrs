@@ -54,57 +54,17 @@
                 <div class="kpi-header">
                     <i class="fa fa-caret-right" aria-hidden="true"></i> Quản lý mục tiêu
                 </div>
+                <form id="target-kpi-form" method="POST" action="/targetkpi">
                 <div class="target-body">
-                    <div class="kpi-target">
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10">Phát triển hệ thống</div>
-                            <div class="col-2"><input type="checkbox" class="form-check-input" value=""></div>
-                        </div>
+                    <div class="kpi-target" id="kpi-target">
                     </div>
                     <div class="text-right">
-                        <a href="#">Lưu</a>
+                        <a href="#" data-toggle="modal" onclick="getTarget()" data-target="#manageTarget">Quản lý</a>
+                        &nbsp; &nbsp;
+                        <button type="submit" class="btn btn-link">Lưu</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
         <div class="col-8">
@@ -217,10 +177,12 @@
         <br>
     </div>
 
+
     <div class="row" id="kpi">
         <div class="col-12 box-kpi">
             <div class="kpi-header">
-                <i class="fa fa-caret-down collapsed" aria-hidden="true" data-toggle="collapse" data-target="#demo"></i> Phát triển hệ thống - Mức độ quan trọng: <b>Bình
+                <i class="fa fa-caret-down collapsed" aria-hidden="true" data-toggle="collapse" data-target="#demo"></i>
+                Phát triển hệ thống - Mức độ quan trọng: <b>Bình
                     Thường</b>
             </div>
             <div id="demo" class="kpi-body collapse show">
@@ -248,8 +210,11 @@
                 </div>
                 <div class="row kpi-detail kpi-hover">
                     <div class="col-5 row">
-                        <div class="col-10 title-kpi" title="Xây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpi">
-                            Xây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpi<for></for></div>
+                        <div class="col-10 title-kpi"
+                             title="Xây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpi">
+                            Xây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpi
+                            <for></for>
+                        </div>
                         <div class="col-2 text-center">
                             <i class="fa fa-square" style="color: green" aria-hidden="true"></i>
                         </div>
@@ -273,7 +238,8 @@
                 <div class="row kpi-detail kpi-hover">
                     <div class="col-5 row">
                         <div class="col-10 title-kpi">
-                            Xây dựng form kpi</div>
+                            Xây dựng form kpi
+                        </div>
                         <div class="col-2 text-center">
                             <i class="fa fa-square" style="color: red" aria-hidden="true"></i>
                         </div>
@@ -297,7 +263,69 @@
             </div>
         </div>
     </div>
+    <!-- The Modal manager Target-->
+    <div class="modal" id="manageTarget">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Quản lý mục tiêu</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="target-form" method="POST" action="/targets">
+                    <div class="row">
+                            <div class="col-8">
+                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Tên mục tiêu">
+                            </div>
+                            <div class="col-3">
+                                <select id="level" class="form-control form-control-sm" name="level">
+                                    <option disabled selected value="">-- Độ khó --</option>
+                                    <option value="2">Bình thường</option>
+                                    <option value="4">Cố gắng</option>
+                                    <option value="6">Trọng tâm</option>
+                                    <option value="8">Thách thức</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <button type="submit" class="btn btn-link">Thêm</button>
+                            </div>
+                    </div>
+                    </form>
+                    <br>
+                    <div class="row">
+                        <span>Ghi chú mức độ quan trọng:</span>
+                        <span>Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)--</span>
+                        <span>Cố gắng(<i class="fa fa-square" style="color:yellow" aria-hidden="true"></i>)--</span>
+                        <span>Trọng tâm(<i class="fa fa-square" style="color:orange" aria-hidden="true"></i>)--</span>
+                        <span>Thách thức(<i class="fa fa-square" style="color:red" aria-hidden="true"></i>)</span>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <table class="table table-bordered" id="target-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên mục tiêu</th>
+                            <th>Độ khó</th>
+                            <th>Hành Động</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -361,85 +389,11 @@
         </div>
     </div>
 
-    <div class="modal" id="check-modal">
-        <div class="modal-dialog" style="max-width: 700px;">
-            <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Đánh giá kết quả</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-group type-check-0 add-key-button">
-                        <h5>Hệ số trừ cho mỗi lỗi vi phạm là:<b id="minus-text"></b></h5>
-                    </div>
-                    <div class="btn-group ng-scope add-key-button">
-                        <button class="btn btn-sm btn-info" type="button" data-toggle="collapse"
-                                href="#collapseOne">Thêm
-                            mới
-                        </button>
-                    </div>
-                    <div id="collapseOne" class="collapse form-group" data-parent="#accordion">
-
-                        <form id="check-form-krs" action="{{asset('/results')}}" method="POST">
-                            <label for="name">Ngày*</label>
-                            <input type="text" class="form-control" name="date" id="date-result">
-                            <label for="name">Mô tả*</label>
-                            <input type="text" class="form-control" id="result-kr" name="result"
-                                   placeholder="Nhập kết quả then chốt..." maxlength="150">
-                            <label for="name">Số lần*</label>
-                            <input type="text" class="form-control" id="number-kr" name="number"
-                                   placeholder="Nhập số lần vi phạm..." maxlength="2">
-                            <br>
-                            <button type="submit" class="btn btn-info">Thêm</button>
-                        </form>
-                    </div>
-                    <div class="container-fluid add-key-button" id="add-key-table">
-                        <br>
-                        <table class="table table-bordered" id="key-add-table">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Ngày</th>
-                                <th>Mô tả</th>
-                                <th>Số lần</th>
-                                <th>Hành Động</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <form id="check-result-krs" action="{{asset('/keys')}}" method="POST">
-                        <div class="form-group type-check-0">
-                            <label for="name">Thực đạt(%)*</label>
-                            <input type="text" class="form-control" id="result-key" name="result"
-                                   placeholder="Nhập kết quả then chốt..." maxlength="3">
-                        </div>
-
-                        <input type="hidden" name="id" id="id-key">
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <input type="hidden" id="ob-id-hide">
-
-<button onclick="test()">kpi</button>
 @endsection
 
 @section('js')
-
-
-    <script src="{{ asset('js/okrs/key.js') }}"></script>
+{{--    <script src="{{ asset('js/okrs/key.js') }}"></script>--}}
     <script src="{{ asset('js/okrs/keyv2.js') }}"></script>
 
 @endsection

@@ -173,7 +173,6 @@
 
 @section('js')
 
-
     <script src="{{ asset('js/okrs/index.js') }}"></script>
 
 @endsection

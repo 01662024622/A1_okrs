@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHt30ObjectsTable extends Migration
+class CreateHt30MonthKpiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateHt30ObjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ht30_objects', function (Blueprint $table) {
+        Schema::create('ht30_month_kpi', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description',500)->nullable();
+            $table->bigInteger('kpi_id');
+            $table->integer('type')->default(0);
+            $table->integer('result')->nullable();
+            $table->integer('minus')->nullable();
             $table->integer('status')->default(0);
             $table->integer('create_by')->default(0);
             $table->integer('modify_by')->nullable();
@@ -31,6 +33,6 @@ class CreateHt30ObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ht30_objects');
+        Schema::dropIfExists('ht30_month_kpi');
     }
 }

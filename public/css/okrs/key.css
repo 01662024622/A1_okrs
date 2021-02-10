@@ -122,3 +122,19 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.modal{
+    z-index: 999999999999;
+}
+.modal-dialog{
+    margin-top: 75px
+}
+.btn-link{
+    padding-left: 0px;
+}
+.sweet-overlay{
+    z-index: 999999999;
+}
+.sweet-alert{
+
+    z-index: 9999999999;
+}

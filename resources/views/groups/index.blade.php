@@ -88,5 +88,4 @@
 
 @section('js')
     <script src="{{ asset('js/group/index.js') }}"></script>
-
 @endsection

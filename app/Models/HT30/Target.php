@@ -4,16 +4,16 @@ namespace App\Models\HT30;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Objects extends Model
+class Target extends Model
 {
     protected $fillable = [
-        'name', 'description','status','create_by','modify_by'
+        'name', 'description','level','status','create_by','modify_by'
     ];
     protected $fillable_store = [
-        'name', 'description'
+        'name', 'description','level'
     ];
     protected $fillable_update = [
         'name', 'description'
     ];
-    protected $table = "ht30_objects";
+    protected $table = "ht30_targets";
 }

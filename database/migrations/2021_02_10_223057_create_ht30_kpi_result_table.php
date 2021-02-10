@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHt30KeysTable extends Migration
+class CreateHt30KpiResultTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateHt30KeysTable extends Migration
      */
     public function up()
     {
-        Schema::create('ht30_keys', function (Blueprint $table) {
+        Schema::create('ht30_kpi_result', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('ou_id');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->bigInteger('kpi_id');
+            $table->integer('month');
+            $table->integer('year');
             $table->integer('type')->default(0);
             $table->integer('result')->nullable();
-            $table->integer('percent')->nullable();
             $table->integer('minus')->nullable();
             $table->integer('status')->default(0);
             $table->integer('create_by')->default(0);
@@ -36,6 +35,6 @@ class CreateHt30KeysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ht30_keys');
+        Schema::dropIfExists('ht30_kpi_result');
     }
 }
