@@ -36,7 +36,6 @@
 }
 .kpi-hover:hover{
     background-color: #e3e6f0;
-    cursor: grab;
 }
 .kpi-active-month{
     background-color: #e3e6f0;

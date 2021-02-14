@@ -27,5 +27,6 @@ class TargetKpiController extends ResouceController
                 ['modify_by' => Auth::id(), 'status' => 0]
             );
         }
+        return true;
     }
 }

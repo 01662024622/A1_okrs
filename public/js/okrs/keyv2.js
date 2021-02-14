@@ -1,6 +1,7 @@
 var date = new Date();
 var today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 var year = date.getFullYear()
+var targets = []
 $('#date').datepicker({
     startView: "years",
     minViewMode: "years",
@@ -34,20 +35,28 @@ var targetTable = $('#target-table').DataTable({
                     }
                 }
             }, dataSrc: function (json) {
-                page.hide()
+                targets = []
                 $('#target-table').css('width', '100%')
                 var html = '';
+                var targetHtml = ''
                 json.data.forEach(element => {
                     html = html + `<div class="row">
                             <div class="col-10">` + element['name'] + `</div>
                             <div class="col-2">`;
                     if (element['user_id'] == $('#user_id').val()) {
+                        targetHtml = targetHtml + generateTarget(element)
+                        targets.push(element['td_id'])
                         html = html + `<input type="checkbox" name="data[]" class="form-check-input" value="` + element['id'] + `" checked></div>
             </div>`;
                     } else html = html + `<input type="checkbox" name="data[]" class="form-check-input" value="` + element['id'] + `"></div>
             </div>`;
                 })
                 $('#kpi-target').html(html)
+                loadResult(targets)
+                $('#kpi').html(targetHtml)
+                $('.collapsed').on('click', function () {
+                    $(this).toggleClass('fa-caret-right fa-caret-down')
+                })
                 return json.data;
             }
         },
@@ -110,12 +119,10 @@ $("#target-form").submit(function (e) {
             processData: false,
             contentType: false,
             success: function (response) {
-                targetTable.ajax.reload()
                 setTimeout(function () {
-                    toastr.success('Thêm mới thành công!');
+                    toastr.success('Thêm mới mục tiêu thành công!');
                 }, 1000);
-                page.hide()
-                $('#target-form')[0].reset();
+                targetTable.ajax.reload()
             }, error: function (xhr, ajaxOptions, thrownError) {
                 page.hide()
                 if (xhr != null) {
@@ -149,10 +156,9 @@ $("#target-kpi-form").submit(function (e) {
             success: function (response) {
                 targetTable.ajax.reload()
                 setTimeout(function () {
-                    toastr.success('Thêm mới thành công!');
+                    toastr.success('Cập nhật danh sách mục tiêu thành công!');
                 }, 1000);
                 page.hide()
-                $('#target-form')[0].reset();
             }, error: function (xhr, ajaxOptions, thrownError) {
                 page.hide()
                 if (xhr != null) {
@@ -202,58 +208,49 @@ function alDeleteTarget(id) {
             }
         });
 };
-var loadResult = function () {
+var loadResult = function (kpi) {
     page.show()
+    var kpiUrl = '';
+    if (kpi.length > 0) {
+        kpiUrl = '&kpis[]=' + kpi.join('&kpis[]=');
+    }
     $.ajax({
         type: "get",
-        url: "/api/v1/targets/results/table?user_id=" + $('#user_id').val() + "&year=" + $('#date').val(),
+        url: "/api/v1/targets/kpis/table?user_id=" + $('#user_id').val() + "&year=" + $('#date').val() + kpiUrl,
         success: function (res) {
             page.hide()
-            console.log(res)
-            var full = '';
             res.data.forEach(element => {
-                var data = '';
-                element.kpis.forEach(ele => {
-                    data = data + `                <div class="row kpi-detail kpi-hover">
-                    <div class="col-5 row">
-                        <div class="col-10 title-kpi"
-                             title="Xây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpiXây dựng form kpi">
-                            ` + ele['name'] + `
-                            <for></for>
-                        </div>
-                        <div class="col-2 text-center">
-                            <i class="fa fa-square" style="color: green" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="col-1">% đạt</div>
-                    <div class="col-6 row">
-                        <span class="col kpi-month">90</span>
-                        <span class="col kpi-month">100</span>
-                        <span class="col kpi-month">105</span>
-                        <span class="col kpi-month">20</span>
-                        <span class="col kpi-month">50</span>
-                        <span class="col kpi-month">70</span>
-                        <span class="col kpi-month">20</span>
-                        <span class="col kpi-month">60</span>
-                        <span class="col kpi-month">100</span>
-                        <span class="col kpi-month">110</span>
-                        <span class="col kpi-month">100</span>
-                        <span class="col kpi-month">100</span>
-                    </div>
-                </div>`
-                })
-                var html = `<div class="col-12 box-kpi">
+                $('#collapse-header-' + element['td_id']).after(genarateKpi(element))
+            })
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            page.hide()
+            toastr.error(thrownError);
+        }
+    });
+}
+
+var generateTarget = function (element) {
+    return `<div class="col-12 box-kpi">
+<form action="GET" method="/kpis/create" id="target-kpi-form-`+element['id']+`">
             <div class="kpi-header row">
             <div class="col-10">
-<i class="fa fa-caret-down collapsed" aria-hidden="true" data-toggle="collapse" data-target="#collapse-\`+element['id']+\`"></i>
-                `+element['name']+` - Mức độ quan trọng: <b>`+element['level']+`</b>
+<i class="fa fa-caret-down collapsed" aria-hidden="true" data-toggle="collapse" data-target="#collapse-` + element['td_id'] + `"></i>
+                ` + element['name'] + ` - Mức độ quan trọng: <b>` + element['level'] + `</b>
 </div>
-<div class="col-2"><button class="btn btn-link">Thêm</button></div>
+<div class="col-2 text-right"><button type="button" class="btn btn-sm btn-link text-right" data-toggle="collapse" on onclick="cancelKpi(` + element['id'] + `)" data-target="#collapse-action-` + element['id'] + `">Cấu hình <i class="fa fa-angle-down" aria-hidden="true"></i></button></div>
 
             </div>
-            <div id="collapse-` + element['id'] + `" class="kpi-body collapse show">
-
-                <div class="row kpi-detail kpi-header-title">
+            <div id="collapse-` + element['td_id'] + `" class="kpi-body collapse show">
+                <div id="collapse-action-` + element['id'] + `" class="collapse">
+                    <button type="button" class="btn btn-sm btn-link btn-kpi-action show" onclick="addKpi(` + element['td_id'] + `)" id="add-kpi-` + element['td_id'] + `" data-toggle="modal" data-target="#add-modal">Thêm mới</button>
+                    <button type="button" class="btn btn-sm btn-link btn-kpi-action show" onclick="selectCheckboxKpi(` + element['td_id'] + `)" id="select-kpi-` + element['td_id'] + `">Chọn</button>
+                    <button type="button" class="btn btn-sm btn-link btn-kpi-action" onclick="selectAllCheckboxKpi(` + element['td_id'] + `)" id="select-all-kpi-` + element['td_id'] + `">Chọn Tất cả</button>
+                    <button type="button" class="btn btn-sm btn-link btn-kpi-action" onclick="unSelectAllCheckboxKpi(` + element['td_id'] + `)" id="un-select-all-kpi-` + element['td_id'] + `">Bỏ chọn Tất cả</button>
+                    <button type="button" class="btn btn-sm btn-link btn-kpi-action" onclick="removeKpi(` + element['td_id'] + `)" id="remove-kpi-` + element['td_id'] + `">Xóa</button>
+                    <button type="button" class="btn btn-sm btn-link btn-kpi-action" onclick="cancelKpi(` + element['td_id'] + `)" id="cancel-kpi-` + element['td_id'] + `">Hủy </button>
+                </div>
+                <div id="collapse-header-` + element['td_id'] + `"class="row kpi-detail kpi-header-title">
                     <div class="col-5 text-bold row">
                         <div class="col-10">KPI</div>
                         <div class="col-2">Độ khó</div>
@@ -274,24 +271,106 @@ var loadResult = function () {
                         <span class="col kpi-month">T12</span>
                     </div>
                 </div>
-        ` + data + `
             </div>
+            </form>
         </div>`;
-                full = full + html;
-            })
-            $('#kpi').html(full)
-            $('.collapsed').on('click', function () {
-                $(this).toggleClass('fa-caret-right fa-caret-down')
-            })
-            if (!res.error) {
-                toastr.success('Thành công!');
-            }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
+}
+var genarateKpi = function (element) {
+    return `<div class="row kpi-detail kpi-hover" id="kpi-detail-` + element['id'] + `">
+
+        <div class="col-5 row">
+            <div class="col-10 title-kpi"
+                 title="` + element['name'] + `">
+                 <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input checkbox-kpi checkbox-kpi-` + element['td_id'] + `" value="` + element['id'] + `" name="kpis[]" onchange="checkboxKpiChange(` + element['td_id'] + `)"> &nbsp;` + element['name'] + `
+  </label>
+</div>
+                </div>
+            <div class="col-2 text-center">
+                `+element['level']+`
+            </div>
+        </div>
+        <div class="col-1">% đạt</div>
+        <div class="col-6 row">
+            <span class="col kpi-month">90</span>
+            <span class="col kpi-month">100</span>
+            <span class="col kpi-month">105</span>
+            <span class="col kpi-month">20</span>
+            <span class="col kpi-month">50</span>
+            <span class="col kpi-month">70</span>
+            <span class="col kpi-month">20</span>
+            <span class="col kpi-month">60</span>
+            <span class="col kpi-month">100</span>
+            <span class="col kpi-month">110</span>
+            <span class="col kpi-month">100</span>
+            <span class="col kpi-month">100</span>
+        </div>
+    </div>`;
+}
+
+function selectCheckboxKpi(id) {
+    $('#add-kpi-' + id).removeClass('show')
+    $('#cancel-kpi-' + id).addClass('show')
+    // $('#remove-kpi-' + id).removeClass('show')
+    $('#select-kpi-' + id).removeClass('show')
+    $('#select-all-kpi-' + id).addClass('show')
+    $('#un-select-all-kpi-' + id).addClass('show')
+    $('.checkbox-kpi-' + id).addClass('show').prop('checked', false)
+}
+function cancelKpi(id){
+    $('#add-kpi-' + id).addClass('show')
+    $('#cancel-kpi-' + id).removeClass('show')
+    $('#remove-kpi-' + id).removeClass('show')
+    $('#select-kpi-' + id).addClass('show')
+    $('#select-all-kpi-' + id).removeClass('show')
+    $('#un-select-all-kpi-' + id).removeClass('show')
+    $('.checkbox-kpi-' + id).removeClass('show').prop('checked', false)
+}
+function addKpi(id){
+    console.log(id)
+}
+
+// select-kpi-
+// select-all-kpi-
+
+function selectAllCheckboxKpi(id) {
+    $('.checkbox-kpi-' + id).prop('checked', true)
+    checkboxKpiChange(id)
+}
+
+function unSelectAllCheckboxKpi(id) {
+    $('.checkbox-kpi-' + id).prop('checked', false)
+    checkboxKpiChange(id)
+}
+
+function checkboxKpiChange(id){
+    if ($('.checkbox-kpi-' + id + ':checkbox:checked').length > 0) {
+        $('#remove-kpi-' + id).addClass('show')
+    } else {
+        $('#remove-kpi-' + id).removeClass('show')
+    }
+}
+function removeKpi(id){
+    page.show()
+    $.ajax({
+        url: '/kpis/create/?'+$('#target-kpi-form-'+id).serialize(),
+        type: 'GET',
+        success: function (response) {
+            targetTable.ajax.reload()
+            setTimeout(function () {
+                toastr.success('Xóa thành công!');
+            }, 1000);
+        }, error: function (xhr, ajaxOptions, thrownError) {
             page.hide()
-            toastr.error(thrownError);
-        }
+            if (xhr != null) {
+                if (xhr.responseJSON != null) {
+                    if (xhr.responseJSON.message != null) {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                }
+            }
+
+        },
     });
 }
-loadResult()
-
