@@ -42,6 +42,7 @@ Route::resource('/customer/feedback/report', 'HT10\CustomerFeedbackController');
 Route::resource('/targets', 'HT30\TargetController');
 Route::resource('/targetkpi', 'HT30\TargetKpiController');
 Route::resource('/kpis', 'HT30\KpiController');
+Route::resource('/kpi/results', 'HT30\KpiResultController');
 Route::resource('/okrs', 'HT30\OKRController');
 Route::resource('/results', 'HT30\ResultController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');

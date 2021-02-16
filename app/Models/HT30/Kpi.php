@@ -20,5 +20,6 @@ class Kpi extends Model
         return $this->hasMany(KpiResult::class,'kpi_id','id')
             ->where('ht30_kpi_result.status',0);
     }
+
     protected $table = "ht30_kpis";
 }

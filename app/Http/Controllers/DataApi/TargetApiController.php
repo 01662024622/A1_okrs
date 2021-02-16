@@ -38,7 +38,7 @@ class TargetApiController extends Controller
 			<i class="fa fa-trash" aria-hidden="true"></i></button>
 			';
             })
-            ->editColumn('level', function ($dt) {
+            ->addColumn('levelEdit', function ($dt) {
                 if ($dt['level'] == 2) return '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
                 elseif ($dt['level'] == 4) return '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
                 elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
@@ -46,7 +46,7 @@ class TargetApiController extends Controller
             })
             ->addIndexColumn()
             ->setRowId('target-{{$id}}')
-            ->rawColumns(['action', 'level'])
+            ->rawColumns(['action', 'levelEdit'])
             ->make(true);
     }
     public function anyDataResult(Request $request)
@@ -58,7 +58,7 @@ class TargetApiController extends Controller
 
         // $products->user;
         return DataTables::of($data)
-            ->editColumn('level', function ($dt) {
+            ->editColumn('levelEdit', function ($dt) {
                 if ($dt['level'] == 2) return '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
                 elseif ($dt['level'] == 4) return '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
                 elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
@@ -70,7 +70,7 @@ class TargetApiController extends Controller
             })
             ->addIndexColumn()
             ->setRowId('kpi-{{$id}}')
-            ->rawColumns(['action', 'level'])
+            ->rawColumns(['action', 'levelEdit'])
             ->make(true);
     }
 }

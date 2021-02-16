@@ -8,6 +8,9 @@ var date = new Date();
 var today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 var year = date.getFullYear()
 var targets = []
+var tdIdLevelBuffer = []
+var tdIdLevel = []
+var kpiIdLevel = []
 $('#date').datepicker({
     startView: "years",
     minViewMode: "years",
@@ -52,6 +55,8 @@ var targetTable = $('#target-table').DataTable({
                     if (element['user_id'] == $('#user_id').val()) {
                         targetHtml = targetHtml + generateTarget(element)
                         targets.push(element['td_id'])
+                        if (tdIdLevelBuffer[element['td_id']]===undefined) tdIdLevelBuffer[element['td_id']]=[]
+                        tdIdLevelBuffer[element['td_id']].push(element['level']);
                         html = html + `<input type="checkbox" name="data[]" class="form-check-input" value="` + element['id'] + `" checked></div>
             </div>`;
                     } else html = html + `<input type="checkbox" name="data[]" class="form-check-input" value="` + element['id'] + `"></div>
@@ -69,7 +74,7 @@ var targetTable = $('#target-table').DataTable({
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
-            {data: 'level', name: 'level'},
+            {data: 'levelEdit', name: 'levelEdit'},
             {data: 'action', name: 'action'},
         ],
         oLanguage: {
@@ -224,10 +229,40 @@ var loadResult = function (kpi) {
         type: "get",
         url: "/api/v1/targets/kpis/table?user_id=" + $('#user_id').val() + "&year=" + $('#date').val() + kpiUrl,
         success: function (res) {
-            page.hide()
             res.data.forEach(element => {
+                tdIdLevel[element.td_id]=tdIdLevelBuffer[element.td_id]
                 $('#collapse-header-' + element['td_id']).after(genarateKpi(element))
             })
+            for (var month =1; month<=kpiIdLevel.length;month++){
+                if (kpiIdLevel[month]===undefined) continue;
+                //total level of tagert on month
+                var totalLevelTg=0
+
+                //total number kpi of month
+                var sumKpi=kpiIdLevel[month].reduce(function(total,accumulator,currentIndex) {
+                    totalLevelTg=totalLevelTg+floatParse(tdIdLevel[currentIndex]);
+                    return total + accumulator.length;
+                },0)
+                $('#number-kpi-month-'+month).text(sumKpi)
+                var generalMonth=[]
+                for (var td_id =1; td_id<=kpiIdLevel[month].length;td_id++){
+                    if (kpiIdLevel[month][td_id]===undefined) continue;
+                    var sumLevelTd=kpiIdLevel[month][td_id].reduce(function(total,accumulator) {
+                        return total + floatParse(accumulator[0]);
+                    },0.00)
+                    generalMonth[td_id]=kpiIdLevel[month][td_id].reduce(function(total,accumulator) {
+                        console.log(total)
+                        return total + floatParse(accumulator[0])*floatParse(accumulator[1])/sumLevelTd;
+                    },0.00)
+                }
+                var resultMonth = generalMonth.reduce(function(total,accumulator,currentIndex) {
+                    return total + floatParse(tdIdLevel[currentIndex])*floatParse(accumulator)/totalLevelTg;
+                },0.00)
+                $('#total-kpi-month-'+month).text(floatParse(resultMonth)+'%')
+
+            }
+            page.hide()
+
         },
         error: function (xhr, ajaxOptions, thrownError) {
             page.hide()
@@ -238,15 +273,15 @@ var loadResult = function (kpi) {
 
 var generateTarget = function (element) {
     var months=[]
-    for (var i = 0; i<=date.getMonth();i++){
-        months[i]=`<span class="col kpi-month">T`+(i+1)+`</span>`;
+    for (var i = 1; i<=date.getMonth()+1;i++){
+        months[i]=`<span class="col kpi-month text-center">T`+i+`</span>`;
     }
     return `<div class="col-12 box-kpi">
 <form action="GET" method="/kpis/create" id="target-kpi-form-`+element['id']+`">
             <div class="kpi-header row">
             <div class="col-10">
 <i class="fa fa-caret-down collapsed" aria-hidden="true" data-toggle="collapse" data-target="#collapse-` + element['td_id'] + `"></i>
-                ` + element['name'] + ` - Mức độ quan trọng: <b>` + element['level'] + `</b>
+                ` + element['name'] + ` - Mức độ quan trọng: <b>` + element['levelEdit'] + `</b>
 </div>
 <div class="col-2 text-right"><button type="button" class="btn btn-sm btn-link text-right" data-toggle="collapse" on onclick="cancelKpi(` + element['id'] + `)" data-target="#collapse-action-` + element['id'] + `">Cấu hình <i class="fa fa-angle-down" aria-hidden="true"></i></button></div>
 
@@ -275,11 +310,24 @@ var generateTarget = function (element) {
         </div>`;
 }
 var genarateKpi = function (element) {
-    console.log(element)
     var results=[]
-    for (var i = 0; i<=date.getMonth();i++){
-        results[i]=`<span class="col kpi-month kpi-hover kpi-hover-item-`
-            + element['td_id'] + `" onclick="setResultMothKpi(` + element['id'] + `,`+(i+1)+`)" data-toggle="modal" data-target="#set-result-month-modal">-</span>`;
+    for (var i = 1; i<=date.getMonth()+1;i++){
+        results[i]=`<span class="col kpi-month kpi-hover text-center kpi-hover-item-`
+            + element['td_id'] + `" onclick="activeResult(` + element['id'] + `,`+i+`)">--</span>`;
+    }
+    if (element.results.length==0){
+        tdIdLevel[element.td_id]=tdIdLevelBuffer[element.td_id]
+    }
+    else {
+    element.results.forEach(ele=>{
+        if (kpiIdLevel[ele.month]===undefined) kpiIdLevel[ele.month]=[]
+        if (kpiIdLevel[ele.month][element.td_id]===undefined) kpiIdLevel[ele.month][element.td_id]=[]
+        kpiIdLevel[ele.month][element.td_id].push([element.level,ele.result]);
+        results[ele.month]=`<span class="col kpi-month kpi-hover text-center kpi-hover-item-`
+            + element['td_id'] + `" onclick="setResultMothKpi(` + ele['id'] +`"
+data-toggle="modal" data-target="#set-result-month-modal"
+>`+ele['result']+`</span>`
+    })
     }
     return `<div class="row kpi-detail" id="kpi-detail-` + element['id'] + `">
 
@@ -293,7 +341,7 @@ var genarateKpi = function (element) {
 </div>
                 </div>
             <div class="col-2 text-center">
-                `+element['level']+`
+                `+element['levelEdit']+`
             </div>
         </div>
         <div class="col-1">` + element['type'] + `</div>
@@ -323,7 +371,6 @@ function cancelKpi(id){
     $('.checkbox-kpi-' + id).removeClass('show').prop('checked', false)
 }
 function addKpi(id){
-    console.log(id)
 }
 
 // select-kpi-
@@ -369,31 +416,92 @@ function removeKpi(id){
         },
     });
 }
-function setResultMothKpi(idKpi,month){
-    page.show()
-    $.ajax({
-        type: "get",
-        url: "/kpis/"+idKpi,
-        success: function (res) {
-            var level ='';
-            if (res.level == 2) level= 'Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)';
-            else if (res.level == 4) level= 'Cố gắng(<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>)';
-            else if (res.level == 6) level= 'Trọng tâm(<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>)';
-        else level= 'Thách thức(<i class="fa fa-square" style="color: red" aria-hidden="true"></i>)';
-            $('#detail-kpi-show').html(`<b for="name">Độ khó: </b>
-                                `+level+`
-                                <b for="name">Tháng: </b><span id="kpi-detail-month">`+month+`</span>`)
-            $('#name-kpi').text(res.name)
-            if (res.type==0){
-                $('#result-kpi-detail').prop('disabled', false);
-            }else $('#result-kpi-detail').prop('disabled', true);
-            page.hide()
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            page.hide()
-            toastr.error(thrownError);
-        }
-    });
+function activeResult(idKpi,month){
+        swal({
+                title: "Bạn chắc chắn muốn kích hoạt kpi?",
+                // text: "Bạn sẽ không thể khôi phục lại bản ghi này!!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: "Không",
+                confirmButtonText: "Có",
+                // closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    page.show()
+                    $.ajax({
+                        type: "POST",
+                        url: "/kpi/results",
+                        data: {
+                            kpi_id : idKpi,
+                            month : month,
+                            year : $('#date').val(),
+                        },
+                        success: function (res) {
+                            if (!res.error) {
+                                toastr.success('Kích hoạt hành công!');
+                            }
+                            targetTable.ajax.reload()
+                            // page.hide()
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            page.hide()
+                            toastr.error(thrownError);
+                        }
+                    });
+                } else {
+                    toastr.error("Hủy bỏ thao tác!");
+                }
+            });
+    // $.ajax({
+    //     type: "get",
+    //     url: "/kpi/results/create?kpi_id="+idKpi+"&month="+month+"&year="+$('#date').val(),
+    //     success: function (res) {
+    //         var level ='';
+    //         if (res.level == 2) level= 'Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)';
+    //         else if (res.level == 4) level= 'Cố gắng(<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>)';
+    //         else if (res.level == 6) level= 'Trọng tâm(<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>)';
+    //     else level= 'Thách thức(<i class="fa fa-square" style="color: red" aria-hidden="true"></i>)';
+    //         $('#detail-kpi-show').html(`<b for="name">Độ khó: </b>
+    //                             `+level+`
+    //                             <b for="name">Tháng: </b><span id="kpi-detail-month">`+month+`</span>`)
+    //         $('#name-kpi').text(res.name)
+    //         if (res.type==0){
+    //             $('#result-kpi-detail').prop('disabled', false);
+    //         }else $('#result-kpi-detail').prop('disabled', true);
+    //         page.hide()
+    //     },
+    //     error: function (xhr, ajaxOptions, thrownError) {
+    //         page.hide()
+    //         toastr.error(thrownError);
+    //     }
+    // });
+}
+function setResultMothKpi(idResult){
+    // $.ajax({
+    //     type: "get",
+    //     url: "/kpi/results/create?kpi_id="+idKpi+"&month="+month+"&year="+$('#date').val(),
+    //     success: function (res) {
+    //         var level ='';
+    //         if (res.level == 2) level= 'Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)';
+    //         else if (res.level == 4) level= 'Cố gắng(<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>)';
+    //         else if (res.level == 6) level= 'Trọng tâm(<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>)';
+    //     else level= 'Thách thức(<i class="fa fa-square" style="color: red" aria-hidden="true"></i>)';
+    //         $('#detail-kpi-show').html(`<b for="name">Độ khó: </b>
+    //                             `+level+`
+    //                             <b for="name">Tháng: </b><span id="kpi-detail-month">`+month+`</span>`)
+    //         $('#name-kpi').text(res.name)
+    //         if (res.type==0){
+    //             $('#result-kpi-detail').prop('disabled', false);
+    //         }else $('#result-kpi-detail').prop('disabled', true);
+    //         page.hide()
+    //     },
+    //     error: function (xhr, ajaxOptions, thrownError) {
+    //         page.hide()
+    //         toastr.error(thrownError);
+    //     }
+    // });
 }
 $(document).on('keydown', 'input[pattern]', function(e){
     var input = $(this);
@@ -407,3 +515,7 @@ $(document).on('keydown', 'input[pattern]', function(e){
         }
     }, 0);
 });
+
+function floatParse(float,fractionDigits=2){
+    return parseFloat(parseFloat(float).toFixed(fractionDigits));
+}

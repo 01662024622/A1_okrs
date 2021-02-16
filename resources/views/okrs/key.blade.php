@@ -77,87 +77,87 @@
                     <div class="row kpi-month">
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-1" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 1</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-1" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-2" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 2</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-2" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-3" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 3</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-3" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-4" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 4</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-4" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-5" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 5</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-5" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-6" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 6</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-6" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-7" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 7</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-7" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-8" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 8</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-8" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-9" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 9</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-9" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-10" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 10</div>
-                            <div class="col-3 text-right">96%</div>
+                            <div id="total-kpi-month-10" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div id="number-kpi-month-11" class="number-kpi-year">0</div>
                             </div>
-                            <div class="col-6">Tháng 12</div>
-                            <div class="col-3 text-right">98%</div>
+                            <div class="col-6">Tháng 11</div>
+                            <div id="total-kpi-month-11" class="col-3 text-right">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
-                                <div class="number-kpi-year">40</div>
+                                <div  id="number-kpi-month-12" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 12</div>
-                            <div class="col-3 text-right">97%</div>
+                            <div id="total-kpi-month-12" class="col-3 text-right">0%</div>
                         </div>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
 
     <!-- Set rusult months -->
     <div class="modal" id="set-result-month-modal">
-        <div class="modal-dialog" style="max-width: 700px;">
+        <div class="modal-dialog" style="max-width: 1200px;">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -261,21 +261,33 @@
                 <form id="add-form-krs" action="{{asset('/keys')}}" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <div class="">
-                            <b for="name">Tên Kpi</b>
-                            <p id="name-kpi" class="kpi-detail-show">Kpi A</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="">
+                                    <b for="name">Tên Kpi</b>
+                                    <p id="name-kpi" class="kpi-detail-show">Kpi A</p>
+                                </div>
+                                <div class="">
+                                    <p id="detail-kpi-show" class="kpi-detail-show">
+                                        <b for="name">Độ khó: </b>
+                                        <i class="fa fa-square" style="color: green" aria-hidden="true"></i>--Bình thường
+                                        <b for="name">Tháng: </b><span id="kpi-detail-month">1</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><b>Kết quả</b></label>
+                                    <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
+                                </div>
+                            </div>
+                            <div class="col-6">
+
+                                <div class="form-group">
+                                    <label for="name"><b>Kết quả</b></label>
+                                    <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
+                                </div>
+                            </div>
                         </div>
-                        <div class="">
-                            <p id="detail-kpi-show" class="kpi-detail-show">
-                                <b for="name">Độ khó: </b>
-                                <i class="fa fa-square" style="color: green" aria-hidden="true"></i>--Bình thường
-                                <b for="name">Tháng: </b><span id="kpi-detail-month">1</span>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="name"><b>Kết quả</b></label>
-                            <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
-                        </div>
+
 
                         <input type="hidden" name="id" id="eid-krs">
 

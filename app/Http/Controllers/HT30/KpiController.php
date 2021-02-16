@@ -22,11 +22,7 @@ class KpiController extends ResouceController
 
     public function store(Request $request)
     {
-        $data = [];
-        if ($request->type == 1) {
-            $data['result'] = 100;
-        }
-        return parent::storeRequest($request, $data);
+        return parent::storeRequest($request);
     }
     public function create(Request $request)
     {

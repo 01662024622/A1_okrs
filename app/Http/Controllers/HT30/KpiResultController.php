@@ -19,18 +19,13 @@ class KpiResultController extends ResouceController
     {
         return KpiResult::with('results')->find($id);
     }
-    public function create(Request $request)
-    {
-        KpiResult::updateOrCreate(
-            ['kpi_id' => $request->kpi_id, 'year' => $request->year, 'month' => $request->month,],
-            ['modify_by' => Auth::id()]
-        );
-        return KpiResult::with('results')->find($id);
-    }
 
     public function store(Request $request)
     {
         return parent::storeRequest($request);
+    }
+    public function create(Request $request){
+
     }
 
 }
