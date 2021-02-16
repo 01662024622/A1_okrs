@@ -64,6 +64,10 @@ class TargetApiController extends Controller
                 elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
                 else return '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>';
             })
+            ->editColumn('type', function ($dt) {
+                if ($dt['type'] == 0) return '% đạt';
+                    else return 'trừ '.$dt['minus'].'%/lỗi';
+            })
             ->addIndexColumn()
             ->setRowId('kpi-{{$id}}')
             ->rawColumns(['action', 'level'])

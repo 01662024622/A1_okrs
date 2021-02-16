@@ -159,3 +159,7 @@
 .text-right{
     text-align: right;
 }
+.kpi-detail-show{
+    padding-left: 10px;
+    font-size: 12px;
+}

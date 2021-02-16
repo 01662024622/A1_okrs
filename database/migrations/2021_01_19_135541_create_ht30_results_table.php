@@ -15,7 +15,7 @@ class CreateHt30ResultsTable extends Migration
     {
         Schema::create('ht30_results', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('key_id')->default(0);
+            $table->bigInteger('kr_id')->default(0);
             $table->string('date');
             $table->string('description');
             $table->integer('number')->default(1);

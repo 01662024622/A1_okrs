@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 var date = new Date();
 var today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 var year = date.getFullYear()
@@ -231,6 +237,10 @@ var loadResult = function (kpi) {
 }
 
 var generateTarget = function (element) {
+    var months=[]
+    for (var i = 0; i<=date.getMonth();i++){
+        months[i]=`<span class="col kpi-month">T`+(i+1)+`</span>`;
+    }
     return `<div class="col-12 box-kpi">
 <form action="GET" method="/kpis/create" id="target-kpi-form-`+element['id']+`">
             <div class="kpi-header row">
@@ -257,18 +267,7 @@ var generateTarget = function (element) {
                     </div>
                     <div class="col-1 text-bold">Loại</div>
                     <div class="col-6 text-bold row">
-                        <span class="col kpi-month">T1</span>
-                        <span class="col kpi-month">T2</span>
-                        <span class="col kpi-month">T3</span>
-                        <span class="col kpi-month">T4</span>
-                        <span class="col kpi-month">T5</span>
-                        <span class="col kpi-month">T6</span>
-                        <span class="col kpi-month">T7</span>
-                        <span class="col kpi-month">T8</span>
-                        <span class="col kpi-month">T9</span>
-                        <span class="col kpi-month">T10</span>
-                        <span class="col kpi-month">T11</span>
-                        <span class="col kpi-month">T12</span>
+                        `+months.join('')+`
                     </div>
                 </div>
             </div>
@@ -276,10 +275,16 @@ var generateTarget = function (element) {
         </div>`;
 }
 var genarateKpi = function (element) {
-    return `<div class="row kpi-detail kpi-hover" id="kpi-detail-` + element['id'] + `">
+    console.log(element)
+    var results=[]
+    for (var i = 0; i<=date.getMonth();i++){
+        results[i]=`<span class="col kpi-month kpi-hover kpi-hover-item-`
+            + element['td_id'] + `" onclick="setResultMothKpi(` + element['id'] + `,`+(i+1)+`)" data-toggle="modal" data-target="#set-result-month-modal">-</span>`;
+    }
+    return `<div class="row kpi-detail" id="kpi-detail-` + element['id'] + `">
 
         <div class="col-5 row">
-            <div class="col-10 title-kpi"
+            <div class="col-10 title-kpi kpi-hover kpi-hover-item-` + element['td_id'] + `"
                  title="` + element['name'] + `">
                  <div class="form-check">
   <label class="form-check-label">
@@ -291,25 +296,14 @@ var genarateKpi = function (element) {
                 `+element['level']+`
             </div>
         </div>
-        <div class="col-1">% đạt</div>
-        <div class="col-6 row">
-            <span class="col kpi-month">90</span>
-            <span class="col kpi-month">100</span>
-            <span class="col kpi-month">105</span>
-            <span class="col kpi-month">20</span>
-            <span class="col kpi-month">50</span>
-            <span class="col kpi-month">70</span>
-            <span class="col kpi-month">20</span>
-            <span class="col kpi-month">60</span>
-            <span class="col kpi-month">100</span>
-            <span class="col kpi-month">110</span>
-            <span class="col kpi-month">100</span>
-            <span class="col kpi-month">100</span>
+        <div class="col-1">` + element['type'] + `</div>
+        <div class="col-6 row">`+results.join('')+`
         </div>
     </div>`;
 }
 
 function selectCheckboxKpi(id) {
+    $('.kpi-hover-item-'+id).removeClass('kpi-hover')
     $('#add-kpi-' + id).removeClass('show')
     $('#cancel-kpi-' + id).addClass('show')
     // $('#remove-kpi-' + id).removeClass('show')
@@ -319,6 +313,7 @@ function selectCheckboxKpi(id) {
     $('.checkbox-kpi-' + id).addClass('show').prop('checked', false)
 }
 function cancelKpi(id){
+    $('.kpi-hover-item-'+id).addClass('kpi-hover')
     $('#add-kpi-' + id).addClass('show')
     $('#cancel-kpi-' + id).removeClass('show')
     $('#remove-kpi-' + id).removeClass('show')
@@ -374,3 +369,41 @@ function removeKpi(id){
         },
     });
 }
+function setResultMothKpi(idKpi,month){
+    page.show()
+    $.ajax({
+        type: "get",
+        url: "/kpis/"+idKpi,
+        success: function (res) {
+            var level ='';
+            if (res.level == 2) level= 'Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)';
+            else if (res.level == 4) level= 'Cố gắng(<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>)';
+            else if (res.level == 6) level= 'Trọng tâm(<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>)';
+        else level= 'Thách thức(<i class="fa fa-square" style="color: red" aria-hidden="true"></i>)';
+            $('#detail-kpi-show').html(`<b for="name">Độ khó: </b>
+                                `+level+`
+                                <b for="name">Tháng: </b><span id="kpi-detail-month">`+month+`</span>`)
+            $('#name-kpi').text(res.name)
+            if (res.type==0){
+                $('#result-kpi-detail').prop('disabled', false);
+            }else $('#result-kpi-detail').prop('disabled', true);
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            page.hide()
+            toastr.error(thrownError);
+        }
+    });
+}
+$(document).on('keydown', 'input[pattern]', function(e){
+    var input = $(this);
+    var oldVal = input.val();
+    var regex = new RegExp(input.attr('pattern'), 'g');
+
+    setTimeout(function(){
+        var newVal = input.val();
+        if(!regex.test(newVal)){
+            input.val(oldVal);
+        }
+    }, 0);
+});

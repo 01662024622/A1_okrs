@@ -18,9 +18,7 @@ class CreateHt30KpiResultTable extends Migration
             $table->bigInteger('kpi_id');
             $table->integer('month');
             $table->integer('year');
-            $table->integer('type')->default(0);
             $table->integer('result')->nullable();
-            $table->integer('minus')->nullable();
             $table->integer('status')->default(0);
             $table->integer('create_by')->default(0);
             $table->integer('modify_by')->nullable();

@@ -247,8 +247,8 @@
 
 
 
-    <!-- The Modal -->
-    <div class="modal" id="add-modal">
+    <!-- Set rusult months -->
+    <div class="modal" id="set-result-month-modal">
         <div class="modal-dialog" style="max-width: 700px;">
             <div class="modal-content">
 
@@ -261,38 +261,22 @@
                 <form id="add-form-krs" action="{{asset('/keys')}}" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name">Kết quả then chốt*</label>
-                            <input type="text" class="form-control" id="name-kr" name="name"
-                                   placeholder="Nhập kết quả then chốt..." maxlength="150">
+                        <div class="">
+                            <b for="name">Tên Kpi</b>
+                            <p id="name-kpi" class="kpi-detail-show">Kpi A</p>
+                        </div>
+                        <div class="">
+                            <p id="detail-kpi-show" class="kpi-detail-show">
+                                <b for="name">Độ khó: </b>
+                                <i class="fa fa-square" style="color: green" aria-hidden="true"></i>--Bình thường
+                                <b for="name">Tháng: </b><span id="kpi-detail-month">1</span>
+                            </p>
                         </div>
                         <div class="form-group">
-                            <label for="name">Hệ số KRs(%)*</label>
-                            <input type="text" class="form-control" id="percent-kr" name="percent"
-                                   placeholder="Nhậphệ số okrs..." maxlength="3">
+                            <label for="name"><b>Kết quả</b></label>
+                            <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
                         </div>
-                        <div class="form-group" id="sub-radio">
-                            <label for="name">Cách tính*</label>
-                            <br>
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" id="type_0" class="form-check-input" name="type" value="0"
-                                           checked>Phần trăm đạt
-                                </label>
-                            </div>
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" id="type_1" class="form-check-input" name="type" value="1">Trừ
-                                    theo mỗi lỗi/sai
-                                </label>
-                            </div>
-                            <div class="form-group hidden" id="minus-container">
-                                <br>
-                                <label for="name">Phần trăm bị trừ(%)*</label>
-                                <input type="text" class="form-control" id="minus" name="minus"
-                                       placeholder="Nhậphệ số okrs..." maxlength="2">
-                            </div>
-                        </div>
+
                         <input type="hidden" name="id" id="eid-krs">
 
                     </div>
@@ -307,6 +291,69 @@
         </div>
     </div>
 
+    <!-- The Modal manager Target-->
+    <div class="modal" id="manageTarget">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Quản lý mục tiêu</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="target-form" method="POST" action="/targets">
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Tên mục tiêu">
+                            </div>
+                            <div class="col-3">
+                                <select id="level" class="form-control form-control-sm" name="level">
+                                    <option disabled selected value="">-- Độ khó --</option>
+                                    <option value="2">Bình thường</option>
+                                    <option value="4">Cố gắng</option>
+                                    <option value="6">Trọng tâm</option>
+                                    <option value="8">Thách thức</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <button type="submit" class="btn btn-link">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="row">
+                        <span>Ghi chú mức độ quan trọng:</span>
+                        <span>Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)--</span>
+                        <span>Cố gắng(<i class="fa fa-square" style="color:yellow" aria-hidden="true"></i>)--</span>
+                        <span>Trọng tâm(<i class="fa fa-square" style="color:orange" aria-hidden="true"></i>)--</span>
+                        <span>Thách thức(<i class="fa fa-square" style="color:red" aria-hidden="true"></i>)</span>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <table class="table table-bordered" id="target-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên mục tiêu</th>
+                            <th>Độ khó</th>
+                            <th>Hành Động</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 @endsection
 

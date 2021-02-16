@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Kpi extends Model
 {
     protected $fillable = [
-        'name','td_id', 'description', 'level','status','create_by','modify_by'
+        'name','td_id', 'description', 'type','minus', 'level','status','create_by','modify_by'
     ];
     protected $fillable_store = [
-       'name', 'td_id', 'description', 'level'
+       'name', 'td_id', 'description', 'level', 'minus','type'
     ];
     protected $fillable_update = [
         'name','td_id', 'description'

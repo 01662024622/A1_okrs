@@ -2,10 +2,35 @@
 
 namespace App\Http\Controllers\HT30;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Base\ResouceController;
+use App\Models\HT30\KpiResult;
+use App\Services\HT30\KpiResultService;
 use Illuminate\Http\Request;
 
-class KpiResultController extends Controller
+class KpiResultController extends ResouceController
 {
-    //
+    function __construct(KpiResultService $service)
+    {
+        $this->middleware('auth');
+        parent::__construct($service, array('active' => 'okrs'), '.key');
+    }
+
+    public function show($id)
+    {
+        return KpiResult::with('results')->find($id);
+    }
+    public function create(Request $request)
+    {
+        KpiResult::updateOrCreate(
+            ['kpi_id' => $request->kpi_id, 'year' => $request->year, 'month' => $request->month,],
+            ['modify_by' => Auth::id()]
+        );
+        return KpiResult::with('results')->find($id);
+    }
+
+    public function store(Request $request)
+    {
+        return parent::storeRequest($request);
+    }
+
 }
