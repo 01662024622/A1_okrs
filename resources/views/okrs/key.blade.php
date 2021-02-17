@@ -304,7 +304,7 @@
     </div>
 
     <!-- The Modal manager Target-->
-    <div class="modal" id="manageTarget">
+    <div class="modal" id="add-modal">
         <div class="modal-dialog">
             <div class="modal-content">
 
