@@ -310,16 +310,16 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Quản lý mục tiêu</h4>
+                    <h4 class="modal-title">Quản lý Kpis</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="target-form" method="POST" action="/targets">
+                    <form id="kpis-form" method="POST" action="/kpis">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Tên mục tiêu">
+                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Tên kpi...">
                             </div>
                             <div class="col-3">
                                 <select id="level" class="form-control form-control-sm" name="level">
@@ -334,6 +334,19 @@
                                 <button type="submit" class="btn btn-link">Thêm</button>
                             </div>
                         </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="type" id="type-default" value="0" checked>
+                            <label class="form-check-label" for="inlineRadio1">%đạt</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="type" id="type-custom" value="1">
+                            <label class="form-check-label" for="inlineRadio2">trừ theo lỗi</label>
+                        </div>
+                        <div class="form-check form-check-inline hidden" id="minus-container">
+                            <input class="form-check-input form-control-sm" type="text" name="minus" id="minus" pattern="^\d{0,2}$">
+                            <label class="form-check-label" for="inlineRadio2">%</label>
+                        </div>
+                        <input type="hidden" id="td-id" name="td_id">
                     </form>
                     <br>
                     <div class="row">
@@ -346,7 +359,7 @@
                         <br>
                     </div>
                     <br>
-                    <table class="table table-bordered" id="target-table">
+                    <table class="table table-bordered" id="kpis-table">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -372,5 +385,6 @@
 @section('js')
 {{--    <script src="{{ asset('js/okrs/key.js') }}"></script>--}}
     <script src="{{ asset('js/okrs/keyv2.js') }}"></script>
+    <script src="{{ asset('js/okrs/key.js') }}"></script>
 
 @endsection

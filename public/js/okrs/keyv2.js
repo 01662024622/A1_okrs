@@ -133,6 +133,57 @@ $("#target-form").submit(function (e) {
                 setTimeout(function () {
                     toastr.success('Thêm mới mục tiêu thành công!');
                 }, 1000);
+                $('#target-form')[0].reset();
+                targetTable.ajax.reload()
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                page.hide()
+                if (xhr != null) {
+                    if (xhr.responseJSON != null) {
+                        if (xhr.responseJSON.message != null) {
+                            toastr.error(xhr.responseJSON.message);
+                        }
+                    }
+                }
+
+            },
+        });
+    }
+});
+$("#kpis-form").submit(function (e) {
+    e.preventDefault();
+    page.show()
+}).validate({
+    rules: {
+        level: {
+            required: true
+        },
+        name: {
+            required: true
+        },
+    },
+    messages: {
+        level: {
+            required: "Dữ liệu không hợp lệ"
+        },
+        name: {
+            required: 'Bạn chưa nhập dữ liệu'
+        },
+    },
+    submitHandler: function (form) {
+        var formData = new FormData(form);
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: formData,
+            dataType: 'json',
+            async: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                setTimeout(function () {
+                    toastr.success('Thêm mới mục tiêu thành công!');
+                }, 1000);
+                addKpi($('#td-id').val())
                 targetTable.ajax.reload()
             }, error: function (xhr, ajaxOptions, thrownError) {
                 page.hide()
@@ -503,19 +554,60 @@ function setResultMothKpi(idResult){
     //     }
     // });
 }
-$(document).on('keydown', 'input[pattern]', function(e){
-    var input = $(this);
-    var oldVal = input.val();
-    var regex = new RegExp(input.attr('pattern'), 'g');
-
-    setTimeout(function(){
-        var newVal = input.val();
-        if(!regex.test(newVal)){
-            input.val(oldVal);
-        }
-    }, 0);
-});
 
 function floatParse(float,fractionDigits=2){
     return parseFloat(parseFloat(float).toFixed(fractionDigits));
+}
+function addKpi(id){
+    page.show()
+    $('#minus-container').addClass('hidden')
+    $('#kpis-form')[0].reset();
+    $('#type-default').attr('checked',true)
+    $('#td-id').val(id)
+    $('#kpis-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            type: "GET",
+            url: "/api/v1/kpis/table?td_id=" + id,
+            error: function (xhr, ajaxOptions, thrownError) {
+                if (xhr != null) {
+                    if (xhr.responseJSON != null) {
+                        if (xhr.responseJSON.errors != null) {
+                            if (xhr.responseJSON.errors.permission != null) {
+                                location.reload();
+                            }
+                        }
+                    }
+                }
+            },dataSrc: function (json) {
+                page.hide()
+            }
+
+        },
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'levelEdit', name: 'levelEdit'},
+            {data: 'typeEdit', name: 'typeEdit'},
+        ],
+        oLanguage: {
+            "sProcessing": "Đang xử lý...",
+            "sLengthMenu": "Xem _MENU_ mục",
+            "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoPostFix": "",
+            "sSearch": "Tìm Kiếm: ",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": " Đầu ",
+                "sPrevious": " Trước ",
+                "sNext": " Tiếp ",
+                "sLast": " Cuối "
+            }
+        }
+
+    })
 }

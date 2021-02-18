@@ -104,7 +104,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('posts/table', 'DataApi\PostApiController@anyData')->name('posts.api.data');
     Route::get('targets/table', 'DataApi\TargetApiController@anyData')->name('targets.api.data');
     Route::get('targets/kpis/table', 'DataApi\TargetApiController@anyDataResult')->name('targets.api.data');
-    Route::get('keys/table', 'DataApi\KeyApiController@anyData')->name('keys.api.data');
+    Route::get('kpis/table', 'DataApi\KpiApiController@anyData')->name('kpis.api.data');
     Route::get('okrs/table', 'DataApi\OkrApiController@anyData')->name('okrs.api.data');
     Route::get('okrs/user/table', 'DataApi\OkrApiController@anyDataUser')->name('okrs.api.data');
 });
