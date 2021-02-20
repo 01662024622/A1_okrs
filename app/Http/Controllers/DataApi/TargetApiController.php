@@ -51,6 +51,7 @@ class TargetApiController extends Controller
     }
     public function anyDataResult(Request $request)
     {
+        if (!$request->has('kpis')) return null;
         $data = Kpi::with('results')
             ->where('status', 0)
             ->whereIn('td_id', $request->kpis)

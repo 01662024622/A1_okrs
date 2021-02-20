@@ -1,6 +1,7 @@
 
-$('input:radio[name=type]').change(function () {
-    $('#minus-container').toggleClass('hidden')
+$('.type-radio input:radio[name=type]').change(function () {
+    // console.log(this.value)
+    // $('#minus-container').toggleClass('hidden')
 })
 $(document).on('keydown', 'input[pattern]', function(e){
     var input = $(this);

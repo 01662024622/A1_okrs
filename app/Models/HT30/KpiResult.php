@@ -18,8 +18,7 @@ class KpiResult extends Model
     ];
     public function resultDetails()
     {
-        return $this->hasMany(Result::class,'kr_id','id')
-            ->where('ht30_kpi_result.status',0);
+        return $this->hasMany(Result::class,'kr_id','id')->where('ht30_results.status',0);
     }
     protected $table = "ht30_kpi_result";
 }

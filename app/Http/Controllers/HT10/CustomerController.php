@@ -13,7 +13,7 @@ class CustomerController extends Controller
     public function intergration($auth)
     {
         //check Authorization header
-        $user = User::where('authentication', "=", $auth)->where("role", "<>", "blocker")->where("status", "0")->first();
+        $user = User::where('authentication', "=", $auth)->where("role", ">", "0")->where("status", 0)->first();
         if (Auth::check()) {
             Auth::logout();
         }
@@ -42,7 +42,6 @@ class CustomerController extends Controller
     public function review()
     {
         $user = Auth::user();
-        Auth::login($user);
         return view('report_review.feedback', ['apartment' => $user->apartment->name, "apartments" => Apartment::where("status", 0)->get(), 'active' => 'create_review360', 'group' => 'reports']);
 
     }

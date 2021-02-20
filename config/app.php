@@ -190,7 +190,7 @@ return [
         App\Providers\HT30RepositoryProvider::class,
         App\Providers\HT40RepositoryProvider::class,
         App\Providers\HT40ServiceProvider::class,
-//        App\Providers\HT50RepositoryProvider::class,
+        App\Providers\HT50RepositoryProvider::class,
         App\Providers\HT50ServiceProvider::class
 
 

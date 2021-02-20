@@ -19,7 +19,7 @@ Auth::routes(['register' => false, 'request' => false, 'reset' => false]);
 
 Route::get('/report/user/{auth}', 'HT10\CustomerController@intergration');
 Route::get('/review/user/{auth}', 'HT10\CustomerController@reviewauth');
-Route::get('/review/user/used', 'HT10\CustomerController@review');
+Route::get('/review/users/used', 'HT10\CustomerController@review');
 Route::get('/review/user/success/{auth}', 'HT10\CustomerController@success');
 
 Route::get('/home', 'View\ViewAuthenticationController@home')->name('home');
@@ -66,6 +66,7 @@ Route::get('/review/feedback/customer/manager/report', 'HT10\ReviewViewControlle
 
 
 Route::resource('categories', 'HT00\CategoryController');
+Route::resource('survey/HT01', 'HT50\InforCustomerSurveyController');
 
 Route::resource('posts', 'HT00\PostController');
 

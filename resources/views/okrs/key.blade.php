@@ -80,84 +80,84 @@
                                 <div id="number-kpi-month-1" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 1</div>
-                            <div id="total-kpi-month-1" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-1" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-2" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 2</div>
-                            <div id="total-kpi-month-2" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-2" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-3" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 3</div>
-                            <div id="total-kpi-month-3" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-3" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-4" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 4</div>
-                            <div id="total-kpi-month-4" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-4" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-5" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 5</div>
-                            <div id="total-kpi-month-5" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-5" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-6" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 6</div>
-                            <div id="total-kpi-month-6" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-6" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-7" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 7</div>
-                            <div id="total-kpi-month-7" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-7" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-8" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 8</div>
-                            <div id="total-kpi-month-8" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-8" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-9" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 9</div>
-                            <div id="total-kpi-month-9" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-9" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-10" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 10</div>
-                            <div id="total-kpi-month-10" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-10" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div id="number-kpi-month-11" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 11</div>
-                            <div id="total-kpi-month-11" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-11" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                         <div class="col-4 row kpi-moth-detail">
                             <div class="col-3">
                                 <div  id="number-kpi-month-12" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 12</div>
-                            <div id="total-kpi-month-12" class="col-3 text-right">0%</div>
+                            <div id="total-kpi-month-12" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
 
     <!-- Set rusult months -->
     <div class="modal" id="set-result-month-modal">
-        <div class="modal-dialog" style="max-width: 1200px;">
+        <div class="modal-dialog" id="modal-set-width" style="max-width: 1200px;">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -258,11 +258,11 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
-                <form id="add-form-krs" action="{{asset('/keys')}}" method="POST">
+                <form id="add-form-krs" action="{{asset('/results')}}" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div id="detail-container-modal" class="col-6">
                                 <div class="">
                                     <b for="name">Tên Kpi</b>
                                     <p id="name-kpi" class="kpi-detail-show">Kpi A</p>
@@ -279,12 +279,19 @@
                                     <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div id="result-container-modal" class="col-6">
 
-                                <div class="form-group">
-                                    <label for="name"><b>Kết quả</b></label>
-                                    <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
-                                </div>
+                                <table class="table table-bordered" id="results-table">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ngày vi phạm</th>
+                                        <th>Mô tả</th>
+                                        <th>số lần</th>
+                                        <th>Hành Động</th>
+                                    </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
 
@@ -299,83 +306,6 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- The Modal manager Target-->
-    <div class="modal" id="add-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Quản lý Kpis</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="kpis-form" method="POST" action="/kpis">
-                        <div class="row">
-                            <div class="col-8">
-                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Tên kpi...">
-                            </div>
-                            <div class="col-3">
-                                <select id="level" class="form-control form-control-sm" name="level">
-                                    <option disabled selected value="">-- Độ khó --</option>
-                                    <option value="2">Bình thường</option>
-                                    <option value="4">Cố gắng</option>
-                                    <option value="6">Trọng tâm</option>
-                                    <option value="8">Thách thức</option>
-                                </select>
-                            </div>
-                            <div class="col-1">
-                                <button type="submit" class="btn btn-link">Thêm</button>
-                            </div>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type-default" value="0" checked>
-                            <label class="form-check-label" for="inlineRadio1">%đạt</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type-custom" value="1">
-                            <label class="form-check-label" for="inlineRadio2">trừ theo lỗi</label>
-                        </div>
-                        <div class="form-check form-check-inline hidden" id="minus-container">
-                            <input class="form-check-input form-control-sm" type="text" name="minus" id="minus" pattern="^\d{0,2}$">
-                            <label class="form-check-label" for="inlineRadio2">%</label>
-                        </div>
-                        <input type="hidden" id="td-id" name="td_id">
-                    </form>
-                    <br>
-                    <div class="row">
-                        <span>Ghi chú mức độ quan trọng:</span>
-                        <span>Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)--</span>
-                        <span>Cố gắng(<i class="fa fa-square" style="color:yellow" aria-hidden="true"></i>)--</span>
-                        <span>Trọng tâm(<i class="fa fa-square" style="color:orange" aria-hidden="true"></i>)--</span>
-                        <span>Thách thức(<i class="fa fa-square" style="color:red" aria-hidden="true"></i>)</span>
-                        <br>
-                        <br>
-                    </div>
-                    <br>
-                    <table class="table table-bordered" id="kpis-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên mục tiêu</th>
-                            <th>Độ khó</th>
-                            <th>Hành Động</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     </div>

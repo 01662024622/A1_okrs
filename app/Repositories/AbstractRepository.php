@@ -24,8 +24,10 @@ abstract class AbstractRepository implements RepositoryInterface
 
     public function create(Request $data,array $arr)
     {
-
-        $auth = Auth::id();
+        $auth=0;
+        if (Auth::check()){
+            $auth = Auth::id();
+        }
 //        try {
             if ($data->has("id")) {
                 $update=$data->only($this->model->getUpdate());
