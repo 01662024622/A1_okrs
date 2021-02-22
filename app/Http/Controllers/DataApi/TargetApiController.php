@@ -49,6 +49,37 @@ class TargetApiController extends Controller
             ->rawColumns(['action', 'levelEdit'])
             ->make(true);
     }
+    public function anyDataUser(Request $request)
+    {
+        $data = Target::join('ht30_target_kpi', function ($join) use ($request) {
+            $join->on('ht30_target_kpi.target_id', '=', 'ht30_targets.id')
+                ->where('ht30_target_kpi.user_id', Auth::id())
+                ->where('ht30_target_kpi.status', 0)
+                ->where('ht30_target_kpi.year', $request->year);
+        })
+            ->select(['ht30_targets.name','ht30_targets.id', 'ht30_targets.level','ht30_target_kpi.user_id','ht30_target_kpi.id as td_id'])->where('ht30_targets.status', 0)
+            ->where('ht30_targets.status', 0)
+            ->orderBy('ht30_targets.name')->get();
+
+        // $products->user;
+        return DataTables::of($data)
+            ->addColumn('action', function ($dt) {
+                return '
+			<button type="button" class="btn btn-xs btn-danger" onclick="alDeleteTarget(' . $dt['id'] . ')">
+			<i class="fa fa-trash" aria-hidden="true"></i></button>
+			';
+            })
+            ->addColumn('levelEdit', function ($dt) {
+                if ($dt['level'] == 2) return '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
+                elseif ($dt['level'] == 4) return '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
+                elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
+                else return '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>';
+            })
+            ->addIndexColumn()
+            ->setRowId('target-{{$id}}')
+            ->rawColumns(['action', 'levelEdit'])
+            ->make(true);
+    }
     public function anyDataResult(Request $request)
     {
         if (!$request->has('kpis')) return null;

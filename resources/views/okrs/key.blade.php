@@ -238,7 +238,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-link" data-dismiss="modal">Close</button>
                 </div>
 
             </div>
@@ -257,12 +257,10 @@
                     <h4 class="modal-title">Thêm mới</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
-                <form id="add-form-krs" action="{{asset('/results')}}" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="row">
-                            <div id="detail-container-modal" class="col-6">
+                            <div id="detail-container-modal" class="col-4">
                                 <div class="">
                                     <b for="name">Tên Kpi</b>
                                     <p id="name-kpi" class="kpi-detail-show">Kpi A</p>
@@ -279,8 +277,25 @@
                                     <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
                                 </div>
                             </div>
-                            <div id="result-container-modal" class="col-6">
+                            <div id="result-container-modal" class="col-8">
 
+                                <form id="result-detail-form" method="POST" action="/results">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <input type="text" class="form-control form-control-sm" name="date" id="result-date">
+                                        </div>
+                                        <div class="col-7">
+                                            <input type="text" class="form-control form-control-sm" name="description" placeholder="Mô tả...">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control form-control-sm" name="number" placeholder="Số lần vi phạm...">
+                                            <input type="hidden" name="kr_id" id="eid-krs">
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="submit" class="btn btn-link">Thêm</button>
+                                        </div>
+                                    </div>
+                                </form>
                                 <table class="table table-bordered" id="results-table">
                                     <thead>
                                     <tr>
@@ -294,18 +309,13 @@
                                 </table>
                             </div>
                         </div>
-
-
-                        <input type="hidden" name="id" id="eid-krs">
-
                     </div>
-
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                        <button type="button" id="kpis-result-detail" class="btn btn-sm btn-link" onclick="saveResult()">Lưu</button>
+                        <button type="button" class="btn btn-sm btn-link"  onclick="removeResult()">Xóa</button>
+                        <button type="button" class="btn btn-sm btn-link" data-dismiss="modal">Đóng</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>

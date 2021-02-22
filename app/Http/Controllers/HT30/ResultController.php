@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\HT30;
 
 use App\Http\Controllers\Base\ResouceController;
-use App\Http\Controllers\Controller;
-use App\Models\HT30\Key;
 use App\Models\HT30\KpiResult;
 use App\Models\HT30\Result;
 use App\Services\HT30\ResultService;
@@ -20,10 +18,12 @@ class ResultController extends ResouceController
 
     public function store(Request $request)
     {
-        $key = Key::find($request->key_id);
-        $result = $key->result - ($key->minus * $request->number);
-        $key->update(array('result' => $result));
-        return parent::storeRequest($request);
+        $kpi = KpiResult::select(['minus','result','ht30_kpi_result.id'])->join('ht30_kpis', 'ht30_kpi_result.kpi_id', '=', 'ht30_kpis.id')->find($request->kr_id);
+        $result = $kpi->result - ($kpi->minus * $request->number);
+//        return $kpi;
+        $kpi->update(array('result' => $result));
+        parent::storeRequest($request);
+        return $this->show($request->kr_id);
     }
 
     public function destroy($id)

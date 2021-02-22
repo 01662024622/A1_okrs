@@ -18,11 +18,20 @@ $('#date').datepicker({
     format: "yyyy",
     startDate: "2020",
     endDate: new Date(),
+    autoClose: true,
 }).on('changeMonth', function (e) {
     $(e.currentTarget).data('datepicker').hide();
 });
+$('#result-date').datepicker({
+    format: "dd/mm/yyyy",
+    startDate: "01/01/2021",
+    endDate: new Date(),
+    autoClose: true,
+    todayHighlight: true,
+}).datepicker('setDate', date);
 
 $('#date').datepicker('setDate', year.toString())
+$('#result-date').datepicker('setDate', today)
 
 $('.collapsed').on('click', function () {
     $(this).toggleClass('fa-caret-right fa-caret-down')
@@ -177,6 +186,59 @@ $("#target-kpi-form").submit(function (e) {
                     toastr.success('Cập nhật danh sách mục tiêu thành công!');
                 }, 1000);
                 page.hide()
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                page.hide()
+                if (xhr != null) {
+                    if (xhr.responseJSON != null) {
+                        if (xhr.responseJSON.message != null) {
+                            toastr.error(xhr.responseJSON.message);
+                        }
+                    }
+                }
+
+            },
+        });
+    }
+});
+$("#result-detail-form").submit(function (e) {
+    e.preventDefault();
+    page.show()
+}).validate({
+    rules: {
+        number: {
+            required: true,
+            number: true,
+            min:0,
+            max:10
+        },
+    },
+    messages: {
+        number: {
+            required: 'Bạn chưa nhập dữ liệu',
+            number: 'Bạn chưa nhập dữ liệu',
+            min:'Dữ liệu không hợp lệ',
+            max:'Dữ liệu không hợp lệ'
+        },
+    },
+    submitHandler: function (form) {
+        page.show()
+        var formData = new FormData(form);
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: formData,
+            dataType: 'json',
+            async: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                setTimeout(function () {
+                    toastr.success('Thêm mới mục tiêu thành công!');
+                }, 1000);
+                $('#result-detail-form')[0].reset();
+                $('#result-date').datepicker('setDate', today)
+                showDetailKpi(response)
+                targetTable.ajax.reload()
             }, error: function (xhr, ajaxOptions, thrownError) {
                 page.hide()
                 if (xhr != null) {
@@ -404,8 +466,10 @@ var generateTarget = function (element) {
     </div>`;
 }
 var genarateKpi = function (element) {
+    var monthLoop=date.getMonth()
+    if (parseInt($('#date').val())<parseInt(year))monthLoop=11;
     var results = []
-    for (var i = 1; i <= date.getMonth() + 1; i++) {
+    for (var i = 1; i <= monthLoop + 1; i++) {
         results[i] = `<span class="col kpi-month kpi-hover text-center kpi-hover-item-`
             + element['td_id'] + `" onclick="activeResult(` + element['id'] + `,` + i + `)">--</span>`;
     }
@@ -663,6 +727,7 @@ function setResultMothKpi(id) {
         url: "/results/" + id,
         success: function (res) {
             showDetailKpi(res)
+            $('#eid-krs').val(res.id)
             page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -688,18 +753,18 @@ function showDetailKpi(res) {
     $('#result-kpi-detail').val(res.result)
     if (res.type == 0) {
         $('#modal-set-width').css('max-width', '750px')
-        $('#detail-container-modal').removeClass('col-6').addClass('col-12')
+        $('#detail-container-modal').removeClass('col-4').addClass('col-12')
         $('#result-container-modal').hide()
         $('#result-kpi-detail').prop('disabled', false)
     } else {
         $('#modal-set-width').css('max-width', '1200px')
-        $('#detail-container-modal').addClass('col-6').removeClass('col-12')
+        $('#detail-container-modal').addClass('col-4').removeClass('col-12')
         $('#result-container-modal').show()
         $('#result-kpi-detail').prop('disabled', true)
         var html = '<thead><tr><th>ID</th><th>Ngày vi phạm</th><th>Mô tả</th><th>Số lần</th><th>Hành Động</th>' +
             '</tr></thead><tbody>';
-        res.result_details.forEach(element => {
-            html = html + `<tr id="result-detail-col-` + element.id + `" role="row" class="odd"><td>` + element.id + `</td><td>` + element.date + `</td><td>` + element.description + `</td><td>` + element.number + `</td><td>
+        res.result_details.forEach(function (element,index) {
+            html = html + `<tr id="result-detail-col-` + index + `" role="row" class="odd"><td>` + (index+1) + `</td><td>` + element.date + `</td><td>` + element.description + `</td><td>` + element.number + `</td><td>
 <button type="button" class="btn btn-xs btn-danger" onclick="alDeleteResult(` + element.id + `)">
 <i class="fa fa-trash" aria-hidden="true"></i></button>
 </td></tr>`
@@ -709,3 +774,58 @@ function showDetailKpi(res) {
 
     }
 }
+function saveResult(){
+    $.ajax({
+        type: "POST",
+        url: "/kpi/results",
+        data: {
+            id: $('#eid-krs').val(),
+            result: $('#result-kpi-detail').val()
+        },
+        success: function (res) {
+            if (!res.error) {
+                toastr.success('Thay đổi thành công!');
+            }
+            $('#set-result-month-modal').modal('hide');
+            targetTable.ajax.reload()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            page.hide()
+            toastr.error(thrownError);
+        }
+    })
+}
+function removeResult(){
+    swal({
+            title: "Bạn muốn xóa bỏ kết quả này?",
+            // text: "Bạn sẽ không thể khôi phục lại bản ghi này!!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "Không",
+            confirmButtonText: "Có",
+            // closeOnConfirm: false,
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type: "delete",
+                    url: "/kpi/results/" + $('#eid-krs').val(),
+                    success: function (res) {
+                        if (!res.error) {
+                            toastr.success('Thành công!');
+                            $('#set-result-month-modal').modal('hide');
+                            targetTable.ajax.reload()
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        page.hide()
+                        toastr.error(thrownError);
+                    }
+                });
+            } else {
+                toastr.error("Hủy bỏ thao tác!");
+            }
+        });
+}
+
