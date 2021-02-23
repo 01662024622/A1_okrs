@@ -42,10 +42,10 @@ class ResultController extends ResouceController
         $data = KpiResult::with('resultDetails')->select(['ht30_kpis.name', 'ht30_kpis.level','ht30_kpis.type','ht30_kpis.minus', 'ht30_kpi_result.month','ht30_kpi_result.id', 'ht30_kpi_result.result'])
             ->join('ht30_kpis', 'ht30_kpi_result.kpi_id', '=', 'ht30_kpis.id')
             ->find($id);
-        if ($data['level'] == 2) $data['levelEdit'] = '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>--Bình thường';
-        elseif ($data['level'] == 4) $data['levelEdit'] = '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>--Cố gắng';
-        elseif ($data['level'] == 6) $data['levelEdit'] = '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>--Trọng Tâm';
-        else $data['levelEdit'] = '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>--Thách thức';
+        if ($data['level'] == 2) $data['levelEdit'] = '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>--5 Điểm';
+        elseif ($data['level'] == 4) $data['levelEdit'] = '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>--10 Điểm';
+        elseif ($data['level'] == 6) $data['levelEdit'] = '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>--15 Điểm';
+        else $data['levelEdit'] = '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>--20 Điểm';
         if ($data['type'] == 0) $data['typeEdit'] = '%đạt';
         else $data['typeEdit'] = 'trừ' . $data['minus'] . '%/lỗi';
         return $data;

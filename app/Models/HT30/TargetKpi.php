@@ -17,7 +17,7 @@ class TargetKpi extends Model
     ];
     public function kpis()
     {
-        return $this->hasMany(Kpi::class,'td_id','id')->where('status',0);
+        return $this->hasMany(Kpi::class,'td_id','id')->where('ht30_kpis.status',0);
     }
     protected $table = "ht30_target_kpi";
 }

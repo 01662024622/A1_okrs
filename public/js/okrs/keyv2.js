@@ -8,8 +8,9 @@ var date = new Date();
 var today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
 var year = date.getFullYear()
 var targets = []
+//save all level of target active for user group by td_id
 var tdIdLevelBuffer = []
-var tdIdLevel = []
+//save all level and result of kpi [month][td_id][level, result]
 var kpiIdLevel = []
 $('#date').datepicker({
     startView: "years",
@@ -208,16 +209,16 @@ $("#result-detail-form").submit(function (e) {
         number: {
             required: true,
             number: true,
-            min:0,
-            max:10
+            min: 0,
+            max: 10
         },
     },
     messages: {
         number: {
             required: 'Bạn chưa nhập dữ liệu',
             number: 'Bạn chưa nhập dữ liệu',
-            min:'Dữ liệu không hợp lệ',
-            max:'Dữ liệu không hợp lệ'
+            min: 'Dữ liệu không hợp lệ',
+            max: 'Dữ liệu không hợp lệ'
         },
     },
     submitHandler: function (form) {
@@ -341,7 +342,6 @@ var loadResult = function (kpi) {
                 return
             }
             res.data.forEach(element => {
-                tdIdLevel[element.td_id] = tdIdLevelBuffer[element.td_id]
                 $('#collapse-header-' + element['td_id']).after(genarateKpi(element))
             })
             for (var month = 1; month <= kpiIdLevel.length; month++) {
@@ -351,7 +351,7 @@ var loadResult = function (kpi) {
 
                 //total number kpi of month
                 var sumKpi = kpiIdLevel[month].reduce(function (total, accumulator, currentIndex) {
-                    totalLevelTg = totalLevelTg + floatParse(tdIdLevel[currentIndex]);
+                    totalLevelTg = totalLevelTg + floatParse(tdIdLevelBuffer[currentIndex]);
                     return total + accumulator.length;
                 }, 0)
                 $('#number-kpi-month-' + month).text(sumKpi)
@@ -366,7 +366,7 @@ var loadResult = function (kpi) {
                     }, 0.00)
                 }
                 var resultMonth = generalMonth.reduce(function (total, accumulator, currentIndex) {
-                    return total + floatParse(tdIdLevel[currentIndex]) * floatParse(accumulator) / totalLevelTg;
+                    return total + floatParse(tdIdLevelBuffer[currentIndex]) * floatParse(accumulator) / totalLevelTg;
                 }, 0.00)
                 $('#total-kpi-month-' + month).text(floatParse(resultMonth) + '%')
 
@@ -403,11 +403,11 @@ var generateTarget = function (element) {
                         </div>
                         <div class="form-check col-2">
                             <select id="level" class="form-control form-control-sm" name="level">
-                                <option disabled selected value="">-- Độ khó --</option>
-                                <option value="2">Bình thường</option>
-                                <option value="4">Cố gắng</option>
-                                <option value="6">Trọng tâm</option>
-                                <option value="8">Thách thức</option>
+                                <option disabled selected value="">-- Điểm --</option>
+                                <option value="2">5 Điểm</option>
+                                <option value="4">10 Điểm</option>
+                                <option value="6">15 Điểm</option>
+                                <option value="8">20 Điểm</option>
                             </select>
                         </div>
                         <div class="col-4">
@@ -454,7 +454,7 @@ var generateTarget = function (element) {
                 <div id="collapse-header-` + element['td_id'] + `"class="row kpi-detail kpi-header-title">
                     <div class="col-5 text-bold row">
                         <div class="col-10">KPI</div>
-                        <div class="col-2">Độ khó</div>
+                        <div class="col-2">Điểm</div>
                     </div>
                     <div class="col-1 text-bold">Loại</div>
                     <div class="col-6 text-bold row">
@@ -466,16 +466,14 @@ var generateTarget = function (element) {
     </div>`;
 }
 var genarateKpi = function (element) {
-    var monthLoop=date.getMonth()
-    if (parseInt($('#date').val())<parseInt(year))monthLoop=11;
+    var monthLoop = date.getMonth()
+    if (parseInt($('#date').val()) < parseInt(year)) monthLoop = 11;
     var results = []
     for (var i = 1; i <= monthLoop + 1; i++) {
         results[i] = `<span class="col kpi-month kpi-hover text-center kpi-hover-item-`
             + element['td_id'] + `" onclick="activeResult(` + element['id'] + `,` + i + `)">--</span>`;
     }
-    if (element.results.length == 0) {
-        tdIdLevel[element.td_id] = tdIdLevelBuffer[element.td_id]
-    } else {
+    if (element.results.length > 0) {
         element.results.forEach(ele => {
             if (kpiIdLevel[ele.month] === undefined) kpiIdLevel[ele.month] = []
             if (kpiIdLevel[ele.month][element.td_id] === undefined) kpiIdLevel[ele.month][element.td_id] = []
@@ -746,7 +744,7 @@ $('#date').on('change', function () {
 
 function showDetailKpi(res) {
     $('#name-kpi').text(res.name)
-    $('#detail-kpi-show').html(`<b for="name">Độ khó: </b>` + res.levelEdit +
+    $('#detail-kpi-show').html(`<b for="name">Điểm: </b>` + res.levelEdit +
         ` | <b for="name">Tháng: </b><span id="kpi-detail-month">` + res.month + `</span>` +
         ` | <b for="name">Loại: </b>` + res.typeEdit
     )
@@ -763,8 +761,8 @@ function showDetailKpi(res) {
         $('#result-kpi-detail').prop('disabled', true)
         var html = '<thead><tr><th>ID</th><th>Ngày vi phạm</th><th>Mô tả</th><th>Số lần</th><th>Hành Động</th>' +
             '</tr></thead><tbody>';
-        res.result_details.forEach(function (element,index) {
-            html = html + `<tr id="result-detail-col-` + index + `" role="row" class="odd"><td>` + (index+1) + `</td><td>` + element.date + `</td><td>` + element.description + `</td><td>` + element.number + `</td><td>
+        res.result_details.forEach(function (element, index) {
+            html = html + `<tr id="result-detail-col-` + index + `" role="row" class="odd"><td>` + (index + 1) + `</td><td>` + element.date + `</td><td>` + element.description + `</td><td>` + element.number + `</td><td>
 <button type="button" class="btn btn-xs btn-danger" onclick="alDeleteResult(` + element.id + `)">
 <i class="fa fa-trash" aria-hidden="true"></i></button>
 </td></tr>`
@@ -774,7 +772,8 @@ function showDetailKpi(res) {
 
     }
 }
-function saveResult(){
+
+function saveResult() {
     $.ajax({
         type: "POST",
         url: "/kpi/results",
@@ -795,7 +794,8 @@ function saveResult(){
         }
     })
 }
-function removeResult(){
+
+function removeResult() {
     swal({
             title: "Bạn muốn xóa bỏ kết quả này?",
             // text: "Bạn sẽ không thể khôi phục lại bản ghi này!!",

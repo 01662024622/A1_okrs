@@ -169,10 +169,10 @@
     <br>
     <div class="row">
         <span>Ghi chú mức độ quan trọng:</span>
-        <span>Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)--</span>
-        <span>Cố gắng(<i class="fa fa-square" style="color:yellow" aria-hidden="true"></i>)--</span>
-        <span>Trọng tâm(<i class="fa fa-square" style="color:orange" aria-hidden="true"></i>)--</span>
-        <span>Thách thức(<i class="fa fa-square" style="color:red" aria-hidden="true"></i>)</span>
+        <span>5 Điểm(<i class="fa fa-square color-lv-2" aria-hidden="true"></i>)--</span>
+        <span>10 Điểm(<i class="fa fa-square color-lv-4" aria-hidden="true"></i>)--</span>
+        <span>15 Điểm(<i class="fa fa-square color-lv-6" aria-hidden="true"></i>)--</span>
+        <span>20 Điểm(<i class="fa fa-square color-lv-8" aria-hidden="true"></i>)</span>
         <br>
         <br>
     </div>
@@ -201,11 +201,11 @@
                             </div>
                             <div class="col-3">
                                 <select id="level" class="form-control form-control-sm" name="level">
-                                    <option disabled selected value="">-- Độ khó --</option>
-                                    <option value="2">Bình thường</option>
-                                    <option value="4">Cố gắng</option>
-                                    <option value="6">Trọng tâm</option>
-                                    <option value="8">Thách thức</option>
+                                    <option disabled selected value="">-- Điểm --</option>
+                                    <option value="2">5 Điểm</option>
+                                    <option value="4">10 Điểm</option>
+                                    <option value="6">15 Điểm</option>
+                                    <option value="8">20 Điểm</option>
                                 </select>
                             </div>
                             <div class="col-1">
@@ -216,10 +216,10 @@
                     <br>
                     <div class="row">
                         <span>Ghi chú mức độ quan trọng:</span>
-                        <span>Bình thường(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)--</span>
-                        <span>Cố gắng(<i class="fa fa-square" style="color:yellow" aria-hidden="true"></i>)--</span>
-                        <span>Trọng tâm(<i class="fa fa-square" style="color:orange" aria-hidden="true"></i>)--</span>
-                        <span>Thách thức(<i class="fa fa-square" style="color:red" aria-hidden="true"></i>)</span>
+                        <span>5 Điểm(<i class="fa fa-square color-lv-2" aria-hidden="true"></i>)--</span>
+                        <span>10 Điểm(<i class="fa fa-square color-lv-4" aria-hidden="true"></i>)--</span>
+                        <span>15 Điểm(<i class="fa fa-square color-lv-6" aria-hidden="true"></i>)--</span>
+                        <span>20 Điểm(<i class="fa fa-square color-lv-8" aria-hidden="true"></i>)</span>
                         <br>
                         <br>
                     </div>
@@ -229,7 +229,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên mục tiêu</th>
-                            <th>Độ khó</th>
+                            <th>Điểm</th>
                             <th>Hành Động</th>
                         </tr>
                         </thead>
@@ -267,8 +267,8 @@
                                 </div>
                                 <div class="">
                                     <p id="detail-kpi-show" class="kpi-detail-show">
-                                        <b for="name">Độ khó: </b>
-                                        <i class="fa fa-square" style="color: green" aria-hidden="true"></i>--Bình thường
+                                        <b for="name">Điểm: </b>
+                                        <i class="fa fa-square color-lv-2" aria-hidden="true"></i>--5 Điểm
                                         <b for="name">Tháng: </b><span id="kpi-detail-month">1</span>
                                     </p>
                                 </div>

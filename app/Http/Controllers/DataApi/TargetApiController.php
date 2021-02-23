@@ -39,10 +39,7 @@ class TargetApiController extends Controller
 			';
             })
             ->addColumn('levelEdit', function ($dt) {
-                if ($dt['level'] == 2) return '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
-                elseif ($dt['level'] == 4) return '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
-                elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
-                else return '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>';
+                return '<i class="fa fa-square color-lv-'.$dt['level'].'" aria-hidden="true"></i>';
             })
             ->addIndexColumn()
             ->setRowId('target-{{$id}}')
@@ -70,16 +67,14 @@ class TargetApiController extends Controller
 			';
             })
             ->addColumn('levelEdit', function ($dt) {
-                if ($dt['level'] == 2) return '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
-                elseif ($dt['level'] == 4) return '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
-                elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
-                else return '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>';
+                return '<i class="fa fa-square color-lv-'.$dt['level'].'" aria-hidden="true"></i>';
             })
             ->addIndexColumn()
             ->setRowId('target-{{$id}}')
             ->rawColumns(['action', 'levelEdit'])
             ->make(true);
     }
+
     public function anyDataResult(Request $request)
     {
         if (!$request->has('kpis')) return null;
@@ -87,19 +82,26 @@ class TargetApiController extends Controller
             ->where('status', 0)
             ->whereIn('td_id', $request->kpis)
             ->orderBy('updated_at')->get();
-
+        $detail=Kpi::join('ht30_kpi_result','ht30_kpi_result.kpi_id','ht30_kpis.id')
+            ->where('ht30_kpi_result.status',0)
+            ->where('ht30_kpis.status',0)
+            ->where('ht30_kpi_result.month',$request->month)
+            ->where('ht30_kpi_result.year',$request->year)
+            ->whereIn('ht30_kpis.td_id', $request->kpis)
+        ->get(['ht30_kpis.name','ht30_kpis.level','ht30_kpi_result.result','ht30_kpis.td_id']);
+        foreach ($detail as $key=>$element){
+            $detail[$key]['levelEdit']='<i class="fa fa-square color-lv-'.$element['level'].'" aria-hidden="true"></i>';
+        }
         // $products->user;
         return DataTables::of($data)
             ->editColumn('levelEdit', function ($dt) {
-                if ($dt['level'] == 2) return '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
-                elseif ($dt['level'] == 4) return '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
-                elseif ($dt['level'] == 6) return '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
-                else return '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>';
+                return '<i class="fa fa-square color-lv-'.$dt['level'].'" aria-hidden="true"></i>';
             })
             ->editColumn('type', function ($dt) {
                 if ($dt['type'] == 0) return '% đạt';
                     else return 'trừ '.$dt['minus'].'%/lỗi';
             })
+            ->with('detail',$detail)
             ->addIndexColumn()
             ->setRowId('kpi-{{$id}}')
             ->rawColumns(['action', 'levelEdit'])
