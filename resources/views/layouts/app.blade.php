@@ -10,16 +10,16 @@
     <title>HTAuto</title>
     <link rel="shortcut icon" href="/crop-logo.png">
     <!-- Custom fonts for this template-->
-    <link href="{{asset('/public/css/vendor/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/css/vendor/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('/public/css/css.css')}}">
     <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('/public/css/sweetalert.css')}}">
-    <link rel="stylesheet" href="{{asset('/public/css/toastr.css')}}">
-    <link rel="stylesheet" type="text/css" href="/css/main/errors.css">
-    <link rel="stylesheet" type="text/css" href="/css/message/index.css">
+    <link href="{{asset('/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('/css/sweetalert.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/main/errors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/message/index.css')}}">
     @yield('css')
 
 </head>
@@ -290,11 +290,11 @@
 
 </div>
 <!-- Bootstrap core JavaScript-->
-<script src="{{asset('/public/js/vendor/jquery.min.js')}}"></script>
-<script src="{{asset('/public/js/vendor/popper.min.js')}}"
+<script src="{{asset('/js/vendor/jquery.min.js')}}"></script>
+<script src="{{asset('/js/vendor/popper.min.js')}}"
         integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
-<script src="{{asset('/public/js/vendor/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('/js/vendor/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 <script src="{{asset('/js/sb-admin-2.min.js')}}"></script>

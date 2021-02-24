@@ -18,7 +18,7 @@
                 </div>
                 <form id="target-kpi-form" method="POST" action="/targetkpi">
                     <div class="target-body">
-                        <div class="kpi-target row" id="kpi-target">
+                        <div class="kpi-target row" id="kpi-year-2021">
                             <div class="col-3">
                                 <div id="number-kpi-year-2021" class="number-kpi-year">0</div>
                             </div>
@@ -37,84 +37,84 @@
 
                 <div class="kpi-body">
                     <div class="row kpi-month">
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-1" onclick="changeMonth(1)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-1" onclick="changeMonth(1)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-1" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 1</div>
                             <div id="total-kpi-month-1" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-2" onclick="changeMonth(2)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-2" onclick="changeMonth(2)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-2" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 2</div>
                             <div id="total-kpi-month-2" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-3" onclick="changeMonth(3)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-3" onclick="changeMonth(3)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-3" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 3</div>
                             <div id="total-kpi-month-3" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-4" onclick="changeMonth(4)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-4" onclick="changeMonth(4)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-4" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 4</div>
                             <div id="total-kpi-month-4" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-5" onclick="changeMonth(5)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-5" onclick="changeMonth(5)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-5" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 5</div>
                             <div id="total-kpi-month-5" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-6" onclick="changeMonth(6)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-6" onclick="changeMonth(6)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-6" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 6</div>
                             <div id="total-kpi-month-6" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-7" onclick="changeMonth(7)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-7" onclick="changeMonth(7)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-7" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 7</div>
                             <div id="total-kpi-month-7" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-8" onclick="changeMonth(8)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-8" onclick="changeMonth(8)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-8" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 8</div>
                             <div id="total-kpi-month-8" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-9" onclick="changeMonth(9)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-9" onclick="changeMonth(9)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-9" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 9</div>
                             <div id="total-kpi-month-9" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-10" onclick="changeMonth(10)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-10" onclick="changeMonth(10)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-10" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 10</div>
                             <div id="total-kpi-month-10" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-11" onclick="changeMonth(11)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-11" onclick="changeMonth(11)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-11" class="number-kpi-year">0</div>
                             </div>
                             <div class="col-6">Tháng 11</div>
                             <div id="total-kpi-month-11" class="col-3 text-right total-kpi-month">0%</div>
                         </div>
-                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-12" onclick="changeMonth(12)">
+                        <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-12" onclick="changeMonth(12)" data-status="disabled">
                             <div class="col-3">
                                 <div id="number-kpi-month-12" class="number-kpi-year">0</div>
                             </div>
@@ -130,11 +130,11 @@
     <br>
     <br>
     <div class="row">
-        <span>Ghi chú mức độ quan trọng:</span>
-        <span>5 Điểm(<i class="fa fa-square color-lv-2" aria-hidden="true"></i>)--</span>
-        <span>10 Điểm(<i class="fa fa-square color-lv-4" aria-hidden="true"></i>)--</span>
-        <span>15 Điểm(<i class="fa fa-square color-lv-6" aria-hidden="true"></i>)--</span>
-        <span>20 Điểm(<i class="fa fa-square color-lv-8" aria-hidden="true"></i>)</span>
+        <span style="line-height: 35px">Ghi chú mức độ quan trọng:</span>
+        <span>5 Điểm(<div class="level-box color-lv-2" aria-hidden="true"></div>)--</span>
+        <span>10 Điểm(<div class="level-box color-lv-4" aria-hidden="true"></div>)--</span>
+        <span>15 Điểm(<div class="level-box color-lv-6" aria-hidden="true"></div>)--</span>
+        <span>20 Điểm(<div class="level-box color-lv-8" aria-hidden="true"></div>)</span>
         <br>
         <br>
     </div>

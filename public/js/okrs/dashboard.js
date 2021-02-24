@@ -51,12 +51,18 @@ var loadResult = function (kpi, month = 0) {
     if (month > 0) {
         monthActive = month;
     }
+
     $.ajax({
         type: "get",
         url: "/api/v1/targets/kpis/table?year=" + yearActive + "&month=" + monthActive + kpiUrl,
         success: function (res) {
             $('.number-kpi-year').text('0');
             $('.total-kpi-month').text('0%');
+            $('.kpi-moth-detail').removeClass('kpi-month-hover');
+            $('.kpi-moth-detail').removeClass('kpi-active-month');
+            $('.kpi-moth-detail').data('status','disabled');
+            $('#kpi-year-'+yearActive).addClass('kpi-active-month')
+            $('#kpi-month-detail-'+monthActive).addClass('kpi-active-month')
             if (!res) {
                 page.hide();
                 return
@@ -84,6 +90,7 @@ var loadResult = function (kpi, month = 0) {
                 }, 0)
                 totalKpiYear = totalKpiYear + sumKpi;
                 $('#number-kpi-month-' + month).text(sumKpi)
+                $('#kpi-month-detail-' + month).addClass('kpi-month-hover').data('status','active')
                 var generalMonth = []
                 for (var td_id = 1; td_id <= kpiIdLevel[month].length; td_id++) {
                     if (kpiIdLevel[month][td_id] === undefined) continue;
@@ -132,7 +139,7 @@ var generateKpi = function (element) {
                            ` + element.levelEdit + `
                         </div>
                         <div class="col-2">
-                            ` + element.result + `
+                            ` + element.resultEdit + `
                         </div>
                     </div>`;
 }
@@ -208,6 +215,7 @@ function showDetailKpi(res) {
 }
 
 function changeMonth(month){
+    if ($('#kpi-month-detail-'+month).data('status')==='disabled') return
     monthActive=month
     firstLoad()
 }

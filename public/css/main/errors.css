@@ -130,18 +130,3 @@ table {
     pointer-events: none;
 }
 
-.color-lv-2 {
-    color: grey;
-}
-
-.color-lv-4 {
-    color: yellow;
-}
-
-.color-lv-6 {
-    color: orange;
-}
-
-.color-lv-8 {
-    color: red;
-}

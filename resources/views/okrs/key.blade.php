@@ -169,10 +169,11 @@
     <br>
     <div class="row">
         <span>Ghi chú mức độ quan trọng:</span>
-        <span>5 Điểm(<i class="fa fa-square color-lv-2" aria-hidden="true"></i>)--</span>
-        <span>10 Điểm(<i class="fa fa-square color-lv-4" aria-hidden="true"></i>)--</span>
-        <span>15 Điểm(<i class="fa fa-square color-lv-6" aria-hidden="true"></i>)--</span>
-        <span>20 Điểm(<i class="fa fa-square color-lv-8" aria-hidden="true"></i>)</span>
+        <span style="line-height: 35px">Ghi chú mức độ quan trọng:</span>
+        <span>5 Điểm(<div class="level-box color-lv-2" aria-hidden="true"></div>)--</span>
+        <span>10 Điểm(<div class="level-box color-lv-4" aria-hidden="true"></div>)--</span>
+        <span>15 Điểm(<div class="level-box color-lv-6" aria-hidden="true"></div>)--</span>
+        <span>20 Điểm(<div class="level-box color-lv-8" aria-hidden="true"></div>)</span>
         <br>
         <br>
     </div>
