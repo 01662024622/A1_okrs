@@ -10,7 +10,7 @@ class Kpi extends Model
         'name','td_id', 'description', 'type','minus', 'level','status','create_by','modify_by'
     ];
     protected $fillable_store = [
-       'name', 'td_id', 'description', 'level', 'minus','type'
+       'name', 'td_id', 'description', 'level','time', 'minus','type'
     ];
     protected $fillable_update = [
         'name','td_id', 'description'

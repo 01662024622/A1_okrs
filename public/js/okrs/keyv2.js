@@ -83,6 +83,7 @@ var targetTable = $('#target-table').DataTable({
                 $('input:radio[name=type]').change(function () {
                     $(this).parent().parent().find('.minus-container').toggleClass('hidden')
                 })
+                $('#user-detail-kpi').html('<i class="fa fa-caret-right" aria-hidden="true"></i> KPI năm '+$('#date').val()+' - '+json.user.name)
                 return json.data;
             }
         },
@@ -344,7 +345,9 @@ var loadResult = function (kpi) {
             res.data.forEach(element => {
                 $('#collapse-header-' + element['td_id']).after(genarateKpi(element))
             })
-            for (var month = 1; month <= kpiIdLevel.length; month++) {
+            var numberkpiLabel=[];
+            var percentkpiLabel=[];
+            for (var month = 1; month < kpiIdLevel.length; month++) {
                 if (kpiIdLevel[month] === undefined) continue;
                 //total level of tagert on month
                 var totalLevelTg = 0
@@ -355,22 +358,74 @@ var loadResult = function (kpi) {
                     return total + accumulator.length;
                 }, 0)
                 $('#number-kpi-month-' + month).text(sumKpi)
+                numberkpiLabel.push(sumKpi)
                 var generalMonth = []
                 for (var td_id = 1; td_id <= kpiIdLevel[month].length; td_id++) {
                     if (kpiIdLevel[month][td_id] === undefined) continue;
                     var sumLevelTd = kpiIdLevel[month][td_id].reduce(function (total, accumulator) {
-                        return total + floatParse(accumulator[0]);
+                        return total + floatParse(accumulator[0])+ floatParse(accumulator[1]);
                     }, 0.00)
                     generalMonth[td_id] = kpiIdLevel[month][td_id].reduce(function (total, accumulator) {
-                        return total + floatParse(accumulator[0]) * floatParse(accumulator[1]) / sumLevelTd;
+                        return total + (floatParse(accumulator[0])+ floatParse(accumulator[1])) * floatParse(accumulator[2]) / sumLevelTd;
                     }, 0.00)
                 }
                 var resultMonth = generalMonth.reduce(function (total, accumulator, currentIndex) {
                     return total + floatParse(tdIdLevelBuffer[currentIndex]) * floatParse(accumulator) / totalLevelTg;
                 }, 0.00)
                 $('#total-kpi-month-' + month).text(floatParse(resultMonth) + '%')
+                percentkpiLabel.push(floatParse(resultMonth))
 
             }
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'bar',
+
+                // The data for our dataset
+                data: {
+                    labels: ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T0','T11','T12',],
+                    datasets: [{
+                        label: 'Số lượng kpi',
+                        data: numberkpiLabel,
+                        yAxisID: 'B',
+                        type: 'line',
+                        borderColor: "rgb(237, 142, 7)",
+                        order: 0,
+                    },{
+                        label: 'Phần trăm đạt',
+                        yAxisID: 'A',
+                        data: percentkpiLabel,
+                        backgroundColor: '#000066',
+                        order: 1
+                    }],
+                },
+
+                // Configuration options go here
+                options: {
+                    scales: {
+                        yAxes: [{
+                            id: 'A',
+                            type: 'linear',
+                            position: 'left',
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 100
+                            }
+                        }, {
+                            id: 'B',
+                            type: 'linear',
+                            position: 'right',
+                            ticks: {
+                                suggestedMin: 0,
+                            }
+                        }]
+                    },
+                    onClick: function (evt, item) {
+                        console.log('legend onClick', evt);
+                        console.log('legd item', item);
+                    }
+                }
+            });
             page.hide()
 
         },
@@ -454,7 +509,8 @@ var generateTarget = function (element) {
                 <div id="collapse-header-` + element['td_id'] + `"class="row kpi-detail kpi-header-title">
                     <div class="col-5 text-bold row">
                         <div class="col-10">KPI</div>
-                        <div class="col-2">Điểm</div>
+                        <div class="col-1  text-center">Điểm</div>
+                        <div class="col-1  text-center">Time</div>
                     </div>
                     <div class="col-1 text-bold">Loại</div>
                     <div class="col-6 text-bold row">
@@ -477,7 +533,7 @@ var genarateKpi = function (element) {
         element.results.forEach(ele => {
             if (kpiIdLevel[ele.month] === undefined) kpiIdLevel[ele.month] = []
             if (kpiIdLevel[ele.month][element.td_id] === undefined) kpiIdLevel[ele.month][element.td_id] = []
-            kpiIdLevel[ele.month][element.td_id].push([element.level, ele.result]);
+            kpiIdLevel[ele.month][element.td_id].push([element.level,element.time, ele.result]);
             results[ele.month] = `<span class="col kpi-month kpi-hover text-center kpi-hover-item-`
                 + element['td_id'] + `" onclick="setResultMothKpi(` + ele['id'] + `)"
 data-toggle="modal" data-target="#set-result-month-modal"
@@ -495,8 +551,11 @@ data-toggle="modal" data-target="#set-result-month-modal"
   </label>
 </div>
                 </div>
-            <div class="col-2 text-center">
+            <div class="col-1 text-center">
                 ` + element['levelEdit'] + `
+            </div>
+            <div class="col-1 text-center">
+                ` + element['timeEdit'] + `
             </div>
         </div>
         <div class="col-1">` + element['type'] + `</div>
@@ -713,7 +772,6 @@ function setValidateFormKpi(id) {
 }
 
 function submitKpi(id) {
-    console.log(id)
     setValidateFormKpi(id)
     $('#kpis-form-' + id).submit();
 }
@@ -827,5 +885,61 @@ function removeResult() {
                 toastr.error("Hủy bỏ thao tác!");
             }
         });
+}
+
+function changeTypeShow(){
+    $('.analytics').toggleClass('hidden')
+}
+function analytics(){
+    page.show()
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/api/v1/analytic/table?year="+$('#date').val(),
+        success: function (res) {
+            var html = '';
+            res.forEach(function (element,index) {
+                html=html+generateAnalytic(index,element)
+            });
+            $('#analytic-body-all-month').html(html)
+            console.log(html)
+
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            page.hide()
+            toastr.error(thrownError);
+        }
+    })
+}
+function generateAnalytic(index,element){
+    if(element.results.length===0) return '';
+    var result=[]
+    for (var i=0; i<=date.getMonth();i++){
+        result[i]='--';
+    }
+    element.results.forEach(value=> {
+        result[(value.month-1)]=`<div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="`+ value.result +`" aria-valuemin="0" aria-valuemax="100" style="width:`+ value.result +`%; background-color:rgba(0, 0, 102, `+(value.result/100)+`);">
+                              `+ value.result +`%
+                            </div>
+                          </div>`;
+        console.log(value)
+    });
+    var monthEle=''
+    result.forEach(value=> {
+        monthEle=monthEle+'<td>'+value+'</td>'
+    });
+    return `<tr>
+    <td>`+index+`</td>
+    <td>`+element.name+`</td>
+    <td>`+element.target+`</td>
+    <td>`+element.target_level_edit+`</td>
+    <td>`+element.kpi+`</td>
+    <td>`+element.kpi_level_edit+`</td>
+    `+monthEle+`
+    </tr>`
+}
+for (var i=0; i<=date.getMonth();i++){
+    $('#analytic-all-month').append('<th>T'+(i+1)+'</th>')
 }
 

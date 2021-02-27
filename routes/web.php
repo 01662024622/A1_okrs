@@ -43,7 +43,7 @@ Route::resource('/targets', 'HT30\TargetController');
 Route::resource('/targetkpi', 'HT30\TargetKpiController');
 Route::resource('/kpis', 'HT30\KpiController');
 Route::resource('/kpi/results', 'HT30\KpiResultController');
-Route::resource('/okrs', 'HT30\OKRController');
+Route::resource('/kpi/managers', 'HT30\OKRController');
 Route::resource('/results', 'HT30\ResultController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');
 Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
@@ -66,7 +66,7 @@ Route::get('/review/feedback/customer/manager/report', 'HT10\ReviewViewControlle
 
 
 Route::resource('categories', 'HT00\CategoryController');
-Route::resource('survey/HT01', 'HT50\InforCustomerSurveyController');
+Route::resource('HT01', 'HT50\InforCustomerSurveyController');
 
 Route::resource('posts', 'HT00\PostController');
 
@@ -107,8 +107,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('user/targets/table', 'DataApi\TargetApiController@anyDataUser')->name('targets.api.data');
     Route::get('targets/kpis/table', 'DataApi\TargetApiController@anyDataResult')->name('targets.api.data');
     Route::get('kpis/table', 'DataApi\KpiApiController@anyData')->name('kpis.api.data');
-    Route::get('okrs/table', 'DataApi\OkrApiController@anyData')->name('okrs.api.data');
-    Route::get('okrs/user/table', 'DataApi\OkrApiController@anyDataUser')->name('okrs.api.data');
+    Route::get('/analytic/table', 'DataApi\TargetApiController@analystic')->name('analystic.api.data');
 });
 
 // Set Status group

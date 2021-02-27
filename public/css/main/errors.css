@@ -130,3 +130,6 @@ table {
     pointer-events: none;
 }
 
+.modal-dialog{
+    margin-top: 80px;
+}

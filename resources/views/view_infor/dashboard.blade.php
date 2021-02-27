@@ -31,11 +31,14 @@
         </div>
         <div class="col-8">
             <div class="box-kpi">
-                <div class="kpi-header">
-                    <i class="fa fa-caret-right" aria-hidden="true"></i> KPI năm 2020 -Trần Thanh Huyền
+                <div class="kpi-header row">
+                    <div id="user-detail-kpi" class="col-10"></div>
+                    <div class="col-2 text-right"><span class="btn btn-sm btn-link analytics"
+                                                        onclick="changeTypeShow()">Thống kê</span><span
+                            class="btn btn-sm btn-link analytics hidden" onclick="changeTypeShow()">Số liệu</span></div>
                 </div>
 
-                <div class="kpi-body">
+                <div class="kpi-body analytics">
                     <div class="row kpi-month">
                         <div class="col-4 row kpi-moth-detail" id="kpi-month-detail-1" onclick="changeMonth(1)" data-status="disabled">
                             <div class="col-3">
@@ -123,6 +126,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="kpi-body analytics hidden">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
 
         </div>
@@ -154,8 +160,11 @@
                     <div class="col-8">
                         Kpi
                     </div>
-                    <div class="col-2">
+                    <div class="col-1">
                         Điểm
+                    </div>
+                    <div class="col-1">
+                        Time
                     </div>
                     <div class="col-2">
                         Kết quả
@@ -254,6 +263,7 @@
 @endsection
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     {{--    <script src="{{ asset('js/okrs/key.js') }}"></script>--}}
     <script src="{{ asset('js/okrs/dashboard.js') }}"></script>
     <script src="{{ asset('js/okrs/key.js') }}"></script>

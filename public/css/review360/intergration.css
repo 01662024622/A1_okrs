@@ -142,12 +142,12 @@
     padding: 0rem .75rem;
     width: 100%;
     outline: none;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+    -webkit-touch-callout: auto; /* iOS Safari */
+    -webkit-user-select: auto; /* Safari */
+    -khtml-user-select: auto; /* Konqueror HTML */
+    -moz-user-select: auto; /* Old versions of Firefox */
+    -ms-user-select: auto; /* Internet Explorer/Edge */
+            user-select: auto; /* Non-prefixed version, currently
             supported by Chrome, Edge, Opera and Firefox */
         }
 

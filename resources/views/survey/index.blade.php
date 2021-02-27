@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -45,8 +45,10 @@
                     <div class="card-details">
                         <div class="row">
                             <div class="form-group col-sm-12">
+                                <p class="abc">
                                 <label for="card-holder" class="form-label-header">Tên Gara/Cửa hàng/Khách hàng *</label>
-                                    <input class="text-button" type="text" name="name_gara" placeholder="Câu trả lời của bạn" maxlength="100">
+                                    <input class="text-button" type="text" name="name_gara" placeholder="Câu trả lời của bạn">
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -190,7 +192,7 @@
 <!-- Page level custom scripts -->
 <script src="{{asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
-<script src="{{ asset('/js/survey/index.js') }}"></script>
+{{--<script src="{{ asset('/js/survey/index.js') }}"></script>--}}
 
 </body>
 </html>
