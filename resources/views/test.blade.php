@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="/css/survey/index.css">
 </head>
 <body>
-<form action="/customer/feedback/report" method="post" id="add-form">
+<form action="/HT20" method="post" id="add-form">
     @csrf
     <main class="page payment-page">
         <section class="payment-form dark">
@@ -33,9 +33,7 @@
                 </div>
                 <div class="card-details">
                     <p style="font-size: 1.1rem">
-                        Nhằm cải thiện và nâng cao chất lượng dịch vụ. HTAUTO mong muốn được lắng nghe các ý kiến được
-                        phản hồi từ khách hàng. Rất mong Quý khách đánh giá trải nghiệm mua hàng tại HTAuto Việt Nam
-                        (nhấn chọn biểu tượng cảm xúc để đánh giá). Trân trọng!
+                        Nhằm cải thiện và nâng cao chất lượng dịch vụ. HTAUTO mong muốn được lắng nghe các ý kiến phản hồi từ khách hàng. Rất mong Quý khách đánh giá trải nghiệm mua hàng tại HTAuto Việt Nam (nhấn chọn biểu tượng cảm xúc để đánh giá). Trân trọng!
                     </p>
                     <div class="row">
                         <div class="col-4 text-center" onclick="changeLv(3)">
@@ -72,7 +70,7 @@
                         <div class="col-12">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="valid" id="inlineRadio1"
-                                       value="0" onchange="checkNote()">
+                                       value="0">
                                 <label class="form-check-label" for="inlineRadio1">Có</label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -85,41 +83,40 @@
                     <div class="row container-action hidden container-lv3">
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <input class="form-check-input" name="improve[]" type="checkbox" value="1" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
                                     Thái độ nhân viên bán hàng HTAuto
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                <input class="form-check-input" name="improve[]" type="checkbox" value="2" id="defaultCheck2">
                                 <label class="form-check-label" for="defaultCheck2">
                                     Kiến thức tư vấn của nhân viên bán hàng
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                <input class="form-check-input" name="improve[]" type="checkbox" value="3" id="defaultCheck3">
                                 <label class="form-check-label" for="defaultCheck2">
                                     Thời gian giao hàng
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                <input class="form-check-input" name="improve[]" type="checkbox" value="4" id="defaultCheck4">
                                 <label class="form-check-label" for="defaultCheck2">
                                     Giá sản phẩm
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                <input class="form-check-input" name="improve[]" type="checkbox" value="5" id="defaultCheck5">
                                 <label class="form-check-label" for="defaultCheck2">
-                                    Mức độ đa dạng đủ của hàng hóa và đầy
+                                    Mức độ đa dạng và đầy đủ của hàng hóa
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="row container-action hidden container-lv2">
                         <div class="col-12">
-                            Quý khách có thể đóng góp thêm ý kiến để chúng tôi cải thiện trải nghiệm mua hàng tuyệt vời
-                            hơn?
+                            Quý khách vui lòng đóng góp thêm ý kiến để chúng tôi có thể cải thiện trải nghiệm mua hàng tuyệt vời hơn?
                         </div>
                     </div>
                     <div class="row container-action hidden container-note">
@@ -128,6 +125,11 @@
                                 <label for="comment">Góp ý:</label>
                                 <textarea class="form-control" rows="3" id="comment"></textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="submit" type="submit" class="btn btn-success opacity-7" style="padding: 5px 10px;" disabled>Gửi</button>
                         </div>
                     </div>
                 </div>

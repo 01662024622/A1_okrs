@@ -66,15 +66,27 @@ Route::get('/review/feedback/customer/manager/report', 'HT10\ReviewViewControlle
 
 
 Route::resource('categories', 'HT00\CategoryController');
-Route::resource('HT01', 'HT50\InforCustomerSurveyController');
+//Route::resource('HT01', 'HT50\InforCustomerSurveyController');
+//Route::resource('HT02', 'HT50\InforCustomerSurveyController');
 
 Route::resource('posts', 'HT00\PostController');
 
 Route::get('/tests', function () {
    return view('test');
 });
+Route::get('/pb-t1', function () {
+   return view('organization.col');
+});
+Route::get('/user-t1', function () {
+   return view('organization.col-1');
+});
 
-
+Route::get('/pb-t2', function () {
+    return view('organization.row');
+});
+Route::get('/user-t2', function () {
+    return view('organization.row-1');
+});
 // Get data Table group
 Route::group(['prefix' => 'api/v1'], function () {
     Route::get('category/table', 'DataApi\CategoryApiController@anyData')->name('category.api.data');
