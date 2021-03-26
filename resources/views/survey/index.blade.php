@@ -24,7 +24,7 @@
 
 </head>
 <body>
-<form action="/survey/HT01" method="post" id="add-form">
+<form action="/HT01" method="post" id="add-form">
     @csrf
     <main class="page payment-page">
         <section class="payment-form dark">
@@ -192,7 +192,7 @@
 <!-- Page level custom scripts -->
 <script src="{{asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
-{{--<script src="{{ asset('/js/survey/index.js') }}"></script>--}}
+<script src="{{ asset('/js/survey/index.js') }}"></script>
 
 </body>
 </html>

@@ -13,10 +13,10 @@ class FeedbackViewController extends Controller
         if (Auth::check()) {
             Auth::logout();
         }
-        $user = User::where('authentication', "=", $auth)->where("role","<>","blocker")->where("status","0")->first();
+        $user = User::where('authentication', "=", $auth)->where("role",">",0)->where("status",0)->first();
         if ($user){
             Auth::login($user);
-            return redirect('/review/feedback/apartment');
+            return redirect('/review/apartment/feedback');
         }else{
             return view("errors.404");
         }
@@ -26,7 +26,7 @@ class FeedbackViewController extends Controller
         if (Auth::check()) {
             Auth::logout();
         }
-        $user = User::where('authentication', "=", $auth)->where("role","<>","blocker")->where("status","0")->first();
+        $user = User::where('authentication', "=", $auth)->where("role",">",0)->where("status",0)->first();
         if ($user){
             Auth::login($user);
             return redirect('/review/feedback');
@@ -39,10 +39,10 @@ class FeedbackViewController extends Controller
         if (Auth::check()) {
             Auth::logout();
         }
-        $user = User::where('authentication', "=", $auth)->where("role","<>","blocker")->where("status","0")->first();
+        $user = User::where('authentication', "=", $auth)->where("role",">",0)->where("status",0)->first();
         if ($user){
             Auth::login($user);
-            return redirect('/review/feedback/browser');
+            return redirect('/review/browser/feedback');
         }else{
             return view("errors.404");
         }

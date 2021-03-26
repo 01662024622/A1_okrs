@@ -51,12 +51,13 @@ Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 //Route::get('/customer/feedback/full', 'HT10\CustomerFeedbackController@indexCode');
 //Route::get('/', 'HT10\ReportMarketController@index');
 Route::get('/review/feedback', 'HT10\ReviewViewController@feedbackMe');
-Route::get('/review/feedback/{auth}', 'Authentication\FeedbackViewController@feedbackMeAuth');
-Route::get('/review/feedback/apartment', 'HT10\ReviewViewController@feedbackApartment');
-Route::get('/review/feedback/apartment/auth/{auth}', 'Authentication\FeedbackViewController@feedbackApartmentAuth');
+Route::get('/review/feedback/auth/{auth}', 'Authentication\FeedbackViewController@feedbackMeAuth');
+
+Route::get('/review/apartment/feedback', 'HT10\ReviewViewController@feedbackApartment');
+Route::get('/review/apartment/feedback/auth/{auth}', 'Authentication\FeedbackViewController@feedbackApartmentAuth');
 Route::get('/review/feedback/manager', 'HT10\ReviewViewController@feedbackManager');
-Route::get('/review/feedback/browser', 'HT10\ReviewViewController@feedbackBrowser');
-Route::get('/review/feedback/browser/{auth}', 'Authentication\FeedbackViewController@feedbackAuthBrowser');
+Route::get('/review/browser/feedback', 'HT10\ReviewViewController@feedbackBrowser');
+Route::get('/review/browser/feedback/{auth}', 'Authentication\FeedbackViewController@feedbackAuthBrowser');
 Route::get('/review/warehouse/report', 'HT10\ReviewViewController@warehouse');
 Route::get('/review/warehouse/manager/report', 'HT10\ReviewViewController@warehouseManager');
 Route::get('/review/public/relationship/report', 'HT10\ReviewViewController@publicRelationship');
@@ -66,7 +67,7 @@ Route::get('/review/feedback/customer/manager/report', 'HT10\ReviewViewControlle
 
 
 Route::resource('categories', 'HT00\CategoryController');
-//Route::resource('HT01', 'HT50\InforCustomerSurveyController');
+Route::resource('HT01', 'HT50\InforCustomerSurveyController');
 //Route::resource('HT02', 'HT50\InforCustomerSurveyController');
 
 Route::resource('posts', 'HT00\PostController');

@@ -1,35 +1,22 @@
 var type = 0;
+var data=[];
 function changeLv(lv){
+    console.log(lv)
     type=lv;
     $('.container-action').addClass('hidden')
     $('.emoji-checked').addClass('hidden')
     $('.emoji').addClass('opacity-7')
     $('.emoji-'+lv).removeClass('opacity-7')
+    $('.container-lv').addClass('hidden')
     $('.container-lv'+lv).removeClass('hidden')
     $('.check-emoji-'+lv).removeClass('hidden')
-    if (lv>1){
-        $('.container-note').removeClass('hidden')
-    }
     $('#submit').addClass('opacity-7')
-    $('#submit').prop('disabled',true)
-    if (lv==2) {
-        $('#submit').removeClass('opacity-7')
-        $('#submit').prop('disabled',false)
-    }
-    $('#add-form')[0].reset()
-
     // $('input[name="improve[]"]:checked').attr('checked',false)
 }
-$('input[type="radio"]').on('change', function(e) {
-    console.log(e.type);
-    if ($('input[name="valid"]:checked').val()==0) {
-        $('.container-note').removeClass('hidden')
-    }
-    else $('.container-note').addClass('hidden')
-});
 
-
-
+//
+//
+//
 $(':input[type="checkbox"]').change(function () {
     if ($('input[name="improve[]"]:checked').length > 0) {
         $('#submit').removeClass('opacity-7')
@@ -69,3 +56,24 @@ $("#add-form").submit(function(e){
         });
     }
 });
+
+$('input[type="radio"]').on('change', function(e) {
+    console.log(e.type);
+    if ($('input[name="valid"]:checked').val()==0) {
+        $('.container-note').removeClass('hidden')
+    }
+    else $('.container-note').addClass('hidden')
+});
+$('.checkbox-container').on('click',function (){
+    if ($(this).hasClass('checkbox-checked')){
+        $('.checkbox-'+$(this).data('type')).removeClass('hidden')
+    }else {
+        $('.checkbox-'+$(this).data('type')).addClass('hidden')
+        $(this).removeClass('hidden')
+    }
+    $(this).toggleClass('checkbox-checked')
+    $(this).find('.fa').toggleClass('fa-square-o').toggleClass('fa-check-square-o')
+    if ($(this).data('option')===1||$(this).data('option')===0){
+        $('.checkbox-special').removeClass('hidden')
+    }
+})

@@ -40,5 +40,8 @@ class CustomerFeedbackController extends ResouceController
     {
         return view("feedback.customerFeedback");
     }
+    public function create(){
+        return view("feedback.customerFeedbackv1");
+    }
 
 }

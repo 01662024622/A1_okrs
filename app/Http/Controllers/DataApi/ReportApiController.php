@@ -101,7 +101,7 @@ class ReportApiController extends Controller
         $data = Review::select("ht10_reviews.*", "ht20_apartments.name as apartment", "ht20_users.name as user",
             DB::raw("(CASE WHEN `ht10_reviews`.user_status = 1 THEN 1 WHEN `ht10_reviews`.created_at < '" . $date . "' THEN 2 WHEN `ht10_reviews`.user_status = -1 THEN -1 ELSE 0 END) as role"))
             ->join('ht20_apartments', 'ht10_reviews.apartment_id', '=', 'ht20_apartments.id')
-            ->leftJoin('ht20_users', 'users.id', '=', 'ht10_reviews.user_id')
+            ->leftJoin('ht20_users', 'ht20_users.id', '=', 'ht10_reviews.user_id')
             ->orderBy('ht10_reviews.updated_at', 'desc')
             ->where("ht20_apartments.user_id", Auth::id());
         return Datatables::of($data)

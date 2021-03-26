@@ -50,7 +50,7 @@
                         <div class="kpi-target" id="kpi-target">
                         </div>
                         <div class="text-right">
-                            <a href="#" data-toggle="modal" onclick="getTarget()" data-target="#manageTarget">Quản
+                            <a class="btn btn-link" href="#" data-toggle="modal" onclick="getTarget()" data-target="#manageTarget">Quản
                                 lý</a>
                             &nbsp; &nbsp;
                             <button type="submit" class="btn btn-link">Lưu</button>
@@ -166,7 +166,7 @@
     <br>
     <br>
     <div class="row">
-        <span>Ghi chú mức độ quan trọng:</span>
+        <span style="line-height: 33px;">Ghi chú mức độ quan trọng:</span>
         <span style="line-height: 35px">Ghi chú mức độ quan trọng:</span>
         <span>5 Điểm(<div class="level-box color-lv-2" aria-hidden="true"></div>)--</span>
         <span>10 Điểm(<div class="level-box color-lv-4" aria-hidden="true"></div>)--</span>
@@ -347,6 +347,7 @@
                             <th>Độ khó</th>
                             <th>Kpi</th>
                             <th>Độ khó</th>
+                            <th>Time</th>
                         </tr>
                         </thead>
                         <tbody id="analytic-body-all-month">

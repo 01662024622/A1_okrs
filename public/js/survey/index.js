@@ -74,6 +74,7 @@ $().ready(function() {
             }
         },
         submitHandler: function(form) {
+            console.log(form)
             form.submit();
         }
     });

@@ -10,7 +10,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>HTAuto</title>
     <link rel="shortcut icon" href="../../../public/crop-logo.png">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/css/vendor/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+{{--    <link href="{{asset('/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">--}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
           rel="stylesheet" type="text/css">
 
@@ -33,112 +34,152 @@
                 </div>
                 <div class="card-details">
                     <p style="font-size: 1.1rem">
-                        Nhằm cải thiện và nâng cao chất lượng dịch vụ. HTAUTO mong muốn được lắng nghe các ý kiến phản hồi từ khách hàng. Rất mong Quý khách đánh giá trải nghiệm mua hàng tại HTAuto Việt Nam (nhấn chọn biểu tượng cảm xúc để đánh giá). Trân trọng!
+                        Nhằm cải thiện và nâng cao chất lượng dịch vụ. HTAUTO mong muốn được lắng nghe các ý kiến phản
+                        hồi từ khách hàng. Rất mong Quý khách đánh giá trải nghiệm mua hàng tại HTAuto Việt Nam (nhấn
+                        chọn biểu tượng cảm xúc để đánh giá). Trân trọng!
                     </p>
                     <div class="row">
-                        <div class="col-4 text-center" onclick="changeLv(3)">
-                            <div class="emoji opacity-7 emoji-3">
-                                <div class="emoji-checked hidden check-emoji-3">&#9989;</div>
-                                &#128543;
+                        <div class="col-12 ">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <div class="emoji opacity-7 emoji-1" onclick="changeLv(1)">
+                                        <div class="emoji-checked hidden check-emoji-1">&#9989;</div>
+                                        &#128522;
+                                    </div>
+                                    <div class="text-emoji">Hài lòng<i id="number-lv1"></i></div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="emoji opacity-7 emoji-2" onclick="changeLv(2)">
+                                        <div class="emoji-checked hidden check-emoji-2">&#9989;</div>
+                                        &#128529;
+                                    </div>
+                                    <div class="text-emoji">Bình thường<i id="number-lv2"></i></div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="emoji opacity-7 emoji-3" onclick="changeLv(3)">
+                                        <div class="emoji-checked hidden check-emoji-3">&#9989;</div>
+                                        &#128543;
+                                    </div>
+                                    <div class="text-emoji">Không hài Lòng<i id="number-lv3"></i></div>
+                                </div>
                             </div>
-                            <div class="text-emoji">Không hài Lòng</div>
                         </div>
-                        <div class="col-4 text-center" onclick="changeLv(2)">
-                            <div class="emoji opacity-7 emoji-2">
-                                <div class="emoji-checked hidden check-emoji-2">&#9989;</div>
-                                &#128529;
-                            </div>
-                            <div class="text-emoji">Bình thường</div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row container-lv container-lv1 hidden">
+                        <div class="col-12 checkbox-container checkbox-0" data-type="0">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Thái độ NV nhiệt tình/ thân thiện
                         </div>
-                        <div class="col-4 text-center" onclick="changeLv(1)">
-                            <div class="emoji opacity-7 emoji-1">
-                                <div class="emoji-checked hidden check-emoji-1">&#9989;</div>
-                                &#128522;
-                            </div>
-                            <div class="text-emoji">Hài lòng</div>
+                        <div class="col-12 checkbox-container checkbox-1" data-type="1">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Chất lượng tư vấn nhanh gọn/chính xác
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-2" data-type="2">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giá cả phù hợp
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-3" data-type="3">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giao hàng nhanh chóng
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-5" data-type="5">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Chất lượng sản phẩm đúng cam kết
                         </div>
                     </div>
 
-                    <br>
-                    <br>
-                    <div class="row container-action hidden container-lv1">
-                        <div class="col-12">
-                            Quý khách có trải nghiệm đặc biệt thú vị cho lần mua sắm này không?
-                            <br>
-                            <br>
+                    <div class="row container-lv container-lv2 hidden">
+                        <div class="col-12 checkbox-container checkbox-0" data-type="0">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Thái độ nhân viên
                         </div>
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="valid" id="inlineRadio1"
-                                       value="0">
-                                <label class="form-check-label" for="inlineRadio1">Có</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="valid" id="inlineRadio2"
-                                       value="1">
-                                <label class="form-check-label" for="inlineRadio2">Không</label>
-                            </div>
+                        <div class="col-12 checkbox-container checkbox-1" data-type="1">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Chất lượng tư vấn
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-2" data-type="2">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giá cả
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-3" data-type="3">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giao hàng
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-5" data-type="5">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Chất lượng sản phẩm
                         </div>
                     </div>
-                    <div class="row container-action hidden container-lv3">
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" name="improve[]" type="checkbox" value="1" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Thái độ nhân viên bán hàng HTAuto
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" name="improve[]" type="checkbox" value="2" id="defaultCheck2">
-                                <label class="form-check-label" for="defaultCheck2">
-                                    Kiến thức tư vấn của nhân viên bán hàng
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" name="improve[]" type="checkbox" value="3" id="defaultCheck3">
-                                <label class="form-check-label" for="defaultCheck2">
-                                    Thời gian giao hàng
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" name="improve[]" type="checkbox" value="4" id="defaultCheck4">
-                                <label class="form-check-label" for="defaultCheck2">
-                                    Giá sản phẩm
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" name="improve[]" type="checkbox" value="5" id="defaultCheck5">
-                                <label class="form-check-label" for="defaultCheck2">
-                                    Mức độ đa dạng và đầy đủ của hàng hóa
-                                </label>
-                            </div>
+                    <div class="row container-lv container-lv3 hidden">
+                        <div class="col-12 checkbox-container checkbox-0" data-type="0">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Thái độ NV chưa nhiệt tình/ thân thiện
                         </div>
-                    </div>
-                    <div class="row container-action hidden container-lv2">
-                        <div class="col-12">
-                            Quý khách vui lòng đóng góp thêm ý kiến để chúng tôi có thể cải thiện trải nghiệm mua hàng tuyệt vời hơn?
+                        <div class="col-12 checkbox-container checkbox-1" data-type="1">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Chất lượng tư vấn chậm trễ/ chưa chính xác
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-2" data-type="2">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giá cả chưa phù hợp
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-3 checkbox-special" data-type="3" data-option="0">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giao hàng chậm
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-3 checkbox-special" data-type="3" data-option="1">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Giao hàng sai
+                        </div>
+                        <div class="col-12 checkbox-container checkbox-5" data-type="5">
+                            <i class="fa fa-square-o" aria-hidden="true"></i> Chất lượng sản phẩm chưa đúng cam kết
                         </div>
                     </div>
                     <div class="row container-action hidden container-note">
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="comment">Góp ý:</label>
-                                <textarea class="form-control" rows="3" id="comment"></textarea>
+                                <textarea class="form-control" rows="2" id="comment"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button id="submit" type="submit" class="btn btn-success opacity-7" style="padding: 5px 10px;" disabled>Gửi</button>
+                            <button id="submit" type="submit" class="btn btn-success opacity-7"
+                                    style="padding: 5px 10px;" disabled>Gửi
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             <br>
+
+            <div class="container-fluid justify-content-center align-items-center container-custom">
+                <div class="row" style="max-width: 1220px; margin: auto">
+                    <div class="col-md-3 row">
+                        <div class="col-3" style="padding: 0px"><img class="img-fluid"
+                                                                     src="{{asset('icon/survey/icons-01.png')}}"></div>
+                        <div class="col-9" style="padding-right: 0px">
+                            <p class="header-ups">SẢN PHẨM CHÍNH HÃNG</p>
+                            <p class="content-ups">Nguồn gốc xuất xứ rõ ràng</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 row">
+                        <div class="col-3" style="padding: 0px"><img class="img-fluid"
+                                                                     src="{{asset('icon/survey/icons-02.png')}}"></div>
+                        <div class="col-9" style="padding-right: 0px">
+                            <p class="header-ups">GIÁ CẢ</p>
+                            <p class="content-ups">Luôn ổn định so với thị trường</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 row">
+                        <div class="col-3" style="padding: 0px"><img class="img-fluid"
+                                                                     src="{{asset('icon/survey/icons-04.png')}}"></div>
+                        <div class="col-9" style="padding-right: 0px">
+                            <p class="header-ups">BẢO HÀNH</p>
+                            <p class="content-ups">Lên đến 6 tháng</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 row">
+                        <div class="col-3" style="padding: 0px"><img class="img-fluid"
+                                                                     src="{{asset('icon/survey/icons-03.png')}}"></div>
+                        <div class="col-9" style="padding-right: 0px">
+                            <p class="header-ups">DỊCH VỤ GIAO HÀNG</p>
+                            <p class="content-ups">Nhanh chóng, cụ thể, linh hoạt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 </form>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -22,11 +22,10 @@ class KpiController extends ResouceController
 
     public function store(Request $request)
     {
-           $data= parent::storeRequest($request);
-        if ($data['level'] == 2) $data['levelEdit']= '<i class="fa fa-square" style="color: green" aria-hidden="true"></i>';
-        elseif ($data['level'] == 4) $data['levelEdit']= '<i class="fa fa-square" style="color: yellow" aria-hidden="true"></i>';
-        elseif ($data['level'] == 6) $data['levelEdit']= '<i class="fa fa-square" style="color: orange" aria-hidden="true"></i>';
-        else $data['levelEdit']= '<i class="fa fa-square" style="color: red" aria-hidden="true"></i>';
+        $data= parent::storeRequest($request);
+        $data['level_edit'] = '<div class="level-box color-lv-' . $data['level'] . '" aria-hidden="true">' . ($data['level'] * 2.5) . '</div>';
+        $data['time_edit'] = '<div class="level-box color-lv-' . $data['time'] . '" aria-hidden="true">' . ($data['time'] * 2.5) . '</div>';
+
         if ($data['type'] == 0) $data['typeEdit']= '%đạt';
         else $data['typeEdit']= 'trừ'.$data['minus'].'%/lỗi';
         return $data;

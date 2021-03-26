@@ -465,6 +465,15 @@ var generateTarget = function (element) {
                                 <option value="8">20 Điểm</option>
                             </select>
                         </div>
+                        <div class="form-check col-2">
+                            <select id="time" class="form-control form-control-sm" name="time">
+                                <option disabled selected value="">-- Time --</option>
+                                <option value="2">5 Điểm</option>
+                                <option value="4">10 Điểm</option>
+                                <option value="6">15 Điểm</option>
+                                <option value="8">20 Điểm</option>
+                            </select>
+                        </div>
                         <div class="col-4">
                             <div class="form-check form-check-inline">
                                 <input id="type-default-` + element['td_id'] + `" class="form-check-input type-radio" type="radio" name="type" value="0" checked>
@@ -744,8 +753,12 @@ function setValidateFormKpi(id) {
   </label>
 </div>
                 </div>
-            <div class="col-2 text-center">
-                ` + response['levelEdit'] + `
+            <div class="col-1 text-center">
+                ` + response['level_edit'] + `
+            </div>
+
+            <div class="col-1 text-center">
+                ` + response['time_edit'] + `
             </div>
         </div>
         <div class="col-1">` + response['typeEdit'] + `</div>
@@ -936,6 +949,7 @@ function generateAnalytic(index,element){
     <td>`+element.target_level_edit+`</td>
     <td>`+element.kpi+`</td>
     <td>`+element.kpi_level_edit+`</td>
+    <td>`+element.kpi_time_edit+`</td>
     `+monthEle+`
     </tr>`
 }
