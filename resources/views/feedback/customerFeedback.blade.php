@@ -206,7 +206,7 @@
                                              data-type="0">
                                             <div class="checked-emoji checked-emoji-5 hidden check-emoji-5-3">&#9989;
                                             </div>
-                                            <img  class="emoji-image" src="/image/emoji/2.png">
+                                            <img  class="emoji-image" src="/image/emoji/3.png">
                                         </div>
                                         <div class="text-emoji">Không hài Lòng<i id="number-lv3"></i></div>
                                     </div>
