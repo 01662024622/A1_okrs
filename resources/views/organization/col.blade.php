@@ -131,7 +131,7 @@
             display: block;
             width: 350px;
             padding: 5px 10px;
-            line-height: 20px;
+            line-height: 16px;
             text-align: center;
             border: 2px solid #eee9dc;
             border-radius: 5px;
@@ -164,17 +164,20 @@
 <h1 style="text-align: center">Sơ đồ tổ chức phòng ban của HTAUTO</h1>
 <div id="wrapper">
     <div class="label row" style="padding-right: 0">
-        <div class="col-12"><a href="/user-t1">Ban giám đốc</a></div>
+        <div class="col-12"><a href="/user-t1">Ban tổng giám đốc</a></div>
         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
             <div class="col-4" style="padding: 0">
                 <img src="0.jpg" class="img-fluid" alt="">
             </div>
             <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                <p><i class="fa fa-user" aria-hidden="true"></i> Chloe Thúy Hoàng</p>
+
+                <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Chloe Thúy Hoàng</i></p>
+
                 <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc trưởng kết nối sáng
                         tạo</i></p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Giám Đốc Điều hành</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> thuy.hoang@htauto.com.vn</p>
+                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Tổng giám đốc</p>
             </div>
         </div>
     </div>
@@ -187,12 +190,13 @@
                         <img src="0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                        <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy</p>
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
+                        <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Chloe Thúy Hoàng</i></p>
                         <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc trưởng kết nối
                                 sáng
                                 tạo</i></p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Giám Đốc Điều hành</p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> thuy.hoang@htauto.com.vn</p>
+                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Trưởng ban phát triển</p>
                     </div>
                 </div>
             </div>
@@ -203,14 +207,14 @@
                         <div class="col-12"><a href="/user-t1">Phòng R&D</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thanh Tâm</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc trưởng
-                                        kết nối sáng tạo</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Julia Tâm Hoàng</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia nghiên cứu và am hiểu sản phẩm</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> tam.hoang@htauto.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP R&D</p>
                             </div>
                         </div>
@@ -227,8 +231,9 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Đào Ngọc Ánh</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> ?</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Steve Ánh Đào</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhà khai sáng công nghệ</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> technology@aspgroup.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP phát triển công nghệ</p>
                             </div>
                         </div>
@@ -244,10 +249,10 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Phạm Việt Anh</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia
-                                        xây dựng dự án</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> CV dự án chiến lược</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Miguel Việt Anh Phạm</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nghiên cứu gia</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> mar.research@htauto.com.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> PT dự án chiến lược</p>
                             </div>
                         </div>
                     </div>
@@ -259,14 +264,15 @@
                 <div class="col-12"><a href="/user-t1">Ban chiến lược</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="1.jpg" class="img-fluid" alt="">
+                        <img src="0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                        <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy</p>
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
+                        <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Chloe Thúy Hoàng</i></p>
                         <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc trưởng kết nối
                                 sáng tạo</i></p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Giám Đốc Điều hành</p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> thuy.hoang@htauto.com.vn</p>
+                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Trưởng ban chiến lược</p>
                     </div>
                 </div>
             </div>
@@ -280,17 +286,54 @@
                         <img src="0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                        <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy</p>
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
+                        <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Chloe Thúy Hoàng</i></p>
                         <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc trưởng kết nối
-                                sáng
-                                tạo</i></p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Giám đốc điều hành</p>
+                                sáng tạo</i></p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> thuy.hoang@htauto.com.vn</p>
+                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Trưởng ban kinh doanh</p>
                     </div>
                 </div>
             </div>
 
             <div class="branch lv2" style="top:-100px">
+                <div class="entry">
+                    <div class="label-entry row" style="padding-right: 0">
+                        <div class="col-12"><a href="/user-t1">Phòng kinh doanh ASP</a></div>
+                        <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+                            <div class="col-4" style="padding: 0">
+                                <img src="1.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-8"
+                                 style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+                                <p><i class="fa fa-user" aria-hidden="true"></i> Phạm Đức Thắng</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Eric Thắng Phạm</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người lãnh đạo phát triển ASP</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> thang.pham@aspgroup.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Giám đốc kinh doanh ASP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="label-entry row" style="padding-right: 0">
+                        <div class="col-12"><a href="/user-t1">Phòng tư vấn dầu</a></div>
+                        <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+                            <div class="col-4" style="padding: 0">
+                                <img src="1.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-8"
+                                 style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+                                <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Trường Tuyên</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Felix Tuyên Nguyễn</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia thị trường dầu,phụ gia,nước mát</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> lube.hn@aspgroup.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP tư vấn dầu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="entry">
                     <div class="label-entry row" style="padding-right: 0">
                         <div class="col-12"><a href="/user-t1">Phòng tư vấn phụ tùng</a></div>
@@ -301,13 +344,15 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
                                 <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> ?</p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> ?</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="entry">
                     <div class="label-entry row" style="padding-right: 0">
@@ -319,9 +364,9 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Hải Đăng</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người sáng
-                                        tác thơ tài ba</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Brembo Đăng Nguyễn</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia định hướng & phát triển Marketing</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> marketing@htauto.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> Phó phòng Marketing</p>
                             </div>
                         </div>
@@ -330,18 +375,18 @@
 
                 <div class="entry">
                     <div class="label-entry row" style="padding-right: 0">
-                        <div class="col-12"><a href="/user-t1">Phòng TVCS trải nghiệm KH</a></div>
+                        <div class="col-12"><a href="/user-t1">Phòng CS trải nghiệm KH</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Đặng Thị Vân Anh</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người kết nối
-                                        đam mê</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Giám Sát DVKH</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Sandy Vân Anh Đặng</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia am hiểu khách hàng và dịch vụ</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> cskh@htauto.com.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Quản lý cs trải nghiệm khách hàng</p>
                             </div>
                         </div>
                     </div>
@@ -351,15 +396,15 @@
                         <div class="col-12"><a href="/user-t1">Phòng phát triển thị trường</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="user-nullable.png" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                                <p><i class="fa fa-user" aria-hidden="true"></i> Lương Phú Tuân</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>kết nối sáng
-                                        tạo</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Phụ Trách Phát Triển TT</p>
+                                <p><i class="fa fa-user" aria-hidden="true"></i>?</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP Phát Triển TT</p>
                             </div>
                         </div>
                     </div>
@@ -372,13 +417,14 @@
                 <div class="col-12"><a href="/user-t1">Ban vận hành</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="0.jpg" class="img-fluid" alt="">
+                        <img src="1.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Trịnh Văn Tô</p>
+                        <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Kindly Tô Trịnh</i></p>
                         <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia về vận
-                                hành</i></p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                hành doanh nghiệp</i></p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> to.trinh@htauto.com.vn</p>
                         <p><i class="fa fa-credit-card" aria-hidden="true"></i> Phó ban vận hành</p>
                     </div>
                 </div>
@@ -390,14 +436,16 @@
                         <div class="col-12"><a href="/user-t1">Phòng quy trình</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Phạm Thúy Hợp</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Azura Hợp Phạm</i></p>
+
                                 <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia
-                                        vận hành</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                        xây dựng và kiểm soát hoạt động</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> process@htauto.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP quy trình</p>
                             </div>
                         </div>
@@ -408,14 +456,15 @@
                         <div class="col-12"><a href="/user-t1">Phòng kiểm soát</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Lê Thị Hà</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Alma Hà Lê</i></p>
                                 <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia
-                                        vận hành</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                        xây dựng và kiểm soát hoạt động</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> process2@htauto.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP kiểm soát</p>
                             </div>
                         </div>
@@ -426,15 +475,15 @@
                         <div class="col-12"><a href="/user-t1">Phòng kho</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Lê Minh Thảo</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia
-                                        lưu trữ</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP Kho</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Junie Thảo Lê</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia về kho hàng</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> kho.hn@htauto.com.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP Kho Hàng</p>
                             </div>
                         </div>
                     </div>
@@ -450,9 +499,10 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Trịnh Văn Tô</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Kindly Tô Trịnh</i></p>
                                 <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia
                                         vận chuyển</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> to.trinh@htauto.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP dịch vụ giao nhận
                                 </p>
                             </div>
@@ -465,14 +515,14 @@
                         <div class="col-12"><a href="/user-t1">Phòng hành chính nhân sự</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Đắc Thị Nhung</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia am
-                                        hiểu cơn người</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Ariana Nhung Đắc</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia về tổ chức và thấu hiểu con người</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> hr2@htuato.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP HCNS</p>
                             </div>
                         </div>
@@ -488,8 +538,9 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
                                 <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> ?</p>
                             </div>
                         </div>
@@ -507,11 +558,10 @@
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hường</p>
-                        <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc phó trưởng kết
-                                nối
-                                sáng tạo</i></p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Phó giám đốc kiêm kế toán trưởng</p>
+                        <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px"> Maris Hường Hoàng</i></p>
+                        <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người lãnh đạo nội chính</i></p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> huong.hoang@htauto.com.vn</p>
+                        <p><i class="fa fa-credit-card" aria-hidden="true"></i> Trưởng ban tài chính</p>
                     </div>
                 </div>
             </div>
@@ -522,15 +572,15 @@
                         <div class="col-12"><a href="/user-t1">Phòng kế toán</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hường</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Nhạc trưởng
-                                        kết nối sáng tạo</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Phó giám đốc kiêm kế toán trưởng</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Maris Hường Hoàng</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người lãnh đạo nội chính</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> huong.hoang@htauto.com.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> Kế toán trưởng</p>
                             </div>
                         </div>
                     </div>
@@ -541,14 +591,15 @@
                         <div class="col-12"><a href="/user-t1">Phòng nhập mua</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="user-nullable.png" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hảo</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> ?</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP nhập mua và đối ngoại</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Merry Hảo Hoàng</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia nhập khẩu</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> hao.hoang@htauto.com.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP nhập mua</p>
                             </div>
                         </div>
                     </div>
@@ -558,14 +609,15 @@
                         <div class="col-12"><a href="/user-t1">Phòng đối ngoại</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hảo</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia xây dựng dự án</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
-                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP nhập mua và đối ngoại</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Merry Hảo Hoàng</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia đối ngoại</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> hao.hoang@htauto.com.vn</p>
+                                <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP đối ngoại</p>
                             </div>
                         </div>
                     </div>
@@ -579,8 +631,9 @@
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                                 <p><i class="fa fa-user" aria-hidden="true"></i> Trần Tuấn Anh</p>
-                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia tài chính</i></p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> 099999999</p>
+                                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Jason Tuấn Anh Trần</i></p>
+                                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người điều hành tài chính</i></p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i> taichinh@htauto.com.vn</p>
                                 <p><i class="fa fa-credit-card" aria-hidden="true"></i> TP tài chính</p>
                             </div>
                         </div>

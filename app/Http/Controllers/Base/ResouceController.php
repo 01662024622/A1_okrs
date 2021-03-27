@@ -31,5 +31,7 @@ class ResouceController extends Controller
 	protected function storeRequest(Request $request,array $arr=[]){
         return $this->service->create($request,$arr);
     }
-
+    function getService(){
+	    return $this->service;
+    }
 }

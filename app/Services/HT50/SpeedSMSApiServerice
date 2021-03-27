@@ -11,6 +11,4 @@ interface SpeedSMSApiServerice {
 
     public function getUserInfo();
     public function sendSMS($to, $smsContent, $smsType, $sender);
-    public function sendMMS($to, $smsContent, $link, $sender);
-    public function sendVoice($to, $smsContent);
 }
