@@ -141,74 +141,92 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng kinh doanh ASP</h1>
+    <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng marketing</h1>
     <div id="wrapper">
         <div class="label-entry row" style="padding-right: 0">
-            <div class="col-12"><a href="/user-t1">Giám đốc kinh doanh ASP</a></div>
+            <div class="col-12"><a href="/user-t1">Phó phòng marketing</a></div>
             <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                 <div class="col-4" style="padding: 0">
-                    <img src="/0.jpg" class="img-fluid" alt="">
+                    <img src="/1.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-8"
                 style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                <p><i class="fa fa-user" aria-hidden="true"></i> Phạm Đức Thắng</p>
-                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Eric Thắng Phạm</i></p>
-                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người lãnh đạo phát triển ASP</i></p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i> thang.pham@aspgroup.vn</p>
+                <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Hải Đăng</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Brembo Hoàng Nguyễn</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia định hướng và PT Marketing</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> marketing@htauto.com.vn</p>
             </div>
         </div>
     </div>
     <div class="branch lv1">
         <div class="entry">
             <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Chuyên viên ASP</a></div>
+                <div class="col-12"><a href="/user-t1">Chuyên viên sáng tạo nội dung</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8"
                     style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Thị Lam Giang</p>
+                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Linnea Giang Nguyễn</i></p>
+                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Tổng biên tập nội dung Marketing</i></p>
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> giang.nguyen@htauto.vn</p>
                 </div>
             </div>
         </div>
     </div>
-        <div class="entry">
-            <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Chuyên viên ASP</a></div>
-                <div class="col-12 row" style="margin-right: 0;padding-right: 0">
-                    <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-8"
-                    style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+    <div class="entry">
+        <div class="label-entry row" style="padding-right: 0">
+            <div class="col-12"><a href="/user-t1">Chuyên viên tư vấn dầu</a></div>
+            <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+                <div class="col-4" style="padding: 0">
+                    <img src="/1.jpg" class="img-fluid" alt="">
                 </div>
+                <div class="col-8"
+                style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+                <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Anh Quý</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Ray Quý Nguyễn</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên viên sản xuất media</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> quy.nguyen@htauto.vn</p>
             </div>
         </div>
     </div>
-        <div class="entry">
-            <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Trợ lý kinh doanh ASP</a></div>
-                <div class="col-12 row" style="margin-right: 0;padding-right: 0">
-                    <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-8"
-                    style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+</div>
+    <div class="entry">
+        <div class="label-entry row" style="padding-right: 0">
+            <div class="col-12"><a href="/user-t1">Chuyên viên Digital Marketing</a></div>
+            <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+                <div class="col-4" style="padding: 0">
+                    <img src="/0.jpg" class="img-fluid" alt="">
                 </div>
+                <div class="col-8"
+                style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+                <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Thu Trang</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Roy Trang Nguyễn</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người hùng Digital</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> trang.nguyen@htauto.vn</p>
             </div>
         </div>
     </div>
+</div>
+<div class="entry">
+    <div class="label-entry row" style="padding-right: 0">
+        <div class="col-12"><a href="/user-t1">Chuyên viên Thiết kế Đồ họa</a></div>
+        <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+            <div class="col-4" style="padding: 0">
+                <img src="/1.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-8"
+            style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+            <p><i class="fa fa-user" aria-hidden="true"></i> Đinh Bảo Trung</p>
+            <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Louis Trung Đinh</i></p>
+            <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên viên Tư vấn Dầu, Phụ gia, Nước mát</i></p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> trung.dinh@htauto.vn</p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </body>
 </html>

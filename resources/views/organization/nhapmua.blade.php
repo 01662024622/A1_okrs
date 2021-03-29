@@ -39,7 +39,7 @@
 
         .branch {
             position: relative;
-            margin-left: 450px;
+            margin-left: 465px;
         }
         .branch:before {
             content: "";
@@ -141,74 +141,92 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng kinh doanh ASP</h1>
+    <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng nhập mua</h1>
     <div id="wrapper">
         <div class="label-entry row" style="padding-right: 0">
-            <div class="col-12"><a href="/user-t1">Giám đốc kinh doanh ASP</a></div>
+            <div class="col-12"><a href="/user-t1">Trưởng phòng nhập mua</a></div>
             <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                 <div class="col-4" style="padding: 0">
                     <img src="/0.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-8"
                 style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                <p><i class="fa fa-user" aria-hidden="true"></i> Phạm Đức Thắng</p>
-                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Eric Thắng Phạm</i></p>
-                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người lãnh đạo phát triển ASP</i></p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i> thang.pham@aspgroup.vn</p>
+                <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hảo</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Merry Hảo Hoàng</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia nhập khẩu</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> hao.hoang@htauto.com.vn</p>
             </div>
         </div>
     </div>
     <div class="branch lv1">
         <div class="entry">
             <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Chuyên viên ASP</a></div>
+                <div class="col-12"><a href="/user-t1">Chuyên viên Giám sát Nhập mua</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8"
                     style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Nguyễn Thị Hương</p>
+                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Amy Hương Nguyễn</i></p>
+                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia Mua hàng</i></p>
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> huong.nguyen@htauto.vn</p>
                 </div>
             </div>
         </div>
     </div>
-        <div class="entry">
-            <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Chuyên viên ASP</a></div>
-                <div class="col-12 row" style="margin-right: 0;padding-right: 0">
-                    <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-8"
-                    style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+    <div class="entry">
+        <div class="label-entry row" style="padding-right: 0">
+            <div class="col-12"><a href="/user-t1">Chuyên viên Nhập mua</a></div>
+            <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+                <div class="col-4" style="padding: 0">
+                    <img src="/0.jpg" class="img-fluid" alt="">
                 </div>
+                <div class="col-8"
+                style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+                <p><i class="fa fa-user" aria-hidden="true"></i> Chu Thị Hằng</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Jasmine Hằng Chu</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người Mua hàng thành công</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> hang.chu@htauto.vn</p>
             </div>
         </div>
     </div>
-        <div class="entry">
-            <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Trợ lý kinh doanh ASP</a></div>
-                <div class="col-12 row" style="margin-right: 0;padding-right: 0">
-                    <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-8"
-                    style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+</div>
+    <div class="entry">
+        <div class="label-entry row" style="padding-right: 0">
+            <div class="col-12"><a href="/user-t1">Chuyên viên Nhập mua</a></div>
+            <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+                <div class="col-4" style="padding: 0">
+                    <img src="/0.jpg" class="img-fluid" alt="">
                 </div>
+                <div class="col-8"
+                style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+                <p><i class="fa fa-user" aria-hidden="true"></i> Phan Thị Hương</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Sarah Hương Phan</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người Mua hàng thành công</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
             </div>
         </div>
     </div>
+</div>
+<div class="entry">
+    <div class="label-entry row" style="padding-right: 0">
+        <div class="col-12"><a href="/user-t1">Chuyên viên Mua hàng siêu tốc</a></div>
+        <div class="col-12 row" style="margin-right: 0;padding-right: 0">
+            <div class="col-4" style="padding: 0">
+                <img src="/0.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-8"
+            style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
+            <p><i class="fa fa-user" aria-hidden="true"></i> Tạ Thị Tính</p>
+            <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Vera Tính Tạ</i></p>
+            <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người mua hàng thần tốc</i></p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> tinh.ta@htauto.vn</p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </body>
 </html>

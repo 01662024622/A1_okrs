@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <link rel="stylesheet" href="">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="{{asset('/css/vendor/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -39,7 +38,7 @@
 
         .branch {
             position: relative;
-            margin-left: 450px;
+            margin-left: 465px;
         }
         .branch:before {
             content: "";
@@ -141,74 +140,43 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng kinh doanh ASP</h1>
+    <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng đối ngoại</h1>
     <div id="wrapper">
         <div class="label-entry row" style="padding-right: 0">
-            <div class="col-12"><a href="/user-t1">Giám đốc kinh doanh ASP</a></div>
+            <div class="col-12"><a href="/user-t1">Trưởng phòng đối ngoại</a></div>
             <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                 <div class="col-4" style="padding: 0">
                     <img src="/0.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-8"
                 style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                <p><i class="fa fa-user" aria-hidden="true"></i> Phạm Đức Thắng</p>
-                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Eric Thắng Phạm</i></p>
-                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người lãnh đạo phát triển ASP</i></p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i> thang.pham@aspgroup.vn</p>
+                <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hảo</p>
+                <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Merry Hảo Hoàng</i></p>
+                <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Chuyên gia nhập khẩu</i></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> hao.hoang@htauto.com.vn</p>
             </div>
         </div>
     </div>
     <div class="branch lv1">
-        <div class="entry">
+
+
+        <div class="entry sole">
             <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Chuyên viên ASP</a></div>
+                <div class="col-12"><a href="/user-t1">Chuyên viên đối ngoại</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8"
                     style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Bảo Ngọc</p>
+                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">Sommer Ngọc Hoàng</i></p>
+                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>Người kết nối thành công</i></p>
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ngoc.hoang@htauto.com.vn</p>
                 </div>
             </div>
         </div>
     </div>
-        <div class="entry">
-            <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Chuyên viên ASP</a></div>
-                <div class="col-12 row" style="margin-right: 0;padding-right: 0">
-                    <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-8"
-                    style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="entry">
-            <div class="label-entry row" style="padding-right: 0">
-                <div class="col-12"><a href="/user-t1">Trợ lý kinh doanh ASP</a></div>
-                <div class="col-12 row" style="margin-right: 0;padding-right: 0">
-                    <div class="col-4" style="padding: 0">
-                        <img src="/user-nullable.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-8"
-                    style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
-                    <p><i class="fa fa-user" aria-hidden="true"></i> ?</p>
-                    <p><i class="fa fa-user-plus" aria-hidden="true"></i> <i style="font-size: 8px">?</i></p>
-                    <p style="font-size: 8px;"><i class="fa fa-rss" aria-hidden="true"></i> <i>?</i></p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> ?</p>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 </body>
 </html>
