@@ -23,14 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7b6c9c9-345d-4a19-a33b-75d940b15407" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organization/asp.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organization/bgd.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organization/r&amp;d.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/organization/technology.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Base/ResouceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Base/ResouceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HT50/SMSController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/HT50RepositoryProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/HT50RepositoryProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/HT50ServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/HT50ServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/HT50/SpeedSMSApiServerice" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/HT50/SpeedSMSApiServerice" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Impl/HT50/SpeedSMSApiServericeImpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Impl/HT50/SpeedSMSApiServericeImpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HT50/SMSController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HT50/SMSController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/organization/col.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/organization/col.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -183,26 +181,26 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\app\Http\Controllers" />
+      <recent name="C:\xampp\htdocs\public" />
+      <recent name="C:\xampp\htdocs\public\js\posts" />
+      <recent name="C:\xampp\htdocs\app\Repositories\HT10" />
+      <recent name="C:\xampp\htdocs\app\Repositories\Impl\HT00" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\public\image\emoji" />
       <recent name="C:\xampp\htdocs\public" />
       <recent name="C:\xampp\htdocs\public\js" />
       <recent name="C:\xampp\htdocs\database\migrations" />
       <recent name="C:\xampp\htdocs\database\migrations\ht00" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\public" />
-      <recent name="C:\xampp\htdocs\public\js\posts" />
-      <recent name="C:\xampp\htdocs\app\Repositories\HT10" />
-      <recent name="C:\xampp\htdocs\app\Repositories\Impl\HT00" />
-      <recent name="C:\xampp\htdocs\vendor\01662024622\base-repository-laravel\src\Console" />
     </key>
   </component>
   <component name="RunManager">
@@ -359,6 +357,7 @@
       <workItem from="1616807983186" duration="623000" />
       <workItem from="1616808795905" duration="114000" />
       <workItem from="1616821017902" duration="1294000" />
+      <workItem from="1616980849473" duration="9793000" />
     </task>
     <servers />
   </component>
@@ -414,10 +413,10 @@
     </state>
     <state x="-1274" y="239" width="775" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1616054542512" />
     <state x="646" y="239" width="687" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1610594510796" />
-    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup" timestamp="1612775652794">
+    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup" timestamp="1617013606492">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612775652794" />
+    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1617013606492" />
     <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1616821682613">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>

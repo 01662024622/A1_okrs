@@ -164,10 +164,10 @@
 <h1 style="text-align: center">Sơ đồ tổ chức phòng ban của HTAUTO</h1>
 <div id="wrapper">
     <div class="label row" style="padding-right: 0">
-        <div class="col-12"><a href="/user-t1">Ban tổng giám đốc</a></div>
+        <div class="col-12"><a href="/organization/bgd">Ban giám đốc</a></div>
         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
             <div class="col-4" style="padding: 0">
-                <img src="0.jpg" class="img-fluid" alt="">
+                <img src="/0.jpg" class="img-fluid" alt="">
             </div>
             <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
 
@@ -187,7 +187,7 @@
                 <div class="col-12"><a href="/user-t1">Ban phát triển</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="0.jpg" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
@@ -204,10 +204,10 @@
             <div class="branch lv2">
                 <div class="entry">
                     <div class="label-entry row" style="padding-right: 0">
-                        <div class="col-12"><a href="/user-t1">Phòng R&D</a></div>
+                        <div class="col-12"><a href="/organization/r&d">Phòng R&D</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -223,10 +223,10 @@
 
                 <div class="entry">
                     <div class="label-entry row" style="padding-right: 0">
-                        <div class="col-12"><a href="/user-t1">Phòng phát triển công nghệ</a></div>
+                        <div class="col-12"><a href="/organization/technology">Phòng phát triển công nghệ</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -244,7 +244,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng dự án chiến lược</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -264,7 +264,7 @@
                 <div class="col-12"><a href="/user-t1">Ban chiến lược</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="0.jpg" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
@@ -283,7 +283,7 @@
                 <div class="col-12"><a href="/user-t1">Ban Kinh doanh</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="0.jpg" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Diệu Thúy </p>
@@ -302,7 +302,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng kinh doanh ASP</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -320,7 +320,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng tư vấn dầu</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -359,7 +359,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng marketing</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -378,7 +378,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng CS trải nghiệm KH</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -417,7 +417,7 @@
                 <div class="col-12"><a href="/user-t1">Ban vận hành</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="1.jpg" class="img-fluid" alt="">
+                        <img src="/1.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Trịnh Văn Tô</p>
@@ -436,7 +436,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng quy trình</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -456,7 +456,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng kiểm soát</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -475,7 +475,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng kho</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -494,7 +494,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng dịch vụ giao nhận</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -515,7 +515,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng hành chính nhân sự</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -554,7 +554,7 @@
                 <div class="col-12"><a href="/user-t1">Ban Tài chính</a></div>
                 <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                     <div class="col-4" style="padding: 0">
-                        <img src="0.jpg" class="img-fluid" alt="">
+                        <img src="/0.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-8" style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
                         <p><i class="fa fa-user" aria-hidden="true"></i> Hoàng Thị Hường</p>
@@ -572,7 +572,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng kế toán</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -591,7 +591,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng nhập mua</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -609,7 +609,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng đối ngoại</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="0.jpg" class="img-fluid" alt="">
+                                <img src="/0.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">
@@ -626,7 +626,7 @@
                         <div class="col-12"><a href="/user-t1">Phòng tài chính</a></div>
                         <div class="col-12 row" style="margin-right: 0;padding-right: 0">
                             <div class="col-4" style="padding: 0">
-                                <img src="1.jpg" class="img-fluid" alt="">
+                                <img src="/1.jpg" class="img-fluid" alt="">
                             </div>
                             <div class="col-8"
                                  style="font-size: 10px;text-align: left;padding-right: 0;margin-right: 0px">

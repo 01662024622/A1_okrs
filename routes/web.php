@@ -76,19 +76,7 @@ Route::resource('posts', 'HT00\PostController');
 Route::get('/tests', function () {
    return view('test');
 });
-Route::get('/pb-t1', function () {
-   return view('organization.col');
-});
-Route::get('/user-t1', function () {
-   return view('organization.col-1');
-});
-
-Route::get('/pb-t2', function () {
-    return view('organization.row');
-});
-Route::get('/user-t2', function () {
-    return view('organization.row-1');
-});
+Route::resource('/organization','HT00\OrganizationController' );
 // Get data Table group
 Route::group(['prefix' => 'api/v1'], function () {
     Route::get('category/table', 'DataApi\CategoryApiController@anyData')->name('category.api.data');
