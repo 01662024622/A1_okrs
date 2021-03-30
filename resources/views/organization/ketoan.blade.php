@@ -142,6 +142,7 @@
 </head>
 <body>
     <h1 style="text-align: center">Sơ đồ tổ chức nhân sự phòng kế toán</h1>
+    <div class=""><a href="/organization" style="text-decoration: underline"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Trở lại</a></div>
     <div id="wrapper">
         <div class="label-entry row" style="padding-right: 0">
             <div class="col-12"><a href="/user-t1">Kế toán trưởng</a></div>
