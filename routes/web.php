@@ -46,6 +46,7 @@ Route::resource('/kpi/results', 'HT30\KpiResultController');
 Route::resource('/kpi/managers', 'HT30\OKRController');
 Route::resource('/results', 'HT30\ResultController');
 Route::resource('/sms', 'HT50\SMSController');
+Route::resource('/HT50/accumulate', 'HT50\AccumulateController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');
 Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 

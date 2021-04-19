@@ -17,6 +17,7 @@ class ResouceController extends Controller
 		$this->table=$arr['active'];
 	}
     protected function index(){
+//	    return $this->table.$this->blade;
 		return view($this->table.$this->blade);
 	}
 
