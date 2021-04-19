@@ -17,17 +17,18 @@ class SMSController extends ResouceController
     public function index()
     {
         $SMSservice = new SpeedSMSApiServericeImpl("I9NybjZuDjcA2Lfx2dAiLyFwSU3aFqAg");
-
-        $phone='0362024622';
-        $content="Cam on Quy khach da mua hang tai HT Auto. Vui long danh gia dich vu tai HTAuto: https://cskh.htauto.vn/HT02/".$phone.". CSKH:0888315599. Tran trong cam on!";
-        $SMSservice->sendSMS([$phone], $content, SpeedSMSApiServericeImpl::SMS_TYPE_BRANDNAME, "HTAUTO");
-//        $data= SMS::where('status',0)->orderBy('id')->offset(350)->limit(50)->get();
-        return 'true';
+        $data= SMS::where('status',0)->orderBy('id')->offset(400)->limit(100)->get();
+//        return $data;
+//        $data= SMS::where('status',0)->orderBy('id')->get();
+        $count= 0;
         foreach ($data as $value){
             if (strlen($value->phone)==11) continue;
+            $count++;
             $phone=$value->phone;
-            $content="Cam on Quy khach da mua hang tai HT Auto. Vui long danh gia dich vu tai HT Auto: https://cskh.htauto.vn/HT02/".$phone." . CSKH:0888315599. Tran trong cam on va chuc Quy khach suc khoe.";
+            $content="Cam on Quy khach da mua hang tai HT Auto. Vui long danh gia dich vu tai HT Auto: https://cskh.htauto.vn/HT02/".$value->code.". CSKH:0888315599. Tran trong cam on!";
             $SMSservice->sendSMS([$phone], $content, SpeedSMSApiServericeImpl::SMS_TYPE_BRANDNAME, "HTAUTO");
         }
+//        395
+        return $count;
     }
 }
