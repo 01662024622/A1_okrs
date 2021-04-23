@@ -13,14 +13,14 @@
         <div class="content-header header-height">
             <h1 class="ng-binding">Khách hàng thân thiết</h1>
             <div class="breadcrumb">
-                <div style="width: 430px;" class="btn-group search-date divFilterDate">
-                    <div class="input-group" id="reportrange">
-                        <div class="input-group-addon addon-right"><i class="fa fa-user"></i></div>
-                        <select id="user_id" type="text" value="" readonly="" class="form-control input-sm">
-
-                        </select>
-                        <input type="text" class="form-control" name="date" id="date">
-                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                <div style="width: 730px;" class="btn-group search-date divFilterDate">
+                    <div class="input-group row" id="reportrange">
+                        <div class="col-2"><b>Tổng</b> <span class="platinum-number">1000</span></div>
+                        <div class="col-2"><b>Platinum</b> <span class="platinum-number">1000</span></div>
+                        <div class="col-2"><b>Gold</b> <span class="platinum-number">1000</span></div>
+                        <div class="col-2"><b>Titan</b> <span class="platinum-number">1000</span></div>
+                        <div class="col-2"><b>Silver</b> <span class="platinum-number">1000</span></div>
+                        <div class="col-2"><b>HT</b> <span class="platinum-number">1000</span></div>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
                     {{--                    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" href="#collapseTwo">Thêm--}}
                     {{--                        mới--}}
                     {{--                    </button>--}}
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#all" onclick="analytics()">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#analytics">
                         Tổng hợp
                         <!-- Counter - Messages -->
                     </a>
@@ -37,58 +37,52 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <table class="table table-bordered" id="users-table">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã KH</th>
+            <th>Tên KH</th>
+            <th>SĐT</th>
+            <th>Tổng điểm</th>
+            <th>Đã dùng</th>
+            <th>Khả dụng</th>
+            <th>Hạng</th>
+            <th>Tiến độ</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+    </table>
+
     <!-- The Modal manager Target-->
-    <div class="modal" id="manageTarget">
+    <div class="modal" id="manageGift">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Quản lý mục tiêu</h4>
+                    <h4 class="modal-title">Chi tiết đổi thưởng</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="target-form" method="POST" action="/targets">
-                        <div class="row">
-                            <div class="col-8">
-                                <input type="text" class="form-control form-control-sm" name="name" placeholder="Tên mục tiêu">
-                            </div>
-                            <div class="col-3">
-                                <select id="level" class="form-control form-control-sm" name="level">
-                                    <option disabled selected value="">-- Điểm --</option>
-                                    <option value="2">5 Điểm</option>
-                                    <option value="4">10 Điểm</option>
-                                    <option value="6">15 Điểm</option>
-                                    <option value="8">20 Điểm</option>
-                                </select>
-                            </div>
-                            <div class="col-1">
-                                <button type="submit" class="btn btn-link">Thêm</button>
-                            </div>
-                        </div>
-                    </form>
-                    <br>
-                    <div class="row">
-                        <span>Ghi chú mức độ quan trọng:</span>
-                        <span>5 Điểm(<i class="fa fa-square" style="color: green" aria-hidden="true"></i>)--</span>
-                        <span>10 Điểm(<i class="fa fa-square" style="color:yellow" aria-hidden="true"></i>)--</span>
-                        <span>15 Điểm(<i class="fa fa-square" style="color:orange" aria-hidden="true"></i>)--</span>
-                        <span>20 Điểm(<i class="fa fa-square" style="color:red" aria-hidden="true"></i>)</span>
-                        <br>
-                        <br>
-                    </div>
-                    <br>
-                    <table class="table table-bordered" id="target-table">
+
+                    <table class="table table-bordered" id="gift-table">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Tên mục tiêu</th>
+                            <th>STT</th>
+                            <th>Mã</th>
+                            <th>Tên quà</th>
                             <th>Điểm</th>
-                            <th>Hành Động</th>
+                            <th>Ngày đổi</th>
                         </tr>
                         </thead>
+                        <tbody id="gift-body">
+
+                        </tbody>
                     </table>
                 </div>
 
@@ -104,77 +98,27 @@
 
 
     <!-- Set rusult months -->
-    <div class="modal" id="set-result-month-modal">
+    <div class="modal" id="analytics">
         <div class="modal-dialog" id="modal-set-width" style="max-width: 1200px;">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Thêm mới</h4>
+                    <h4 class="modal-title">Tổng hợp</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="row">
-                        <div id="detail-container-modal" class="col-4">
-                            <div class="">
-                                <b for="name">Tên Kpi</b>
-                                <p id="name-kpi" class="kpi-detail-show">Kpi A</p>
-                            </div>
-                            <div class="">
-                                <p id="detail-kpi-show" class="kpi-detail-show">
-                                    <b for="name">Điểm: </b>
-                                    <i class="fa fa-square" style="color: green" aria-hidden="true"></i>--5 Điểm
-                                    <b for="name">Tháng: </b><span id="kpi-detail-month">1</span>
-                                </p>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><b>Kết quả</b></label>
-                                <input id="result-kpi-detail" type="text" class="form-control form-control-sm" pattern="^\d{0,3}(\.\d{0,2})?$" name="result" placeholder="Kết quả Kpi">
-                            </div>
-                        </div>
-                        <div id="result-container-modal" class="col-8">
 
-                            <form id="result-detail-form" method="POST" action="/results">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <input type="text" class="form-control form-control-sm" name="date" id="result-date">
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="text" class="form-control form-control-sm" name="description" placeholder="Mô tả...">
-                                    </div>
-                                    <div class="col-2">
-                                        <input type="text" class="form-control form-control-sm" name="number" placeholder="Số lần vi phạm...">
-                                        <input type="hidden" name="kr_id" id="eid-krs">
-                                    </div>
-                                    <div class="col-1">
-                                        <button type="submit" class="btn btn-link">Thêm</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <table class="table table-bordered" id="results-table">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Ngày vi phạm</th>
-                                    <th>Mô tả</th>
-                                    <th>số lần</th>
-                                    <th>Hành Động</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" id="kpis-result-detail" class="btn btn-sm btn-link" onclick="saveResult()">Lưu</button>
-                    <button type="button" class="btn btn-sm btn-link"  onclick="removeResult()">Xóa</button>
                     <button type="button" class="btn btn-sm btn-link" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
     </div>
+    <input type="text" class="hidden" id="copy-link-hidden">
 
 @endsection
 

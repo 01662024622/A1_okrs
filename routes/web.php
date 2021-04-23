@@ -47,6 +47,7 @@ Route::resource('/kpi/managers', 'HT30\OKRController');
 Route::resource('/results', 'HT30\ResultController');
 Route::resource('/sms', 'HT50\SMSController');
 Route::resource('/HT50/accumulate', 'HT50\AccumulateController');
+Route::resource('/HT50/gifts', 'HT50\GiftController');
 Route::post('/feedback/PR', 'HT10\FeedbackPRController@store');
 Route::post('/feedback/warehouse', 'HT10\FeedbackWareHouseController@store');
 
@@ -111,6 +112,8 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('targets/kpis/table', 'DataApi\TargetApiController@anyDataResult')->name('targets.api.data');
     Route::get('kpis/table', 'DataApi\KpiApiController@anyData')->name('kpis.api.data');
     Route::get('/analytic/table', 'DataApi\TargetApiController@analystic')->name('analystic.api.data');
+    Route::get('/accumulate/table', 'DataApi\GiftCodeApiController@anyData')->name('giftCode.api.data');
+    Route::get('/gifts/table', 'DataApi\GiftCodeApiController@anyGift')->name('gift.list.api.data');
 });
 
 // Set Status group
