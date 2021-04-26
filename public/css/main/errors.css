@@ -133,3 +133,6 @@ table {
 .modal-dialog{
     margin-top: 80px;
 }
+.hidden{
+    display: none;
+}

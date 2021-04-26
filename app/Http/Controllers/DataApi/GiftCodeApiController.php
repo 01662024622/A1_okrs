@@ -13,10 +13,6 @@ use Yajra\DataTables\DataTables;
 
 class GiftCodeApiController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function anyData(Request $request)
     {
@@ -36,20 +32,25 @@ class GiftCodeApiController extends Controller
         ht50_revenues.`2020` as `2020`
 "))->leftjoin('ht50_revenues', 'B20Customer.Code', '=', 'ht50_revenues.code')
             ->leftjoin('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')
-            ->get();
+            ->where('B20Customer.isActive',1)
+            ->where('B20Customer.isCustomer',0)
+            ->where('B20Customer.isGroup',0);
+        if ($request->role_pt!='') $data=$data->where('B20Customer.Role_PT',$request->role_pt)->get();
+        else $data=$data->get();
 
 //        return $data;
         return DataTables::of($data)
             ->addColumn('action', function ($dt) {
-                return '<button type="button" class="btn btn-xs btn-info" data-toggle="modal"
-			onclick="getInfo(`http://cskh.htauto.vn/HT01/' . $dt['code'] . '`)" href="#add-modal"><i class="fas fa-eye"
-			aria-hidden="true"></i></button>
-			<button type="button" data-toggle="modal"  href="#manageGift"class="btn btn-xs btn-warning" onclick="getGift(`'.$dt['code'].'`)">
+                if ($dt['checks'])
+                return '<button type="button" data-toggle="modal"  href="#manageGift"class="btn btn-xs btn-warning" onclick="getGift(`'.$dt['code'].'`)">
 			<i class="fa fa-gift" aria-hidden="true"></i></button>
 			';
+                else return '<button type="button" class="btn btn-xs btn-info" data-toggle="modal"
+			onclick="getInfo(`http://cskh.htauto.vn/HT01/' . $dt['code'] . '`)" href="#add-modal"><i class="fas fa-eye"
+			aria-hidden="true"></i></button>';
             })
             ->addColumn('availability', function ($dt) {
-                if($dt['coin']==null) return "";
+                if($dt['coin']==null) return "0";
                 return $dt['coin']-$dt['used'];
             })
             ->addColumn('process', function ($dt) {
@@ -57,6 +58,15 @@ class GiftCodeApiController extends Controller
                 if ($dt['total']>2000000000) return "hạng cao nhất";
                 if ($dt['total']>1000000000) return '<div class="plus-up">'.number_format(2000000000-$dt['total']).'VNĐ</div><div class="progress">
   <div class="progress-bar" role="progressbar" style="width: '.intval($dt['total']/20000000).'%;" aria-valuenow="'.intval($dt['total']/20000000).'" aria-valuemin="0" aria-valuemax="100">'.intval($dt['total']/20000000).'%</div>
+</div>';
+                if ($dt['total']>500000000) return '<div class="plus-up">'.number_format(1000000000-$dt['total']).'VNĐ</div><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: '.intval($dt['total']/10000000).'%;" aria-valuenow="'.intval($dt['total']/10000000).'" aria-valuemin="0" aria-valuemax="100">'.intval($dt['total']/10000000).'%</div>
+</div>';
+                if ($dt['total']>200000000) return '<div class="plus-up">'.number_format(500000000-$dt['total']).'VNĐ</div><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: '.intval($dt['total']/5000000).'%;" aria-valuenow="'.intval($dt['total']/5000000).'" aria-valuemin="0" aria-valuemax="100">'.intval($dt['total']/5000000).'%</div>
+</div>';
+               return '<div class="plus-up">'.number_format(200000000-$dt['total']).'VNĐ</div><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: '.intval($dt['total']/2000000).'%;" aria-valuenow="'.intval($dt['total']/2000000).'" aria-valuemin="0" aria-valuemax="100">'.intval($dt['total']/2000000).'%</div>
 </div>';
             })
             ->addIndexColumn()

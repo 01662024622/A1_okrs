@@ -17,7 +17,7 @@ class SMSController extends ResouceController
     public function index()
     {
         $SMSservice = new SpeedSMSApiServericeImpl("I9NybjZuDjcA2Lfx2dAiLyFwSU3aFqAg");
-        $data= SMS::where('status',0)->orderBy('id')->offset(400)->limit(100)->get();
+        $data= SMS::where('status',5)->orderBy('id')->offset(300)->limit(100)->get();
 //        return $data;
 //        $data= SMS::where('status',0)->orderBy('id')->get();
         $count= 0;

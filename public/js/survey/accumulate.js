@@ -8,7 +8,7 @@ var dataTable = $('#users-table').DataTable({
     serverSide: true,
     ajax: {
         type: "GET",
-        url: "/api/v1/accumulate/table",
+        url: "/api/v1/accumulate/table?role_pt="+role,
         error: function (xhr, ajaxOptions, thrownError) {
             if (xhr != null) {
                 if (xhr.responseJSON != null) {
@@ -26,7 +26,7 @@ var dataTable = $('#users-table').DataTable({
         {data: 'code', name: 'code'},
         {data: 'name', name: 'name'},
         {data: 'phone', name: 'phone'},
-        {data: 'total', name: 'total'},
+        {data: 'coin', name: 'coin'},
         {data: 'used', name: 'used'},
         {data: 'availability', name: 'availability'},
         {data: 'level', name: 'level'},
