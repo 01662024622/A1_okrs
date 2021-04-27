@@ -71,16 +71,22 @@ function getInfo(url){
 }
 function getGift(code){
         page.show()
+        $('#customer_code').val(code)
         $.ajax({
             type: "GET",
             url: "/HT50/gifts/"+code,
             success: function(response)
             {
                 var html='';
-                response.forEach((element,index) => {
+                response['used'].forEach((element,index) => {
                     html=html+`<tr id="`+element['id']+`"><td>`+(index+1)+`</td><td>`+element['code']+`</td><td>`+element['name']+`</td><td>`+element['coin']+`</td><td>`+element['date']+`</td></tr>`
                 });
+                var select='';
+                response['gifts'].forEach((element,index) => {
+                    select=select+`<option value="`+element['id']+`">`+element['name']+`</option>`
+                });
                 $('#gift-body').html(html)
+                $('#gift_id').html(select)
                 page.hide()
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -90,3 +96,47 @@ function getGift(code){
         });
 
 }
+
+$("#gift-form").submit(function(e){
+    e.preventDefault();
+}).validate({
+    rules: {
+        code: {
+            required: true,
+        },
+        gift: {
+            required: true,
+        },
+    },
+    messages: {
+        code: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        gift: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+    },
+    submitHandler: function(form) {
+        var formData = new FormData(form);
+
+        console.log(formData)
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: formData,
+            dataType:'json',
+            async:false,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                setTimeout(function () {
+                    toastr.success('has been added');
+                },1000);
+                getGift($('#customer_code').val())
+                dataTable.ajax.reload(null, false);
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                toastr.error(thrownError);
+            },
+        });
+    }
+});
