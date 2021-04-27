@@ -31,7 +31,7 @@ class GiftCodeApiController extends Controller
         ht50_revenues.total as total,
         ht50_revenues.`2020` as `2020`
 "))->leftjoin('ht50_revenues', 'B20Customer.Code', '=', 'ht50_revenues.code')
-            ->leftjoin('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')
+            ->leftjoin('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'B20Customer.code')
             ->where('B20Customer.isActive',1)
             ->where('B20Customer.isCustomer',0)
             ->where('B20Customer.isGroup',0);
