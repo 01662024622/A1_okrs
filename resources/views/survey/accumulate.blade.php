@@ -28,7 +28,7 @@
 
 <div class="content-customer page-list">
     <div class="content-header header-height">
-        <h1 class="ng-binding">Khách hàng thân thiết</h1>
+        <h1 class="ng-binding">KH thân thiết</h1>
         <div class="breadcrumb">
             <div style="width: 830px;" class="btn-group search-date divFilterDate">
                 <div class="input-group row" id="reportrange">
