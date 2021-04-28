@@ -21,7 +21,8 @@ class GiftCodeApiController extends Controller
         B20Customer.Id as id,
         B20Customer.Code as code,
         B20Customer.Name as name,
-        B20Customer.PhoneVT as phone,
+        B20Customer.PhoneVT as phone1,
+        ht50_information_customer_surveys.phone as phone2,
         B20Customer.Role_PT as role_pt,
         B20Customer.Role_CS as role_cs,
         ht50_information_customer_surveys.code as checks,
@@ -46,12 +47,16 @@ class GiftCodeApiController extends Controller
 			<i class="fa fa-gift" aria-hidden="true"></i></button>
 			';
                 else return '<button type="button" class="btn btn-xs btn-info" data-toggle="modal"
-			onclick="getInfo(`http://cskh.htauto.vn/HT01/' . $dt['code'] . '`)" href="#add-modal"><i class="fas fa-eye"
+			onclick="getInfo(`https://cskh.htauto.vn/HT01/' . $dt['code'] . '`)" href="#add-modal"><i class="fas fa-eye"
 			aria-hidden="true"></i></button>';
             })
             ->addColumn('availability', function ($dt) {
                 if($dt['coin']==null) return "0";
                 return $dt['coin']-$dt['used'];
+            })
+            ->addColumn('phone', function ($dt) {
+                if($dt['phone2']==null) return $dt['phone1'];
+                return $dt['phone2'];
             })
             ->addColumn('process', function ($dt) {
                 if($dt['total']==null) return "";
