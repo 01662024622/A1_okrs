@@ -91,19 +91,6 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                    <div>
-                        <form class="form-inline" action="/HT50/accumulate" method="POST" id="gift-form">
-                            <div class="input-group mb-3 input-group-sm">
-                            <label for="text">Code:</label>&nbsp;
-                            <input type="text" class="form-control" name="code" placeholder="Nhập code" id="code">	&nbsp;	&nbsp;
-                            <label for="pwd">Quà tặng:</label>&nbsp;
-                                <select class="form-control" id="gift_id" name="gift">
-                                </select>	&nbsp;	&nbsp;
-                                <input type="hidden" id="customer_code" name="customer_code">
-                            <button type="submit" class="btn btn-primary btn-sm">Thêm</button>
-                            </div>
-                        </form>
-                    </div>
                 <table class="table table-bordered" id="gift-table">
                     <thead>
                     <tr>
@@ -173,8 +160,8 @@
 <script src="{{asset('js/vendor/sweetalert.js')}}"></script>
 <script src="{{asset('js/message/index.js')}}"></script>
 <script>
-    var role = "";
-    var page = $('#load_page');
+    var role = "{{$role}}";
+    var page = $();
 </script>
 <script src="{{ asset('/js/survey/accumulate.js') }}"></script>
 </body>
