@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\HT50;
 
 use App\Http\Controllers\Base\ResouceController;
-use App\Models\HT50\HT01Customer;
+use App\Models\HT50\T4;
 use App\Models\HT50\InforCustomerSurvey;
 use App\Services\HT50\InforCustomerSurveyService;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class InforCustomerSurveyController extends ResouceController
 
     public function store(Request $request)
     {
-        $customer =HT01Customer::where('code',$request->code)->first();
+        $customer =T4::where('code',$request->code)->first();
         if ($customer){
             $voucher =InforCustomerSurvey::where('code',$request->code)->first();
             if($voucher) return view('survey.notOver',['voucher'=>$customer->voucher]);
@@ -34,7 +34,7 @@ class InforCustomerSurveyController extends ResouceController
     public function show($id)
     {
         if($id=='') return view('errors.404');
-        $customer =HT01Customer::where('code',$id)->first();
+        $customer =T4::where('code',$id)->first();
         if ($customer){
             $voucher =InforCustomerSurvey::where('code',$id)->first();
             if($voucher) return view('survey.notOver',['voucher'=>$customer->voucher]);
