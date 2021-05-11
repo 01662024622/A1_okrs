@@ -34,7 +34,7 @@ class GiftCodeApiController extends Controller
         (ht50_revenues.t1+ht50_revenues.t2+ht50_revenues.t3+
         ht50_revenues.t4+ht50_revenues.t5+ht50_revenues.t6+
         ht50_revenues.t7+ht50_revenues.t8+ht50_revenues.t9+
-        ht50_revenues.t10+ht50_revenues.t11+ht50_revenues.t12) as 2021
+        ht50_revenues.t10+ht50_revenues.t11+ht50_revenues.t12) as `2021`
 "))->leftjoin('ht50_revenues', 'B20Customer.Code', '=', 'ht50_revenues.code')
             ->leftjoin('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'B20Customer.code')
             ->where('B20Customer.isActive', 1)

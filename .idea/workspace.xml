@@ -23,10 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7b6c9c9-345d-4a19-a33b-75d940b15407" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataApi/GiftCodeApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataApi/GiftCodeApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HT50/SMSController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HT50/SMSController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,6 +385,7 @@
       <workItem from="1620378696762" duration="1483000" />
       <workItem from="1620380277349" duration="1253000" />
       <workItem from="1620461660667" duration="1445000" />
+      <workItem from="1620699775317" duration="36000" />
     </task>
     <servers />
   </component>
