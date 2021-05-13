@@ -61,7 +61,7 @@ class AccumulateController extends ResouceController
     public function edit($id)
     {
         $data = Revenue::groupBy('level')->select('level', DB::raw('count(*) as total'))->where('role_pt', $id)->get();
-        $levels = ["Total" => 0, "Gold" => 0, "HT" => 0, "Platinum" => 0, "Silver" => 0, "Titan" => 0];
+        $levels = ["Total" => 0, "Gold" => 0, "Member" => 0, "Platinum" => 0, "Silver" => 0, "Titan" => 0];
         $total = 0;
         foreach ($data as $level) {
             $total = $total + $level['total'];

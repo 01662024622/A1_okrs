@@ -42,7 +42,7 @@
                             class="titan-number">{{$Titan}}</span></div>
                     <div class="col-2" style="padding-right:0px"><b>Silver</b> <span
                             class="silver-number">{{$Silver}}</span></div>
-                    <div class="col-2" style="padding-right:0px"><b>HT</b> <span class="ht-number">{{$HT}}</span></div>
+                    <div class="col-2" style="padding-right:0px"><b>Memeber</b> <span class="ht-number">{{$Member}}</span></div>
                 </div>
             </div>
 

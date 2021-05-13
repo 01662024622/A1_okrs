@@ -40,8 +40,9 @@ class GiftCodeApiController extends Controller
             ->where('B20Customer.isActive', 1)
             ->where('B20Customer.isCustomer', 0)
             ->where('B20Customer.isGroup', 0);
-        if ($request->role_pt != '') $data = $data->where('B20Customer.Role_PT', $request->role_pt)->get();
-        else $data = $data->get();
+        if ($request->role_pt != '') $data = $data->where('B20Customer.Role_PT', $request->role_pt);
+
+        $data = $data->get();
 
 //        return $data;
         return DataTables::of($data)
