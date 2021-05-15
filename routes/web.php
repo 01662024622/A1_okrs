@@ -17,6 +17,7 @@ use \Illuminate\Support\Facades\Auth;
 Auth::routes(['register' => false, 'request' => false, 'reset' => false]);
 
 
+
 Route::get('/report/user/{auth}', 'HT10\CustomerController@intergration');
 Route::get('/review/user/{auth}', 'HT10\CustomerController@reviewauth');
 Route::get('/review/users/used', 'HT10\CustomerController@review');
@@ -113,17 +114,27 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('kpis/table', 'DataApi\KpiApiController@anyData')->name('kpis.api.data');
     Route::get('/analytic/table', 'DataApi\TargetApiController@analystic')->name('analystic.api.data');
     Route::get('/accumulate/table', 'DataApi\GiftCodeApiController@anyData')->name('giftCode.api.data');
+    Route::get('/manager/accumulate/table', 'DataApi\GiftCodeApiController@managerGift')->name('manager.gift.api.data');
     Route::get('/gifts/table', 'DataApi\GiftCodeApiController@anyGift')->name('gift.list.api.data');
 });
 
 // Set Status group
 
 Route::group(['prefix' => 'api/status'], function () {
-    Route::get('categories/{id}', 'status\StatusController@categories')->name('categories.api.status');
-    Route::post('users/{id}', 'DataApi\UserApiController@status')->name('users.api.status');
-    Route::post('review/{id}', 'DataApi\ReportApiController@status')->name('review.api.status');
-    Route::post('categories/sort', 'DataApi\CategoryApiController@saveSort')->name('categories.api.sort');
+    Route::get('categories/{id}', 'status\StatusController@categories');
+    Route::get('HT50/accumulate/{id}', 'HT50\AccumulateController@welcomeBox');
+    Route::post('users/{id}', 'DataApi\UserApiController@status');
+    Route::post('review/{id}', 'DataApi\ReportApiController@status');
+    Route::post('categories/sort', 'DataApi\CategoryApiController@saveSort');
 
 });
 
 
+
+Route::group(['prefix' => 'HT50'], function () {
+    Route::get('total/list', 'Export\ExportController@total');
+    Route::get('manager/total/list', 'Export\ExportController@total');
+    Route::get('list/{id}', 'Export\ExportController@export');
+    Route::get('manager/new/customer/{id}/edit', 'HT50\ManagerGiftController@edit');
+    Route::get('manager/new/customer/{id}', 'HT50\ManagerGiftController@show');
+});

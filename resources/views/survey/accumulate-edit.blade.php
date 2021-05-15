@@ -51,8 +51,8 @@
                 {{--                    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" href="#collapseTwo">Thêm--}}
                 {{--                        mới--}}
                 {{--                    </button>--}}
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#analytics">
-                    Tổng hợp
+                <a class="nav-link" href="/HT50/list/{{$role}}">
+                    Kết xuất
                     <!-- Counter - Messages -->
                 </a>
             </div>

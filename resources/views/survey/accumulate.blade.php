@@ -48,13 +48,19 @@
 
             <!-- ngIf: activeTab == '' -->
             <div class="btn-group ng-scope" ng-if="activeTab == ''">
-                {{--                    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" href="#collapseTwo">Thêm--}}
-                {{--                        mới--}}
-                {{--                    </button>--}}
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#analytics">
-                    Tổng hợp
-                    <!-- Counter - Messages -->
+                <a class="nav-link" href="/HT50/total/list">
+                    Kết xuất
                 </a>
+{{--                <div class="dropdown">--}}
+{{--                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">--}}
+{{--                        Quản lý--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-menu">--}}
+{{--                        <a class="dropdown-item" href="#">Quản lý KH mới</a>--}}
+{{--                        <a class="dropdown-item" href="#">Tiếp nhận KH</a>--}}
+{{--                        <a class="dropdown-item" href="#">Link 3</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

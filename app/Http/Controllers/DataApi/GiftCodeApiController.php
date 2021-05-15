@@ -7,6 +7,7 @@ use App\Models\HT20\B20Customer;
 use App\Models\HT50\GiftCustomer;
 use App\Models\HT50\InforCustomerSurvey;
 use App\Models\HT50\Revenue;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -14,9 +15,8 @@ use Yajra\DataTables\DataTables;
 class GiftCodeApiController extends Controller
 {
 
-    public function anyData(Request $request)
+    public static function dataQuery($parameter)
     {
-
         $data = B20Customer::select(DB::raw("
         B20Customer.Id as id,
         B20Customer.Code as code,
@@ -39,10 +39,17 @@ class GiftCodeApiController extends Controller
             ->leftjoin('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'B20Customer.code')
             ->where('B20Customer.isActive', 1)
             ->where('B20Customer.isCustomer', 0)
-            ->where('B20Customer.isGroup', 0);
-        if ($request->role_pt != '') $data = $data->where('B20Customer.Role_PT', $request->role_pt);
+            ->where('B20Customer.isGroup', 0)
+            ->whereNotNull('B20Customer.Role_PT')
+            ->where('B20Customer.Role_PT', '<>', '');
+        if ($parameter['role_pt'] != '') $data = $data->where('B20Customer.Role_PT', $parameter['role_pt']);
 
-        $data = $data->get();
+        return $data->get();
+    }
+
+    public function anyData(Request $request)
+    {
+        $data = $this->dataQuery($request->only('role_pt'));
 
 //        return $data;
         return DataTables::of($data)
@@ -67,14 +74,14 @@ class GiftCodeApiController extends Controller
                 if (trim($dt['level']) == 'Platinum') return "hạng cao nhất";
                 $process = $dt['2021'];
                 $next = 200000000;
-                if (trim($dt['level'])=== 'Gold')
+                if (trim($dt['level']) === 'Gold')
                     $next = 2000000000;
                 if (trim($dt['level']) === 'Titan')
                     $next = 1000000000;
                 if (trim($dt['level']) === 'Silver')
                     $next = 500000000;
-                return '<div class="plus-up">' . number_format($next-$process) . 'VNĐ</div><div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: ' . intval($process*100/$next) . '%;" aria-valuenow="' . intval($process*100/$next) . '" aria-valuemin="0" aria-valuemax="100">' . intval($process*100/$next) . '%</div>
+                return '<div class="plus-up">' . number_format($next - $process) . 'VNĐ</div><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: ' . intval($process * 100 / $next) . '%;" aria-valuenow="' . intval($process * 100 / $next) . '" aria-valuemin="0" aria-valuemax="100">' . intval($process * 100 / $next) . '%</div>
 </div>';
             })
             ->addIndexColumn()
@@ -93,6 +100,7 @@ class GiftCodeApiController extends Controller
             ->rawColumns(['action', 'process'])
             ->make(true);
     }
+
     public function anyCustomer(Request $request)
     {
         $data = InforCustomerSurvey::select(DB::raw("ht50_gifts.name as name,ht50_gifts.coin as coin,ht50_gift_customer.created_at as date,ht50_gift_customer.id as id,ht50_gift_customer.code as code"))
@@ -101,6 +109,54 @@ class GiftCodeApiController extends Controller
             ->addIndexColumn()
             ->setRowId('data-{{$id}}')
             ->rawColumns(['action', 'process'])
+            ->make(true);
+    }
+
+    public static function managerGiftQuery($data='')
+    {
+
+        return InforCustomerSurvey::select(DB::raw("
+            ht50_information_customer_surveys.id as id,
+            ht50_information_customer_surveys.code as code,
+            ht50_information_customer_surveys.name as name,
+            ht50_information_customer_surveys.phone as phone,
+            ht50_information_customer_surveys.birthday as birthday,
+            ht50_information_customer_surveys.wb as wb,
+            ht50_information_customer_surveys.bg as bg,
+            ht50_information_customer_surveys.status as status,".$data.
+            "ht50_revenues.role_pt as role_pt,
+            ht50_revenues.role_pt as role_cs,
+            ht50_revenues.level as level
+        "))->leftjoin('ht50_revenues', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')->get();
+    }
+
+    public function managerGift(Request $request)
+    {
+        $data = $this->managerGiftQuery();
+        return DataTables::of($data)
+            ->addColumn('action', function ($dt) {
+                if ($dt['status'] == 0)
+                    return '<button type="button" data-toggle="modal"  href="#edit"class="btn btn-xs btn-info" onclick="show(' . $dt["id"] . ')">
+			<i class="fa fa-eye" aria-hidden="true"></i></button>
+			';
+                else return '<button type="button" class="btn btn-xs btn-success" data-toggle="modal"
+			onclick="show(' . $dt["id"] . ')" href="#add-modal"><i class="fas fa-exclamation"
+			aria-hidden="true"></i></button>';
+            })
+            ->editColumn('wb', function ($dt) {
+                if ($dt['wb'] == null)
+                    return '<div class="form-check" style="text-align: center">
+                            <input type="checkbox" class="form-check-input" onclick="wb('.$dt['id'].')">
+                            </div>';
+                return Carbon::parse($dt['wb'])->format('d/m/Y');
+            })
+            ->editColumn('birthday', function ($dt) {
+                if ($dt['bg'] == null) return $dt['birthday'];
+                return $dt['birthday']."-".Carbon::parse($dt['bg'])->format('d/m/Y');
+            })
+            ->addIndexColumn()
+            ->setRowId('data-{{$id}}')
+            ->rawColumns(['action', 'wb','bg'])
             ->make(true);
     }
 }

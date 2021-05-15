@@ -21,7 +21,11 @@ class AccumulateController extends ResouceController
 
     public function index()
     {
-        $data = Revenue::groupBy('level')->select('level', DB::raw('count(*) as total'))->get();
+        $data = Revenue::join('B20Customer', 'B20Customer.Code', '=', 'ht50_revenues.code')
+            ->where('B20Customer.isActive', 1)
+            ->where('B20Customer.isCustomer', 0)
+            ->where('B20Customer.isGroup', 0)
+            ->groupBy('ht50_revenues.level')->select('ht50_revenues.level as level', DB::raw('count(*) as total'))->get();
         $levels = ["Total" => 0, "Gold" => 0, "HT" => 0, "Platinum" => 0, "Silver" => 0, "Titan" => 0];
         $total = 0;
         foreach ($data as $level) {
@@ -69,5 +73,8 @@ class AccumulateController extends ResouceController
         }
         $levels["Total"] = $total;
         return view('survey.accumulate-edit')->with($levels)->with(['role' => $id]);
+    }
+    public function welcomeBox($id){
+        return InforCustomerSurvey::find($id)->update(array('wb'=>date("Y/m/d")));
     }
 }

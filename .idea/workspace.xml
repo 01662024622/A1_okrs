@@ -23,11 +23,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7b6c9c9-345d-4a19-a33b-75d940b15407" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/survey/managerAccumulate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/survey/receiveCustomer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/htdocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/htdocs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataApi/GiftCodeApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataApi/GiftCodeApiController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HT50/AccumulateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HT50/AccumulateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/HT50/InforCustomerSurvey.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/HT50/InforCustomerSurvey.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_19_115704_create_ht50_information_customer_surveys_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_19_115704_create_ht50_information_customer_surveys_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/survey/accumulate-edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/survey/accumulate-edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/survey/accumulate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/survey/accumulate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,6 +190,15 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jceveNMvCMwzuLOWpOTUz3guR7" />
@@ -181,24 +211,25 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\public\image\emoji" />
-      <recent name="C:\xampp\htdocs\public" />
-      <recent name="C:\xampp\htdocs\public\js" />
-      <recent name="C:\xampp\htdocs\database\migrations" />
-      <recent name="C:\xampp\htdocs\database\migrations\ht00" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\app\Http\Controllers" />
       <recent name="C:\xampp\htdocs\public" />
       <recent name="C:\xampp\htdocs\public\js\posts" />
       <recent name="C:\xampp\htdocs\app\Repositories\HT10" />
       <recent name="C:\xampp\htdocs\app\Repositories\Impl\HT00" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\public\image\emoji" />
+      <recent name="C:\xampp\htdocs\public" />
+      <recent name="C:\xampp\htdocs\public\js" />
+      <recent name="C:\xampp\htdocs\database\migrations" />
+      <recent name="C:\xampp\htdocs\database\migrations\ht00" />
     </key>
   </component>
   <component name="RunManager">
@@ -391,7 +422,10 @@
       <workItem from="1620699775317" duration="1897000" />
       <workItem from="1620791528356" duration="1057000" />
       <workItem from="1620807813986" duration="1295000" />
-      <workItem from="1620867994594" duration="1527000" />
+      <workItem from="1620867994594" duration="9201000" />
+      <workItem from="1620954396949" duration="2381000" />
+      <workItem from="1620979962488" duration="4893000" />
+      <workItem from="1621052921670" duration="11055000" />
     </task>
     <servers />
   </component>
@@ -420,14 +454,18 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1222" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1614591288584" />
+    <state x="-1155" y="202" key="#com.intellij.ide.util.MemberChooser" timestamp="1620986223604">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1155" y="202" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1620986223604" />
     <state x="-1223" y="274" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1620209510627">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1223" y="274" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1620209510627" />
-    <state x="-1230" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1619605832268">
+    <state x="-1230" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1621066852204">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1230" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1619605832268" />
+    <state x="-1230" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1621066852204" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1620466171273">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -445,14 +483,22 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="630" height="446" key="SwitcherDM/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1613983661741" />
+    <state x="64" y="0" width="1441" height="1027" key="dock-window-1" timestamp="1621074356741">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="64" y="0" width="1441" height="1027" key="dock-window-1/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1621074356741" />
+    <state x="0" y="0" width="1470" height="1047" key="dock-window-2" timestamp="1620972232250">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="1470" height="1047" key="dock-window-2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1620972232250" />
     <state x="-1274" y="239" width="775" height="801" key="find.popup" timestamp="1619173215482">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1274" y="239" width="775" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1619173215482" />
-    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup" timestamp="1617013606492">
+    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup" timestamp="1621066466206">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1617013606492" />
+    <state x="-1304" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1621066466206" />
     <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1616821682613">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
