@@ -3,6 +3,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+var status= 0;
 var dataTable = $('#users-table').DataTable({
     processing: true,
     serverSide: true,
@@ -22,7 +23,7 @@ var dataTable = $('#users-table').DataTable({
         }
     },
     columns: [
-        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+        {data: 'id', name: 'id'},
         {data: 'code', name: 'code'},
         {data: 'name', name: 'name'},
         {data: 'phone', name: 'phone'},
@@ -50,22 +51,50 @@ var dataTable = $('#users-table').DataTable({
     }
 });
 function wb(id){
-    page.show()
-    $.ajax({
-        type: "GET",
-        url: "/api/status/HT50/accumulate/"+id,
-        success: function(response)
-        {
-            dataTable.ajax.reload(null, false);
-            page.hide()
+    swal({
+            title: "Bạn chắc chắn sẽ gửi quà welcombox?",
+            // text: "Bạn sẽ không thể khôi phục lại bản ghi này!!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "Không",
+            confirmButtonText: "Có",
+            // closeOnConfirm: false,
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-            toastr.error(thrownError);
-            page.hide()
-        }
-    });
+        function(isConfirm) {
+            if (isConfirm) {
+                page.show()
+                $.ajax({
+                    type: "GET",
+                    url: "/api/status/HT50/accumulate/"+id,
+                    success: function(res)
+                    {
+                        if(!res.error) {
+                            toastr.success('Thành công!');
+                        }
+                        dataTable.ajax.reload(null, false);
+                        page.hide()
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        toastr.error(thrownError);
+                        page.hide()
+                    }
+                });
+            } else {
+                toastr.error("Hủy bỏ thao tác!");
+                $('#'+id).prop('checked', false);
+            }
+        });
 }
-function show(code){
+
+function save(){
+    status=1;
+    $("#updated-customer").submit();
+    status=0;
+}
+function show(code,type){
+    if (type==0) $('.button-submit-data').show()
+    else $('.button-submit-data').hide()
     page.show()
     $.ajax({
         type: "GET",
@@ -84,6 +113,7 @@ function show(code){
             $('#phone_accountant').val(response.phone_accountant)
             $('#address').val(response.address)
             $('#province').val(response.province)
+            $('#city').val(response.city)
             page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -94,14 +124,38 @@ function show(code){
 
 }
 
-$("#gift-form").submit(function(e){
+$("#updated-customer").submit(function(e){
     e.preventDefault();
 }).validate({
     rules: {
         code: {
             required: true,
         },
-        gift: {
+        name_gara: {
+            required: true,
+        },
+        birthday: {
+            required: true,
+        },
+        email: {
+            required: true,
+        },
+        phone: {
+            required: true,
+        },
+        name_sale: {
+            required: true,
+        },
+        phone_sale: {
+            required: true,
+        },
+        address: {
+            required: true,
+        },
+        province: {
+            required: true,
+        },
+        city: {
             required: true,
         },
     },
@@ -109,14 +163,39 @@ $("#gift-form").submit(function(e){
         code: {
             required: 'Câu trả lời của bạn không hợp lệ?',
         },
-        gift: {
+        name_gara: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        birthday: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        email: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        phone: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        name_sale: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        phone_sale: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        address: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        city: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        province: {
             required: 'Câu trả lời của bạn không hợp lệ?',
         },
     },
     submitHandler: function(form) {
         var formData = new FormData(form);
-
+        formData.append('code',$('#code').val())
         console.log(formData)
+        if (status==1) formData.append('status',1)
         $.ajax({
             url: form.action,
             type: form.method,
@@ -129,10 +208,67 @@ $("#gift-form").submit(function(e){
                 setTimeout(function () {
                     toastr.success('has been added');
                 },1000);
-                getGift($('#customer_code').val())
                 dataTable.ajax.reload(null, false);
             }, error: function (xhr, ajaxOptions, thrownError) {
                 toastr.error(thrownError);
+            },
+        });
+    }
+});
+
+
+$("#bg-customer").submit(function(e){
+    e.preventDefault();
+}).validate({
+    rules: {
+        code: {
+            required: true,
+        },
+        name_gara: {
+            required: true,
+        },
+        bg: {
+            required: true,
+        },
+        value: {
+            required: true,
+        }
+    },
+    messages: {
+        code: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        name_gara: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        bg: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+        value: {
+            required: 'Câu trả lời của bạn không hợp lệ?',
+        },
+    },
+    submitHandler: function(form) {
+        page.show()
+        var formData = new FormData(form);
+        formData.append('code',$('#code').val())
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            data: formData,
+            dataType:'json',
+            async:false,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                setTimeout(function () {
+                    toastr.success('has been added');
+                },1000);
+                dataTable.ajax.reload(null, false);
+                page.hide()
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                toastr.error(thrownError);
+                page.hide()
             },
         });
     }

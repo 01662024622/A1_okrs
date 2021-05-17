@@ -25,7 +25,7 @@ class SMSController extends ResouceController
 //        $data= InforCustomerSurvey::orderBy('id')->offset(205)->limit(100)->get();
 //        $data= T4::orderBy('id')->offset(200)->limit(100)->get();
 //        $data= T4::orderBy('id')->offset(200)->limit(100)->get();
-        $data= SMS::where('status',7)->orderBy('id')->offset(300)->limit(100)->get();
+        $data= SMS::where('status',8)->orderBy('id')->offset(400)->limit(150)->get();
         $count=0;
         foreach ($data as $value){
             if (strlen($value->phone)>10) continue;

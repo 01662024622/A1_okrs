@@ -135,6 +135,6 @@ Route::group(['prefix' => 'HT50'], function () {
     Route::get('total/list', 'Export\ExportController@total');
     Route::get('manager/total/list', 'Export\ExportController@total');
     Route::get('list/{id}', 'Export\ExportController@export');
-    Route::get('manager/new/customer/{id}/edit', 'HT50\ManagerGiftController@edit');
-    Route::get('manager/new/customer/{id}', 'HT50\ManagerGiftController@show');
+    Route::resource('manager/new/customer', 'HT50\ManagerGiftController');
+    Route::post('/manager/bg/customer', 'HT50\AccumulateController@giftBG');
 });

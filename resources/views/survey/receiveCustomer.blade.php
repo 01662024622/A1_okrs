@@ -42,7 +42,8 @@
                             class="titan-number">{{$Titan}}</span></div>
                     <div class="col-2" style="padding-right:0px"><b>Silver</b> <span
                             class="silver-number">{{$Silver}}</span></div>
-                    <div class="col-2" style="padding-right:0px"><b>Memeber</b> <span class="ht-number">{{$Member}}</span></div>
+                    <div class="col-2" style="padding-right:0px"><b>Memeber</b> <span
+                            class="ht-number">{{$Member}}</span></div>
                 </div>
             </div>
 
@@ -94,67 +95,127 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="code">Mã khách hàng:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="code" name="code" disabled>
+            <form id="updated-customer" method="post" action="/HT50/manager/new/customer">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="code">Mã khách hàng:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="code"
+                               name="code" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="name_gara">Tên Gara/Cửa hàng/Khách hàng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_gara"
+                               name="name_gara">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tên chủ Gara/Cửa hàng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name"
+                               name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Ngày sinh *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="birthday"
+                               name="birthday">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="email"
+                               name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại chủ Gara/Cửa hàng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="phone"
+                               name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="name_sale">Họ tên người phụ trách mua hàng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_sale"
+                               name="name_sale">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_sale">Số điện thoại người phụ trách mua hàng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="phone_sale"
+                               name="phone_sale">
+                    </div>
+                    <div class="form-group">
+                        <label for="name_accountant">Họ tên kế toán:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..."
+                               id="name_accountant" name="name_accountant">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_accountant">Số điện thoại kế toán:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..."
+                               id="phone_accountant" name="phone_accountant">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="address"
+                               name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="province">Quận/Huyện *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="province"
+                               name="province">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Thành phố *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="city"
+                               name="city">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="name_gara">Tên Gara/Cửa hàng/Khách hàng *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_gara" name="name_gara">
-                </div>
-                <div class="form-group">
-                    <label for="name">Tên chủ Gara/Cửa hàng  *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name" name="name">
-                </div>
-                <div class="form-group">
-                    <label for="birthday">Ngày sinh *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="birthday" name="birthday">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="email" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Số điện thoại chủ Gara/Cửa hàng *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="phone" name="phone">
-                </div>
-                <div class="form-group">
-                    <label for="name_sale">Họ tên người phụ trách mua hàng *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_sale" name="name_sale">
-                </div>
-                <div class="form-group">
-                    <label for="phone_sale">Số điện thoại người phụ trách mua hàng *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="phone_sale" name="phone_sale">
-                </div>
-                <div class="form-group">
-                    <label for="name_accountant">Họ tên kế toán *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_accountant" name="name_accountant">
-                </div>
-                <div class="form-group">
-                    <label for="phone_accountant">Số điện thoại kế toán *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="phone_accountant" name="phone_accountant">
-                </div>
-                <div class="form-group">
-                    <label for="address">Địa chỉ *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="address" name="address">
-                </div>
-                <div class="form-group">
-                    <label for="province">Quận/Huyện *:</label>
-                    <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="province" name="province">
-                </div>
-            </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-link" data-dismiss="modal">Close</button>
-            </div>
-
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="button-submit-data btn btn-sm btn-link" onclick="save()">Lưu và HT</button>
+                    <button type="submit" class="button-submit-data btn btn-sm btn-link">Lưu</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+<div class="modal" id="bg">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật thông tin</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="bg-customer" method="post" action="/HT50/manager/bg/customer">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="code">Mã khách hàng:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="code_bg"
+                               name="code" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="name_gara">Tên Gara/Cửa hàng/Khách hàng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_gara_bg"
+                               name="name_gara" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="value">Giá trị *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="value"
+                               name="value">
+                    </div>
+                    <div class="form-group">
+                        <label for="bg">Mã quà tặng *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="bg"
+                               name="bg">
+                    </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="button-submit-data btn btn-sm btn-link">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <input type="text" class="hidden" id="copy-link-hidden">
 <div id="load_page">
     <div class="loader"></div>

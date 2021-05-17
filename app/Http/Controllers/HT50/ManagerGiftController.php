@@ -13,12 +13,12 @@ class ManagerGiftController extends Controller
 {
     public function show($id)
     {
-        return InforCustomerSurvey::find($id);
+        return InforCustomerSurvey::where('code',$id)->first();
     }
     public function edit($id){
         if ($id == '') return view('errors.404');
 
-        $data = Revenue::join('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')->groupBy('level')->select('level', DB::raw('count(*) as total'))->get();
+        $data = Revenue::rightjoin('ht50_information_customer_surveys', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')->groupBy('level')->select('level', DB::raw('count(*) as total'))->get();
         $levels = ["Total" => 0, "Gold" => 0, "Member" => 0, "Platinum" => 0, "Silver" => 0, "Titan" => 0];
         $total = 0;
         foreach ($data as $level) {
@@ -27,5 +27,13 @@ class ManagerGiftController extends Controller
         }
         $levels["Total"] = $total;
         return view('survey.'.$id)->with($levels);
+    }
+    public function store(Request $request){
+        $data= InforCustomerSurvey::where('code',$request->code)->first();
+        return $data->update($request->only($data->getUpdate()));
+    }
+    public function setBG(Request $request){
+        $data= InforCustomerSurvey::where('code',$request->code)->first();
+        return $data->update($request->only($data->getUpdate()));
     }
 }

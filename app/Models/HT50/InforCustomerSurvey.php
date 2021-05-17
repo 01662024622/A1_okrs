@@ -15,7 +15,8 @@ class InforCustomerSurvey extends Model
         'phone_accountant','address','province','city'
     ];
     protected $fillable_update = [
-
+        'name_gara','name','birthday','email','phone','name_sale','phone_sale','name_accountant',
+        'phone_accountant','address','province','city','status'
     ];
 
     protected $table = "ht50_information_customer_surveys";

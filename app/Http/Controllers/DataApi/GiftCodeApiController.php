@@ -135,18 +135,23 @@ class GiftCodeApiController extends Controller
         $data = $this->managerGiftQuery();
         return DataTables::of($data)
             ->addColumn('action', function ($dt) {
+                //check gift
+                $gift='';
+                if (($dt['bg'] == null||$dt['bg'] == '')&& substr($dt['birthday'],0,5)==date("d/m"))
+                    $gift= '<button type="button" class="btn btn-xs btn-warning" data-toggle="modal"  href="#bg" onclick="showBG(`' . $dt["code"] . '`)">
+			<i class="fa fa-gift" aria-hidden="true"></i></button>';
+                // check data checked
                 if ($dt['status'] == 0)
-                    return '<button type="button" data-toggle="modal"  href="#edit"class="btn btn-xs btn-info" onclick="show(' . $dt["id"] . ')">
-			<i class="fa fa-eye" aria-hidden="true"></i></button>
-			';
+                    return '<button type="button" data-toggle="modal"  href="#edit" class="btn btn-xs btn-info" onclick="show(`' . $dt["code"] . '`,0)">
+			<i class="fa fa-eye" aria-hidden="true"></i></button> '.$gift;
                 else return '<button type="button" class="btn btn-xs btn-success" data-toggle="modal"
-			onclick="show(' . $dt["id"] . ')" href="#add-modal"><i class="fas fa-exclamation"
-			aria-hidden="true"></i></button>';
+			onclick="show(`' . $dt["code"] . '`,1)" href="#edit"><i class="fas fa-check"
+			aria-hidden="true"></i></button> '.$gift;
             })
             ->editColumn('wb', function ($dt) {
-                if ($dt['wb'] == null)
+                if ($dt['wb'] == null||$dt['wb'] == '')
                     return '<div class="form-check" style="text-align: center">
-                            <input type="checkbox" class="form-check-input" onclick="wb('.$dt['id'].')">
+                            <input type="checkbox" class="form-check-input" onclick="wb(`'.$dt['code'].'`)" id="'.$dt['code'].'">
                             </div>';
                 return Carbon::parse($dt['wb'])->format('d/m/Y');
             })
