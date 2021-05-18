@@ -189,13 +189,18 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="code">Mã khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="code_bg"
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="code-bg"
                                name="code" disabled>
                     </div>
                     <div class="form-group">
                         <label for="name_gara">Tên Gara/Cửa hàng/Khách hàng *:</label>
-                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_gara_bg"
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="name_gara-bg"
                                name="name_gara" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="name_gara">Ngày sinh*:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="birthday-bg"
+                               name="birthday" disabled>
                     </div>
 
                     <div class="form-group">

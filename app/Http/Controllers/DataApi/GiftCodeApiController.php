@@ -112,56 +112,70 @@ class GiftCodeApiController extends Controller
             ->make(true);
     }
 
-    public static function managerGiftQuery($data='')
+    public static function managerGiftQuery($data = '', $role = '')
     {
 
-        return InforCustomerSurvey::select(DB::raw("
+        $infor= InforCustomerSurvey::select(DB::raw("
             ht50_information_customer_surveys.id as id,
             ht50_information_customer_surveys.code as code,
             ht50_information_customer_surveys.name as name,
+            ht50_information_customer_surveys.name_gara as name_gara,
             ht50_information_customer_surveys.phone as phone,
             ht50_information_customer_surveys.birthday as birthday,
             ht50_information_customer_surveys.wb as wb,
             ht50_information_customer_surveys.bg as bg,
-            ht50_information_customer_surveys.status as status,".$data.
+            ht50_information_customer_surveys.status as status," . $data .
             "ht50_revenues.role_pt as role_pt,
             ht50_revenues.role_pt as role_cs,
             ht50_revenues.level as level
-        "))->leftjoin('ht50_revenues', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')->get();
+        "))->leftjoin('ht50_revenues', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code');
+          if($role!='') $infor=$infor->where('ht50_revenues.role_pt',$role);
+
+          return  $infor->get();
     }
 
     public function managerGift(Request $request)
     {
-        $data = $this->managerGiftQuery();
-        return DataTables::of($data)
+        $data = $this->managerGiftQuery('', $request->role);
+        $res = DataTables::of($data)
             ->addColumn('action', function ($dt) {
                 //check gift
-                $gift='';
-                if (($dt['bg'] == null||$dt['bg'] == '')&& substr($dt['birthday'],0,5)==date("d/m"))
-                    $gift= '<button type="button" class="btn btn-xs btn-warning" data-toggle="modal"  href="#bg" onclick="showBG(`' . $dt["code"] . '`)">
+                $gift = '';
+                if (($dt['bg'] == null || $dt['bg'] == '') && substr($dt['birthday'], 3, 2) == date("m"))
+                    $gift = '<button type="button" class="btn btn-xs btn-warning" data-toggle="modal"  href="#bg" onclick="showBG(`' . $dt["code"] . '`)">
 			<i class="fa fa-gift" aria-hidden="true"></i></button>';
                 // check data checked
                 if ($dt['status'] == 0)
                     return '<button type="button" data-toggle="modal"  href="#edit" class="btn btn-xs btn-info" onclick="show(`' . $dt["code"] . '`,0)">
-			<i class="fa fa-eye" aria-hidden="true"></i></button> '.$gift;
+			<i class="fa fa-eye" aria-hidden="true"></i></button> ' . $gift;
                 else return '<button type="button" class="btn btn-xs btn-success" data-toggle="modal"
 			onclick="show(`' . $dt["code"] . '`,1)" href="#edit"><i class="fas fa-check"
-			aria-hidden="true"></i></button> '.$gift;
-            })
-            ->editColumn('wb', function ($dt) {
-                if ($dt['wb'] == null||$dt['wb'] == '')
+			aria-hidden="true"></i></button> ' . $gift;
+            });
+        if ($request->role == '') {
+            $res = $res->editColumn('wb', function ($dt) {
+                if ($dt['wb'] == null || $dt['wb'] == '')
+                    return '';
+                return Carbon::parse($dt['wb'])->format('d/m/Y');
+            });
+
+        } else {
+            $res = $res->editColumn('wb', function ($dt) {
+                if ($dt['wb'] == null || $dt['wb'] == '')
                     return '<div class="form-check" style="text-align: center">
-                            <input type="checkbox" class="form-check-input" onclick="wb(`'.$dt['code'].'`)" id="'.$dt['code'].'">
+                            <input type="checkbox" class="form-check-input" onclick="wb(`' . $dt['code'] . '`)" id="' . $dt['code'] . '">
                             </div>';
                 return Carbon::parse($dt['wb'])->format('d/m/Y');
-            })
-            ->editColumn('birthday', function ($dt) {
-                if ($dt['bg'] == null) return $dt['birthday'];
-                return $dt['birthday']."-".Carbon::parse($dt['bg'])->format('d/m/Y');
-            })
+            });
+        }
+
+        return $res->editColumn('birthday', function ($dt) {
+            if ($dt['bg'] == null) return $dt['birthday'];
+            return $dt['birthday'] . "-" . $dt['bg'];
+        })
             ->addIndexColumn()
             ->setRowId('data-{{$id}}')
-            ->rawColumns(['action', 'wb','bg'])
+            ->rawColumns(['action', 'wb', 'bg'])
             ->make(true);
     }
 }

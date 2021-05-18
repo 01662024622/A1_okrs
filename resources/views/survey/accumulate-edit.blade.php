@@ -55,6 +55,9 @@
                     Kết xuất
                     <!-- Counter - Messages -->
                 </a>
+                <a class="nav-link" data-toggle="modal" href="#general" onclick="showGeneral(`{{$role}}`)">
+                    Tổng hợp
+                </a>
             </div>
         </div>
     </div>
@@ -118,7 +121,7 @@
 
 
 <!-- Set rusult months -->
-<div class="modal" id="analytics">
+<div class="modal" id="general">
     <div class="modal-dialog" id="modal-set-width" style="max-width: 1200px;">
         <div class="modal-content">
 
@@ -129,7 +132,20 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-
+                <table class="table table-bordered" id="general-table">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã KH</th>
+                        <th>Tên Gara</th>
+                        <th>SĐT</th>
+                        <th>Tên Boss</th>
+                        <th>Ngày sinh</th>
+                        <th>Quà WB</th>
+                        <th>Quà sinh nhật</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">

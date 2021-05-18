@@ -23,7 +23,7 @@ var dataTable = $('#users-table').DataTable({
         }
     },
     columns: [
-        {data: 'id', name: 'id'},
+        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         {data: 'code', name: 'code'},
         {data: 'name', name: 'name'},
         {data: 'phone', name: 'phone'},
@@ -114,6 +114,26 @@ function show(code,type){
             $('#address').val(response.address)
             $('#province').val(response.province)
             $('#city').val(response.city)
+            page.hide()
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            toastr.error(thrownError);
+            page.hide()
+        }
+    });
+
+}
+
+function showBG(code){
+    page.show()
+    $.ajax({
+        type: "GET",
+        url: "/HT50/manager/new/customer/"+code,
+        success: function(response)
+        {
+            $('#code-bg').val(response.code)
+            $('#name_gara-bg').val(response.name_gara)
+            $('#birthday-bg').val(response.birthday)
             page.hide()
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -251,7 +271,7 @@ $("#bg-customer").submit(function(e){
     submitHandler: function(form) {
         page.show()
         var formData = new FormData(form);
-        formData.append('code',$('#code').val())
+        formData.append('code',$('#code-bg').val())
         $.ajax({
             url: form.action,
             type: form.method,

@@ -3,10 +3,11 @@
 namespace App\Exports;
 
 use App\Http\Controllers\DataApi\GiftCodeApiController;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class RevenueExport implements FromCollection, WithHeadings
+class KHTTExport implements FromCollection, WithHeadings
 {
     private $paramerter;
 
@@ -27,16 +28,27 @@ class RevenueExport implements FromCollection, WithHeadings
                 $link = '';
             else
                 $link = 'https://cskh.htauto.vn/HT01/' . $row['code'];
+            if ($row['wb']) $wb = '';
+            else $wb = Carbon::parse($row['wb'])->format('d/m/Y');
             $order[] = array(
                 '0' => $row['code'],
                 '1' => $row['name_gara'],
                 '2' => $row['role_pt'],
-                '3' => $row['total'],
-                '4' => $row['2021'],
-                '5' => $row['coin'],
-                '6' => $row['used'],
-                '7' => $row['level'],
-                '8' => $link,
+                '3' => $row['name'],
+                '4' => $row['birthday'],
+                '5' => $row['email'],
+                '6' => $row['phone'],
+                '7' => $row['name_sale'],
+                '8' => $row['phone_sale'],
+                '9' => $row['name_accountant'],
+                '10' => $row['phone_accountant'],
+                '11' => $row['address'],
+                '12' => $row['province'],
+                '13' => $row['city'],
+                '14' => $wb,
+                '15' => $row['bg'],
+                '16' => $row['name_sale'],
+                '17' => $link,
             );
         }
 
