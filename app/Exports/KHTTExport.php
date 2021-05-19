@@ -22,14 +22,23 @@ class KHTTExport implements FromCollection, WithHeadings
     public function collection()
     {
         // TODO: Implement collection() method.
-        $data = GiftCodeApiController::dataQuery($this->paramerter);
+        $query = 'ht50_information_customer_surveys.email as email,
+                    ht50_information_customer_surveys.name_sale as name_sale,
+                    ht50_information_customer_surveys.phone_sale as phone_sale,
+                    ht50_information_customer_surveys.name_accountant as name_accountant,
+                    ht50_information_customer_surveys.phone_accountant as phone_accountant,
+                    ht50_information_customer_surveys.address as address,
+                    ht50_information_customer_surveys.province as province,
+                    ht50_information_customer_surveys.city as city,
+                    ht50_information_customer_surveys.wb as wb,
+                    ht50_information_customer_surveys.bg as bg,';
+        $data = GiftCodeApiController::managerGiftQuery($query,$this->paramerter['role_pt']);
         foreach ($data as $row) {
-            if ($row['checks'])
-                $link = '';
+            if ($row['wb'])
+                $wb = '';
             else
-                $link = 'https://cskh.htauto.vn/HT01/' . $row['code'];
-            if ($row['wb']) $wb = '';
-            else $wb = Carbon::parse($row['wb'])->format('d/m/Y');
+                $wb = Carbon::parse($row['wb'])->format('d/m/Y');
+
             $order[] = array(
                 '0' => $row['code'],
                 '1' => $row['name_gara'],
@@ -46,9 +55,7 @@ class KHTTExport implements FromCollection, WithHeadings
                 '12' => $row['province'],
                 '13' => $row['city'],
                 '14' => $wb,
-                '15' => $row['bg'],
-                '16' => $row['name_sale'],
-                '17' => $link,
+                '15' => $row['bg']
             );
         }
 
@@ -60,15 +67,22 @@ class KHTTExport implements FromCollection, WithHeadings
     {
         // TODO: Implement headings() method.
         return [
-            'Mã khách hàng',
-            'Tên gara',
-            'Người phụ trách',
-            'Doanh thu thực tại (từ 01/01/2020 đến 31/03/2021)',
-            'Doanh thu 2021 (đến hết ' . (date('n') - 1) . '/2021)',
-            'Điểm',
-            'Đã dùng',
-            'Hạng',
-            'Link gửi khách'
+            'Mã Khách Hàng',
+            'Tên Gara',
+            'Người phụ trách phụ tùng',
+            'Tên chủ',
+            'Ngày sinh',
+            'email',
+            'số điện thoại chủ',
+            'tên sale',
+            'số điện thoại sale',
+            'Tên kế toán',
+            'SĐT kế toán',
+            'Địa chỉ',
+            'Huyện',
+            'Thành Phố',
+            'Quà tặng trào mừng',
+            'Quà tặng sinh nhật'
         ];
     }
 }

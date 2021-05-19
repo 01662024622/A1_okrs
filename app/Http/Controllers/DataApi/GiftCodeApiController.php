@@ -129,7 +129,8 @@ class GiftCodeApiController extends Controller
             ht50_revenues.role_pt as role_cs,
             ht50_revenues.level as level
         "))->leftjoin('ht50_revenues', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code');
-          if($role!='') $infor=$infor->where('ht50_revenues.role_pt',$role);
+          if($role!='')
+              $infor=$infor->where('ht50_revenues.role_pt',$role);
 
           return  $infor->get();
     }

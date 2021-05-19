@@ -49,7 +49,7 @@
 
             <!-- ngIf: activeTab == '' -->
             <div class="btn-group ng-scope" ng-if="activeTab == ''">
-                <a class="nav-link" href="/HT50/total/list">
+                <a class="nav-link" href="/HT50/gift/customer/total/list">
                     Kết xuất
                 </a>
                 {{--                <div class="dropdown">--}}
