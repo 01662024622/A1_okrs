@@ -17,4 +17,7 @@ class ExportController extends Controller
     public function khttTotal(){
         return Excel::download(new KHTTExport(['role_pt'=>'']), 'KHTT-detail'.time().'.xlsx');
     }
+    public function khtt(){
+        return Excel::download(new KHTTExport(['role_pt'=>'','status'=>1]), 'KHTT-detail'.time().'.xlsx');
+    }
 }

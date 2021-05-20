@@ -98,4 +98,8 @@ class AccumulateController extends ResouceController
         $SMSservice->sendSMS([$data->phone], $content, SpeedSMSApiServericeImpl::SMS_TYPE_BRANDNAME, "HTAUTO");
         return $data->update(array('bg' => $request->value."|".$request->bg));
     }
+    public function status($id)
+    {
+        return InforCustomerSurvey::where('code', $id)->first()->update(array('status' => 5));
+    }
 }

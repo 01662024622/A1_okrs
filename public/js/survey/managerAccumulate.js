@@ -86,6 +86,42 @@ function wb(id){
             }
         });
 }
+function checkeUpdate(id){
+    swal({
+            title: "Bạn chắc chắn đã cập nhật khách hàng lên Bravo?",
+            // text: "Bạn sẽ không thể khôi phục lại bản ghi này!!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "Không",
+            confirmButtonText: "Có",
+            // closeOnConfirm: false,
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                page.show()
+                $.ajax({
+                    type: "GET",
+                    url: "/api/status/HT50/accumulate/status/"+id,
+                    success: function(res)
+                    {
+                        if(!res.error) {
+                            toastr.success('Thành công!');
+                        }
+                        dataTable.ajax.reload(null, false);
+                        page.hide()
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        toastr.error(thrownError);
+                        page.hide()
+                    }
+                });
+            } else {
+                toastr.error("Hủy bỏ thao tác!");
+                $('#'+id).prop('checked', false);
+            }
+        });
+}
 
 function save(){
     status=1;

@@ -129,17 +129,34 @@ class GiftCodeApiController extends Controller
             ht50_revenues.role_pt as role_cs,
             ht50_revenues.level as level
         "))->leftjoin('ht50_revenues', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code');
-          if($role!='')
-              $infor=$infor->where('ht50_revenues.role_pt',$role);
 
-          return  $infor->get();
+        if ($role=='browser') $infor=$infor->where('ht50_information_customer_surveys.status','>','0');
+        elseif ($role!='')
+              $infor=$infor->where('ht50_revenues.role_pt',$role);
+          return  $infor;
     }
 
     public function managerGift(Request $request)
     {
-        $data = $this->managerGiftQuery('', $request->role);
-        $res = DataTables::of($data)
-            ->addColumn('action', function ($dt) {
+        $data = $this->managerGiftQuery('', $request->role_pt)->get();
+        $res = DataTables::of($data);
+
+        if ($request->role_pt == 'browser'){
+            $res=$res->addColumn('action', function ($dt) {
+                //check gift
+                $gift = '';
+                if (($dt['bg'] == null || $dt['bg'] == '') && substr($dt['birthday'], 3, 2) == date("m"))
+                    $gift = '<button type="button" class="btn btn-xs btn-warning" data-toggle="modal"  href="#bg" onclick="showBG(`' . $dt["code"] . '`)">
+			<i class="fa fa-gift" aria-hidden="true"></i></button>';
+                // check data checked
+                if ($dt['status'] == 1)
+                    return '<button type="button" class="btn btn-xs btn-info" onclick="checkeUpdate(`' . $dt["code"] . '`)">
+			<i class="fa fa-eye" aria-hidden="true"></i></button> ' . $gift;
+                else return '<button type="button" class="btn btn-xs btn-success"><i class="fas fa-check"
+			aria-hidden="true"></i></button> ' . $gift;
+            });
+        }else{
+            $res=$res->addColumn('action', function ($dt) {
                 //check gift
                 $gift = '';
                 if (($dt['bg'] == null || $dt['bg'] == '') && substr($dt['birthday'], 3, 2) == date("m"))
@@ -153,7 +170,8 @@ class GiftCodeApiController extends Controller
 			onclick="show(`' . $dt["code"] . '`,1)" href="#edit"><i class="fas fa-check"
 			aria-hidden="true"></i></button> ' . $gift;
             });
-        if ($request->role == '') {
+        }
+        if ($request->role_pt == ''||$request->role_pt == 'browser') {
             $res = $res->editColumn('wb', function ($dt) {
                 if ($dt['wb'] == null || $dt['wb'] == '')
                     return '';

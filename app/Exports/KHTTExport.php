@@ -32,12 +32,16 @@ class KHTTExport implements FromCollection, WithHeadings
                     ht50_information_customer_surveys.city as city,
                     ht50_information_customer_surveys.wb as wb,
                     ht50_information_customer_surveys.bg as bg,';
-        $data = GiftCodeApiController::managerGiftQuery($query,$this->paramerter['role_pt']);
+        if ($this->paramerter['status']) $data = GiftCodeApiController::managerGiftQuery($query,$this->paramerter['role_pt'])
+            ->where('status',$this->paramerter['status'])->get();
+        else
+            $data = GiftCodeApiController::managerGiftQuery($query,$this->paramerter['role_pt'])->get();
+        $order=[];
         foreach ($data as $row) {
             if ($row['wb'])
-                $wb = '';
-            else
                 $wb = Carbon::parse($row['wb'])->format('d/m/Y');
+            else
+                $wb = '';
 
             $order[] = array(
                 '0' => $row['code'],

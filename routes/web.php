@@ -123,6 +123,7 @@ Route::group(['prefix' => 'api/v1'], function () {
 Route::group(['prefix' => 'api/status'], function () {
     Route::get('categories/{id}', 'status\StatusController@categories');
     Route::get('HT50/accumulate/{id}', 'HT50\AccumulateController@welcomeBox');
+    Route::get('HT50/accumulate/status/{id}', 'HT50\AccumulateController@status');
     Route::post('users/{id}', 'DataApi\UserApiController@status');
     Route::post('review/{id}', 'DataApi\ReportApiController@status');
     Route::post('categories/sort', 'DataApi\CategoryApiController@saveSort');
@@ -134,7 +135,7 @@ Route::group(['prefix' => 'api/status'], function () {
 Route::group(['prefix' => 'HT50'], function () {
     Route::get('total/list', 'Export\ExportController@total');
     Route::get('gift/customer/total/list', 'Export\ExportController@khttTotal');
-    Route::get('gift/customer/list/{id}', 'Export\ExportController@khtt');
+    Route::get('gift/customer/list', 'Export\ExportController@khtt');
     Route::get('list/{id}', 'Export\ExportController@export');
     Route::resource('manager/new/customer', 'HT50\ManagerGiftController');
     Route::post('/manager/bg/customer', 'HT50\AccumulateController@giftBG');
