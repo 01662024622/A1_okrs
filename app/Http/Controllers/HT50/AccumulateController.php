@@ -24,7 +24,6 @@ class AccumulateController extends ResouceController
     {
         $data = Revenue::rightjoin('B20Customer', 'B20Customer.Code', '=', 'ht50_revenues.code')
             ->where('B20Customer.isActive', 1)
-            ->where('B20Customer.isCustomer', 0)
             ->where('B20Customer.isGroup', 0)
             ->groupBy('ht50_revenues.level')->select('ht50_revenues.level as level', DB::raw('count(*) as total'))->get();
         $levels = ["Total" => 0, "Gold" => 0, "HT" => 0, "Platinum" => 0, "Silver" => 0, "Titan" => 0];
@@ -67,7 +66,6 @@ class AccumulateController extends ResouceController
     {
         $data = Revenue::rightjoin('B20Customer', 'B20Customer.Code', '=', 'ht50_revenues.code')
             ->where('B20Customer.isActive', 1)
-            ->where('B20Customer.isCustomer', 0)
             ->where('B20Customer.isGroup', 0)
             ->where('B20Customer.Role_PT', $id)
             ->groupBy('ht50_revenues.level')->select('ht50_revenues.level as level', DB::raw('count(*) as total'))->get();
