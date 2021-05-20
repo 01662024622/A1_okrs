@@ -123,10 +123,11 @@
                         <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="bg"
                                name="bg">
                     </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="button-submit-data btn btn-sm btn-link">Lưu</button>
-                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="button-submit-data btn btn-sm btn-link">Lưu</button>
+                </div>
             </form>
         </div>
     </div>
