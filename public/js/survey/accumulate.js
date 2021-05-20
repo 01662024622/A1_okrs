@@ -145,7 +145,7 @@ $general=$('#general-table').DataTable({
     serverSide: true,
     ajax: {
         type: "GET",
-        url: "/api/v1/manager/accumulate/table?role="+role,
+        url: "/api/v1/manager/accumulate/table?role_pt="+role,
         error: function (xhr, ajaxOptions, thrownError) {
             if (xhr != null) {
                 if (xhr.responseJSON != null) {

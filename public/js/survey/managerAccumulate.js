@@ -248,6 +248,7 @@ $("#updated-customer").submit(function(e){
         },
     },
     submitHandler: function(form) {
+        page.show()
         var formData = new FormData(form);
         formData.append('code',$('#code').val())
         console.log(formData)
@@ -264,9 +265,12 @@ $("#updated-customer").submit(function(e){
                 setTimeout(function () {
                     toastr.success('has been added');
                 },1000);
+                $("#edit").modal('toggle');
                 dataTable.ajax.reload(null, false);
+                page.hide()
             }, error: function (xhr, ajaxOptions, thrownError) {
                 toastr.error(thrownError);
+                page.hide()
             },
         });
     }
@@ -320,6 +324,7 @@ $("#bg-customer").submit(function(e){
                 setTimeout(function () {
                     toastr.success('has been added');
                 },1000);
+                $("#bg").modal('toggle');
                 dataTable.ajax.reload(null, false);
                 page.hide()
             }, error: function (xhr, ajaxOptions, thrownError) {
