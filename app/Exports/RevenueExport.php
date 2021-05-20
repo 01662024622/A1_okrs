@@ -29,7 +29,7 @@ class RevenueExport implements FromCollection, WithHeadings
                 $link = 'https://cskh.htauto.vn/HT01/' . $row['code'];
             $order[] = array(
                 '0' => $row['code'],
-                '1' => $row['name_gara'],
+                '1' => $row['name'],
                 '2' => $row['role_pt'],
                 '3' => $row['total'],
                 '4' => $row['2021'],
