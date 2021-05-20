@@ -171,7 +171,7 @@ class GiftCodeApiController extends Controller
 			aria-hidden="true"></i></button> ' . $gift;
             });
         }
-        if ($request->role_pt == ''||$request->role_pt == 'browser') {
+        if ($request->role_pt != ''|| $request->role_pt == 'browser') {
             $res = $res->editColumn('wb', function ($dt) {
                 if ($dt['wb'] == null || $dt['wb'] == '')
                     return '';
