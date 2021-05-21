@@ -118,7 +118,7 @@ $("#gift-form").submit(function(e){
     },
     submitHandler: function(form) {
         var formData = new FormData(form);
-
+        formData.append("_token", $('meta[name="csrf-token"]').attr('content'));
         console.log(formData)
         $.ajax({
             url: form.action,

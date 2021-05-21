@@ -250,6 +250,7 @@ $("#updated-customer").submit(function(e){
     submitHandler: function(form) {
         page.show()
         var formData = new FormData(form);
+        formData.append("_token", $('meta[name="csrf-token"]').attr('content'));
         formData.append('code',$('#code').val())
         console.log(formData)
         if (status==1) formData.append('status',1)
@@ -311,6 +312,7 @@ $("#bg-customer").submit(function(e){
     submitHandler: function(form) {
         page.show()
         var formData = new FormData(form);
+        formData.append("_token", $('meta[name="csrf-token"]').attr('content'));
         formData.append('code',$('#code-bg').val())
         $.ajax({
             url: form.action,
