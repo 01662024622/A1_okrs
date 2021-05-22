@@ -213,6 +213,11 @@
                         <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="bg"
                                name="bg">
                     </div>
+                    <div class="form-group">
+                        <label for="b_date">Ngày hết hạn *:</label>
+                        <input type="text" class="form-control" placeholder="Câu trả lời của bạn..." id="b_date"
+                               name="b_date">
+                    </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
