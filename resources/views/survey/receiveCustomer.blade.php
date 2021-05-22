@@ -74,6 +74,7 @@
         <th>STT</th>
         <th>Mã KH</th>
         <th>Tên KH</th>
+        <th>NV PT</th>
         <th>SĐT</th>
         <th>Ngày sinh</th>
         <th>Hạng</th>
