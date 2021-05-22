@@ -92,7 +92,7 @@ class AccumulateController extends ResouceController
     {
         $data = InforCustomerSurvey::where('code', $request->code)->first();
         $SMSservice = new SpeedSMSApiServericeImpl("I9NybjZuDjcA2Lfx2dAiLyFwSU3aFqAg");
-        $content = "HTAuto kinh chuc Quy khach sinh nhat vui ve. Tran trong gui tang Quy khach 1 voucher mua hang tai HTAuto tri gia " . $request->value . ", ma voucher: " . $request->bg . "(" . $request->b_date . ")";
+        $content = "HTAuto kinh chuc Quy khach sinh nhat vui ve. Tran trong gui tang Quy khach 1 voucher mua hang tai HTAuto tri gia " . $request->value . ", ma voucher: " . $request->bg . "(han:" . $request->b_date . ")";
         $SMSservice->sendSMS([$data->phone], $content, SpeedSMSApiServericeImpl::SMS_TYPE_BRANDNAME, "HTAUTO");
         return $data->update(array('bg' => $request->bg, 'value' => $request->value, 'b_date' => $request->b_date));
     }

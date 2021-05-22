@@ -123,6 +123,8 @@ class GiftCodeApiController extends Controller
             ht50_information_customer_surveys.birthday as birthday,
             ht50_information_customer_surveys.wb as wb,
             ht50_information_customer_surveys.bg as bg,
+            ht50_information_customer_surveys.b_date as b_date,
+            ht50_information_customer_surveys.value as value,
             ht50_information_customer_surveys.status as status," . $data .
             "ht50_revenues.role_pt as role_pt,
             ht50_revenues.role_pt as role_cs,
@@ -189,7 +191,7 @@ class GiftCodeApiController extends Controller
 
         return $res->editColumn('birthday', function ($dt) {
             if ($dt['bg'] == null) return $dt['birthday'];
-            return $dt['birthday'] . "-" . $dt['bg'];
+            return $dt['birthday'] . "-" . $dt['value']."|".$dt['bg']. "(".$dt['b_date'].")";
         })
             ->addIndexColumn()
             ->setRowId('data-{{$id}}')
