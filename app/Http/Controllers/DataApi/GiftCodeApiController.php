@@ -124,18 +124,20 @@ class GiftCodeApiController extends Controller
             ht50_information_customer_surveys.wb as wb,
             ht50_information_customer_surveys.bg as bg,
             ht50_information_customer_surveys.b_date as b_date,
+            ht50_information_customer_surveys.created_at as created_at,
             ht50_information_customer_surveys.value as value,
             ht50_information_customer_surveys.status as status," . $data .
             "B20Customer.Role_PT as role,
             ht50_revenues.role_pt as role_pt,
             ht50_revenues.role_pt as role_cs,
+            ht50_revenues.coin as coin,
             ht50_revenues.level as level
         "))->leftjoin('ht50_revenues', 'ht50_information_customer_surveys.code', '=', 'ht50_revenues.code')
             ->leftjoin('B20Customer', 'B20Customer.Code', '=', 'ht50_information_customer_surveys.code');
 
         if ($role=='browser') $infor=$infor->where('ht50_information_customer_surveys.status','>','0');
         elseif ($role!='')
-              $infor=$infor->where('ht50_revenues.role_pt',$role);
+              $infor=$infor->where('B20Customer.Role_PT',$role);
           return  $infor;
     }
 

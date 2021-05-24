@@ -65,7 +65,10 @@ class KHTTExport implements FromCollection, WithHeadings
                 '12' => $row['province'],
                 '13' => $row['city'],
                 '14' => $wb,
-                '15' => $bg
+                '15' => $bg,
+                '16' => $row['level'],
+                '17' => $row['coin'],
+                '18' => $row['created_at']
             );
         }
 
@@ -92,7 +95,10 @@ class KHTTExport implements FromCollection, WithHeadings
             'Huyện',
             'Thành Phố',
             'Quà tặng trào mừng',
-            'Quà tặng sinh nhật'
+            'Quà tặng sinh nhật',
+            'Hạng thẻ',
+            'Tổng điểm đạt được',
+            'Ngày tham gia'
         ];
     }
 }
