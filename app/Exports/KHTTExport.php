@@ -31,6 +31,9 @@ class KHTTExport implements FromCollection, WithHeadings
                     ht50_information_customer_surveys.province as province,
                     ht50_information_customer_surveys.city as city,
                     ht50_information_customer_surveys.wb as wb,
+                    ht50_information_customer_surveys.created_at as created_at,
+                    ht50_information_customer_surveys.value as value,
+                    ht50_information_customer_surveys.b_date as b_date,
                     ht50_information_customer_surveys.bg as bg,';
         if ($this->paramerter['status']) $data = GiftCodeApiController::managerGiftQuery($query,$this->paramerter['role_pt'])
             ->where('status',$this->paramerter['status'])->get();
@@ -42,7 +45,10 @@ class KHTTExport implements FromCollection, WithHeadings
                 $wb = Carbon::parse($row['wb'])->format('d/m/Y');
             else
                 $wb = '';
-
+            $bg='';
+            if ($row['value']){
+                $bg=$row['bg']."|".$row['value']."(".$row['b_date'].")";
+            }
             $order[] = array(
                 '0' => $row['code'],
                 '1' => $row['name_gara'],
@@ -59,7 +65,7 @@ class KHTTExport implements FromCollection, WithHeadings
                 '12' => $row['province'],
                 '13' => $row['city'],
                 '14' => $wb,
-                '15' => $row['bg']
+                '15' => $bg
             );
         }
 
