@@ -13,7 +13,7 @@
     <!-- Custom fonts for this template-->
     <link href="{{asset('/css/vendor/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{asset('/public/css/css.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('/css/css.css')}}">--}}
     <!-- Custom styles for this template-->
     <link href="{{asset('/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
@@ -177,8 +177,8 @@
 <script src="{{asset('js/message/index.js')}}"></script>
 <script>
     var role = "{{$role}}";
-    var page = $();
+    var page = $("#load_page");
 </script>
-<script src="{{ asset('/js/survey/accumulate.js') }}"></script>
+<script src="{{ asset('/js/survey/accumulate-edit.js') }}"></script>
 </body>
 </html>
